@@ -66,7 +66,7 @@ exam_notes/
 ```text
  notes/
  PLAN.md
- EXAM_PROGRAM.md
+ QUESTIONS.md
  glossary.md
  formula_sheet.md
  common_mistakes.md
