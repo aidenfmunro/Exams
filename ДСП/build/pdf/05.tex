@@ -1,0 +1,1329 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 05. Измеримые функции, отображения и случайные
+элементы}\label{ux431ux438ux43bux435ux442-05.-ux438ux437ux43cux435ux440ux438ux43cux44bux435-ux444ux443ux43dux43aux446ux438ux438-ux43eux442ux43eux431ux440ux430ux436ux435ux43dux438ux44f-ux438-ux441ux43bux443ux447ux430ux439ux43dux44bux435-ux44dux43bux435ux43cux435ux43dux442ux44b}
+
+Источники: Ширяев 1, гл. II; Сердобольская, лекция 1; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Измеримое отображение - это отображение между измеримыми пространствами,
+у которого прообраз любого измеримого множества снова измерим. Если
+
+\[
+X:(\Omega,\mathcal F)\to(E,\mathcal E),
+\]
+
+то измеримость означает
+
+\[
+X^{-1}(B)=\{\omega\in\Omega:X(\omega)\in B\}\in\mathcal F
+\qquad \forall B\in\mathcal E.
+\]
+
+Случайная величина - это измеримое отображение из вероятностного
+пространства в \(\mathbb R\) с борелевской \(\sigma\)-алгеброй:
+
+\[
+X:(\Omega,\mathcal F,P)\to(\mathbb R,\mathcal B(\mathbb R)).
+\]
+
+Случайный вектор - измеримое отображение в \(\mathbb R^d\), случайный
+элемент - измеримое отображение в произвольное измеримое, обычно
+метрическое, пространство. Измеримость нужна для того, чтобы события
+вида \(\{X\in B\}\) имели вероятность.
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Мотивация и связь с наблюдаемыми
+величинами}\label{ux43cux43eux442ux438ux432ux430ux446ux438ux44f-ux438-ux441ux432ux44fux437ux44c-ux441-ux43dux430ux431ux43bux44eux434ux430ux435ux43cux44bux43cux438-ux432ux435ux43bux438ux447ux438ux43dux430ux43cux438}
+
+В предыдущих билетах вводились \(\sigma\)-алгебры, меры, вероятностные
+пространства и борелевские множества. Теперь нужно связать пространство
+элементарных исходов с наблюдаемыми величинами. В вероятности мы редко
+работаем напрямую с исходом \(\omega\in\Omega\). Обычно нас интересует
+численная или более сложная характеристика исхода: результат измерения,
+вектор наблюдений, траектория процесса, последовательность значений.
+
+\subsubsection{2.2. Определение измеримого
+отображения}\label{ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux438ux437ux43cux435ux440ux438ux43cux43eux433ux43e-ux43eux442ux43eux431ux440ux430ux436ux435ux43dux438ux44f}
+
+Пусть есть измеримое пространство \((\Omega,\mathcal F)\) и другое
+измеримое пространство \((E,\mathcal E)\). Отображение
+
+\[
+X:\Omega\to E
+\]
+
+называется измеримым, если для любого измеримого множества
+\(B\in\mathcal E\) его прообраз измерим:
+
+\[
+X^{-1}(B)\in\mathcal F.
+\]
+
+Интуитивно это означает: если в пространстве значений \(E\) можно задать
+наблюдаемое событие \(B\), то событие ``значение \(X\) попало в \(B\)''
+должно быть событием в исходном вероятностном пространстве. Иначе
+выражение \(P\{X\in B\}\) просто не будет определено.
+
+\subsubsection{2.3. Вещественная случайная
+величина}\label{ux432ux435ux449ux435ux441ux442ux432ux435ux43dux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Главный частный случай - вещественная случайная величина. Это измеримое
+отображение
+
+\[
+X:(\Omega,\mathcal F,P)\to(\mathbb R,\mathcal B(\mathbb R)).
+\]
+
+По определению для любого борелевского множества \(B\subset\mathbb R\)
+должно быть
+
+\[
+\{X\in B\}\in\mathcal F.
+\]
+
+Проверять все борелевские множества напрямую неудобно. Поэтому
+используют порождающие классы. Так как
+
+\[
+\mathcal B(\mathbb R)=\sigma\{(-\infty,x]:x\in\mathbb R\},
+\]
+
+то для вещественной функции достаточно проверить, что
+
+\[
+\{X\le x\}\in\mathcal F\qquad \forall x\in\mathbb R.
+\]
+
+Эквивалентно можно проверять множества \(\{X<x\}\), \(\{X>x\}\) или
+\(\{X\ge x\}\) для всех \(x\).
+
+\subsubsection{2.4. Случайный вектор и критерий
+измеримости}\label{ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux432ux435ux43aux442ux43eux440-ux438-ux43aux440ux438ux442ux435ux440ux438ux439-ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux438}
+
+Случайный вектор
+
+\[
+X=(X_1,\ldots,X_d)
+\]
+
+со значениями в \(\mathbb R^d\) - это измеримое отображение
+
+\[
+X:(\Omega,\mathcal F,P)\to(\mathbb R^d,\mathcal B(\mathbb R^d)).
+\]
+
+Важный критерий: \(X\) измерим тогда и только тогда, когда все его
+координаты \(X_1,\ldots,X_d\) измеримы как вещественные случайные
+величины. Это удобно, потому что на практике вектор обычно задается
+координатами.
+
+\subsubsection{2.5. Случайный элемент в метрическом
+пространстве}\label{ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux44dux43bux435ux43cux435ux43dux442-ux432-ux43cux435ux442ux440ux438ux447ux435ux441ux43aux43eux43c-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux435}
+
+Еще более общий объект - случайный элемент. Если \((E,\rho)\) -
+метрическое пространство, то случайным элементом со значениями в \(E\)
+называют измеримое отображение
+
+\[
+X:(\Omega,\mathcal F,P)\to(E,\mathcal B(E)),
+\]
+
+где \(\mathcal B(E)\) - борелевская \(\sigma\)-алгебра метрического
+пространства. Примеры: случайная точка в \(\mathbb R^d\), случайная
+последовательность в \(\mathbb R^{\mathbb N}\), случайная функция в
+пространстве траекторий.
+
+\subsubsection{2.6. Измеримость случайных
+последовательностей}\label{ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux44c-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux435ux439}
+
+Для дискретных случайных процессов это особенно важно.
+Последовательность случайных величин \((X_1,X_2,\ldots)\) можно
+рассматривать двояко:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  как семейство измеримых отображений \(X_n:\Omega\to\mathbb R\);
+\item
+  как одно отображение
+\end{enumerate}
+
+\[
+X:\Omega\to\mathbb R^{\mathbb N},\qquad
+X(\omega)=(X_1(\omega),X_2(\omega),\ldots).
+\]
+
+Если на \(\mathbb R^{\mathbb N}\) взять цилиндрическую, то есть
+произведенную, \(\sigma\)-алгебру, то такое отображение измеримо тогда и
+только тогда, когда измеримы все координаты \(X_n\). Это будет
+использоваться в билетах про конечномерные распределения, теорему
+Колмогорова и дискретные случайные процессы.
+
+\subsubsection{2.7. Роль условия измеримости в теории
+вероятностей}\label{ux440ux43eux43bux44c-ux443ux441ux43bux43eux432ux438ux44f-ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux438-ux432-ux442ux435ux43eux440ux438ux438-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux435ux439}
+
+Итак, роль билета такая: измеримость - минимальное техническое условие,
+которое превращает функцию от исхода в корректный вероятностный объект.
+После этого можно задавать распределение \(P_X(B)=P\{X\in B\}\),
+интегрировать функции от \(X\), говорить о моментах, независимости,
+условном ожидании и процессах.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Измеримое
+пространство}\label{ux438ux437ux43cux435ux440ux438ux43cux43eux435-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e}
+
+Пара \((\Omega,\mathcal F)\), где \(\Omega\) - множество, а
+\(\mathcal F\) - \(\sigma\)-алгебра его подмножеств.
+
+\subsubsection{Прообраз
+множества}\label{ux43fux440ux43eux43eux431ux440ux430ux437-ux43cux43dux43eux436ux435ux441ux442ux432ux430}
+
+Если \(X:\Omega\to E\) и \(B\subset E\), то
+
+\[
+X^{-1}(B)=\{\omega\in\Omega:X(\omega)\in B\}.
+\]
+
+Важно: прообраз всегда является подмножеством \(\Omega\), а не
+подмножеством \(E\).
+
+\subsubsection{Измеримое
+отображение}\label{ux438ux437ux43cux435ux440ux438ux43cux43eux435-ux43eux442ux43eux431ux440ux430ux436ux435ux43dux438ux435}
+
+Пусть \((\Omega,\mathcal F)\) и \((E,\mathcal E)\) - измеримые
+пространства. Отображение
+
+\[
+X:\Omega\to E
+\]
+
+называется \(\mathcal F/\mathcal E\)-измеримым, если
+
+\[
+X^{-1}(B)\in\mathcal F
+\qquad \forall B\in\mathcal E.
+\]
+
+\subsubsection{Борелевски измеримая
+функция}\label{ux431ux43eux440ux435ux43bux435ux432ux441ux43aux438-ux438ux437ux43cux435ux440ux438ux43cux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+Если \(E\) - топологическое или метрическое пространство и
+\(\mathcal E=\mathcal B(E)\), то измеримое отображение в
+\((E,\mathcal B(E))\) называют борелевски измеримым.
+
+\subsubsection{Вещественная случайная
+величина}\label{ux432ux435ux449ux435ux441ux442ux432ux435ux43dux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430-1}
+
+Измеримое отображение
+
+\[
+X:(\Omega,\mathcal F,P)\to(\mathbb R,\mathcal B(\mathbb R)).
+\]
+
+То есть для любого \(B\in\mathcal B(\mathbb R)\) событие \(\{X\in B\}\)
+принадлежит \(\mathcal F\).
+
+\subsubsection{Случайный
+вектор}\label{ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux432ux435ux43aux442ux43eux440}
+
+Измеримое отображение
+
+\[
+X=(X_1,\ldots,X_d):(\Omega,\mathcal F,P)\to(\mathbb R^d,\mathcal B(\mathbb R^d)).
+\]
+
+\subsubsection{Случайный элемент метрического
+пространства}\label{ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux44dux43bux435ux43cux435ux43dux442-ux43cux435ux442ux440ux438ux447ux435ux441ux43aux43eux433ux43e-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux430}
+
+Если \((E,\rho)\) - метрическое пространство, то случайный элемент со
+значениями в \(E\) - это измеримое отображение
+
+\[
+X:(\Omega,\mathcal F,P)\to(E,\mathcal B(E)).
+\]
+
+\subsubsection{Случайная
+последовательность}\label{ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c}
+
+Случайный элемент пространства последовательностей:
+
+\[
+X:\Omega\to\mathbb R^{\mathbb N},\qquad
+X(\omega)=(X_1(\omega),X_2(\omega),\ldots),
+\]
+
+обычно с произведенной \(\sigma\)-алгеброй
+
+\[
+\mathcal B(\mathbb R)^{\otimes\mathbb N}
+=
+\sigma\{\pi_n^{-1}(B):n\in\mathbb N,\ B\in\mathcal B(\mathbb R)\},
+\]
+
+где \(\pi_n(x_1,x_2,\ldots)=x_n\) - координатная проекция.
+
+\subsubsection{Сечение
+процесса}\label{ux441ux435ux447ux435ux43dux438ux435-ux43fux440ux43eux446ux435ux441ux441ux430}
+
+Для случайного процесса \(\{X_t:t\in T\}\) фиксированное значение
+\(X_t(\omega)\) как функция \(\omega\) называется сечением процесса в
+момент \(t\).
+
+\subsubsection{Траектория
+процесса}\label{ux442ux440ux430ux435ux43aux442ux43eux440ux438ux44f-ux43fux440ux43eux446ux435ux441ux441ux430}
+
+Для фиксированного \(\omega\) функция
+
+\[
+t\mapsto X_t(\omega)
+\]
+
+называется траекторией процесса.
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Свойство 1. Достаточно проверять порождающий
+класс}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-1.-ux434ux43eux441ux442ux430ux442ux43eux447ux43dux43e-ux43fux440ux43eux432ux435ux440ux44fux442ux44c-ux43fux43eux440ux43eux436ux434ux430ux44eux449ux438ux439-ux43aux43bux430ux441ux441}
+
+Пусть \((\Omega,\mathcal F)\) и \((E,\mathcal E)\) - измеримые
+пространства, а \(\mathcal E=\sigma(\mathcal C)\). Тогда отображение
+\(X:\Omega\to E\) измеримо тогда и только тогда, когда
+
+\[
+X^{-1}(C)\in\mathcal F
+\qquad \forall C\in\mathcal C.
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e}
+
+Рассмотрим класс
+
+\[
+\mathcal D=\{B\subset E:X^{-1}(B)\in\mathcal F\}.
+\]
+
+Этот класс является \(\sigma\)-алгеброй. Действительно,
+
+\[
+X^{-1}(E)=\Omega\in\mathcal F,
+\]
+
+\[
+X^{-1}(E\setminus B)=\Omega\setminus X^{-1}(B),
+\]
+
+и
+
+\[
+X^{-1}\left(\bigcup_{n=1}^{\infty}B_n\right)
+=
+\bigcup_{n=1}^{\infty}X^{-1}(B_n).
+\]
+
+Если \(X^{-1}(C)\in\mathcal F\) для всех \(C\in\mathcal C\), то
+\(\mathcal C\subset\mathcal D\). Так как \(\mathcal D\) -
+\(\sigma\)-алгебра, она содержит \(\sigma(\mathcal C)=\mathcal E\).
+Значит \(X\) измеримо. Обратное направление следует прямо из
+определения. \(\square\)
+
+\subsubsection{Свойство 2. Критерии измеримости вещественной
+функции}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-2.-ux43aux440ux438ux442ux435ux440ux438ux438-ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux438-ux432ux435ux449ux435ux441ux442ux432ux435ux43dux43dux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Для функции \(X:\Omega\to\mathbb R\) следующие условия эквивалентны:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) измерима как отображение в
+  \((\mathbb R,\mathcal B(\mathbb R))\);
+\item
+  \(\{X\le x\}\in\mathcal F\) для всех \(x\in\mathbb R\);
+\item
+  \(\{X<x\}\in\mathcal F\) для всех \(x\in\mathbb R\);
+\item
+  \(\{X>x\}\in\mathcal F\) для всех \(x\in\mathbb R\);
+\item
+  \(\{X\ge x\}\in\mathcal F\) для всех \(x\in\mathbb R\).
+\end{enumerate}
+
+\subsubsection{Доказательство-идея}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux438ux434ux435ux44f}
+
+Борелевская \(\sigma\)-алгебра на прямой порождается лучами:
+
+\[
+\mathcal B(\mathbb R)=\sigma\{(-\infty,x]:x\in\mathbb R\}.
+\]
+
+По свойству 1 достаточно проверять прообразы таких лучей:
+
+\[
+X^{-1}((-\infty,x])=\{X\le x\}.
+\]
+
+Остальные варианты получаются через дополнения и счетные пересечения:
+
+\[
+\{X<x\}=\bigcup_{n=1}^{\infty}\{X\le x-\tfrac1n\},
+\]
+
+\[
+\{X\ge x\}=\Omega\setminus\{X<x\}.
+\]
+
+\subsubsection{Свойство 3. Для борелевской измеримости достаточно
+открытых
+множеств}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-3.-ux434ux43bux44f-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux43eux439-ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux438-ux434ux43eux441ux442ux430ux442ux43eux447ux43dux43e-ux43eux442ux43aux440ux44bux442ux44bux445-ux43cux43dux43eux436ux435ux441ux442ux432}
+
+Пусть \(E\) - топологическое пространство. Отображение
+
+\[
+X:(\Omega,\mathcal F)\to(E,\mathcal B(E))
+\]
+
+измеримо тогда и только тогда, когда
+
+\[
+X^{-1}(G)\in\mathcal F
+\]
+
+для любого открытого множества \(G\subset E\).
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-1}
+
+По определению
+
+\[
+\mathcal B(E)=\sigma\{G\subset E:G\text{ открыто}\}.
+\]
+
+Остается применить свойство 1.
+
+\subsubsection{Свойство 4. Непрерывные отображения борелевски
+измеримы}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-4.-ux43dux435ux43fux440ux435ux440ux44bux432ux43dux44bux435-ux43eux442ux43eux431ux440ux430ux436ux435ux43dux438ux44f-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux438-ux438ux437ux43cux435ux440ux438ux43cux44b}
+
+Пусть \(E\) и \(S\) - топологические пространства, а
+
+\[
+f:E\to S
+\]
+
+непрерывно. Тогда \(f\) измеримо как отображение
+
+\[
+(E,\mathcal B(E))\to(S,\mathcal B(S)).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-2}
+
+Для любого открытого \(G\subset S\) прообраз \(f^{-1}(G)\) открыт в
+\(E\), значит принадлежит \(\mathcal B(E)\). По свойству 3 отображение
+\(f\) борелевски измеримо. \(\square\)
+
+\subsubsection{Свойство 5. Композиция измеримых отображений
+измерима}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-5.-ux43aux43eux43cux43fux43eux437ux438ux446ux438ux44f-ux438ux437ux43cux435ux440ux438ux43cux44bux445-ux43eux442ux43eux431ux440ux430ux436ux435ux43dux438ux439-ux438ux437ux43cux435ux440ux438ux43cux430}
+
+Если
+
+\[
+X:(\Omega,\mathcal F)\to(E,\mathcal E)
+\]
+
+измеримо и
+
+\[
+f:(E,\mathcal E)\to(S,\mathcal S)
+\]
+
+измеримо, то композиция
+
+\[
+f\circ X:(\Omega,\mathcal F)\to(S,\mathcal S)
+\]
+
+измерима.
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-3}
+
+Для любого \(C\in\mathcal S\)
+
+\[
+(f\circ X)^{-1}(C)=X^{-1}(f^{-1}(C)).
+\]
+
+Так как \(f\) измеримо, \(f^{-1}(C)\in\mathcal E\). Так как \(X\)
+измеримо, \(X^{-1}(f^{-1}(C))\in\mathcal F\). \(\square\)
+
+\subsubsection{Свойство 6. Критерий измеримости случайного
+вектора}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-6.-ux43aux440ux438ux442ux435ux440ux438ux439-ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux438-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430}
+
+Отображение
+
+\[
+X=(X_1,\ldots,X_d):\Omega\to\mathbb R^d
+\]
+
+измеримо относительно \(\mathcal B(\mathbb R^d)\) тогда и только тогда,
+когда все координаты
+
+\[
+X_1,\ldots,X_d
+\]
+
+измеримы как вещественные функции.
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-4}
+
+Если \(X\) измеримо, то координата
+
+\[
+X_k=\pi_k\circ X
+\]
+
+измерима, потому что проекция \(\pi_k:\mathbb R^d\to\mathbb R\)
+непрерывна, а композиция измеримых отображений измерима.
+
+Обратно, пусть все \(X_k\) измеримы. Достаточно проверить прообразы
+прямоугольников
+
+\[
+(-\infty,x_1]\times\cdots\times(-\infty,x_d],
+\]
+
+потому что такие множества порождают \(\mathcal B(\mathbb R^d)\). Но
+
+\[
+X^{-1}\left((-\infty,x_1]\times\cdots\times(-\infty,x_d]\right)
+=
+\bigcap_{k=1}^d\{X_k\le x_k\}.
+\]
+
+Каждое множество справа лежит в \(\mathcal F\), а \(\mathcal F\)
+замкнута относительно конечных пересечений. Значит \(X\) измерим.
+\(\square\)
+
+\subsubsection{Свойство 7. Борелевская функция от случайного вектора
+дает случайную
+величину}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-7.-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux43eux442-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430-ux434ux430ux435ux442-ux441ux43bux443ux447ux430ux439ux43dux443ux44e-ux432ux435ux43bux438ux447ux438ux43dux443}
+
+Если \(X:\Omega\to\mathbb R^d\) - случайный вектор, а
+\(g:\mathbb R^d\to\mathbb R^m\) - борелевски измеримое отображение, то
+
+\[
+g(X)
+\]
+
+является случайным вектором в \(\mathbb R^m\).
+
+В частности, если \(X,Y\) - вещественные случайные величины, то
+измеримы:
+
+\[
+X+Y,\qquad XY,\qquad \max(X,Y),\qquad \min(X,Y),
+\]
+
+если \(Y\ne0\) всюду, то также \(X/Y\). Если \(Y=0\) возможно, нужно
+определить значение на множестве \(\{Y=0\}\), например положить там
+\(0\), и рассматривать такую измеримую модификацию.
+
+\subsubsection{Обоснование}\label{ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux435}
+
+Вектор \((X,Y)\) измерим по свойству 6, а операции сложения, умножения,
+максимума и минимума являются непрерывными функциями
+\(\mathbb R^2\to\mathbb R\).
+
+\subsubsection{Свойство 8. Предел измеримых вещественных функций
+измерим}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-8.-ux43fux440ux435ux434ux435ux43b-ux438ux437ux43cux435ux440ux438ux43cux44bux445-ux432ux435ux449ux435ux441ux442ux432ux435ux43dux43dux44bux445-ux444ux443ux43dux43aux446ux438ux439-ux438ux437ux43cux435ux440ux438ux43c}
+
+Если \(X_n:\Omega\to\mathbb R\) измеримы, то функции
+
+\[
+\sup_n X_n,\qquad \inf_n X_n,\qquad \limsup_{n\to\infty}X_n,\qquad \liminf_{n\to\infty}X_n
+\]
+
+измеримы как расширенные вещественные функции. Если
+\(X_n(\omega)\to X(\omega)\) для всех \(\omega\), то \(X\) измерима.
+
+\subsubsection{Доказательство-идея}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux438ux434ux435ux44f-1}
+
+Например,
+
+\[
+\left\{\sup_n X_n>a\right\}
+=
+\bigcup_{n=1}^{\infty}\{X_n>a\}\in\mathcal F.
+\]
+
+Значит \(\sup_nX_n\) измерима. Инфимум выражается через супремум:
+
+\[
+\inf_nX_n=-\sup_n(-X_n).
+\]
+
+Далее
+
+\[
+\limsup_{n\to\infty}X_n=\inf_{m\ge1}\sup_{n\ge m}X_n,
+\]
+
+\[
+\liminf_{n\to\infty}X_n=\sup_{m\ge1}\inf_{n\ge m}X_n.
+\]
+
+Если обычный предел существует, то
+
+\[
+X=\limsup_{n\to\infty}X_n=\liminf_{n\to\infty}X_n.
+\]
+
+\subsubsection{Свойство 9. Измеримость случайной
+последовательности}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-9.-ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux44c-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438}
+
+Пусть
+
+\[
+X(\omega)=(X_1(\omega),X_2(\omega),\ldots)
+\]
+
+и на \(\mathbb R^{\mathbb N}\) взята произведенная \(\sigma\)-алгебра
+\(\mathcal B(\mathbb R)^{\otimes\mathbb N}\). Тогда \(X\) измеримо тогда
+и только тогда, когда каждая координата \(X_n\) измерима.
+
+\subsubsection{Доказательство-идея}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux438ux434ux435ux44f-2}
+
+Произведенная \(\sigma\)-алгебра порождается цилиндрами
+
+\[
+\pi_{i_1}^{-1}(B_1)\cap\cdots\cap\pi_{i_k}^{-1}(B_k),
+\]
+
+где \(B_j\in\mathcal B(\mathbb R)\). Прообраз такого цилиндра равен
+
+\[
+\{X_{i_1}\in B_1\}\cap\cdots\cap\{X_{i_k}\in B_k\},
+\]
+
+что измеримо при измеримости всех координат.
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Индикатор
+события}\label{ux43fux440ux438ux43cux435ux440-1.-ux438ux43dux434ux438ux43aux430ux442ux43eux440-ux441ux43eux431ux44bux442ux438ux44f}
+
+Пусть \(A\in\mathcal F\). Тогда
+
+\[
+\mathbf 1_A(\omega)=
+\begin{cases}
+1, & \omega\in A,\\
+0, & \omega\notin A
+\end{cases}
+\]
+
+является случайной величиной. Действительно, для любого \(x\) множество
+\(\{\mathbf 1_A\le x\}\) равно одному из множеств
+
+\[
+\varnothing,\qquad \Omega\setminus A,\qquad \Omega,
+\]
+
+и все они принадлежат \(\mathcal F\).
+
+\subsubsection{Пример 2. Простая случайная
+величина}\label{ux43fux440ux438ux43cux435ux440-2.-ux43fux440ux43eux441ux442ux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Если \(A_1,\ldots,A_n\in\mathcal F\) и \(a_1,\ldots,a_n\in\mathbb R\),
+то
+
+\[
+X(\omega)=\sum_{k=1}^n a_k\mathbf 1_{A_k}(\omega)
+\]
+
+измерима. Она принимает конечное число значений. Чтобы увидеть
+измеримость строго, можно разбить \(\Omega\) на конечное число атомов
+вида
+
+\[
+\bigcap_{k=1}^n C_k,\qquad C_k\in\{A_k,\Omega\setminus A_k\}.
+\]
+
+На каждом таком атоме \(X\) постоянна, поэтому \(\{X\in B\}\) является
+конечным объединением измеримых атомов. Такие функции будут основой
+конструкции интеграла Лебега в Билете 07.
+
+\subsubsection{Пример 3. Случайный
+вектор}\label{ux43fux440ux438ux43cux435ux440-3.-ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux432ux435ux43aux442ux43eux440}
+
+Если \(X\) и \(Y\) - случайные величины, то
+
+\[
+Z=(X,Y):\Omega\to\mathbb R^2
+\]
+
+является случайным вектором. Например, событие попадания в прямоугольник
+имеет вид
+
+\[
+\{Z\in(-\infty,x]\times(-\infty,y]\}
+=
+\{X\le x\}\cap\{Y\le y\}.
+\]
+
+Это событие измеримо.
+
+\subsubsection{Пример 4. Случайная
+последовательность}\label{ux43fux440ux438ux43cux435ux440-4.-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c}
+
+Пусть \(X_1,X_2,\ldots\) - случайные величины. Тогда
+
+\[
+X(\omega)=(X_1(\omega),X_2(\omega),\ldots)
+\]
+
+является случайным элементом пространства \(\mathbb R^{\mathbb N}\) с
+произведенной \(\sigma\)-алгеброй. События, зависящие от конечного числа
+координат, например
+
+\[
+\{X_1\le a_1,\ X_2\le a_2,\ X_5\in B\},
+\]
+
+измеримы. Именно такие события задают конечномерные распределения.
+
+\subsubsection{Пример 5. Непрерывная функция от случайной
+величины}\label{ux43fux440ux438ux43cux435ux440-5.-ux43dux435ux43fux440ux435ux440ux44bux432ux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux43eux442-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+Если \(X\) - случайная величина, то
+
+\[
+e^X,\qquad X^2,\qquad \sin X,\qquad |X|
+\]
+
+тоже случайные величины, потому что соответствующие функции
+\(\mathbb R\to\mathbb R\) непрерывны и, следовательно, борелевски
+измеримы.
+
+\subsubsection{Пример 6. Не всякая функция является случайной
+величиной}\label{ux43fux440ux438ux43cux435ux440-6.-ux43dux435-ux432ux441ux44fux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux44fux432ux43bux44fux435ux442ux441ux44f-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux43eux439}
+
+Пусть \(\Omega=\mathbb R\) и \(\mathcal F=\{\varnothing,\mathbb R\}\) -
+тривиальная \(\sigma\)-алгебра. Функция
+
+\[
+X(\omega)=\omega
+\]
+
+не является случайной величиной относительно этой \(\mathcal F\), потому
+что
+
+\[
+\{X\le0\}=(-\infty,0]\notin\mathcal F.
+\]
+
+Проблема не в самой формуле \(X(\omega)=\omega\), а в слишком бедной
+\(\sigma\)-алгебре событий.
+
+\subsection{6. Доказательства и
+обоснования}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux430-ux438-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux44f}
+
+\textbf{Почему в определении стоят прообразы, а не образы.}
+
+Вероятность задана на подмножествах \(\Omega\), то есть на событиях из
+\(\mathcal F\). Если в пространстве значений есть множество
+\(B\subset E\), то событие ``значение \(X\) лежит в \(B\)'' находится в
+исходном пространстве:
+
+\[
+\{\omega:X(\omega)\in B\}=X^{-1}(B).
+\]
+
+Именно его вероятность можно пытаться вычислить. Образ множества
+\(X(A)\) лежит в \(E\) и сам по себе не является событием в \(\Omega\).
+
+\textbf{Почему нельзя проверять только одно множество.}
+
+Если проверить только \(\{X\le0\}\), это ничего не говорит о событиях
+\(\{X\le x\}\) при других \(x\). Для распределения и интеграла нужно,
+чтобы были измеримы все события вида \(\{X\in B\}\), где \(B\)
+борелевское. Поэтому проверяют либо все борелевские множества, либо
+порождающий класс, например все лучи \((-\infty,x]\).
+
+\textbf{Почему координатный критерий работает только для правильной
+\(\sigma\)-алгебры.}
+
+Для \(\mathbb R^d\) с борелевской \(\sigma\)-алгеброй прямоугольники
+порождают все борелевские множества, поэтому измеримость координат
+достаточна. Если на пространстве значений взять произвольную более
+богатую \(\sigma\)-алгебру, то координат может быть недостаточно: нужно
+проверять именно \(\sigma\)-алгебру, выбранную в пространстве значений.
+
+\textbf{Почему в метрическом пространстве часто используют счетную
+базу.}
+
+Если метрическое пространство сепарабельно, то у него есть счетная база
+открытых шаров. Тогда для проверки борелевской измеримости достаточно
+проверять прообразы шаров из этой базы. Это удобно для пространств
+последовательностей и функций. Без сепарабельности некоторые привычные
+упрощения могут не работать.
+
+\textbf{Предупреждение про неограниченные и расширенные функции.}
+
+Обычная вещественная случайная величина принимает значения в
+\(\mathbb R\). Иногда разрешают значения \(\pm\infty\) и говорят о
+расширенной случайной величине со значениями в
+
+\[
+\overline{\mathbb R}=[-\infty,\infty].
+\]
+
+Тогда нужно явно понимать, какая \(\sigma\)-алгебра стоит на
+\(\overline{\mathbb R}\), и отдельно следить за корректностью операций
+вроде \(+\infty-\infty\).
+
+\textbf{Предупреждение про процессы с несчетным временем.}
+
+Для счетного набора времен измеримость всех координат хорошо согласуется
+с произведенной \(\sigma\)-алгеброй. Для процессов с несчетным
+множеством времен, например \(t\in[0,1]\), утверждения о траекториях как
+элементах пространства функций требуют дополнительных условий и выбора
+конкретной \(\sigma\)-алгебры или топологии на пространстве траекторий.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Измеримое отображение:
+\end{enumerate}
+
+\[
+X:(\Omega,\mathcal F)\to(E,\mathcal E),
+\qquad
+X^{-1}(B)\in\mathcal F\quad \forall B\in\mathcal E.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Случайная величина:
+\end{enumerate}
+
+\[
+X:(\Omega,\mathcal F,P)\to(\mathbb R,\mathcal B(\mathbb R)).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Критерий для \(\mathbb R\):
+\end{enumerate}
+
+\[
+X\text{ измерима}
+\quad\Longleftrightarrow\quad
+\{X\le x\}\in\mathcal F\quad \forall x\in\mathbb R.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Проверка по порождающему классу:
+\end{enumerate}
+
+\[
+\mathcal E=\sigma(\mathcal C),\quad
+X^{-1}(C)\in\mathcal F\ \forall C\in\mathcal C
+\Rightarrow
+X\text{ измеримо}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Векторный критерий:
+\end{enumerate}
+
+\[
+X=(X_1,\ldots,X_d)\text{ измерим}
+\quad\Longleftrightarrow\quad
+X_1,\ldots,X_d\text{ измеримы}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Композиция:
+\end{enumerate}
+
+\[
+X\text{ измеримо},\quad g\text{ борелевски измерима}
+\Rightarrow
+g(X)\text{ измеримо}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Случайная последовательность:
+\end{enumerate}
+
+\[
+X:\Omega\to\mathbb R^{\mathbb N},
+\qquad
+X(\omega)=(X_1(\omega),X_2(\omega),\ldots).
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Зачем нужна измеримость случайной величины?}
+
+Чтобы события вида \(\{X\in B\}\) принадлежали \(\mathcal F\) и имели
+вероятность. Без измеримости нельзя корректно определить распределение
+\(P_X(B)=P\{X\in B\}\).
+
+\textbf{Вопрос. Почему в определении измеримости используется прообраз?}
+
+Потому что вероятность задана на событиях в \(\Omega\). Множество \(B\)
+лежит в пространстве значений, а событие в исходном пространстве равно
+\(X^{-1}(B)\).
+
+\textbf{Вопрос. Нужно ли проверять все борелевские множества на прямой?}
+
+По определению да, но практически нет. Достаточно проверить порождающий
+класс, например все лучи \((-\infty,x]\):
+
+\[
+\{X\le x\}\in\mathcal F\quad \forall x.
+\]
+
+\textbf{Вопрос. Почему непрерывная функция от случайной величины
+измерима?}
+
+Непрерывная функция борелевски измерима, а композиция измеримых
+отображений измерима.
+
+\textbf{Вопрос. Когда вектор \((X_1,\ldots,X_d)\) является случайным?}
+
+Тогда и только тогда, когда все координаты \(X_1,\ldots,X_d\) являются
+случайными величинами.
+
+\textbf{Вопрос. Что такое случайный элемент метрического пространства?}
+
+Это измеримое отображение из вероятностного пространства в метрическое
+пространство с его борелевской \(\sigma\)-алгеброй:
+
+\[
+X:(\Omega,\mathcal F,P)\to(E,\mathcal B(E)).
+\]
+
+\textbf{Вопрос. Чем случайный элемент отличается от случайной величины?}
+
+Случайная величина принимает значения в \(\mathbb R\). Случайный элемент
+может принимать значения в более общем пространстве: \(\mathbb R^d\),
+\(\mathbb R^{\mathbb N}\), пространстве функций, множестве состояний
+цепи.
+
+\textbf{Вопрос. Что такое траектория случайного процесса?}
+
+При фиксированном \(\omega\) это функция времени:
+
+\[
+t\mapsto X_t(\omega).
+\]
+
+А при фиксированном \(t\) функция \(\omega\mapsto X_t(\omega)\)
+называется сечением процесса.
+
+\textbf{Вопрос. Может ли функция быть неслучайной из-за выбора
+\(\sigma\)-алгебры?}
+
+Да. Если \(\mathcal F\) слишком бедная, прообразы борелевских множеств
+могут не лежать в \(\mathcal F\). Например, тождественная функция на
+\(\mathbb R\) не измерима относительно тривиальной \(\sigma\)-алгебры
+\(\{\varnothing,\mathbb R\}\).
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Говорить ``случайная величина - любая функция на \(\Omega\)''.
+  Правильно: случайная величина - измеримая функция.
+\item
+  Путать \(X(\omega)\) и распределение \(P_X\). Первое - значение
+  функции при исходе, второе - мера на пространстве значений.
+\item
+  Проверять образ \(X(A)\) вместо прообраза \(X^{-1}(B)\). В определении
+  измеримости всегда стоят прообразы.
+\item
+  Проверять одно событие, например \(\{X>0\}\), и считать, что
+  измеримость доказана. Нужно проверить порождающий класс или всю
+  \(\sigma\)-алгебру.
+\item
+  Забывать, какая \(\sigma\)-алгебра стоит в пространстве значений. Для
+  вещественных величин обычно это \(\mathcal B(\mathbb R)\).
+\item
+  Считать, что координатная измеримость автоматически решает любую
+  задачу со случайными функциями. Для пространств траекторий нужно
+  учитывать выбранную \(\sigma\)-алгебру и топологию.
+\item
+  Путать сечение и траекторию процесса: \(X_t(\omega)\) как функция
+  \(\omega\) - сечение, как функция \(t\) при фиксированном \(\omega\) -
+  траектория.
+\end{enumerate}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 01.} Измеримость использует \(\sigma\)-алгебры как классы
+допустимых событий.
+
+\textbf{Билет 02.} Вероятностное пространство \((\Omega,\mathcal F,P)\)
+- исходная область, на которой определяются случайные величины.
+
+\textbf{Билет 04.} Для вещественных и векторных случайных величин
+пространство значений снабжается борелевской \(\sigma\)-алгеброй.
+
+\textbf{Билет 06.} Распределение случайного элемента определяется через
+измеримость:
+
+\[
+P_X(B)=P(X^{-1}(B)).
+\]
+
+\textbf{Билет 07.} Интеграл Лебега строится сначала для измеримых
+функций.
+
+\textbf{Билет 08.} Характеристическая функция \(\mathbb E e^{itX}\)
+имеет смысл, потому что \(e^{itX}\) измерима.
+
+\textbf{Билет 10.} Условное математическое ожидание является измеримой
+функцией относительно заданной \(\sigma\)-алгебры.
+
+\textbf{Билет 15.} Теорема Колмогорова строит случайный процесс как
+случайный элемент пространства последовательностей по согласованным
+конечномерным распределениям.
+
+\textbf{Билет 16.} Дискретный случайный процесс можно понимать как
+последовательность случайных величин и как один случайный элемент
+пространства последовательностей.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Измеримое отображение:
+\end{enumerate}
+
+\[
+X^{-1}(B)\in\mathcal F\quad \forall B\in\mathcal E.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Случайная величина - измеримое отображение
+\end{enumerate}
+
+\[
+X:(\Omega,\mathcal F,P)\to(\mathbb R,\mathcal B(\mathbb R)).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Для вещественной случайной величины достаточно проверять
+\end{enumerate}
+
+\[
+\{X\le x\}\in\mathcal F\quad \forall x.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Случайный вектор измерим тогда и только тогда, когда измеримы его
+  координаты.
+\item
+  Один пример: \(\mathbf 1_A\) является случайной величиной, если
+  \(A\in\mathcal F\).
+\end{enumerate}
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Кроме минимума на удовлетворительно, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Объяснить, почему достаточно проверять порождающий класс.
+\item
+  Доказать или аккуратно проговорить критерий для \(\{X\le x\}\).
+\item
+  Сформулировать измеримость композиции.
+\item
+  Объяснить, почему непрерывная функция от случайной величины измерима.
+\item
+  Разобрать случайный вектор и случайную последовательность.
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Доказательство через класс
+\end{enumerate}
+
+\[
+\mathcal D=\{B:X^{-1}(B)\in\mathcal F\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Координатный критерий для \(\mathbb R^d\) с доказательством через
+  прямоугольники.
+\item
+  Связь случайной последовательности с произведенной \(\sigma\)-алгеброй
+  и цилиндрами.
+\item
+  Различие между сечением и траекторией случайного процесса.
+\item
+  Предупреждение: для несчетного времени и пространств траекторий нужны
+  дополнительные условия.
+\end{enumerate}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Измеримые функции нужны для того, чтобы функции от исхода были
+корректными вероятностными объектами. Пусть есть измеримые пространства
+\((\Omega,\mathcal F)\) и \((E,\mathcal E)\). Отображение
+
+\[
+X:\Omega\to E
+\]
+
+называется измеримым, если
+
+\[
+X^{-1}(B)\in\mathcal F
+\qquad \forall B\in\mathcal E.
+\]
+
+Это означает, что для любого наблюдаемого множества значений \(B\)
+событие \(\{X\in B\}\) действительно является событием, которому можно
+приписать вероятность.
+
+Вещественная случайная величина - это измеримое отображение
+
+\[
+X:(\Omega,\mathcal F,P)\to(\mathbb R,\mathcal B(\mathbb R)).
+\]
+
+По определению нужно проверять все борелевские множества, но практически
+достаточно проверять лучи:
+
+\[
+\{X\le x\}\in\mathcal F
+\qquad \forall x\in\mathbb R.
+\]
+
+Это верно потому, что лучи \((-\infty,x]\) порождают
+\(\mathcal B(\mathbb R)\), а класс множеств \(B\), для которых
+\(X^{-1}(B)\) измерим, является \(\sigma\)-алгеброй.
+
+Случайный вектор
+
+\[
+X=(X_1,\ldots,X_d)
+\]
+
+измерим тогда и только тогда, когда измеримы все координаты.
+Доказательство идет через прямоугольники:
+
+\[
+\{X_1\le x_1,\ldots,X_d\le x_d\}
+=
+\bigcap_{k=1}^d\{X_k\le x_k\}.
+\]
+
+Если \(g\) - борелевски измеримая функция, а \(X\) - случайный элемент,
+то \(g(X)\) снова измерим. В частности, непрерывные функции от случайных
+величин, суммы, произведения, максимумы и минимумы случайных величин
+снова являются случайными величинами.
+
+Случайный элемент метрического пространства - это измеримое отображение
+в \((E,\mathcal B(E))\). Например, случайная последовательность может
+рассматриваться как одно отображение
+
+\[
+X:\Omega\to\mathbb R^{\mathbb N},
+\qquad
+X(\omega)=(X_1(\omega),X_2(\omega),\ldots),
+\]
+
+если на пространстве последовательностей взять произведенную
+\(\sigma\)-алгебру. Это связывает билет с конечномерными
+распределениями, теоремой Колмогорова и дискретными случайными
+процессами.
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить:
+
+\[
+X:(\Omega,\mathcal F)\to(E,\mathcal E)
+\text{ измеримо}
+\quad\Longleftrightarrow\quad
+X^{-1}(B)\in\mathcal F\ \forall B\in\mathcal E.
+\]
+
+Случайная величина:
+
+\[
+X:(\Omega,\mathcal F,P)\to(\mathbb R,\mathcal B(\mathbb R)).
+\]
+
+Для \(\mathbb R\):
+
+\[
+X\text{ измерима}
+\quad\Longleftrightarrow\quad
+\{X\le x\}\in\mathcal F\ \forall x.
+\]
+
+Для вектора:
+
+\[
+(X_1,\ldots,X_d)\text{ измерим}
+\quad\Longleftrightarrow\quad
+X_1,\ldots,X_d\text{ измеримы}.
+\]
+
+Главная мысль: измеримость нужна, чтобы \(\{X\in B\}\) было событием и
+имело вероятность. Главная ловушка: случайная величина - не любая
+функция, а измеримая функция.
+
+\newpage
+
+\end{document}

@@ -1,0 +1,3413 @@
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Arch Linux) (preloaded format=xelatex 2026.5.22)  23 MAY 2026 00:11
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**"/home/aidenfmunro/Vault/30 Areas/University/Exams/ДСП/build/pdf/dsp_tickets_
+all.tex"
+
+(/home/aidenfmunro/Vault/30 Areas/University/Exams/ДСП/build/pdf/dsp_tickets_al
+l.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count271
+\c@section=\count272
+\c@subsection=\count273
+\c@subsubsection=\count274
+\c@paragraph=\count275
+\c@subparagraph=\count276
+\c@figure=\count277
+\c@table=\count278
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 274.
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2025/11/01 v5.0p Graphics/color driver for xetex
+)
+(/usr/share/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count279
+\Gm@cntv=\count280
+\c@Gm@tempcnt=\count281
+\Gm@bindingoffset=\dimen149
+\Gm@wd@mp=\dimen150
+\Gm@odd@mp=\dimen151
+\Gm@even@mp=\dimen152
+\Gm@layoutwidth=\dimen153
+\Gm@layoutheight=\dimen154
+\Gm@layouthoffset=\dimen155
+\Gm@layoutvoffset=\dimen156
+\Gm@dimlist=\toks18
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen157
+))
+(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen158
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count282
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count283
+\leftroot@=\count284
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count285
+\DOTSCASE@=\count286
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen159
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count287
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count288
+\dotsspace@=\muskip17
+\c@parentequation=\count289
+\dspbrk@lvl=\count290
+\tag@help=\toks20
+\row@=\count291
+\column@=\count292
+\maxfields@=\count293
+\andhelp@=\toks21
+\eqnshift@=\dimen160
+\alignsep@=\dimen161
+\tagshift@=\dimen162
+\tagwidth@=\dimen163
+\totwidth@=\dimen164
+\lineht@=\dimen165
+\@envbody=\toks22
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texmf-dist/tex/latex/unicode-math/unicode-math.sty
+(/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2026-01-19 L3 programming layer (loader) 
+
+(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
+\g__graphics_track_int=\count294
+\g__pdfannot_backend_int=\count295
+\g__pdfannot_backend_link_int=\count296
+))
+Package: unicode-math 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLaTeX
+
+(/usr/share/texmf-dist/tex/latex/unicode-math/unicode-math-xetex.sty
+Package: unicode-math-xetex 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLa
+TeX
+
+(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+(/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
+)
+(/usr/share/texmf-dist/tex/latex/fontspec/fontspec.sty
+Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+
+(/usr/share/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count297
+\l__fontspec_language_int=\count298
+\l__fontspec_strnum_int=\count299
+\l__fontspec_tmp_int=\count300
+\l__fontspec_tmpa_int=\count301
+\l__fontspec_tmpb_int=\count302
+\l__fontspec_tmpc_int=\count303
+\l__fontspec_em_int=\count304
+\l__fontspec_emdef_int=\count305
+\l__fontspec_strong_int=\count306
+\l__fontspec_strongdef_int=\count307
+\l__fontspec_tmpa_dim=\dimen166
+\l__fontspec_tmpb_dim=\dimen167
+\l__fontspec_tmpc_dim=\dimen168
+
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(/usr/share/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(/usr/share/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
+
+(/usr/share/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
+LaTeX Encoding Info:    Redeclaring text command \capitalcedilla (encoding TS1)
+ on input line 49.
+LaTeX Encoding Info:    Redeclaring text command \capitalogonek (encoding TS1) 
+on input line 52.
+LaTeX Encoding Info:    Redeclaring text command \capitalgrave (encoding TS1) o
+n input line 55.
+LaTeX Encoding Info:    Redeclaring text command \capitalacute (encoding TS1) o
+n input line 56.
+LaTeX Encoding Info:    Redeclaring text command \capitalcircumflex (encoding T
+S1) on input line 57.
+LaTeX Encoding Info:    Redeclaring text command \capitaltilde (encoding TS1) o
+n input line 58.
+LaTeX Encoding Info:    Redeclaring text command \capitaldieresis (encoding TS1
+) on input line 59.
+LaTeX Encoding Info:    Redeclaring text command \capitalhungarumlaut (encoding
+ TS1) on input line 60.
+LaTeX Encoding Info:    Redeclaring text command \capitalring (encoding TS1) on
+ input line 61.
+LaTeX Encoding Info:    Redeclaring text command \capitalcaron (encoding TS1) o
+n input line 62.
+LaTeX Encoding Info:    Redeclaring text command \capitalbreve (encoding TS1) o
+n input line 63.
+LaTeX Encoding Info:    Redeclaring text command \capitalmacron (encoding TS1) 
+on input line 64.
+LaTeX Encoding Info:    Redeclaring text command \capitaldotaccent (encoding TS
+1) on input line 65.
+LaTeX Encoding Info:    Redeclaring text command \t (encoding TS1) on input lin
+e 66.
+LaTeX Encoding Info:    Redeclaring text command \capitaltie (encoding TS1) on 
+input line 67.
+LaTeX Encoding Info:    Redeclaring text command \newtie (encoding TS1) on inpu
+t line 68.
+LaTeX Encoding Info:    Redeclaring text command \capitalnewtie (encoding TS1) 
+on input line 69.
+LaTeX Encoding Info:    Redeclaring text symbol \textcapitalcompwordmark (encod
+ing TS1) on input line 70.
+LaTeX Encoding Info:    Redeclaring text symbol \textascendercompwordmark (enco
+ding TS1) on input line 71.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotestraightbase (encodin
+g TS1) on input line 72.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotestraightdblbase (enco
+ding TS1) on input line 73.
+LaTeX Encoding Info:    Redeclaring text symbol \texttwelveudash (encoding TS1)
+ on input line 74.
+LaTeX Encoding Info:    Redeclaring text symbol \textthreequartersemdash (encod
+ing TS1) on input line 75.
+LaTeX Encoding Info:    Redeclaring text symbol \textleftarrow (encoding TS1) o
+n input line 76.
+LaTeX Encoding Info:    Redeclaring text symbol \textrightarrow (encoding TS1) 
+on input line 77.
+LaTeX Encoding Info:    Redeclaring text symbol \textblank (encoding TS1) on in
+put line 78.
+LaTeX Encoding Info:    Redeclaring text symbol \textdollar (encoding TS1) on i
+nput line 79.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotesingle (encoding TS1)
+ on input line 80.
+LaTeX Encoding Info:    Redeclaring text command \textasteriskcentered (encodin
+g TS1) on input line 81.
+LaTeX Encoding Info:    Redeclaring text symbol \textdblhyphen (encoding TS1) o
+n input line 92.
+LaTeX Encoding Info:    Redeclaring text symbol \textfractionsolidus (encoding 
+TS1) on input line 93.
+LaTeX Encoding Info:    Redeclaring text symbol \textzerooldstyle (encoding TS1
+) on input line 94.
+LaTeX Encoding Info:    Redeclaring text symbol \textoneoldstyle (encoding TS1)
+ on input line 95.
+LaTeX Encoding Info:    Redeclaring text symbol \texttwooldstyle (encoding TS1)
+ on input line 96.
+LaTeX Encoding Info:    Redeclaring text symbol \textthreeoldstyle (encoding TS
+1) on input line 97.
+LaTeX Encoding Info:    Redeclaring text symbol \textfouroldstyle (encoding TS1
+) on input line 98.
+LaTeX Encoding Info:    Redeclaring text symbol \textfiveoldstyle (encoding TS1
+) on input line 99.
+LaTeX Encoding Info:    Redeclaring text symbol \textsixoldstyle (encoding TS1)
+ on input line 100.
+LaTeX Encoding Info:    Redeclaring text symbol \textsevenoldstyle (encoding TS
+1) on input line 101.
+LaTeX Encoding Info:    Redeclaring text symbol \texteightoldstyle (encoding TS
+1) on input line 102.
+LaTeX Encoding Info:    Redeclaring text symbol \textnineoldstyle (encoding TS1
+) on input line 103.
+LaTeX Encoding Info:    Redeclaring text symbol \textlangle (encoding TS1) on i
+nput line 104.
+LaTeX Encoding Info:    Redeclaring text symbol \textminus (encoding TS1) on in
+put line 105.
+LaTeX Encoding Info:    Redeclaring text symbol \textrangle (encoding TS1) on i
+nput line 106.
+LaTeX Encoding Info:    Redeclaring text symbol \textmho (encoding TS1) on inpu
+t line 107.
+LaTeX Encoding Info:    Redeclaring text symbol \textbigcircle (encoding TS1) o
+n input line 108.
+LaTeX Encoding Info:    Redeclaring text command \textcircled (encoding TS1) on
+ input line 109.
+LaTeX Encoding Info:    Redeclaring text symbol \textohm (encoding TS1) on inpu
+t line 115.
+LaTeX Encoding Info:    Redeclaring text symbol \textlbrackdbl (encoding TS1) o
+n input line 116.
+LaTeX Encoding Info:    Redeclaring text symbol \textrbrackdbl (encoding TS1) o
+n input line 117.
+LaTeX Encoding Info:    Redeclaring text symbol \textuparrow (encoding TS1) on 
+input line 118.
+LaTeX Encoding Info:    Redeclaring text symbol \textdownarrow (encoding TS1) o
+n input line 119.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciigrave (encoding TS1) 
+on input line 120.
+LaTeX Encoding Info:    Redeclaring text symbol \textborn (encoding TS1) on inp
+ut line 121.
+LaTeX Encoding Info:    Redeclaring text symbol \textdivorced (encoding TS1) on
+ input line 122.
+LaTeX Encoding Info:    Redeclaring text symbol \textdied (encoding TS1) on inp
+ut line 123.
+LaTeX Encoding Info:    Redeclaring text symbol \textleaf (encoding TS1) on inp
+ut line 124.
+LaTeX Encoding Info:    Redeclaring text symbol \textmarried (encoding TS1) on 
+input line 125.
+LaTeX Encoding Info:    Redeclaring text symbol \textmusicalnote (encoding TS1)
+ on input line 126.
+LaTeX Encoding Info:    Redeclaring text symbol \texttildelow (encoding TS1) on
+ input line 127.
+LaTeX Encoding Info:    Redeclaring text symbol \textdblhyphenchar (encoding TS
+1) on input line 128.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciibreve (encoding TS1) 
+on input line 129.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciicaron (encoding TS1) 
+on input line 130.
+LaTeX Encoding Info:    Redeclaring text symbol \textacutedbl (encoding TS1) on
+ input line 131.
+LaTeX Encoding Info:    Redeclaring text symbol \textgravedbl (encoding TS1) on
+ input line 132.
+LaTeX Encoding Info:    Redeclaring text symbol \textdagger (encoding TS1) on i
+nput line 133.
+LaTeX Encoding Info:    Redeclaring text symbol \textdaggerdbl (encoding TS1) o
+n input line 134.
+LaTeX Encoding Info:    Redeclaring text symbol \textbardbl (encoding TS1) on i
+nput line 135.
+LaTeX Encoding Info:    Redeclaring text symbol \textperthousand (encoding TS1)
+ on input line 136.
+LaTeX Encoding Info:    Redeclaring text symbol \textbullet (encoding TS1) on i
+nput line 137.
+LaTeX Encoding Info:    Redeclaring text symbol \textcelsius (encoding TS1) on 
+input line 138.
+LaTeX Encoding Info:    Redeclaring text symbol \textdollaroldstyle (encoding T
+S1) on input line 139.
+LaTeX Encoding Info:    Redeclaring text symbol \textcentoldstyle (encoding TS1
+) on input line 140.
+LaTeX Encoding Info:    Redeclaring text symbol \textflorin (encoding TS1) on i
+nput line 141.
+LaTeX Encoding Info:    Redeclaring text symbol \textcolonmonetary (encoding TS
+1) on input line 142.
+LaTeX Encoding Info:    Redeclaring text symbol \textwon (encoding TS1) on inpu
+t line 143.
+LaTeX Encoding Info:    Redeclaring text symbol \textnaira (encoding TS1) on in
+put line 144.
+LaTeX Encoding Info:    Redeclaring text symbol \textguarani (encoding TS1) on 
+input line 145.
+LaTeX Encoding Info:    Redeclaring text symbol \textpeso (encoding TS1) on inp
+ut line 146.
+LaTeX Encoding Info:    Redeclaring text symbol \textlira (encoding TS1) on inp
+ut line 147.
+LaTeX Encoding Info:    Redeclaring text symbol \textrecipe (encoding TS1) on i
+nput line 148.
+LaTeX Encoding Info:    Redeclaring text symbol \textinterrobang (encoding TS1)
+ on input line 149.
+LaTeX Encoding Info:    Redeclaring text symbol \textinterrobangdown (encoding 
+TS1) on input line 150.
+LaTeX Encoding Info:    Redeclaring text symbol \textdong (encoding TS1) on inp
+ut line 151.
+LaTeX Encoding Info:    Redeclaring text symbol \texttrademark (encoding TS1) o
+n input line 152.
+LaTeX Encoding Info:    Redeclaring text symbol \textpertenthousand (encoding T
+S1) on input line 153.
+LaTeX Encoding Info:    Redeclaring text symbol \textpilcrow (encoding TS1) on 
+input line 154.
+LaTeX Encoding Info:    Redeclaring text symbol \textbaht (encoding TS1) on inp
+ut line 155.
+LaTeX Encoding Info:    Redeclaring text symbol \textnumero (encoding TS1) on i
+nput line 156.
+LaTeX Encoding Info:    Redeclaring text symbol \textdiscount (encoding TS1) on
+ input line 157.
+LaTeX Encoding Info:    Redeclaring text symbol \textestimated (encoding TS1) o
+n input line 158.
+LaTeX Encoding Info:    Redeclaring text symbol \textopenbullet (encoding TS1) 
+on input line 159.
+LaTeX Encoding Info:    Redeclaring text symbol \textservicemark (encoding TS1)
+ on input line 160.
+LaTeX Encoding Info:    Redeclaring text symbol \textlquill (encoding TS1) on i
+nput line 161.
+LaTeX Encoding Info:    Redeclaring text symbol \textrquill (encoding TS1) on i
+nput line 162.
+LaTeX Encoding Info:    Redeclaring text symbol \textcent (encoding TS1) on inp
+ut line 163.
+LaTeX Encoding Info:    Redeclaring text symbol \textsterling (encoding TS1) on
+ input line 164.
+LaTeX Encoding Info:    Redeclaring text symbol \textcurrency (encoding TS1) on
+ input line 165.
+LaTeX Encoding Info:    Redeclaring text symbol \textyen (encoding TS1) on inpu
+t line 166.
+LaTeX Encoding Info:    Redeclaring text symbol \textbrokenbar (encoding TS1) o
+n input line 167.
+LaTeX Encoding Info:    Redeclaring text symbol \textsection (encoding TS1) on 
+input line 168.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciidieresis (encoding TS
+1) on input line 169.
+LaTeX Encoding Info:    Redeclaring text symbol \textcopyright (encoding TS1) o
+n input line 170.
+LaTeX Encoding Info:    Redeclaring text symbol \textordfeminine (encoding TS1)
+ on input line 171.
+LaTeX Encoding Info:    Redeclaring text symbol \textcopyleft (encoding TS1) on
+ input line 172.
+LaTeX Encoding Info:    Redeclaring text symbol \textlnot (encoding TS1) on inp
+ut line 173.
+LaTeX Encoding Info:    Redeclaring text symbol \textcircledP (encoding TS1) on
+ input line 174.
+LaTeX Encoding Info:    Redeclaring text symbol \textregistered (encoding TS1) 
+on input line 175.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciimacron (encoding TS1)
+ on input line 176.
+LaTeX Encoding Info:    Redeclaring text symbol \textdegree (encoding TS1) on i
+nput line 177.
+LaTeX Encoding Info:    Redeclaring text symbol \textpm (encoding TS1) on input
+ line 178.
+LaTeX Encoding Info:    Redeclaring text symbol \texttwosuperior (encoding TS1)
+ on input line 179.
+LaTeX Encoding Info:    Redeclaring text symbol \textthreesuperior (encoding TS
+1) on input line 180.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciiacute (encoding TS1) 
+on input line 181.
+LaTeX Encoding Info:    Redeclaring text symbol \textmu (encoding TS1) on input
+ line 182.
+LaTeX Encoding Info:    Redeclaring text symbol \textparagraph (encoding TS1) o
+n input line 183.
+LaTeX Encoding Info:    Redeclaring text symbol \textperiodcentered (encoding T
+S1) on input line 184.
+LaTeX Encoding Info:    Redeclaring text symbol \textreferencemark (encoding TS
+1) on input line 185.
+LaTeX Encoding Info:    Redeclaring text symbol \textonesuperior (encoding TS1)
+ on input line 186.
+LaTeX Encoding Info:    Redeclaring text symbol \textordmasculine (encoding TS1
+) on input line 187.
+LaTeX Encoding Info:    Redeclaring text symbol \textsurd (encoding TS1) on inp
+ut line 188.
+LaTeX Encoding Info:    Redeclaring text symbol \textonequarter (encoding TS1) 
+on input line 189.
+LaTeX Encoding Info:    Redeclaring text symbol \textonehalf (encoding TS1) on 
+input line 190.
+LaTeX Encoding Info:    Redeclaring text symbol \textthreequarters (encoding TS
+1) on input line 191.
+LaTeX Encoding Info:    Redeclaring text symbol \texteuro (encoding TS1) on inp
+ut line 192.
+LaTeX Encoding Info:    Redeclaring text symbol \texttimes (encoding TS1) on in
+put line 193.
+LaTeX Encoding Info:    Redeclaring text symbol \textdiv (encoding TS1) on inpu
+t line 194.
+))
+\g__um_fam_int=\count308
+\g__um_fonts_used_int=\count309
+\l__um_primecount_int=\count310
+\g__um_primekern_muskip=\muskip18
+
+(/usr/share/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex)))
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 0.8041024841087237.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 0.8041024841087237.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 0.8041024841087237.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 0.8041024841087237.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 0.8041024841087237.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 0.8041024841087237.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 0.8041024841087237.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 0.8041024841087237.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 0.8041024841087237.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSerif(0)' created for font 'Noto
+(fontspec)             Serif' with options
+(fontspec)             [Scale=MatchLowercase,Ligatures=TeX,Scale=1].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/OT:script=latn;language=dflt;+smcp;mapping=tex-tex
+t;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/B/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[1]"Noto
+(fontspec)             Serif/B/OT:script=latn;language=dflt;+smcp;mapping=tex-t
+ext;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/I/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->s*[1]"Noto
+(fontspec)             Serif/I/OT:script=latn;language=dflt;+smcp;mapping=tex-t
+ext;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/BI/OT:script=latn;language=dflt;mapping=tex-text;"
+
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->s*[1]"Noto
+(fontspec)             Serif/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-
+text;"
+
+LaTeX Font Info:    Font shape `TU/NotoSerif(0)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 25.
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSerif(1)' created for font 'Noto
+(fontspec)             Serif' with options [Scale=MatchLowercase].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Serif/OT:script=latn;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Serif/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Serif/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Serif/B/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Serif/I/OT:script=latn;language=dflt;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Serif/I/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Serif/BI/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Serif/BI/OT:script=latn;language=dflt;+smcp;"
+
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/NotoSerif(1)/m/n on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/NotoSerif(1)/m/it on input line 25.
+
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/NotoSerif(1)/b/n on input line 25.
+
+Package fontspec Info: 
+(fontspec)             Noto Sans scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/B scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/B scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/I scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/I scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/BI scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/BI scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSans(0)' created for font 'Noto Sans'
+(fontspec)             with options [Scale=MatchLowercase,Ligatures=TeX].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Sans/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Sans/OT:script=latn;language=dflt;+smcp;mapping=tex-text
+;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto
+(fontspec)             Sans/B/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto
+(fontspec)             Sans/B/OT:script=latn;language=dflt;+smcp;mapping=tex-te
+xt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Sans/I/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Sans/I/OT:script=latn;language=dflt;+smcp;mapping=tex-te
+xt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto
+(fontspec)             Sans/BI/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto
+(fontspec)             Sans/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-t
+ext;"
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/B scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/B scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/I scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/I scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/BI scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans/BI scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSans(1)' created for font 'Noto Sans'
+(fontspec)             with options [Scale=MatchLowercase].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Sans/OT:script=latn;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Sans/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto
+(fontspec)             Sans/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto
+(fontspec)             Sans/B/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Sans/I/OT:script=latn;language=dflt;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto
+(fontspec)             Sans/I/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto
+(fontspec)             Sans/BI/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto
+(fontspec)             Sans/BI/OT:script=latn;language=dflt;+smcp;"
+
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/NotoSans(1)/m/n on input line 26.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/NotoSans(1)/b/n on input line 26.
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Noto Sans Mono/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono/B scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono/B scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono/BI scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono/BI scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSansMono(0)' created for font 'Noto
+(fontspec)             Sans Mono' with options
+(fontspec)             [Scale=MatchLowercase,WordSpace={1,0,0},HyphenChar=None,
+PunctuationSpace=WordSpace].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto Sans
+(fontspec)             Mono/OT:script=latn;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto Sans
+(fontspec)             Mono/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto Sans
+(fontspec)             Mono/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto Sans
+(fontspec)             Mono/B/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto Sans
+(fontspec)             Mono/BI/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto Sans
+(fontspec)             Mono/BI/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Noto Sans Mono/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono/B scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono/B scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono/BI scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Mono/BI scale = 0.969257441211156.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSansMono(1)' created for font 'Noto
+(fontspec)             Sans Mono' with options [Scale=MatchLowercase].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto Sans
+(fontspec)             Mono/OT:script=latn;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto Sans
+(fontspec)             Mono/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto Sans
+(fontspec)             Mono/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto Sans
+(fontspec)             Mono/B/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto Sans
+(fontspec)             Mono/BI/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->s*[0.969257441211156]"Noto Sans
+(fontspec)             Mono/BI/OT:script=latn;language=dflt;+smcp;"
+
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/NotoSansMono(1)/m/n on input line 2
+7.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/NotoSansMono(1)/b/n on input line 2
+7.
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Noto Sans Math/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSansMath(0)' created for font 'Noto
+(fontspec)             Sans Math' with options
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
+allCapsFont={},Script=Math].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999974002001847]"Noto Sans
+(fontspec)             Math/OT:script=math;language=dflt;"
+
+LaTeX Font Info:    Font shape `TU/NotoSansMath(0)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 28.
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Noto Sans Math/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSansMath(1)' created for font 'Noto
+(fontspec)             Sans Math' with options
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
+allCapsFont={},Script=Math,SizeFeatures={{Size=8.76-},{Size=6.0225-8.76,Font=No
+to
+(fontspec)             Sans Math,Style=MathScript},{Size=-6.0225,Font=Noto
+(fontspec)             Sans Math,Style=MathScriptScript}}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.76->s*[0.9999974002001847]"Noto Sans
+(fontspec)             Math/OT:script=math;language=dflt;"<6.0225-8.76>s*[0.999
+9974002001847]"Noto
+(fontspec)             Sans
+(fontspec)             Math/OT:script=math;language=dflt;+ssty=0;"<-6.0225>s*[0
+.9999974002001847]"Noto
+(fontspec)             Sans Math/OT:script=math;language=dflt;+ssty=1;"
+
+LaTeX Font Info:    Font shape `TU/NotoSansMath(1)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 28.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/NotoSansMath(1)/m/n on input line 28
+.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/NotoSansMath(1)/b/n on input line 2
+8.
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 1.000097399940205.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Noto Sans Math/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 1.000097399940205.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 1.000097399940205.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 1.000097399940205.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSansMath(2)' created for font 'Noto
+(fontspec)             Sans Math' with options
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
+allCapsFont={},Script=Math,SizeFeatures={{Size=8.76-},{Size=6.0225-8.76,Font=No
+to
+(fontspec)             Sans Math,Style=MathScript},{Size=-6.0225,Font=Noto
+(fontspec)             Sans
+(fontspec)             Math,Style=MathScriptScript}},ScaleAgain=1.0001,FontAdju
+stment={\fontdimen
+(fontspec)             8\font =7.7088pt\relax \fontdimen 9\font
+(fontspec)             =5.79254pt\relax \fontdimen 10\font =5.79254pt\relax
+(fontspec)             \fontdimen 11\font =7.36935pt\relax \fontdimen 12\font
+(fontspec)             =3.504pt\relax \fontdimen 13\font =4.2705pt\relax
+(fontspec)             \fontdimen 14\font =4.2705pt\relax \fontdimen 15\font
+(fontspec)             =3.066pt\relax \fontdimen 16\font =2.2995pt\relax
+(fontspec)             \fontdimen 17\font =2.2995pt\relax \fontdimen 18\font
+(fontspec)             =2.628pt\relax \fontdimen 19\font =1.533pt\relax
+(fontspec)             \fontdimen 22\font =3.0441pt\relax \fontdimen 20\font
+(fontspec)             =0pt\relax \fontdimen 21\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.76->s*[1.000097399940205]"Noto Sans
+(fontspec)             Math/OT:script=math;language=dflt;"<6.0225-8.76>s*[1.000
+097399940205]"Noto
+(fontspec)             Sans
+(fontspec)             Math/OT:script=math;language=dflt;+ssty=0;"<-6.0225>s*[1
+.000097399940205]"Noto
+(fontspec)             Sans Math/OT:script=math;language=dflt;+ssty=1;"
+
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> TU/NotoSansMath(2)/m/n on input line 2
+8.
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> TU/NotoSansMath(2)/b/n on input line 2
+8.
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9998974004601647.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Noto Sans Math/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9998974004601647.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9998974004601647.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Sans Math scale = 0.9998974004601647.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSansMath(3)' created for font 'Noto
+(fontspec)             Sans Math' with options
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
+allCapsFont={},Script=Math,SizeFeatures={{Size=8.76-},{Size=6.0225-8.76,Font=No
+to
+(fontspec)             Sans Math,Style=MathScript},{Size=-6.0225,Font=Noto
+(fontspec)             Sans
+(fontspec)             Math,Style=MathScriptScript}},ScaleAgain=0.9999,FontAdju
+stment={\fontdimen
+(fontspec)             8\font =0.77745pt\relax \fontdimen 9\font
+(fontspec)             =1.095pt\relax \fontdimen 10\font =1.095pt\relax
+(fontspec)             \fontdimen 11\font =2.6718pt\relax \fontdimen 12\font
+(fontspec)             =6.8985pt\relax \fontdimen 13\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.76->s*[0.9998974004601647]"Noto Sans
+(fontspec)             Math/OT:script=math;language=dflt;"<6.0225-8.76>s*[0.999
+8974004601647]"Noto
+(fontspec)             Sans
+(fontspec)             Math/OT:script=math;language=dflt;+ssty=0;"<-6.0225>s*[0
+.9998974004601647]"Noto
+(fontspec)             Sans Math/OT:script=math;language=dflt;+ssty=1;"
+
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 2
+8.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> TU/NotoSansMath(3)/m/n on input line 2
+8.
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 28.
+
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> TU/NotoSansMath(3)/b/n on input line 2
+8.
+
+(/usr/share/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+
+(/usr/share/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+))
+(/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count311
+)
+\MT@toks=\toks24
+\MT@tempbox=\box55
+\MT@count=\count312
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@prot@toks=\toks25
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen169
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count313
+
+(/usr/share/texmf-dist/tex/latex/microtype/microtype-xetex.def
+File: microtype-xetex.def 2026/03/01 v3.2d Definitions specific to xetex (RS)
+LaTeX Info: Redefining \lsstyle on input line 443.
+LaTeX Info: Redefining \lslig on input line 451.
+\MT@outer@space=\skip54
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/share/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+(/usr/share/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
+
+(/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+
+(/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)))
+(/usr/share/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
+\babel@savecnt=\count314
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2078.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2080.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2082.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2083.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2084.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2086.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2111.
+\U@D=\dimen170
+\l@unhyphenated=\language13
+
+(/usr/share/texmf-dist/tex/generic/babel/xebabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count315
+Package babel Info: You haven't specified a language as a class or package
+(babel)             option. I'll load 'nil'. Reported on input line 4265.
+Package babel Info: Importing font and identification data for nil
+(babel)             from babel-und-x-nil.ini. Reported on input line 4330.
+
+(/usr/share/texmf-dist/tex/generic/babel/nil.ldf
+Language: nil 2026/02/14 v26.3 Nil language
+\l@nil=\language14
+))
+(/usr/share/texmf-dist/tex/generic/babel/locale/ru/babel-russian.tex)
+Package babel Info: Importing data for russian
+(babel)             from babel-ru.ini. Reported on input line 50.
+
+Package fontspec Info: 
+(fontspec)             Language 'Russian' not explicitly supported within font
+(fontspec)             'Noto Serif' with script 'Cyrillic'. Check the typeset
+(fontspec)             output, and if it is okay then ignore this warning.
+(fontspec)             Otherwise a different font should be chosen.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/B scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/I scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 0.9999974002001847.
+
+
+Package fontspec Info: 
+(fontspec)             Noto Serif/BI scale = 1.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSerif(2)' created for font 'Noto
+(fontspec)             Serif' with options
+(fontspec)             [Scale=MatchLowercase,Ligatures=TeX,Scale=1,Script=Cyril
+lic,Language=Russian].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/OT:script=cyrl;language=RUS;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/OT:script=cyrl;language=RUS;+smcp;mapping=tex-text
+;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/B/OT:script=cyrl;language=RUS;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[1]"Noto
+(fontspec)             Serif/B/OT:script=cyrl;language=RUS;+smcp;mapping=tex-te
+xt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/I/OT:script=cyrl;language=RUS;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->s*[1]"Noto
+(fontspec)             Serif/I/OT:script=cyrl;language=RUS;+smcp;mapping=tex-te
+xt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->s*[1]"Noto
+(fontspec)             Serif/BI/OT:script=cyrl;language=RUS;mapping=tex-text;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->s*[1]"Noto
+(fontspec)             Serif/BI/OT:script=cyrl;language=RUS;+smcp;mapping=tex-t
+ext;"
+
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 54.
+
+(/usr/share/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+
+(/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
+
+(/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/share/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+))
+(/usr/share/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+
+(/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count316
+)
+(/usr/share/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen171
+\Hy@linkcounter=\count317
+\Hy@pagecounter=\count318
+
+(/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count319
+
+(/usr/share/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `unicode' set `true' on input line 3166.
+Package hyperref Info: Option `unicode' set `true' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4468.
+\c@Hy@tempcnt=\count320
+
+(/usr/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip19
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4807.
+\XeTeXLinkMargin=\dimen172
+
+(/usr/share/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count321
+\Field@Width=\dimen173
+\Fld@charsize=\dimen174
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
+\Hy@abspage=\count322
+\c@Item=\count323
+\c@Hfootnote=\count324
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+
+(/usr/share/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2026-01-29 v7.01p Hyperref driver for XeTeX
+\pdfm@box=\box56
+\c@Hy@AnnotLevel=\count325
+\HyField@AnnotCount=\count326
+\Fld@listcount=\count327
+\c@bookmark@seq@number=\count328
+
+(/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip55
+)
+(/usr/share/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
+File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
+\BKM@id=\count329
+))
+(/usr/share/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
+(/home/aidenfmunro/Vault/30 Areas/University/Exams/ДСП/build/pdf/dsp_tickets_al
+l.aux
+LaTeX Font Info:    Font shape `TU/NotoSans(0)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 3.
+LaTeX Font Info:    Font shape `TU/NotoSansMono(0)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 3.
+
+
+Package babel Info: The following font families will use the default
+(babel)             settings for all or some languages:
+(babel)             * \sffamily = NotoSans(0)
+(babel)               "Noto Sans Regular/OT:script=latn;language=dflt;mapping=t
+ex-text;" at 10.95pt
+(babel)             * \ttfamily = NotoSansMono(0)
+(babel)               "Noto Sans Mono Regular/OT:script=latn;language=dflt;" at
+ 10.95pt
+(babel)             There is nothing intrinsically wrong with it, but
+(babel)             'babel' will no set Script and Language, which could
+(babel)             be relevant in some languages. If your document uses
+(babel)             these families, consider redefining them with \babelfont.
+(babel)             Reported on input line 3.
+
+)
+\openout1 = `dsp_tickets_all.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(51.21495pt, 495.07797pt, 51.21495pt)
+* v-part:(T,H,B)=(51.21495pt, 742.61694pt, 51.21495pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=495.07797pt
+* \textheight=742.61694pt
+* \oddsidemargin=-21.05504pt
+* \evensidemargin=-21.05504pt
+* \topmargin=-58.05504pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=50.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Info: Redefining \microtypecontext on input line 74.
+Package microtype Info: Applying patch `item' on input line 74.
+Package microtype Info: Applying patch `toc' on input line 74.
+Package microtype Info: Applying patch `eqnum' on input line 74.
+Package microtype Info: Applying patch `footnote' on input line 74.
+Package microtype Info: Applying patch `verbatim' on input line 74.
+LaTeX Info: Redefining \microtypesetup on input line 74.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using protrusion set `basicmath'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of spacing.
+Package microtype Info: No adjustment of kerning.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `NotoSerif' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package hyperref Info: Link coloring OFF on input line 74.
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/m/n' will be
+(Font)              scaled to size 17.28pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(1)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(1)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(1)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(2)/m/n' will be
+(Font)              scaled to size 12.0011pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(2)/m/n' will be
+(Font)              scaled to size 8.00073pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(2)/m/n' will be
+(Font)              scaled to size 6.00055pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(3)/m/n' will be
+(Font)              scaled to size 11.99872pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(3)/m/n' will be
+(Font)              scaled to size 7.99915pt on input line 76.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(3)/m/n' will be
+(Font)              scaled to size 5.99936pt on input line 76.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 76.
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/share/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 76.
+
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/share/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 79.
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/b/n' will be
+(Font)              scaled to size 14.4pt on input line 79.
+
+(/home/aidenfmunro/Vault/30 Areas/University/Exams/ДСП/build/pdf/dsp_tickets_al
+l.toc
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/b/n' will be
+(Font)              scaled to size 10.95pt on input line 2.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(1)/m/n' will be
+(Font)              scaled to size 6.57pt on input line 3.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(1)/m/n' will be
+(Font)              scaled to size 5.475pt on input line 3.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(2)/m/n' will be
+(Font)              scaled to size 10.95099pt on input line 3.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(2)/m/n' will be
+(Font)              scaled to size 6.5706pt on input line 3.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(2)/m/n' will be
+(Font)              scaled to size 5.4755pt on input line 3.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(3)/m/n' will be
+(Font)              scaled to size 10.94882pt on input line 3.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(3)/m/n' will be
+(Font)              scaled to size 6.5693pt on input line 3.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(3)/m/n' will be
+(Font)              scaled to size 5.47441pt on input line 3.
+ [1
+
+] [2]
+Overfull \hbox (1.39063pt too wide) detected at line 325
+ []\TU/NotoSerif(2)/m/n/10.95 100
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 326
+ []\TU/NotoSerif(2)/m/n/10.95 101
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 328
+ []\TU/NotoSerif(2)/m/n/10.95 102
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 329
+ []\TU/NotoSerif(2)/m/n/10.95 102
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 337
+ []\TU/NotoSerif(2)/m/n/10.95 105
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 349
+ []\TU/NotoSerif(2)/m/n/10.95 106
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 367
+ []\TU/NotoSerif(2)/m/n/10.95 110
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 375
+ []\TU/NotoSerif(2)/m/n/10.95 112
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 376
+ []\TU/NotoSerif(2)/m/n/10.95 113
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 377
+ []\TU/NotoSerif(2)/m/n/10.95 114
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 378
+ []\TU/NotoSerif(2)/m/n/10.95 115
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 379
+ []\TU/NotoSerif(2)/m/n/10.95 115
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 380
+ []\TU/NotoSerif(2)/m/n/10.95 116
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 381
+ []\TU/NotoSerif(2)/m/n/10.95 116
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 382
+ []\TU/NotoSerif(2)/m/n/10.95 116
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 383
+ []\TU/NotoSerif(2)/m/n/10.95 117
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 384
+ []\TU/NotoSerif(2)/m/n/10.95 118
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 386
+ []\TU/NotoSerif(2)/m/n/10.95 119
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 387
+ []\TU/NotoSerif(2)/m/n/10.95 119
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 397
+ []\TU/NotoSerif(2)/m/n/10.95 123
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 409
+ []\TU/NotoSerif(2)/m/n/10.95 125
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 428
+ []\TU/NotoSerif(2)/m/n/10.95 128
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 438
+ []\TU/NotoSerif(2)/m/n/10.95 130
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 439
+ []\TU/NotoSerif(2)/m/n/10.95 132
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 440
+ []\TU/NotoSerif(2)/m/n/10.95 132
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 441
+ []\TU/NotoSerif(2)/m/n/10.95 134
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 442
+ []\TU/NotoSerif(2)/m/n/10.95 135
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 443
+ []\TU/NotoSerif(2)/m/n/10.95 136
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 444
+ []\TU/NotoSerif(2)/m/n/10.95 136
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 445
+ []\TU/NotoSerif(2)/m/n/10.95 136
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 446
+ []\TU/NotoSerif(2)/m/n/10.95 137
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 447
+ []\TU/NotoSerif(2)/m/n/10.95 138
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 449
+ []\TU/NotoSerif(2)/m/n/10.95 139
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 450
+ []\TU/NotoSerif(2)/m/n/10.95 139
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 461
+ []\TU/NotoSerif(2)/m/n/10.95 144
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 473
+ []\TU/NotoSerif(2)/m/n/10.95 145
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 484
+ []\TU/NotoSerif(2)/m/n/10.95 148
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 491
+ []\TU/NotoSerif(2)/m/n/10.95 150
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 492
+ []\TU/NotoSerif(2)/m/n/10.95 151
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 493
+ []\TU/NotoSerif(2)/m/n/10.95 151
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 494
+ []\TU/NotoSerif(2)/m/n/10.95 153
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 495
+ []\TU/NotoSerif(2)/m/n/10.95 153
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 496
+ []\TU/NotoSerif(2)/m/n/10.95 154
+ []
+
+[3]
+Overfull \hbox (1.39063pt too wide) detected at line 497
+ []\TU/NotoSerif(2)/m/n/10.95 154
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 498
+ []\TU/NotoSerif(2)/m/n/10.95 154
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 499
+ []\TU/NotoSerif(2)/m/n/10.95 155
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 500
+ []\TU/NotoSerif(2)/m/n/10.95 156
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 502
+ []\TU/NotoSerif(2)/m/n/10.95 157
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 503
+ []\TU/NotoSerif(2)/m/n/10.95 157
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 513
+ []\TU/NotoSerif(2)/m/n/10.95 164
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 525
+ []\TU/NotoSerif(2)/m/n/10.95 165
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 541
+ []\TU/NotoSerif(2)/m/n/10.95 168
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 549
+ []\TU/NotoSerif(2)/m/n/10.95 170
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 550
+ []\TU/NotoSerif(2)/m/n/10.95 172
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 551
+ []\TU/NotoSerif(2)/m/n/10.95 172
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 552
+ []\TU/NotoSerif(2)/m/n/10.95 174
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 553
+ []\TU/NotoSerif(2)/m/n/10.95 175
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 554
+ []\TU/NotoSerif(2)/m/n/10.95 175
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 555
+ []\TU/NotoSerif(2)/m/n/10.95 176
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 556
+ []\TU/NotoSerif(2)/m/n/10.95 176
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 557
+ []\TU/NotoSerif(2)/m/n/10.95 177
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 558
+ []\TU/NotoSerif(2)/m/n/10.95 178
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 560
+ []\TU/NotoSerif(2)/m/n/10.95 180
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 561
+ []\TU/NotoSerif(2)/m/n/10.95 180
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 567
+ []\TU/NotoSerif(2)/m/n/10.95 186
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 579
+ []\TU/NotoSerif(2)/m/n/10.95 188
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 591
+ []\TU/NotoSerif(2)/m/n/10.95 190
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 598
+ []\TU/NotoSerif(2)/m/n/10.95 192
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 599
+ []\TU/NotoSerif(2)/m/n/10.95 193
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 600
+ []\TU/NotoSerif(2)/m/n/10.95 194
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 601
+ []\TU/NotoSerif(2)/m/n/10.95 195
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 602
+ []\TU/NotoSerif(2)/m/n/10.95 196
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 603
+ []\TU/NotoSerif(2)/m/n/10.95 196
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 604
+ []\TU/NotoSerif(2)/m/n/10.95 197
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 605
+ []\TU/NotoSerif(2)/m/n/10.95 197
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 606
+ []\TU/NotoSerif(2)/m/n/10.95 197
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 607
+ []\TU/NotoSerif(2)/m/n/10.95 199
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 609
+ []\TU/NotoSerif(2)/m/n/10.95 200
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 610
+ []\TU/NotoSerif(2)/m/n/10.95 201
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 622
+ []\TU/NotoSerif(2)/m/n/10.95 207
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 641
+ []\TU/NotoSerif(2)/m/n/10.95 210
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 653
+ []\TU/NotoSerif(2)/m/n/10.95 212
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 661
+ []\TU/NotoSerif(2)/m/n/10.95 214
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 662
+ []\TU/NotoSerif(2)/m/n/10.95 216
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 663
+ []\TU/NotoSerif(2)/m/n/10.95 216
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 664
+ []\TU/NotoSerif(2)/m/n/10.95 218
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 665
+ []\TU/NotoSerif(2)/m/n/10.95 218
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 666
+ []\TU/NotoSerif(2)/m/n/10.95 218
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 667
+ []\TU/NotoSerif(2)/m/n/10.95 219
+ []
+
+[4]
+Overfull \hbox (1.39063pt too wide) detected at line 668
+ []\TU/NotoSerif(2)/m/n/10.95 219
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 669
+ []\TU/NotoSerif(2)/m/n/10.95 219
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 670
+ []\TU/NotoSerif(2)/m/n/10.95 221
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 672
+ []\TU/NotoSerif(2)/m/n/10.95 222
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 673
+ []\TU/NotoSerif(2)/m/n/10.95 223
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 681
+ []\TU/NotoSerif(2)/m/n/10.95 227
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 691
+ []\TU/NotoSerif(2)/m/n/10.95 229
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 701
+ []\TU/NotoSerif(2)/m/n/10.95 232
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 708
+ []\TU/NotoSerif(2)/m/n/10.95 235
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 709
+ []\TU/NotoSerif(2)/m/n/10.95 237
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 710
+ []\TU/NotoSerif(2)/m/n/10.95 237
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 711
+ []\TU/NotoSerif(2)/m/n/10.95 239
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 712
+ []\TU/NotoSerif(2)/m/n/10.95 239
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 713
+ []\TU/NotoSerif(2)/m/n/10.95 240
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 714
+ []\TU/NotoSerif(2)/m/n/10.95 240
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 715
+ []\TU/NotoSerif(2)/m/n/10.95 240
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 716
+ []\TU/NotoSerif(2)/m/n/10.95 241
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 717
+ []\TU/NotoSerif(2)/m/n/10.95 242
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 719
+ []\TU/NotoSerif(2)/m/n/10.95 243
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 720
+ []\TU/NotoSerif(2)/m/n/10.95 243
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 730
+ []\TU/NotoSerif(2)/m/n/10.95 248
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 731
+ []\TU/NotoSerif(2)/m/n/10.95 249
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 732
+ []\TU/NotoSerif(2)/m/n/10.95 249
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 737
+ []\TU/NotoSerif(2)/m/n/10.95 250
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 742
+ []\TU/NotoSerif(2)/m/n/10.95 251
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 743
+ []\TU/NotoSerif(2)/m/n/10.95 252
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 744
+ []\TU/NotoSerif(2)/m/n/10.95 254
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 745
+ []\TU/NotoSerif(2)/m/n/10.95 254
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 746
+ []\TU/NotoSerif(2)/m/n/10.95 254
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 747
+ []\TU/NotoSerif(2)/m/n/10.95 255
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 748
+ []\TU/NotoSerif(2)/m/n/10.95 255
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 749
+ []\TU/NotoSerif(2)/m/n/10.95 255
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 750
+ []\TU/NotoSerif(2)/m/n/10.95 256
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 752
+ []\TU/NotoSerif(2)/m/n/10.95 257
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 753
+ []\TU/NotoSerif(2)/m/n/10.95 257
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 764
+ []\TU/NotoSerif(2)/m/n/10.95 261
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 773
+ []\TU/NotoSerif(2)/m/n/10.95 262
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 780
+ []\TU/NotoSerif(2)/m/n/10.95 263
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 786
+ []\TU/NotoSerif(2)/m/n/10.95 265
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 790
+ []\TU/NotoSerif(2)/m/n/10.95 265
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 791
+ []\TU/NotoSerif(2)/m/n/10.95 266
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 792
+ []\TU/NotoSerif(2)/m/n/10.95 267
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 793
+ []\TU/NotoSerif(2)/m/n/10.95 267
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 794
+ []\TU/NotoSerif(2)/m/n/10.95 268
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 795
+ []\TU/NotoSerif(2)/m/n/10.95 268
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 796
+ []\TU/NotoSerif(2)/m/n/10.95 268
+ []
+
+[5]
+Overfull \hbox (1.39063pt too wide) detected at line 797
+ []\TU/NotoSerif(2)/m/n/10.95 269
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 798
+ []\TU/NotoSerif(2)/m/n/10.95 269
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 800
+ []\TU/NotoSerif(2)/m/n/10.95 271
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 801
+ []\TU/NotoSerif(2)/m/n/10.95 271
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 811
+ []\TU/NotoSerif(2)/m/n/10.95 275
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 821
+ []\TU/NotoSerif(2)/m/n/10.95 276
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 828
+ []\TU/NotoSerif(2)/m/n/10.95 277
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 834
+ []\TU/NotoSerif(2)/m/n/10.95 278
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 839
+ []\TU/NotoSerif(2)/m/n/10.95 279
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 840
+ []\TU/NotoSerif(2)/m/n/10.95 280
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 841
+ []\TU/NotoSerif(2)/m/n/10.95 281
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 842
+ []\TU/NotoSerif(2)/m/n/10.95 281
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 843
+ []\TU/NotoSerif(2)/m/n/10.95 281
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 844
+ []\TU/NotoSerif(2)/m/n/10.95 282
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 845
+ []\TU/NotoSerif(2)/m/n/10.95 282
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 846
+ []\TU/NotoSerif(2)/m/n/10.95 282
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 847
+ []\TU/NotoSerif(2)/m/n/10.95 283
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 849
+ []\TU/NotoSerif(2)/m/n/10.95 284
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 850
+ []\TU/NotoSerif(2)/m/n/10.95 284
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 859
+ []\TU/NotoSerif(2)/m/n/10.95 288
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 867
+ []\TU/NotoSerif(2)/m/n/10.95 289
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 868
+ []\TU/NotoSerif(2)/m/n/10.95 290
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 874
+ []\TU/NotoSerif(2)/m/n/10.95 292
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 879
+ []\TU/NotoSerif(2)/m/n/10.95 294
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 880
+ []\TU/NotoSerif(2)/m/n/10.95 294
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 881
+ []\TU/NotoSerif(2)/m/n/10.95 295
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 882
+ []\TU/NotoSerif(2)/m/n/10.95 296
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 883
+ []\TU/NotoSerif(2)/m/n/10.95 296
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 884
+ []\TU/NotoSerif(2)/m/n/10.95 296
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 885
+ []\TU/NotoSerif(2)/m/n/10.95 296
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 886
+ []\TU/NotoSerif(2)/m/n/10.95 297
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 887
+ []\TU/NotoSerif(2)/m/n/10.95 298
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 889
+ []\TU/NotoSerif(2)/m/n/10.95 299
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 890
+ []\TU/NotoSerif(2)/m/n/10.95 300
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 900
+ []\TU/NotoSerif(2)/m/n/10.95 304
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 909
+ []\TU/NotoSerif(2)/m/n/10.95 305
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 910
+ []\TU/NotoSerif(2)/m/n/10.95 305
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 916
+ []\TU/NotoSerif(2)/m/n/10.95 307
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 921
+ []\TU/NotoSerif(2)/m/n/10.95 308
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 922
+ []\TU/NotoSerif(2)/m/n/10.95 309
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 923
+ []\TU/NotoSerif(2)/m/n/10.95 310
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 924
+ []\TU/NotoSerif(2)/m/n/10.95 310
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 925
+ []\TU/NotoSerif(2)/m/n/10.95 310
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 926
+ []\TU/NotoSerif(2)/m/n/10.95 311
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 927
+ []\TU/NotoSerif(2)/m/n/10.95 311
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 928
+ []\TU/NotoSerif(2)/m/n/10.95 311
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 929
+ []\TU/NotoSerif(2)/m/n/10.95 312
+ []
+
+[6]
+Underfull \hbox (badness 2443) in paragraph at lines 930--930
+ [] []\TU/NotoSerif(2)/b/n/10.95 Билет 19. Случайные последовательности с незав
+исимыми приращениями. 
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 931
+ []\TU/NotoSerif(2)/m/n/10.95 313
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 932
+ []\TU/NotoSerif(2)/m/n/10.95 313
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 939
+ []\TU/NotoSerif(2)/m/n/10.95 317
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 946
+ []\TU/NotoSerif(2)/m/n/10.95 318
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 947
+ []\TU/NotoSerif(2)/m/n/10.95 319
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 953
+ []\TU/NotoSerif(2)/m/n/10.95 321
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 958
+ []\TU/NotoSerif(2)/m/n/10.95 322
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 959
+ []\TU/NotoSerif(2)/m/n/10.95 322
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 960
+ []\TU/NotoSerif(2)/m/n/10.95 324
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 961
+ []\TU/NotoSerif(2)/m/n/10.95 324
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 962
+ []\TU/NotoSerif(2)/m/n/10.95 324
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 963
+ []\TU/NotoSerif(2)/m/n/10.95 325
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 964
+ []\TU/NotoSerif(2)/m/n/10.95 325
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 965
+ []\TU/NotoSerif(2)/m/n/10.95 325
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 966
+ []\TU/NotoSerif(2)/m/n/10.95 326
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 968
+ []\TU/NotoSerif(2)/m/n/10.95 327
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 969
+ []\TU/NotoSerif(2)/m/n/10.95 327
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 977
+ []\TU/NotoSerif(2)/m/n/10.95 332
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 987
+ []\TU/NotoSerif(2)/m/n/10.95 333
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 988
+ []\TU/NotoSerif(2)/m/n/10.95 334
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 994
+ []\TU/NotoSerif(2)/m/n/10.95 336
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 999
+ []\TU/NotoSerif(2)/m/n/10.95 337
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1000
+ []\TU/NotoSerif(2)/m/n/10.95 337
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1001
+ []\TU/NotoSerif(2)/m/n/10.95 339
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1002
+ []\TU/NotoSerif(2)/m/n/10.95 339
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1003
+ []\TU/NotoSerif(2)/m/n/10.95 339
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1004
+ []\TU/NotoSerif(2)/m/n/10.95 340
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1005
+ []\TU/NotoSerif(2)/m/n/10.95 340
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1006
+ []\TU/NotoSerif(2)/m/n/10.95 340
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1007
+ []\TU/NotoSerif(2)/m/n/10.95 341
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1009
+ []\TU/NotoSerif(2)/m/n/10.95 342
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1010
+ []\TU/NotoSerif(2)/m/n/10.95 342
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1019
+ []\TU/NotoSerif(2)/m/n/10.95 346
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1028
+ []\TU/NotoSerif(2)/m/n/10.95 348
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1035
+ []\TU/NotoSerif(2)/m/n/10.95 350
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1040
+ []\TU/NotoSerif(2)/m/n/10.95 352
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1041
+ []\TU/NotoSerif(2)/m/n/10.95 353
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1042
+ []\TU/NotoSerif(2)/m/n/10.95 354
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1043
+ []\TU/NotoSerif(2)/m/n/10.95 355
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1044
+ []\TU/NotoSerif(2)/m/n/10.95 355
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1045
+ []\TU/NotoSerif(2)/m/n/10.95 356
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1046
+ []\TU/NotoSerif(2)/m/n/10.95 356
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1047
+ []\TU/NotoSerif(2)/m/n/10.95 356
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1048
+ []\TU/NotoSerif(2)/m/n/10.95 356
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1049
+ []\TU/NotoSerif(2)/m/n/10.95 358
+ []
+
+[7]
+Overfull \hbox (1.39063pt too wide) detected at line 1051
+ []\TU/NotoSerif(2)/m/n/10.95 359
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1052
+ []\TU/NotoSerif(2)/m/n/10.95 359
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1064
+ []\TU/NotoSerif(2)/m/n/10.95 364
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1074
+ []\TU/NotoSerif(2)/m/n/10.95 366
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1083
+ []\TU/NotoSerif(2)/m/n/10.95 368
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1089
+ []\TU/NotoSerif(2)/m/n/10.95 370
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1090
+ []\TU/NotoSerif(2)/m/n/10.95 372
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1091
+ []\TU/NotoSerif(2)/m/n/10.95 373
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1092
+ []\TU/NotoSerif(2)/m/n/10.95 374
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1093
+ []\TU/NotoSerif(2)/m/n/10.95 374
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1094
+ []\TU/NotoSerif(2)/m/n/10.95 375
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1095
+ []\TU/NotoSerif(2)/m/n/10.95 375
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1096
+ []\TU/NotoSerif(2)/m/n/10.95 375
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1097
+ []\TU/NotoSerif(2)/m/n/10.95 376
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1098
+ []\TU/NotoSerif(2)/m/n/10.95 377
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1100
+ []\TU/NotoSerif(2)/m/n/10.95 378
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1101
+ []\TU/NotoSerif(2)/m/n/10.95 379
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1112
+ []\TU/NotoSerif(2)/m/n/10.95 384
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1133
+ []\TU/NotoSerif(2)/m/n/10.95 387
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1144
+ []\TU/NotoSerif(2)/m/n/10.95 389
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1150
+ []\TU/NotoSerif(2)/m/n/10.95 391
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1151
+ []\TU/NotoSerif(2)/m/n/10.95 392
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1152
+ []\TU/NotoSerif(2)/m/n/10.95 393
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1153
+ []\TU/NotoSerif(2)/m/n/10.95 395
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1154
+ []\TU/NotoSerif(2)/m/n/10.95 395
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1155
+ []\TU/NotoSerif(2)/m/n/10.95 395
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1156
+ []\TU/NotoSerif(2)/m/n/10.95 396
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1157
+ []\TU/NotoSerif(2)/m/n/10.95 396
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1158
+ []\TU/NotoSerif(2)/m/n/10.95 396
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1159
+ []\TU/NotoSerif(2)/m/n/10.95 397
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1161
+ []\TU/NotoSerif(2)/m/n/10.95 399
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1162
+ []\TU/NotoSerif(2)/m/n/10.95 400
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1172
+ []\TU/NotoSerif(2)/m/n/10.95 404
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1180
+ []\TU/NotoSerif(2)/m/n/10.95 405
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1188
+ []\TU/NotoSerif(2)/m/n/10.95 408
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1194
+ []\TU/NotoSerif(2)/m/n/10.95 410
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1195
+ []\TU/NotoSerif(2)/m/n/10.95 412
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1196
+ []\TU/NotoSerif(2)/m/n/10.95 412
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1197
+ []\TU/NotoSerif(2)/m/n/10.95 414
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1198
+ []\TU/NotoSerif(2)/m/n/10.95 414
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1199
+ []\TU/NotoSerif(2)/m/n/10.95 414
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1200
+ []\TU/NotoSerif(2)/m/n/10.95 415
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1201
+ []\TU/NotoSerif(2)/m/n/10.95 415
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1202
+ []\TU/NotoSerif(2)/m/n/10.95 416
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1203
+ []\TU/NotoSerif(2)/m/n/10.95 417
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1205
+ []\TU/NotoSerif(2)/m/n/10.95 419
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1206
+ []\TU/NotoSerif(2)/m/n/10.95 419
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1213
+ []\TU/NotoSerif(2)/m/n/10.95 423
+ []
+
+[8]
+Overfull \hbox (1.39063pt too wide) detected at line 1214
+ []\TU/NotoSerif(2)/m/n/10.95 424
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1218
+ []\TU/NotoSerif(2)/m/n/10.95 425
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1223
+ []\TU/NotoSerif(2)/m/n/10.95 427
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1224
+ []\TU/NotoSerif(2)/m/n/10.95 427
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1225
+ []\TU/NotoSerif(2)/m/n/10.95 428
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1226
+ []\TU/NotoSerif(2)/m/n/10.95 429
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1227
+ []\TU/NotoSerif(2)/m/n/10.95 429
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1228
+ []\TU/NotoSerif(2)/m/n/10.95 429
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1229
+ []\TU/NotoSerif(2)/m/n/10.95 429
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1230
+ []\TU/NotoSerif(2)/m/n/10.95 429
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1231
+ []\TU/NotoSerif(2)/m/n/10.95 430
+ []
+
+
+Overfull \hbox (1.39063pt too wide) detected at line 1232
+ []\TU/NotoSerif(2)/m/n/10.95 430
+ []
+
+)
+\tf@toc=\write3
+\openout3 = `dsp_tickets_all.toc'.
+
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/b/n' will be
+(Font)              scaled to size 12.0pt on input line 88.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/b/n' will be
+(Font)              scaled to size 10.95pt on input line 99.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/b/n' will be
+(Font)              scaled to size 6.57pt on input line 99.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/b/n' will be
+(Font)              scaled to size 5.475pt on input line 99.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 131.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/m/n' will be
+(Font)              scaled to size 6.57pt on input line 131.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/m/n' will be
+(Font)              scaled to size 5.475pt on input line 131.
+ [9] [10] [11] [12] [13] [14]
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/m/n' will be
+(Font)              scaled to size 6.57pt on input line 556.
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/m/n' will be
+(Font)              scaled to size 5.475pt on input line 556.
+ [15] [16] [17]
+Underfull \hbox (badness 2875) in paragraph at lines 822--825
+[]\TU/NotoSerif(2)/m/n/10.95 Билет 02: счетная аддитивность и вероятностные про
+странства используют $[]$-
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 861--867
+[]\TU/NotoSerif(2)/m/n/10.95 Алгебра замкнута относительно конечных операций на
+д множествами,
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 861--867
+$[]$\TU/NotoSerif(2)/m/n/10.95 -алгебра - относительно счетных объединений, пол
+уалгебра замкнута от-
+ []
+
+
+Underfull \hbox (badness 4713) in paragraph at lines 861--867
+\TU/NotoSerif(2)/m/n/10.95 носительно пересечений, а разности в ней раскладываю
+тся в конечные
+ []
+
+[19] [20] [21]
+Underfull \hbox (badness 1939) in paragraph at lines 994--997
+[]\TU/NotoSerif(2)/m/n/10.95 где $[]$ - пространство элементарных исходов, $[]$
+ - $[]$-алгебра событий, а $[]$ - счетно-
+ []
+
+[22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36]
+[37] [38] [39] [40] [41]
+LaTeX Font Info:    Font shape `TU/NotoSansMath(1)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(1)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(2)/m/n' will be
+(Font)              scaled to size 14.4013pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(3)/m/n' will be
+(Font)              scaled to size 14.39845pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSansMath(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/b/n' will be
+(Font)              scaled to size 14.4pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/b/n' will be
+(Font)              scaled to size 10.0pt on input line 2637.
+LaTeX Font Info:    Font shape `TU/NotoSerif(1)/b/n' will be
+(Font)              scaled to size 7.0pt on input line 2637.
+
+Underfull \hbox (badness 2591) in paragraph at lines 2637--2637
+[][]\TU/NotoSerif(2)/b/n/14.4 Билет 03. Продолжение меры с полуалгебры на алгеб
+ру и
+ []
+
+[42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54] [55] [56]
+Overfull \hbox (10.85423pt too wide) detected at line 3904
+[][][][][] [] [][][][] [] [][][][] [] [][][][][]
+ []
+
+[57] [58] [59]
+Overfull \hbox (10.85423pt too wide) detected at line 4151
+[][][][][] [] [][][][] [] [][][][] [] [][][][][]
+ []
+
+
+Underfull \hbox (badness 5302) in paragraph at lines 4158--4163
+\TU/NotoSerif(2)/m/n/10.95 Открытые шары порождают топологию. Замкнутые множест
+ва порождают ту же
+ []
+
+[60] [61] [62] [63] [64] [65] [66] [67] [68] [69] [70] [71] [72] [73] [74]
+[75] [76] [77] [78] [79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89]
+[90] [91] [92] [93] [94] [95] [96] [97] [98]
+Underfull \hbox (badness 10000) in paragraph at lines 7267--7270
+[]\TU/NotoSerif(2)/m/n/10.95 Для процесса конечномерные распределения - это рас
+пределения векторов
+ []
+
+[99] [100] [101] [102] [103] [104] [105] [106] [107] [108] [109] [110] [111]
+[112] [113] [114] [115] [116] [117] [118] [119] [120] [121] [122] [123]
+[124] [125] [126] [127] [128] [129] [130]
+Underfull \hbox (badness 1990) in paragraph at lines 9748--9749
+[]\TU/NotoSerif(2)/b/n/10.95 Почему конечномерные характеристические функции за
+дают конечномерные
+ []
+
+[131] [132] [133] [134] [135]
+Underfull \hbox (badness 1354) in paragraph at lines 10203--10206
+[]\TU/NotoSerif(2)/m/n/10.95 как записывается характеристическая функция конечн
+омерного распределения
+ []
+
+[136] [137] [138] [139] [140] [141] [142] [143] [144] [145] [146] [147]
+[148] [149] [150] [151] [152]
+Underfull \hbox (badness 1803) in paragraph at lines 11631--11634
+[]\TU/NotoSerif(2)/m/n/10.95 Менять порядок интегрирования для знакопеременной 
+функции без проверки
+ []
+
+[153] [154] [155] [156]
+Underfull \hbox (badness 1852) in paragraph at lines 12059--12064
+[]\TU/NotoSerif(2)/m/n/10.95 Второй уровень - плотности распределений. Если рас
+пределение случайного векто-
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 12059--12064
+\TU/NotoSerif(2)/m/n/10.95 ра абсолютно непрерывно относительно меры Лебега, то
+ у него есть плотность. То
+ []
+
+[157] [158] [159] [160] [161] [162] [163] [164] [165]
+Underfull \hbox (badness 3557) in paragraph at lines 12759--12761
+[]\TU/NotoSerif(2)/m/n/10.95 Она абсолютно непрерывна относительно $[][][]$. По
+ Радону-Никодиму существует $[]$-
+ []
+
+[166] [167] [168] [169] [170] [171] [172]
+Underfull \hbox (badness 1552) in paragraph at lines 13334--13336
+[]\TU/NotoSerif(2)/m/n/10.95 абсолютно непрерывна относительно $[]$ на $[]$, и 
+можно применить теорему Радона-
+ []
+
+[173] [174]
+Underfull \hbox (badness 1342) in paragraph at lines 13467--13469
+\TU/NotoSerif(2)/b/n/10.95 Билет 06. \TU/NotoSerif(2)/m/n/10.95 Плотности распр
+еделений в общем виде определяются как производные
+ []
+
+[175] [176] [177] [178] [179] [180] [181] [182] [183] [184] [185] [186]
+[187] [188] [189] [190] [191] [192] [193] [194] [195] [196] [197]
+Overfull \hbox (5.36472pt too wide) in paragraph at lines 15372--15374
+[]\TU/NotoSerif(2)/m/n/10.95 Затем формулирую классическую замену переменной. Е
+сли $[] [] [] [] []$ - $[][]$-диффеоморфизм,
+ []
+
+[198] [199] [200] [201] [202] [203] [204] [205] [206] [207] [208] [209]
+[210] [211] [212] [213] [214] [215] [216] [217] [218] [219] [220] [221]
+[222] [223] [224] [225] [226] [227] [228] [229]
+Underfull \hbox (badness 1454) in paragraph at lines 18060--18060
+[][]\TU/NotoSerif(2)/b/n/10.95 Свойство 4. Ковариационная матрица через произво
+дные характеристической
+ []
+
+[230] [231] [232] [233] [234] [235] [236] [237] [238] [239] [240] [241]
+Underfull \hbox (badness 1540) in paragraph at lines 19160--19163
+[]\TU/NotoSerif(2)/m/n/10.95 Главная ловушка: характеристическая функция сущест
+вует всегда, но производные-
+ []
+
+[242] [243] [244] [245] [246] [247] [248] [249] [250] [251] [252] [253]
+[254] [255] [256] [257] [258] [259] [260] [261] [262] [263] [264] [265]
+[266] [267] [268] [269] [270] [271] [272] [273]
+Underfull \hbox (badness 5245) in paragraph at lines 21939--21941
+[]\TU/NotoSerif(2)/m/n/10.95 Конечномерные распределения получаются из закона п
+роцесса проекциями. Для
+ []
+
+[274] [275] [276] [277] [278] [279] [280] [281] [282] [283] [284] [285]
+[286] [287] [288]
+Underfull \hbox (badness 2027) in paragraph at lines 23323--23325
+[]\TU/NotoSerif(2)/m/n/10.95 Узкая стационарность означает инвариантность закон
+а процесса относительно
+ []
+
+
+Underfull \hbox (badness 3965) in paragraph at lines 23342--23345
+[]\TU/NotoSerif(2)/m/n/10.95 Эргодичность в узком смысле равносильна отсутствию
+ нетривиальных сдвиг-
+ []
+
+[289] [290] [291] [292] [293] [294] [295] [296] [297] [298] [299] [300]
+[301] [302] [303] [304] [305] [306] [307] [308] [309] [310]
+Underfull \hbox (badness 4621) in paragraph at lines 25276--25279
+[]\TU/NotoSerif(2)/m/n/10.95 блочно-диагональную ковариационную матрицу как кри
+терий независимости
+ []
+
+[311] [312] [313] [314] [315] [316] [317] [318] [319] [320] [321] [322]
+[323] [324] [325] [326]
+Underfull \hbox (badness 3679) in paragraph at lines 26648--26648
+[][]\TU/NotoSerif(2)/b/n/14.4 Билет 20. Конечномерные распределения как обобщен
+ные
+ []
+
+[327] [328] [329] [330] [331] [332] [333] [334] [335] [336] [337] [338]
+[339] [340] [341] [342] [343] [344] [345] [346] [347] [348] [349] [350]
+[351] [352] [353] [354] [355] [356] [357] [358] [359] [360] [361] [362]
+[363] [364] [365] [366] [367] [368] [369] [370] [371] [372]
+Overfull \hbox (10.34843pt too wide) in paragraph at lines 30602--30605
+[]\TU/NotoSerif(2)/m/n/10.95 при той же строковой стохастичности. Либо можно ис
+пользовать столбцово-стохастические
+ []
+
+[373] [374] [375] [376] [377] [378] [379] [380] [381] [382] [383] [384]
+[385] [386]
+Underfull \hbox (badness 10000) in paragraph at lines 31786--31788
+[]\TU/NotoSerif(2)/m/n/10.95 рефлексивно, симметрично и транзитивно. Транзитивн
+ость следует из Чепмена-
+ []
+
+[387] [388] [389] [390] [391] [392] [393] [394] [395] [396] [397] [398]
+[399] [400] [401] [402] [403] [404] [405] [406]
+Underfull \hbox (badness 1072) in paragraph at lines 33400--33402
+\TU/NotoSerif(2)/m/n/10.95 По теореме Герглотца положительно определенная ковар
+иационная функция имеет
+ []
+
+[407] [408] [409] [410] [411] [412] [413] [414] [415] [416] [417] [418]
+[419] [420]
+Underfull \hbox (badness 3471) in paragraph at lines 34456--34460
+[]\TU/NotoSerif(2)/m/n/10.95 Для экзамена удобно помнить иерархию: абсолютная с
+уммируемость ковариаций
+ []
+
+
+Underfull \hbox (badness 1377) in paragraph at lines 34456--34460
+\TU/NotoSerif(2)/m/n/10.95 дает хорошую непрерывную плотность; квадрат-суммируе
+мость дает плотность как
+ []
+
+[421]
+Underfull \hbox (badness 10000) in paragraph at lines 34552--34554
+[]\TU/NotoSerif(2)/m/n/10.95 является \TU/NotoSerif(2)/b/n/10.95 изометрическим
+ изоморфизмом \TU/NotoSerif(2)/m/n/10.95 между гильбертовым пространством
+ []
+
+[422] [423] [424] [425] [426] [427] [428]
+LaTeX Font Info:    Font shape `TU/NotoSerif(2)/m/it' will be
+(Font)              scaled to size 10.95pt on input line 35066.
+
+Underfull \hbox (badness 4832) in paragraph at lines 35116--35122
+\TU/NotoSerif(2)/m/n/10.95 К минимуму добавляется: 1. Спектральное представлени
+е самого процесса $[][] []$
+ []
+
+
+Underfull \hbox (badness 1762) in paragraph at lines 35116--35122
+$[][] [][][][][][][]$\TU/NotoSerif(2)/m/n/10.95 . 2. Понимание того, что такое 
+ортогональная случайная мера $[][][][]$ и ее
+ []
+
+[429] [430]
+(/home/aidenfmunro/Vault/30 Areas/University/Exams/ДСП/build/pdf/dsp_tickets_al
+l.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 21301 strings out of 469438
+ 552651 string characters out of 5471046
+ 1120317 words of memory out of 5000000
+ 49612 multiletter control sequences out of 15000+600000
+ 636803 words of font info for 159 fonts, out of 8000000 for 9000
+ 682 hyphenation exceptions out of 8191
+ 90i,11n,122p,1280b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on /home/aidenfmunro/Vault/30 Areas/University/Exams/ДСП/build/p
+df/dsp_tickets_all.pdf (430 pages).

@@ -1,0 +1,1378 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 07. Простые функции, интеграл Лебега и теоремы Леви и
+Лебега о предельном
+переходе}\label{ux431ux438ux43bux435ux442-07.-ux43fux440ux43eux441ux442ux44bux435-ux444ux443ux43dux43aux446ux438ux438-ux438ux43dux442ux435ux433ux440ux430ux43b-ux43bux435ux431ux435ux433ux430-ux438-ux442ux435ux43eux440ux435ux43cux44b-ux43bux435ux432ux438-ux438-ux43bux435ux431ux435ux433ux430-ux43e-ux43fux440ux435ux434ux435ux43bux44cux43dux43eux43c-ux43fux435ux440ux435ux445ux43eux434ux435}
+
+Источники: Ширяев 1, гл. II, §6; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Интеграл Лебега по неотрицательной мере строится в три шага: сначала для
+индикаторов, затем для простых неотрицательных функций, затем для
+произвольных неотрицательных измеримых функций через супремум по простым
+минорантам.
+
+Если
+
+\[
+s=\sum_{k=1}^n a_k\mathbf 1_{A_k},
+\qquad
+a_k\ge0,\quad A_k\in\mathcal F,
+\]
+
+и множества \(A_k\) попарно не пересекаются, то
+
+\[
+\int s\,d\mu=\sum_{k=1}^n a_k\mu(A_k).
+\]
+
+Для неотрицательной измеримой функции \(f\):
+
+\[
+\int f\,d\mu
+=
+\sup\left\{\int s\,d\mu:\ 0\le s\le f,\ s\text{ простая}\right\}.
+\]
+
+Теорема Беппо Леви: если \(0\le f_n\uparrow f\), то
+
+\[
+\int f_n\,d\mu\uparrow\int f\,d\mu.
+\]
+
+Мажорантная теорема Лебега: если \(f_n\to f\) почти всюду и
+\(|f_n|\le g\), где \(g\in L^1\), то
+
+\[
+\int f_n\,d\mu\to\int f\,d\mu.
+\]
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Введение и роль интеграла
+Лебега}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux438-ux440ux43eux43bux44c-ux438ux43dux442ux435ux433ux440ux430ux43bux430-ux43bux435ux431ux435ux433ux430}
+
+В предыдущих билетах были введены измеримые функции и распределения.
+Теперь нужен аппарат, который позволяет интегрировать измеримые функции
+по мере. В вероятности этот интеграл становится математическим
+ожиданием, а в дальнейшем через него выражаются моменты,
+характеристические функции, условные ожидания, корреляции и спектральные
+характеристики.
+
+\subsubsection{2.2. Измеримое пространство и интеграл от индикаторной
+функции}\label{ux438ux437ux43cux435ux440ux438ux43cux43eux435-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-ux438-ux438ux43dux442ux435ux433ux440ux430ux43b-ux43eux442-ux438ux43dux434ux438ux43aux430ux442ux43eux440ux43dux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Пусть задано пространство с неотрицательной мерой
+
+\[
+(\Omega,\mathcal F,\mu).
+\]
+
+Неотрицательность меры означает, что
+
+\[
+\mu(A)\in[0,\infty]
+\qquad
+A\in\mathcal F.
+\]
+
+Сначала интеграл определяют для самой простой измеримой функции -
+индикатора множества:
+
+\[
+\int \mathbf 1_A\,d\mu=\mu(A).
+\]
+
+Это естественно: индикатор равен \(1\) на \(A\) и \(0\) вне \(A\),
+значит площадь под ним должна равняться мере множества \(A\).
+
+\subsubsection{2.3. Интеграл от простых
+функций}\label{ux438ux43dux442ux435ux433ux440ux430ux43b-ux43eux442-ux43fux440ux43eux441ux442ux44bux445-ux444ux443ux43dux43aux446ux438ux439}
+
+Дальше рассматривают простые функции. Простая функция - измеримая
+функция, принимающая конечное число значений. Если \(s\ge0\) и
+
+\[
+s=\sum_{k=1}^n a_k\mathbf 1_{A_k},
+\]
+
+где \(a_k\ge0\), \(A_k\in\mathcal F\) и \(A_k\) попарно не пересекаются,
+то интеграл задают формулой
+
+\[
+\int s\,d\mu=\sum_{k=1}^n a_k\mu(A_k).
+\]
+
+Эта формула не зависит от выбранного представления простой функции: если
+разложение измельчить до общего конечного разбиения, сумма останется той
+же. Поэтому интеграл простой функции определен корректно.
+
+\subsubsection{2.4. Построение интеграла для неотрицательных измеримых
+функций}\label{ux43fux43eux441ux442ux440ux43eux435ux43dux438ux435-ux438ux43dux442ux435ux433ux440ux430ux43bux430-ux434ux43bux44f-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux44bux445-ux438ux437ux43cux435ux440ux438ux43cux44bux445-ux444ux443ux43dux43aux446ux438ux439}
+
+Для произвольной неотрицательной измеримой функции \(f\) интеграл строят
+приближением снизу простыми функциями:
+
+\[
+\int f\,d\mu
+=
+\sup\left\{\int s\,d\mu:\ 0\le s\le f,\ s\text{ простая измеримая}\right\}.
+\]
+
+Интуиция такая: сложную функцию можно снизу аппроксимировать
+ступенчатыми измеримыми функциями. Интеграл \(f\) - это наибольший
+предел площадей таких нижних ступенчатых приближений. Значение интеграла
+может быть бесконечным.
+
+\subsubsection{2.5. Функции произвольного знака и условие
+интегрируемости}\label{ux444ux443ux43dux43aux446ux438ux438-ux43fux440ux43eux438ux437ux432ux43eux43bux44cux43dux43eux433ux43e-ux437ux43dux430ux43aux430-ux438-ux443ux441ux43bux43eux432ux438ux435-ux438ux43dux442ux435ux433ux440ux438ux440ux443ux435ux43cux43eux441ux442ux438}
+
+Если функция \(f\) может принимать отрицательные значения, ее
+раскладывают на положительную и отрицательную части:
+
+\[
+f^+=\max(f,0),\qquad
+f^-=\max(-f,0),
+\]
+
+так что
+
+\[
+f=f^+-f^-,
+\qquad
+|f|=f^++f^-.
+\]
+
+Если хотя бы один из интегралов \(\int f^+\,d\mu\), \(\int f^-\,d\mu\)
+конечен, можно определить расширенный интеграл
+
+\[
+\int f\,d\mu=\int f^+\,d\mu-\int f^-\,d\mu,
+\]
+
+не допуская неопределенности \(\infty-\infty\). Если
+
+\[
+\int |f|\,d\mu<\infty,
+\]
+
+то \(f\) называется интегрируемой, или суммируемой, и пишут
+\(f\in L^1(\mu)\).
+
+\subsubsection{2.6. Теорема Беппо Леви о монотонной
+сходимости}\label{ux442ux435ux43eux440ux435ux43cux430-ux431ux435ux43fux43fux43e-ux43bux435ux432ux438-ux43e-ux43cux43eux43dux43eux442ux43eux43dux43dux43eux439-ux441ux445ux43eux434ux438ux43cux43eux441ux442ux438}
+
+Главная сила интеграла Лебега - хорошие теоремы о предельном переходе. В
+программе эти теоремы идут без доказательства, но условия нужно знать
+точно.
+
+Первая - теорема Беппо Леви, или теорема о монотонной сходимости. Если
+
+\[
+0\le f_1\le f_2\le\cdots
+\]
+
+и
+
+\[
+f_n(\omega)\uparrow f(\omega)
+\]
+
+для всех \(\omega\) или почти всюду, то
+
+\[
+\int f_n\,d\mu\uparrow\int f\,d\mu.
+\]
+
+Здесь не нужен интегрируемый мажорант; зато нужна неотрицательность и
+монотонный рост.
+
+\subsubsection{2.7. Мажорантная теорема Лебега о доминированной
+сходимости}\label{ux43cux430ux436ux43eux440ux430ux43dux442ux43dux430ux44f-ux442ux435ux43eux440ux435ux43cux430-ux43bux435ux431ux435ux433ux430-ux43e-ux434ux43eux43cux438ux43dux438ux440ux43eux432ux430ux43dux43dux43eux439-ux441ux445ux43eux434ux438ux43cux43eux441ux442ux438}
+
+Вторая - мажорантная теорема Лебега, или теорема Лебега о доминированной
+сходимости. Если
+
+\[
+f_n\to f
+\]
+
+почти всюду и существует интегрируемая функция \(g\in L^1(\mu)\) такая,
+что
+
+\[
+|f_n|\le g
+\qquad \text{почти всюду для всех }n,
+\]
+
+то \(f\) интегрируема и
+
+\[
+\int f_n\,d\mu\to\int f\,d\mu.
+\]
+
+Эта теорема позволяет менять предел и интеграл при наличии общего
+интегрируемого контроля. Без такого контроля утверждение может быть
+неверным.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Пространство с неотрицательной
+мерой}\label{ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-ux441-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux43eux439-ux43cux435ux440ux43eux439}
+
+Тройка \((\Omega,\mathcal F,\mu)\), где \(\mathcal F\) -
+\(\sigma\)-алгебра, а \(\mu:\mathcal F\to[0,\infty]\) -
+счетно-аддитивная неотрицательная мера.
+
+\subsubsection{Индикатор
+множества}\label{ux438ux43dux434ux438ux43aux430ux442ux43eux440-ux43cux43dux43eux436ux435ux441ux442ux432ux430}
+
+Для \(A\in\mathcal F\):
+
+\[
+\mathbf 1_A(\omega)=
+\begin{cases}
+1, & \omega\in A,\\
+0, & \omega\notin A.
+\end{cases}
+\]
+
+\subsubsection{Простая
+функция}\label{ux43fux440ux43eux441ux442ux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+Измеримая функция \(s:\Omega\to\mathbb R\) называется простой, если она
+принимает конечное число значений. Ее можно записать в виде
+
+\[
+s=\sum_{k=1}^n a_k\mathbf 1_{A_k},
+\]
+
+где \(A_k\in\mathcal F\). В каноническом представлении значения \(a_k\)
+различны, а множества
+
+\[
+A_k=\{\omega:s(\omega)=a_k\}
+\]
+
+попарно не пересекаются и образуют разбиение области, где \(s\)
+принимает эти значения.
+
+\subsubsection{Неотрицательная простая
+функция}\label{ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux430ux44f-ux43fux440ux43eux441ux442ux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+Простая функция \(s\), для которой \(s(\omega)\ge0\) для всех
+\(\omega\). Если неравенство выполнено только почти всюду, функцию можно
+заменить равной ей почти всюду неотрицательной модификацией.
+
+\subsubsection{Интеграл
+индикатора}\label{ux438ux43dux442ux435ux433ux440ux430ux43b-ux438ux43dux434ux438ux43aux430ux442ux43eux440ux430}
+
+\[
+\int \mathbf 1_A\,d\mu=\mu(A).
+\]
+
+\subsubsection{Интеграл неотрицательной простой
+функции}\label{ux438ux43dux442ux435ux433ux440ux430ux43b-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux43eux439-ux43fux440ux43eux441ux442ux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Если
+
+\[
+s=\sum_{k=1}^n a_k\mathbf 1_{A_k},
+\qquad
+a_k\ge0,
+\]
+
+и \(A_k\) попарно не пересекаются, то
+
+\[
+\int s\,d\mu=\sum_{k=1}^n a_k\mu(A_k).
+\]
+
+\subsubsection{Интеграл неотрицательной измеримой
+функции}\label{ux438ux43dux442ux435ux433ux440ux430ux43b-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux43eux439-ux438ux437ux43cux435ux440ux438ux43cux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Для \(f:\Omega\to[0,\infty]\):
+
+\[
+\int f\,d\mu
+=
+\sup\left\{\int s\,d\mu:\ 0\le s\le f,\ s\text{ простая измеримая}\right\}.
+\]
+
+\subsubsection{Положительная и отрицательная части
+функции}\label{ux43fux43eux43bux43eux436ux438ux442ux435ux43bux44cux43dux430ux44f-ux438-ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux430ux44f-ux447ux430ux441ux442ux438-ux444ux443ux43dux43aux446ux438ux438}
+
+\[
+f^+=\max(f,0),\qquad
+f^-=\max(-f,0).
+\]
+
+Тогда
+
+\[
+f=f^+-f^-,
+\qquad
+|f|=f^++f^-.
+\]
+
+\subsubsection{Интегрируемая
+функция}\label{ux438ux43dux442ux435ux433ux440ux438ux440ux443ux435ux43cux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+Измеримая функция \(f\) называется интегрируемой, если
+
+\[
+\int |f|\,d\mu<\infty.
+\]
+
+В этом случае
+
+\[
+\int f\,d\mu=\int f^+\,d\mu-\int f^-\,d\mu
+\]
+
+и оба интеграла справа конечны.
+
+\subsubsection{Почти
+всюду}\label{ux43fux43eux447ux442ux438-ux432ux441ux44eux434ux443}
+
+Свойство выполнено почти всюду, если оно нарушается только на множестве
+меры ноль.
+
+\subsubsection{Мажоранта}\label{ux43cux430ux436ux43eux440ux430ux43dux442ux430}
+
+Функция \(g\) называется интегрируемой мажорантой для последовательности
+\(f_n\), если
+
+\[
+|f_n|\le g\quad \text{почти всюду для всех }n,
+\qquad
+g\in L^1(\mu).
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Свойство 1. Корректность интеграла простой
+функции}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-1.-ux43aux43eux440ux440ux435ux43aux442ux43dux43eux441ux442ux44c-ux438ux43dux442ux435ux433ux440ux430ux43bux430-ux43fux440ux43eux441ux442ux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Если неотрицательная простая функция имеет два представления
+
+\[
+s=\sum_{i=1}^m a_i\mathbf 1_{A_i}
+=
+\sum_{j=1}^n b_j\mathbf 1_{B_j},
+\]
+
+где множества в каждом представлении попарно не пересекаются, то
+
+\[
+\sum_{i=1}^m a_i\mu(A_i)
+=
+\sum_{j=1}^n b_j\mu(B_j).
+\]
+
+\subsubsection{Доказательство-идея}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux438ux434ux435ux44f}
+
+Перейдем к общему измельчению
+
+\[
+C_{ij}=A_i\cap B_j.
+\]
+
+На каждом непустом \(C_{ij}\) значения двух представлений совпадают, то
+есть \(a_i=b_j\). Поэтому обе суммы после разбиения на \(C_{ij}\)
+становятся одной и той же суммой.
+
+\subsubsection{Свойство 2. Интеграл индикатора равен
+мере}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-2.-ux438ux43dux442ux435ux433ux440ux430ux43b-ux438ux43dux434ux438ux43aux430ux442ux43eux440ux430-ux440ux430ux432ux435ux43d-ux43cux435ux440ux435}
+
+Для любого \(A\in\mathcal F\):
+
+\[
+\int \mathbf 1_A\,d\mu=\mu(A).
+\]
+
+Это базовая нормировка интеграла Лебега.
+
+\subsubsection{Свойство 3. Монотонность
+интеграла}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-3.-ux43cux43eux43dux43eux442ux43eux43dux43dux43eux441ux442ux44c-ux438ux43dux442ux435ux433ux440ux430ux43bux430}
+
+Если \(0\le f\le g\), то
+
+\[
+\int f\,d\mu\le\int g\,d\mu.
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e}
+
+Любая простая функция \(s\), удовлетворяющая \(0\le s\le f\),
+автоматически удовлетворяет \(0\le s\le g\). Поэтому супремум по простым
+минорантам для \(f\) не больше супремума для \(g\).
+
+\subsubsection{Свойство 4. Линейность для неотрицательных
+функций}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-4.-ux43bux438ux43dux435ux439ux43dux43eux441ux442ux44c-ux434ux43bux44f-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux44bux445-ux444ux443ux43dux43aux446ux438ux439}
+
+Если \(f,g\ge0\) измеримы и \(a,b\ge0\), то
+
+\[
+\int(af+bg)\,d\mu
+=
+a\int f\,d\mu+b\int g\,d\mu.
+\]
+
+Здесь допускаются бесконечные значения, если не возникает противоречивых
+операций.
+
+\subsubsection{Доказательство-идея}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux438ux434ux435ux44f-1}
+
+Для простых функций это следует из формулы суммы по разбиению. Для общих
+неотрицательных функций берут возрастающие последовательности простых
+функций, приближающие \(f\) и \(g\) снизу, и применяют теорему Беппо
+Леви.
+
+\subsubsection{\texorpdfstring{Свойство 5. Линейность на
+\(L^1\)}{Свойство 5. Линейность на L\^{}1}}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-5.-ux43bux438ux43dux435ux439ux43dux43eux441ux442ux44c-ux43dux430-l1}
+
+Если \(f,g\in L^1(\mu)\) и \(a,b\in\mathbb R\), то
+
+\[
+\int(af+bg)\,d\mu
+=
+a\int f\,d\mu+b\int g\,d\mu.
+\]
+
+\subsubsection{Обоснование}\label{ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux435}
+
+Интегрируемость гарантирует конечность интегралов положительных и
+отрицательных частей, поэтому не возникает неопределенности
+\(\infty-\infty\).
+
+\subsubsection{Свойство 6. Если функция равна нулю почти всюду, то ее
+интеграл равен
+нулю}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-6.-ux435ux441ux43bux438-ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux432ux43dux430-ux43dux443ux43bux44e-ux43fux43eux447ux442ux438-ux432ux441ux44eux434ux443-ux442ux43e-ux435ux435-ux438ux43dux442ux435ux433ux440ux430ux43b-ux440ux430ux432ux435ux43d-ux43dux443ux43bux44e}
+
+Если \(f\ge0\) и \(f=0\) почти всюду, то
+
+\[
+\int f\,d\mu=0.
+\]
+
+Если \(f=g\) почти всюду и обе функции интегрируемы, то
+
+\[
+\int f\,d\mu=\int g\,d\mu.
+\]
+
+\subsubsection{Свойство 7. Аппроксимация неотрицательной измеримой
+функции
+простыми}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-7.-ux430ux43fux43fux440ux43eux43aux441ux438ux43cux430ux446ux438ux44f-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux43eux439-ux438ux437ux43cux435ux440ux438ux43cux43eux439-ux444ux443ux43dux43aux446ux438ux438-ux43fux440ux43eux441ux442ux44bux43cux438}
+
+Для любой неотрицательной измеримой функции \(f\) существует
+последовательность неотрицательных простых функций \(s_n\) такая, что
+
+\[
+0\le s_1\le s_2\le\cdots\le f,
+\qquad
+s_n(\omega)\uparrow f(\omega).
+\]
+
+\subsubsection{Доказательство-идея}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux438ux434ux435ux44f-2}
+
+Можно взять ступенчатое округление вниз. Например, на уровне \(n\)
+разбить значения \(f\) на интервалы длины \(2^{-n}\) до высоты \(n\) и
+положить
+
+\[
+s_n(\omega)=\frac{k}{2^n}
+\]
+
+на множестве
+
+\[
+\left\{\frac{k}{2^n}\le f(\omega)<\frac{k+1}{2^n}\right\},
+\]
+
+а для \(f(\omega)\ge n\) ограничить значение сверху числом \(n\). Эти
+множества измеримы, потому что \(f\) измерима.
+
+\subsubsection{Теорема 8. Беппо Леви, или монотонная
+сходимость}\label{ux442ux435ux43eux440ux435ux43cux430-8.-ux431ux435ux43fux43fux43e-ux43bux435ux432ux438-ux438ux43bux438-ux43cux43eux43dux43eux442ux43eux43dux43dux430ux44f-ux441ux445ux43eux434ux438ux43cux43eux441ux442ux44c}
+
+Пусть \(f_n:\Omega\to[0,\infty]\) измеримы,
+
+\[
+0\le f_1\le f_2\le\cdots,
+\]
+
+и
+
+\[
+f_n(\omega)\uparrow f(\omega)
+\]
+
+почти всюду. Тогда
+
+\[
+\int f_n\,d\mu\uparrow\int f\,d\mu.
+\]
+
+В программе эта теорема идет без доказательства.
+
+\subsubsection{Идея
+доказательства}\label{ux438ux434ux435ux44f-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux430}
+
+Неравенство
+
+\[
+\lim_n\int f_n\,d\mu\le\int f\,d\mu
+\]
+
+следует из монотонности. Обратное неравенство получают так: берут
+простую функцию \(s\le f\), немного уменьшают ее до \(\alpha s\), где
+\(0<\alpha<1\), и используют множества, на которых \(f_n\) уже превысила
+\(\alpha s\). Потом переходят к пределу по \(n\) и по
+\(\alpha\uparrow1\).
+
+\subsubsection{Теорема 9. Мажорантная теорема Лебега, или доминированная
+сходимость}\label{ux442ux435ux43eux440ux435ux43cux430-9.-ux43cux430ux436ux43eux440ux430ux43dux442ux43dux430ux44f-ux442ux435ux43eux440ux435ux43cux430-ux43bux435ux431ux435ux433ux430-ux438ux43bux438-ux434ux43eux43cux438ux43dux438ux440ux43eux432ux430ux43dux43dux430ux44f-ux441ux445ux43eux434ux438ux43cux43eux441ux442ux44c}
+
+Пусть \(f_n\) измеримы,
+
+\[
+f_n\to f
+\]
+
+почти всюду, и существует \(g\in L^1(\mu)\) такая, что
+
+\[
+|f_n|\le g
+\qquad \text{почти всюду для всех }n.
+\]
+
+Тогда \(f\in L^1(\mu)\) и
+
+\[
+\int f_n\,d\mu\to\int f\,d\mu.
+\]
+
+Более сильная форма вывода:
+
+\[
+\int |f_n-f|\,d\mu\to0.
+\]
+
+Из нее уже следует сходимость интегралов.
+
+В программе эта теорема также идет без полного доказательства.
+
+\subsubsection{Идея
+доказательства}\label{ux438ux434ux435ux44f-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux430-1}
+
+Из \(|f_n|\le g\) и \(f_n\to f\) следует \(|f|\le g\), значит \(f\)
+интегрируема. Далее к неотрицательным функциям
+
+\[
+2g-|f_n-f|
+\]
+
+или к верхним и нижним оценкам применяют лемму Фату. Смысл:
+интегрируемая мажоранта запрещает массе убегать в бесконечность или
+концентрироваться на все меньших множествах с большой высотой.
+
+\subsubsection{Свойство 10. Нужны именно условия предельных
+теорем}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-10.-ux43dux443ux436ux43dux44b-ux438ux43cux435ux43dux43dux43e-ux443ux441ux43bux43eux432ux438ux44f-ux43fux440ux435ux434ux435ux43bux44cux43dux44bux445-ux442ux435ux43eux440ux435ux43c}
+
+Если \(f_n\to f\) почти всюду, но нет ни монотонности, ни интегрируемой
+мажоранты, то из этого не следует
+
+\[
+\int f_n\,d\mu\to\int f\,d\mu.
+\]
+
+Например, на \([0,1]\) с мерой Лебега функции
+
+\[
+f_n(x)=n\mathbf 1_{(0,1/n)}(x)
+\]
+
+сходятся к \(0\) почти всюду, но
+
+\[
+\int_0^1 f_n(x)\,dx=1
+\]
+
+для всех \(n\).
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1.
+Индикатор}\label{ux43fux440ux438ux43cux435ux440-1.-ux438ux43dux434ux438ux43aux430ux442ux43eux440}
+
+Если \(A\in\mathcal F\), то
+
+\[
+\int \mathbf 1_A\,d\mu=\mu(A).
+\]
+
+В вероятностном пространстве \((\Omega,\mathcal F,P)\):
+
+\[
+\mathbb E\mathbf 1_A=P(A).
+\]
+
+\subsubsection{Пример 2. Простая
+функция}\label{ux43fux440ux438ux43cux435ux440-2.-ux43fux440ux43eux441ux442ux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+Пусть \(A,B\in\mathcal F\), \(A\cap B=\varnothing\), и
+
+\[
+s=2\mathbf 1_A+5\mathbf 1_B.
+\]
+
+Тогда
+
+\[
+\int s\,d\mu=2\mu(A)+5\mu(B).
+\]
+
+Если \(\mu(A)=3\), \(\mu(B)=1\), то
+
+\[
+\int s\,d\mu=11.
+\]
+
+\subsubsection{Пример 3. Дискретное математическое
+ожидание}\label{ux43fux440ux438ux43cux435ux440-3.-ux434ux438ux441ux43aux440ux435ux442ux43dux43eux435-ux43cux430ux442ux435ux43cux430ux442ux438ux447ux435ux441ux43aux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435}
+
+Пусть \(X\) принимает значения \(x_1,\ldots,x_n\) с вероятностями
+\(p_1,\ldots,p_n\). Тогда
+
+\[
+X=\sum_{k=1}^n x_k\mathbf 1_{\{X=x_k\}},
+\]
+
+и
+
+\[
+\mathbb E X=\int X\,dP=\sum_{k=1}^n x_kp_k
+\]
+
+при условии, что \(X\) неотрицательна или интегрируема. Это обычная
+формула ожидания для дискретной величины.
+
+\subsubsection{Пример 4. Интеграл по
+плотности}\label{ux43fux440ux438ux43cux435ux440-4.-ux438ux43dux442ux435ux433ux440ux430ux43b-ux43fux43e-ux43fux43bux43eux442ux43dux43eux441ux442ux438}
+
+Если \(X\) имеет плотность \(p\) на \(\mathbb R\), то вероятность
+события \(X\in B\) выражается как интеграл индикатора по распределению:
+
+\[
+P\{X\in B\}=\int \mathbf 1_B(x)p(x)\,dx.
+\]
+
+Это связывает билет с распределениями из Билета 06.
+
+\subsubsection{Пример 5. Теорема Беппо
+Леви}\label{ux43fux440ux438ux43cux435ux440-5.-ux442ux435ux43eux440ux435ux43cux430-ux431ux435ux43fux43fux43e-ux43bux435ux432ux438}
+
+На \([0,1]\) пусть
+
+\[
+f_n(x)=\mathbf 1_{[0,1-1/n]}(x).
+\]
+
+Тогда
+
+\[
+0\le f_n\uparrow \mathbf 1_{[0,1)}
+\]
+
+и
+
+\[
+\int_0^1 f_n(x)\,dx=1-\frac1n
+\uparrow
+1
+=
+\int_0^1 \mathbf 1_{[0,1)}(x)\,dx.
+\]
+
+\subsubsection{Пример 6. Мажорантная теорема
+Лебега}\label{ux43fux440ux438ux43cux435ux440-6.-ux43cux430ux436ux43eux440ux430ux43dux442ux43dux430ux44f-ux442ux435ux43eux440ux435ux43cux430-ux43bux435ux431ux435ux433ux430}
+
+На \([0,1]\) пусть
+
+\[
+f_n(x)=x^n.
+\]
+
+Тогда \(f_n(x)\to0\) для \(x\in[0,1)\) и \(f_n(1)=1\). Значит
+\(f_n\to0\) почти всюду. Кроме того,
+
+\[
+0\le f_n(x)\le1,
+\]
+
+а \(g(x)=1\) интегрируема на \([0,1]\). Поэтому
+
+\[
+\int_0^1 x^n\,dx\to0.
+\]
+
+И действительно,
+
+\[
+\int_0^1 x^n\,dx=\frac1{n+1}.
+\]
+
+\subsubsection{Пример 7. Почему мажоранта
+нужна}\label{ux43fux440ux438ux43cux435ux440-7.-ux43fux43eux447ux435ux43cux443-ux43cux430ux436ux43eux440ux430ux43dux442ux430-ux43dux443ux436ux43dux430}
+
+На \([0,1]\) функции
+
+\[
+f_n(x)=n\mathbf 1_{(0,1/n)}(x)
+\]
+
+сходятся к \(0\) почти всюду, но
+
+\[
+\int_0^1 f_n\,dx=1.
+\]
+
+Значит без интегрируемой мажоранты нельзя просто переносить предел под
+интеграл.
+
+\subsection{6. Доказательства и
+обоснования}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux430-ux438-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux44f}
+
+\textbf{Почему простые функции являются первым шагом.}
+
+Простая функция принимает конечное число значений, поэтому ее интеграл
+сводится к конечной сумме мер уровней. Это ровно тот случай, где мера
+множеств напрямую превращается в интеграл функции.
+
+\textbf{Почему нужно приближение снизу.}
+
+Для неотрицательной функции \(f\) нельзя сразу сложить значения по всем
+уровням, потому что значений может быть бесконечно много. Вместо этого
+берут все простые функции \(s\), которые лежат ниже \(f\), и выбирают
+супремум их интегралов:
+
+\[
+\int f\,d\mu=\sup_{0\le s\le f}\int s\,d\mu.
+\]
+
+Так определение сохраняет монотонность и согласуется с интегралом
+простых функций.
+
+\textbf{Почему интеграл может быть бесконечным.}
+
+Для неотрицательных функций значение \(\int f\,d\mu\) допускается в
+\([0,\infty]\). Например, на \(\mathbb R\):
+
+\[
+\int_{\mathbb R}1\,dx=\infty.
+\]
+
+Это не ошибка, а часть конструкции. Конечность требуется только для
+интегрируемости в смысле \(L^1\).
+
+\textbf{Почему для знакопеременных функций нужна абсолютная
+интегрируемость.}
+
+Если обе части \(f^+\) и \(f^-\) имеют бесконечный интеграл, выражение
+
+\[
+\int f^+\,d\mu-\int f^-\,d\mu
+\]
+
+имеет вид \(\infty-\infty\) и не определено. Условие
+
+\[
+\int |f|\,d\mu<\infty
+\]
+
+гарантирует, что обе части конечны.
+
+\textbf{Почему теорема Леви не требует мажоранты.}
+
+В теореме Леви функции растут монотонно снизу. Интегралы не могут
+колебаться или терять массу: они тоже образуют возрастающую
+последовательность. Поэтому предел интегралов совпадает с интегралом
+предельной функции, возможно бесконечным.
+
+\textbf{Почему теорема Лебега требует мажоранту.}
+
+При обычной почти всюду сходимости графики могут становиться очень
+высокими на очень маленьких множествах. Точечный предел этого не видит,
+а интеграл видит площадь. Интегрируемая мажоранта \(g\) запрещает такие
+пики и дает контроль:
+
+\[
+|f_n|\le g,\qquad \int g\,d\mu<\infty.
+\]
+
+\textbf{Что значит ``без доказательства'' в программе.}
+
+Для теорем Беппо Леви и Лебега на экзамене достаточно дать точные
+условия и вывод, а также объяснить идею. Полные доказательства можно не
+разворачивать, если преподаватель специально не попросит.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Простая функция:
+\end{enumerate}
+
+\[
+s=\sum_{k=1}^n a_k\mathbf 1_{A_k}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Интеграл простой неотрицательной функции:
+\end{enumerate}
+
+\[
+\int s\,d\mu=\sum_{k=1}^n a_k\mu(A_k).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Интеграл неотрицательной функции:
+\end{enumerate}
+
+\[
+\int f\,d\mu
+=
+\sup_{0\le s\le f,\ s\text{ простая}}
+\int s\,d\mu.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Положительная и отрицательная части:
+\end{enumerate}
+
+\[
+f=f^+-f^-,
+\qquad
+|f|=f^++f^-.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Интегрируемость:
+\end{enumerate}
+
+\[
+f\in L^1(\mu)
+\quad\Longleftrightarrow\quad
+\int |f|\,d\mu<\infty.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Беппо Леви:
+\end{enumerate}
+
+\[
+0\le f_n\uparrow f
+\quad\Longrightarrow\quad
+\int f_n\,d\mu\uparrow\int f\,d\mu.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Лебег:
+\end{enumerate}
+
+\[
+f_n\to f,\quad |f_n|\le g,\quad g\in L^1
+\quad\Longrightarrow\quad
+\int f_n\,d\mu\to\int f\,d\mu.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Что такое простая функция?}
+
+Это измеримая функция, принимающая конечное число значений. Ее можно
+записать как
+
+\[
+s=\sum_{k=1}^n a_k\mathbf 1_{A_k},
+\qquad A_k\in\mathcal F.
+\]
+
+\textbf{Вопрос. Почему интеграл индикатора равен мере множества?}
+
+Индикатор \(\mathbf 1_A\) равен \(1\) на \(A\) и \(0\) вне \(A\),
+поэтому площадь под ним равна размеру множества \(A\):
+
+\[
+\int\mathbf 1_A\,d\mu=\mu(A).
+\]
+
+\textbf{Вопрос. Как определяется интеграл неотрицательной измеримой
+функции?}
+
+Через супремум интегралов простых минорант:
+
+\[
+\int f\,d\mu=\sup_{0\le s\le f}\int s\,d\mu.
+\]
+
+\textbf{Вопрос. Что говорит теорема Беппо Леви?}
+
+Если \(0\le f_n\uparrow f\), то
+
+\[
+\int f_n\,d\mu\uparrow\int f\,d\mu.
+\]
+
+\textbf{Вопрос. Чем теорема Леви отличается от теоремы Лебега?}
+
+В теореме Леви нужна монотонность и неотрицательность, но не нужна
+мажоранта. В теореме Лебега монотонность не нужна, зато нужна
+интегрируемая мажоранта \(g\).
+
+\textbf{Вопрос. Что такое интегрируемая мажоранта?}
+
+Это функция \(g\in L^1(\mu)\) такая, что
+
+\[
+|f_n|\le g
+\]
+
+почти всюду для всех \(n\).
+
+\textbf{Вопрос. Почему нельзя применять теорему Лебега без мажоранты?}
+
+Почти всюду сходимость не контролирует интегралы. Пример:
+
+\[
+f_n=n\mathbf 1_{(0,1/n)}\to0
+\]
+
+почти всюду, но
+
+\[
+\int_0^1 f_n\,dx=1.
+\]
+
+\textbf{Вопрос. Что значит \(f\in L^1\)?}
+
+Это значит, что \(f\) измерима и
+
+\[
+\int |f|\,d\mu<\infty.
+\]
+
+\textbf{Вопрос. Почему для знакопеременной функции нельзя просто
+интегрировать положительную и отрицательную части без условий?}
+
+Потому что может возникнуть неопределенность \(\infty-\infty\).
+Абсолютная интегрируемость исключает эту проблему.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Применять мажорантную теорему Лебега, не предъявив \(g\in L^1\).
+\item
+  Путать теорему Беппо Леви и теорему Лебега: в Леви нужна монотонность,
+  в Лебеге - мажоранта.
+\item
+  Забывать, что для неотрицательной функции интеграл может быть равен
+  \(\infty\).
+\item
+  Для знакопеременной функции писать \(\int f=\int f^+-\int f^-\), не
+  проверив отсутствие неопределенности \(\infty-\infty\).
+\item
+  Считать, что почти всюду сходимость сама по себе гарантирует
+  сходимость интегралов.
+\item
+  Записывать интеграл простой функции без требования измеримости
+  множеств \(A_k\).
+\item
+  Забывать, что представление простой функции можно измельчать, и
+  интеграл не зависит от конкретной записи.
+\end{enumerate}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 03.} Интеграл Лебега строится по мере; мера Лебега
+получается как продолжение меры с полуалгебры.
+
+\textbf{Билет 04.} Для интеграла по \(\mathbb R^d\) важны борелевские и
+лебегово измеримые множества.
+
+\textbf{Билет 05.} Интегрировать можно измеримые функции; измеримость -
+входное условие конструкции.
+
+\textbf{Билет 06.} Вероятности через плотности записываются как
+интегралы по мере Лебега.
+
+\textbf{Билет 08.} Характеристические функции и интегрируемость
+ограниченных измеримых функций опираются на интеграл Лебега.
+
+\textbf{Билет 09.} Теоремы Фубини и независимость используют интегралы
+по произведению мер.
+
+\textbf{Билет 10.} Теорема Радона-Никодима и условное ожидание
+формулируются через интегралы.
+
+\textbf{Билет 11.} Замена переменной, моменты и дисперсии выражаются
+через интеграл по вероятностному пространству и по распределению.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Простая функция:
+\end{enumerate}
+
+\[
+s=\sum_{k=1}^n a_k\mathbf 1_{A_k}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Интеграл простой функции:
+\end{enumerate}
+
+\[
+\int s\,d\mu=\sum_{k=1}^n a_k\mu(A_k).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Интеграл неотрицательной функции:
+\end{enumerate}
+
+\[
+\int f\,d\mu=\sup_{0\le s\le f}\int s\,d\mu.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Теорема Беппо Леви:
+\end{enumerate}
+
+\[
+0\le f_n\uparrow f
+\Rightarrow
+\int f_n\,d\mu\uparrow\int f\,d\mu.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Теорема Лебега:
+\end{enumerate}
+
+\[
+f_n\to f,\quad |f_n|\le g\in L^1
+\Rightarrow
+\int f_n\,d\mu\to\int f\,d\mu.
+\]
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Кроме минимума на удовлетворительно, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Объяснить, почему интеграл простой функции не зависит от
+  представления.
+\item
+  Назвать монотонность и линейность интеграла.
+\item
+  Рассказать про положительную и отрицательную части функции.
+\item
+  Объяснить, что такое \(L^1\) и абсолютная интегрируемость.
+\item
+  Привести пример, где без мажоранты сходимость интегралов ломается.
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Схему аппроксимации неотрицательной измеримой функции простыми
+  функциями снизу.
+\item
+  Идею доказательства теоремы Беппо Леви через простую функцию
+  \(s\le f\) и множества \(\{f_n\ge\alpha s\}\).
+\item
+  Идею мажорантной теоремы Лебега: мажоранта не дает массе уходить в
+  пики.
+\item
+  Различие между конечным интегралом, бесконечным интегралом
+  неотрицательной функции и интегрируемостью в \(L^1\).
+\item
+  Связь с математическим ожиданием:
+\end{enumerate}
+
+\[
+\mathbb E X=\int X\,dP.
+\]
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Интеграл Лебега строится по неотрицательной мере
+\((\Omega,\mathcal F,\mu)\). Начинают с индикатора:
+
+\[
+\int\mathbf 1_A\,d\mu=\mu(A).
+\]
+
+Потом берут простые функции. Простая функция - это измеримая функция,
+принимающая конечное число значений. Если
+
+\[
+s=\sum_{k=1}^n a_k\mathbf 1_{A_k},
+\]
+
+где \(a_k\ge0\), \(A_k\in\mathcal F\) и \(A_k\) попарно не пересекаются,
+то
+
+\[
+\int s\,d\mu=\sum_{k=1}^n a_k\mu(A_k).
+\]
+
+Корректность следует из перехода к общему измельчению двух разбиений.
+
+Для произвольной неотрицательной измеримой функции \(f\) интеграл
+определяется как супремум по простым функциям снизу:
+
+\[
+\int f\,d\mu
+=
+\sup_{0\le s\le f,\ s\text{ простая}}
+\int s\,d\mu.
+\]
+
+Значение может быть бесконечным.
+
+Для знакопеременной функции вводят
+
+\[
+f^+=\max(f,0),\qquad f^-=\max(-f,0).
+\]
+
+Если
+
+\[
+\int |f|\,d\mu<\infty,
+\]
+
+то \(f\in L^1\) и
+
+\[
+\int f\,d\mu=\int f^+\,d\mu-\int f^-\,d\mu.
+\]
+
+Главные теоремы о предельном переходе идут в программе без
+доказательства. Теорема Беппо Леви: если
+
+\[
+0\le f_n\uparrow f,
+\]
+
+то
+
+\[
+\int f_n\,d\mu\uparrow\int f\,d\mu.
+\]
+
+Мажорантная теорема Лебега: если \(f_n\to f\) почти всюду и есть
+\(g\in L^1\) такая, что
+
+\[
+|f_n|\le g,
+\]
+
+то
+
+\[
+\int f_n\,d\mu\to\int f\,d\mu.
+\]
+
+Важно: почти всюду сходимости самой по себе недостаточно. Например,
+\(f_n=n\mathbf 1_{(0,1/n)}\) сходится к нулю почти всюду на \([0,1]\),
+но интегралы равны \(1\).
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить:
+
+\[
+s=\sum_{k=1}^n a_k\mathbf 1_{A_k},
+\qquad
+\int s\,d\mu=\sum_{k=1}^n a_k\mu(A_k).
+\]
+
+Для \(f\ge0\):
+
+\[
+\int f\,d\mu
+=
+\sup_{0\le s\le f,\ s\text{ простая}}
+\int s\,d\mu.
+\]
+
+Беппо Леви:
+
+\[
+0\le f_n\uparrow f
+\Rightarrow
+\int f_n\,d\mu\uparrow\int f\,d\mu.
+\]
+
+Лебег:
+
+\[
+f_n\to f,\quad |f_n|\le g,\quad g\in L^1
+\Rightarrow
+\int f_n\,d\mu\to\int f\,d\mu.
+\]
+
+Главная ловушка: теорема Лебега требует интегрируемую мажоранту, а
+просто почти всюду сходимости недостаточно.
+
+\newpage
+
+\end{document}

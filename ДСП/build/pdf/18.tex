@@ -1,0 +1,1360 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 18. Гауссовы случайные величины, векторы и
+последовательности}\label{ux431ux438ux43bux435ux442-18.-ux433ux430ux443ux441ux441ux43eux432ux44b-ux441ux43bux443ux447ux430ux439ux43dux44bux435-ux432ux435ux43bux438ux447ux438ux43dux44b-ux432ux435ux43aux442ux43eux440ux44b-ux438-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438}
+
+Источники: Ширяев 1, §13; Ширяев 2, гл. VI.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Нормальная случайная величина с параметрами \(m\in\mathbb R\) и
+\(\sigma^2\ge0\) имеет характеристическую функцию
+
+\[
+\varphi_X(t)
+=
+\mathbb E e^{itX}
+=
+\exp\left\{itm-\frac12\sigma^2t^2\right\}.
+\]
+
+Если \(\sigma^2>0\), то ее плотность:
+
+\[
+p(x)=\frac1{\sqrt{2\pi\sigma^2}}
+\exp\left\{-\frac{(x-m)^2}{2\sigma^2}\right\}.
+\]
+
+Случайный вектор
+
+\[
+X=(X_1,\ldots,X_n)^T
+\]
+
+называется гауссовским, если любая его линейная комбинация
+
+\[
+\sum_{j=1}^n u_jX_j
+\]
+
+имеет нормальное, возможно вырожденное, распределение. Закон
+гауссовского вектора полностью задается средним вектором
+
+\[
+m=\mathbb EX
+\]
+
+и ковариационной матрицей
+
+\[
+\Sigma=\operatorname{Cov}(X).
+\]
+
+Его характеристическая функция:
+
+\[
+\varphi_X(u)
+=
+\exp\left\{i\langle u,m\rangle-\frac12u^T\Sigma u\right\}.
+\]
+
+Случайная последовательность называется гауссовской, если любой ее
+конечный вектор
+
+\[
+(X_{n_1},\ldots,X_{n_k})
+\]
+
+является гауссовским.
+
+Главные свойства: линейные преобразования гауссовских векторов гауссовы;
+для совместно гауссовских величин некоррелированность эквивалентна
+независимости; для гауссовской последовательности широкая стационарность
+влечет узкую.
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Введение в гауссовские распределения и
+процессы}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux432-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux438ux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux438-ux43fux440ux43eux446ux435ux441ux441ux44b}
+
+Гауссовы случайные величины и процессы важны потому, что они являются
+основным классом распределений второго порядка. Для произвольного
+процесса среднее и ковариация обычно не задают весь закон. Для
+гауссовского процесса задают: все конечномерные распределения полностью
+определяются средними и ковариациями.
+
+\subsubsection{2.2. Одномерное нормальное
+распределение}\label{ux43eux434ux43dux43eux43cux435ux440ux43dux43eux435-ux43dux43eux440ux43cux430ux43bux44cux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+Начнем с одномерного случая. Случайная величина \(X\) имеет нормальное
+распределение с параметрами \(m\) и \(\sigma^2>0\), если ее плотность
+равна
+
+\[
+p(x)
+=
+\frac1{\sqrt{2\pi\sigma^2}}
+\exp\left\{-\frac{(x-m)^2}{2\sigma^2}\right\}.
+\]
+
+Пишут:
+
+\[
+X\sim N(m,\sigma^2).
+\]
+
+Здесь
+
+\[
+\mathbb EX=m,
+\qquad
+\operatorname{Var}X=\sigma^2.
+\]
+
+Стандартная нормальная величина имеет распределение
+
+\[
+N(0,1).
+\]
+
+Если \(Z\sim N(0,1)\), то
+
+\[
+X=m+\sigma Z
+\]
+
+имеет распределение \(N(m,\sigma^2)\).
+
+\subsubsection{2.3. Вырожденный случай и характеристическая
+функция}\label{ux432ux44bux440ux43eux436ux434ux435ux43dux43dux44bux439-ux441ux43bux443ux447ux430ux439-ux438-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+Разрешают и вырожденный случай \(\sigma^2=0\). Тогда
+
+\[
+X=m
+\]
+
+почти наверное. Это тоже удобно считать нормальным распределением: оно
+не имеет обычной плотности относительно меры Лебега, но его
+характеристическая функция получается из той же формулы.
+
+Характеристическая функция нормальной величины:
+
+\[
+\varphi_X(t)
+=
+\mathbb E e^{itX}
+=
+\exp\left\{itm-\frac12\sigma^2t^2\right\}.
+\]
+
+Эта формула важнее плотности, потому что она сразу обобщается на
+гауссовские векторы.
+
+\subsubsection{2.4. Определение гауссовского
+вектора}\label{ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430}
+
+Теперь случайный вектор. Вектор
+
+\[
+X=(X_1,\ldots,X_n)^T
+\]
+
+называется гауссовским, если для любого вектора коэффициентов
+
+\[
+u=(u_1,\ldots,u_n)^T\in\mathbb R^n
+\]
+
+линейная комбинация
+
+\[
+\langle u,X\rangle
+=
+\sum_{j=1}^n u_jX_j
+\]
+
+имеет нормальное распределение, возможно вырожденное.
+
+Важно: недостаточно, чтобы каждая координата \(X_j\) отдельно была
+нормально распределена. Нужно, чтобы нормальной была любая линейная
+комбинация координат. Именно это условие контролирует совместное
+распределение.
+
+\subsubsection{2.5. Параметры и распределение гауссовского
+вектора}\label{ux43fux430ux440ux430ux43cux435ux442ux440ux44b-ux438-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430}
+
+Для гауссовского вектора определены:
+
+\[
+m=\mathbb EX
+=
+(\mathbb EX_1,\ldots,\mathbb EX_n)^T
+\]
+
+и ковариационная матрица
+
+\[
+\Sigma=(\Sigma_{ij}),
+\qquad
+\Sigma_{ij}
+=
+\operatorname{Cov}(X_i,X_j).
+\]
+
+Матрица \(\Sigma\) симметрична и неотрицательно определена:
+
+\[
+u^T\Sigma u
+=
+\operatorname{Var}\langle u,X\rangle
+\ge0.
+\]
+
+Характеристическая функция гауссовского вектора имеет вид
+
+\[
+\varphi_X(u)
+=
+\mathbb E e^{i\langle u,X\rangle}
+=
+\exp\left\{
+i\langle u,m\rangle
+-\frac12u^T\Sigma u
+\right\}.
+\]
+
+Эта формула показывает, что закон гауссовского вектора полностью
+задается парой
+
+\[
+(m,\Sigma).
+\]
+
+Обратно, если \(m\in\mathbb R^n\), а \(\Sigma\) - симметричная
+неотрицательно определенная матрица, то существует гауссовский вектор с
+такими средним и ковариацией. Если \(\Sigma\) положительно определена,
+то распределение имеет плотность:
+
+\[
+p(x)
+=
+\frac1{(2\pi)^{n/2}(\det\Sigma)^{1/2}}
+\exp\left\{
+-\frac12(x-m)^T\Sigma^{-1}(x-m)
+\right\}.
+\]
+
+Если \(\Sigma\) вырождена, то плотности относительно \(n\)-мерной меры
+Лебега нет: распределение сосредоточено на некотором аффинном
+подпространстве. Но вектор все равно называется гауссовским, потому что
+все линейные комбинации нормальны.
+
+\subsubsection{2.6. Линейные преобразования гауссовских
+векторов}\label{ux43bux438ux43dux435ux439ux43dux44bux435-ux43fux440ux435ux43eux431ux440ux430ux437ux43eux432ux430ux43dux438ux44f-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux438ux445-ux432ux435ux43aux442ux43eux440ux43eux432}
+
+Линейные преобразования гауссовских векторов снова гауссовы. Если
+
+\[
+Y=AX+b,
+\]
+
+где \(A\) - матрица, \(b\) - вектор, а \(X\) гауссовский, то \(Y\)
+гауссовский. Его параметры:
+
+\[
+\mathbb EY=Am+b,
+\qquad
+\operatorname{Cov}(Y)=A\Sigma A^T.
+\]
+
+Доказательство простое: любая линейная комбинация координат \(Y\)
+является линейной комбинацией координат \(X\) плюс константа, а значит
+нормальна.
+
+\subsubsection{2.7. Свойства независимости и
+некоррелированности}\label{ux441ux432ux43eux439ux441ux442ux432ux430-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux438-ux438-ux43dux435ux43aux43eux440ux440ux435ux43bux438ux440ux43eux432ux430ux43dux43dux43eux441ux442ux438}
+
+Главное специальное свойство гауссовских векторов: для совместно
+гауссовских случайных величин некоррелированность равносильна
+независимости. В общем случае из
+
+\[
+\operatorname{Cov}(X,Y)=0
+\]
+
+независимость не следует, как обсуждалось в Билете 14. Но если \((X,Y)\)
+- гауссовский вектор, то из нулевой ковариации следует независимость.
+
+Более общая формулировка: если гауссовский вектор разбит на две группы
+координат
+
+\[
+X=(X^{(1)},X^{(2)}),
+\]
+
+и все ковариации между первой и второй группой равны нулю, то эти два
+случайных вектора независимы. В терминах матрицы ковариаций это означает
+блочно-диагональную матрицу:
+
+\[
+\Sigma=
+\begin{pmatrix}
+\Sigma_1 & 0\\
+0 & \Sigma_2
+\end{pmatrix}.
+\]
+
+Тогда характеристическая функция факторизуется:
+
+\[
+\varphi_X(u_1,u_2)
+=
+\varphi_{X^{(1)}}(u_1)\varphi_{X^{(2)}}(u_2),
+\]
+
+а факторизация характеристической функции означает независимость.
+
+\subsubsection{2.8. Гауссовские
+последовательности}\label{ux433ux430ux443ux441ux441ux43eux432ux441ux43aux438ux435-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438}
+
+Теперь гауссовские последовательности. Случайная последовательность
+
+\[
+\{X_n:n\in T\}
+\]
+
+называется гауссовской, если для любого конечного набора индексов
+
+\[
+n_1,\ldots,n_k
+\]
+
+случайный вектор
+
+\[
+(X_{n_1},\ldots,X_{n_k})
+\]
+
+является гауссовским. Эквивалентно: любая конечная линейная комбинация
+
+\[
+\sum_{j=1}^k u_jX_{n_j}
+\]
+
+имеет нормальное распределение.
+
+Гауссовская последовательность задается средней функцией
+
+\[
+m_n=\mathbb EX_n
+\]
+
+и ковариационной функцией
+
+\[
+K(n,m)=\operatorname{Cov}(X_n,X_m).
+\]
+
+Для любого конечного набора индексов \(n_1,\ldots,n_k\) средний вектор
+равен
+
+\[
+(m_{n_1},\ldots,m_{n_k}),
+\]
+
+а ковариационная матрица равна
+
+\[
+(K(n_i,n_j))_{i,j=1}^k.
+\]
+
+Чтобы такая последовательность существовала, функция \(K\) должна быть
+симметричной и неотрицательно определенной:
+
+\[
+\sum_{i,j=1}^k a_i a_jK(n_i,n_j)\ge0
+\]
+
+для любых \(k\), индексов \(n_i\) и коэффициентов \(a_i\). Тогда
+согласованные гауссовские конечномерные распределения задают процесс по
+теореме Колмогорова из Билета 15.
+
+\subsubsection{2.9. Стационарность гауссовских
+последовательностей}\label{ux441ux442ux430ux446ux438ux43eux43dux430ux440ux43dux43eux441ux442ux44c-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux438ux445-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux435ux439}
+
+Для стационарности гауссовских последовательностей есть важное
+упрощение. В Билете 17 различались узкая и широкая стационарность. Для
+произвольных процессов широкая стационарность не влечет узкую. Но для
+гауссовской последовательности влечет. Если
+
+\[
+\mathbb EX_n=m
+\]
+
+и
+
+\[
+\operatorname{Cov}(X_n,X_{n+k})=R(k),
+\]
+
+то все конечномерные распределения не меняются при сдвиге, потому что у
+них не меняются средние векторы и ковариационные матрицы. Значит
+гауссовская последовательность стационарна в узком смысле.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Нормальная случайная
+величина}\label{ux43dux43eux440ux43cux430ux43bux44cux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Случайная величина \(X\) имеет распределение \(N(m,\sigma^2)\), если при
+\(\sigma^2>0\) ее плотность равна
+
+\[
+p(x)=\frac1{\sqrt{2\pi\sigma^2}}
+\exp\left\{-\frac{(x-m)^2}{2\sigma^2}\right\}.
+\]
+
+При \(\sigma^2=0\) понимают вырожденное распределение \(X=m\) почти
+наверное.
+
+\subsubsection{Характеристическая функция нормальной
+величины}\label{ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux43dux43eux440ux43cux430ux43bux44cux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+\[
+\varphi_X(t)=\exp\left\{itm-\frac12\sigma^2t^2\right\}.
+\]
+
+\subsubsection{Гауссовский
+вектор}\label{ux433ux430ux443ux441ux441ux43eux432ux441ux43aux438ux439-ux432ux435ux43aux442ux43eux440}
+
+Вектор \(X=(X_1,\ldots,X_n)^T\) называется гауссовским, если для любого
+\(u\in\mathbb R^n\) величина \(\langle u,X\rangle\) нормально
+распределена, возможно вырожденно.
+
+\subsubsection{Средний
+вектор}\label{ux441ux440ux435ux434ux43dux438ux439-ux432ux435ux43aux442ux43eux440}
+
+\[
+m=\mathbb EX.
+\]
+
+\subsubsection{Ковариационная
+матрица}\label{ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430}
+
+\[
+\Sigma_{ij}=\operatorname{Cov}(X_i,X_j).
+\]
+
+\subsubsection{Характеристическая функция гауссовского
+вектора}\label{ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430}
+
+\[
+\varphi_X(u)
+=
+\exp\left\{
+i\langle u,m\rangle-\frac12u^T\Sigma u
+\right\}.
+\]
+
+\subsubsection{Гауссовская
+последовательность}\label{ux433ux430ux443ux441ux441ux43eux432ux441ux43aux430ux44f-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c}
+
+Последовательность \((X_n)\) называется гауссовской, если каждый
+конечный вектор
+
+\[
+(X_{n_1},\ldots,X_{n_k})
+\]
+
+гауссовский.
+
+\subsubsection{Белый гауссовский
+шум}\label{ux431ux435ux43bux44bux439-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux438ux439-ux448ux443ux43c}
+
+Последовательность независимых одинаково распределенных гауссовских
+величин с нулевым средним:
+
+\[
+X_n\sim N(0,\sigma^2),
+\qquad
+\operatorname{Cov}(X_n,X_m)=0\quad(n\ne m).
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\begin{itemize}
+\tightlist
+\item
+  Нормальный закон задается средним и дисперсией:
+\end{itemize}
+
+\[
+X\sim N(m,\sigma^2).
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Гауссовский вектор задается средним вектором и ковариационной
+  матрицей:
+\end{itemize}
+
+\[
+\varphi_X(u)
+=
+\exp\left\{i\langle u,m\rangle-\frac12u^T\Sigma u\right\}.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Матрица \(\Sigma\) должна быть симметричной и неотрицательно
+  определенной.
+\item
+  Если \(\Sigma>0\), то гауссовский вектор имеет плотность:
+\end{itemize}
+
+\[
+p(x)
+=
+\frac1{(2\pi)^{n/2}(\det\Sigma)^{1/2}}
+\exp\left\{-\frac12(x-m)^T\Sigma^{-1}(x-m)\right\}.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Линейное преобразование гауссовского вектора гауссово:
+\end{itemize}
+
+\[
+Y=AX+b
+\quad\Rightarrow\quad
+Y\ \text{гауссовский}.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Для совместно гауссовских величин некоррелированность равносильна
+  независимости.
+\item
+  Нормальность отдельных координат не гарантирует совместную
+  гауссовость.
+\item
+  Гауссовская последовательность задается средней функцией \(m_n\) и
+  ковариационной функцией \(K(n,m)\).
+\item
+  Для гауссовской последовательности широкая стационарность влечет
+  узкую.
+\end{itemize}
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Стандартная нормальная
+величина}\label{ux441ux442ux430ux43dux434ux430ux440ux442ux43dux430ux44f-ux43dux43eux440ux43cux430ux43bux44cux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Если
+
+\[
+Z\sim N(0,1),
+\]
+
+то
+
+\[
+\varphi_Z(t)=e^{-t^2/2}.
+\]
+
+Если
+
+\[
+X=m+\sigma Z,
+\]
+
+то
+
+\[
+X\sim N(m,\sigma^2).
+\]
+
+\subsubsection{Двумерный гауссовский
+вектор}\label{ux434ux432ux443ux43cux435ux440ux43dux44bux439-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux438ux439-ux432ux435ux43aux442ux43eux440}
+
+Пусть
+
+\[
+X=(X_1,X_2)^T
+\]
+
+имеет средний вектор
+
+\[
+m=(m_1,m_2)^T
+\]
+
+и ковариационную матрицу
+
+\[
+\Sigma=
+\begin{pmatrix}
+\sigma_1^2 & \rho\sigma_1\sigma_2\\
+\rho\sigma_1\sigma_2 & \sigma_2^2
+\end{pmatrix},
+\qquad
+|\rho|\le1.
+\]
+
+Если вектор гауссовский, то при \(\rho=0\) координаты независимы. Это
+специальное гауссовское свойство.
+
+\subsubsection{Нормальные координаты без совместной
+гауссовости}\label{ux43dux43eux440ux43cux430ux43bux44cux43dux44bux435-ux43aux43eux43eux440ux434ux438ux43dux430ux442ux44b-ux431ux435ux437-ux441ux43eux432ux43cux435ux441ux442ux43dux43eux439-ux433ux430ux443ux441ux441ux43eux432ux43eux441ux442ux438}
+
+Пусть \(Z\sim N(0,1)\), а \(\varepsilon\) независимо принимает значения
+\(1\) и \(-1\) с вероятностями \(1/2\). Положим
+
+\[
+X=Z,
+\qquad
+Y=\varepsilon Z.
+\]
+
+Тогда \(X\) и \(Y\) по отдельности имеют распределение \(N(0,1)\). Но
+вектор \((X,Y)\) не является гауссовским: например, сумма
+
+\[
+X+Y=(1+\varepsilon)Z
+\]
+
+с вероятностью \(1/2\) равна \(0\), а с вероятностью \(1/2\) равна
+\(2Z\), поэтому не имеет нормального распределения. Этот пример
+показывает, почему в определении нужна нормальность всех линейных
+комбинаций, а не только координат.
+
+\subsubsection{Белый гауссовский
+шум}\label{ux431ux435ux43bux44bux439-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux438ux439-ux448ux443ux43c-1}
+
+Пусть
+
+\[
+X_n
+\]
+
+независимы и
+
+\[
+X_n\sim N(0,\sigma^2).
+\]
+
+Тогда \((X_n)\) - гауссовская последовательность,
+
+\[
+\mathbb EX_n=0,
+\]
+
+и
+
+\[
+R(k)=\operatorname{Cov}(X_0,X_k)
+=
+\begin{cases}
+\sigma^2, & k=0,\\
+0, & k\ne0.
+\end{cases}
+\]
+
+Это базовый пример стационарной гауссовской последовательности.
+
+\subsubsection{Гауссовский
+AR(1)}\label{ux433ux430ux443ux441ux441ux43eux432ux441ux43aux438ux439-ar1}
+
+Пусть
+
+\[
+X_n=aX_{n-1}+\xi_n,
+\qquad |a|<1,
+\]
+
+где \(\xi_n\) - белый гауссовский шум с дисперсией \(\sigma_\xi^2\). В
+стационарном режиме
+
+\[
+\mathbb EX_n=0,
+\qquad
+R(k)=\frac{\sigma_\xi^2}{1-a^2}a^{|k|}.
+\]
+
+Такой процесс гауссовский, потому что строится линейными операциями из
+гауссовских величин.
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\subsubsection{\texorpdfstring{Почему закон гауссовского вектора
+задается \(m\) и
+\(\Sigma\)}{Почему закон гауссовского вектора задается m и \textbackslash Sigma}}\label{ux43fux43eux447ux435ux43cux443-ux437ux430ux43aux43eux43d-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430-ux437ux430ux434ux430ux435ux442ux441ux44f-m-ux438-sigma}
+
+Для любого \(u\) величина
+
+\[
+\langle u,X\rangle
+\]
+
+нормальна. Ее среднее:
+
+\[
+\mathbb E\langle u,X\rangle=\langle u,m\rangle.
+\]
+
+Ее дисперсия:
+
+\[
+\operatorname{Var}\langle u,X\rangle=u^T\Sigma u.
+\]
+
+Значит
+
+\[
+\mathbb E e^{i\langle u,X\rangle}
+=
+\exp\left\{i\langle u,m\rangle-\frac12u^T\Sigma u\right\}.
+\]
+
+Характеристическая функция однозначно задает распределение, поэтому
+закон определяется \(m\) и \(\Sigma\).
+
+\subsubsection{Почему линейное преобразование гауссовского вектора
+гауссово}\label{ux43fux43eux447ux435ux43cux443-ux43bux438ux43dux435ux439ux43dux43eux435-ux43fux440ux435ux43eux431ux440ux430ux437ux43eux432ux430ux43dux438ux435-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430-ux433ux430ux443ux441ux441ux43eux432ux43e}
+
+Пусть
+
+\[
+Y=AX+b.
+\]
+
+Для любого \(v\):
+
+\[
+\langle v,Y\rangle
+=
+\langle v,AX+b\rangle
+=
+\langle A^Tv,X\rangle+\langle v,b\rangle.
+\]
+
+Это линейная комбинация координат \(X\) плюс константа, значит
+нормальная величина. Следовательно, \(Y\) гауссовский.
+
+\subsubsection{Почему некоррелированность дает независимость для
+Гаусса}\label{ux43fux43eux447ux435ux43cux443-ux43dux435ux43aux43eux440ux440ux435ux43bux438ux440ux43eux432ux430ux43dux43dux43eux441ux442ux44c-ux434ux430ux435ux442-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c-ux434ux43bux44f-ux433ux430ux443ux441ux441ux430}
+
+Пусть \(X=(X^{(1)},X^{(2)})\) - гауссовский вектор, и ковариации между
+группами равны нулю. Тогда
+
+\[
+\Sigma=
+\begin{pmatrix}
+\Sigma_1 & 0\\
+0 & \Sigma_2
+\end{pmatrix}.
+\]
+
+Характеристическая функция:
+
+\[
+\varphi(u_1,u_2)
+=
+\exp\left\{
+i\langle u_1,m_1\rangle+i\langle u_2,m_2\rangle
+-\frac12u_1^T\Sigma_1u_1
+-\frac12u_2^T\Sigma_2u_2
+\right\}.
+\]
+
+Она раскладывается в произведение:
+
+\[
+\varphi(u_1,u_2)
+=
+\varphi_1(u_1)\varphi_2(u_2).
+\]
+
+Факторизация характеристической функции означает независимость.
+
+\subsubsection{Почему широкая стационарность гауссовской
+последовательности влечет
+узкую}\label{ux43fux43eux447ux435ux43cux443-ux448ux438ux440ux43eux43aux430ux44f-ux441ux442ux430ux446ux438ux43eux43dux430ux440ux43dux43eux441ux442ux44c-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux43eux439-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438-ux432ux43bux435ux447ux435ux442-ux443ux437ux43aux443ux44e}
+
+Для любого конечного набора индексов \(n_1,\ldots,n_k\) распределение
+вектора
+
+\[
+(X_{n_1},\ldots,X_{n_k})
+\]
+
+гауссовское и задается средним вектором и ковариационной матрицей. Если
+
+\[
+\mathbb EX_n=m,
+\qquad
+\operatorname{Cov}(X_n,X_{n+k})=R(k),
+\]
+
+то после сдвига всех индексов на \(h\) средний вектор не меняется, а
+ковариационные элементы зависят от тех же разностей:
+
+\[
+(n_j+h)-(n_i+h)=n_j-n_i.
+\]
+
+Значит не меняется все конечномерное распределение.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Нормальная величина:
+\end{enumerate}
+
+\[
+X\sim N(m,\sigma^2),
+\qquad
+\varphi_X(t)=\exp\left\{itm-\frac12\sigma^2t^2\right\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Гауссовский вектор:
+\end{enumerate}
+
+\[
+X\ \text{гауссовский}
+\Longleftrightarrow
+\langle u,X\rangle\ \text{нормальна для всех}\ u.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Характеристическая функция:
+\end{enumerate}
+
+\[
+\varphi_X(u)
+=
+\exp\left\{i\langle u,m\rangle-\frac12u^T\Sigma u\right\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Ковариационная матрица:
+\end{enumerate}
+
+\[
+\Sigma_{ij}=\operatorname{Cov}(X_i,X_j),
+\qquad
+u^T\Sigma u\ge0.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Некоррелированность и независимость:
+\end{enumerate}
+
+\[
+\text{для совместно гауссовских: }
+\operatorname{Cov}(X,Y)=0
+\Longleftrightarrow
+X,Y\ \text{независимы}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Гауссовская последовательность:
+\end{enumerate}
+
+\[
+(X_{n_1},\ldots,X_{n_k})\ \text{гауссовский для всех конечных наборов}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Для Гаусса:
+\end{enumerate}
+
+\[
+\text{широкая стационарность}
+\Longrightarrow
+\text{узкая стационарность}.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Что является главным объектом билета?}
+
+Нормальные случайные величины, гауссовские векторы и гауссовские
+последовательности. Главное отличие гауссовского объекта: все
+конечномерные распределения задаются средними и ковариациями.
+
+\textbf{Почему в определении гауссовского вектора нужны все линейные
+комбинации?}
+
+Потому что нормальность отдельных координат не определяет совместный
+закон. Нужно требовать, чтобы
+
+\[
+\sum_j u_jX_j
+\]
+
+была нормальной для любых коэффициентов \(u_j\).
+
+\textbf{Что задает закон гауссовского вектора?}
+
+Средний вектор \(m\) и ковариационная матрица \(\Sigma\).
+Характеристическая функция:
+
+\[
+\varphi_X(u)
+=
+\exp\left\{i\langle u,m\rangle-\frac12u^T\Sigma u\right\}.
+\]
+
+\textbf{Какие условия нужны на \(\Sigma\)?}
+
+Матрица должна быть симметричной и неотрицательно определенной:
+
+\[
+u^T\Sigma u\ge0.
+\]
+
+Если \(\Sigma\) положительно определена, есть плотность в
+\(\mathbb R^n\); если вырождена, распределение сосредоточено на
+подпространстве.
+
+\textbf{Когда некоррелированность означает независимость?}
+
+Для совместно гауссовских величин или групп координат. В общем случае
+это неверно.
+
+\textbf{Почему для гауссовских некоррелированность дает независимость?}
+
+Потому что при нулевых межгрупповых ковариациях ковариационная матрица
+становится блочно-диагональной, и характеристическая функция
+раскладывается в произведение характеристических функций групп.
+
+\textbf{Что такое гауссовская последовательность?}
+
+Это последовательность, у которой любой конечный вектор
+
+\[
+(X_{n_1},\ldots,X_{n_k})
+\]
+
+гауссовский.
+
+\textbf{Как задать гауссовскую последовательность?}
+
+Нужно задать среднюю функцию \(m_n\) и неотрицательно определенную
+ковариационную функцию \(K(n,m)\). Тогда конечномерные гауссовские
+распределения согласованы и задают процесс.
+
+\textbf{Почему широкая стационарность гауссовской последовательности
+влечет узкую?}
+
+Потому что гауссовские конечномерные распределения полностью
+определяются средними и ковариациями. При широкой стационарности они не
+меняются при сдвиге.
+
+\textbf{Какая главная ошибка в этом билете?}
+
+Считать, что если каждая координата нормальна, то весь вектор
+автоматически гауссовский. Это неверно: нужна нормальность всех линейных
+комбинаций.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Считать нормальность координат достаточной для совместной гауссовости.
+\item
+  Забывать вырожденные нормальные распределения.
+\item
+  Писать плотность многомерного нормального закона при вырожденной
+  \(\Sigma\).
+\item
+  Забывать условие \(\Sigma\ge0\).
+\item
+  Переносить свойство ``некоррелированность равна независимости'' на
+  негауссовские распределения.
+\item
+  Путать ковариационную матрицу и корреляционную матрицу.
+\item
+  Считать, что широкая стационарность всегда влечет узкую; это верно не
+  вообще, а для гауссовских последовательностей.
+\end{itemize}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Билет 08: характеристические функции задают распределения.
+\item
+  Билет 13: средние и ковариации получаются из производных
+  характеристической функции.
+\item
+  Билет 14: ковариация, корреляция и некоррелированность; для Гаусса
+  некоррелированность дает независимость.
+\item
+  Билет 15: согласованные гауссовские конечномерные распределения задают
+  гауссовскую последовательность.
+\item
+  Билет 17: для гауссовских последовательностей широкая стационарность
+  влечет узкую.
+\item
+  Билет 24: корреляционная функция стационарной гауссовской
+  последовательности.
+\item
+  Билет 25: спектральные характеристики стационарных последовательностей
+  второго порядка.
+\end{itemize}
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Одномерный нормальный закон:
+\end{enumerate}
+
+\[
+X\sim N(m,\sigma^2),
+\qquad
+\varphi_X(t)=\exp\left\{itm-\frac12\sigma^2t^2\right\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Гауссовский вектор определяется нормальностью всех линейных
+  комбинаций:
+\end{enumerate}
+
+\[
+\langle u,X\rangle\ \text{нормальна для всех}\ u.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Его характеристическая функция:
+\end{enumerate}
+
+\[
+\varphi_X(u)=
+\exp\left\{i\langle u,m\rangle-\frac12u^T\Sigma u\right\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Гауссовская последовательность: каждый конечный вектор гауссовский.
+\item
+  Главная ловушка: нормальность координат не равна совместной
+  гауссовости.
+\end{enumerate}
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно объяснить:
+
+\begin{itemize}
+\tightlist
+\item
+  что такое вырожденный нормальный закон;
+\item
+  почему \(\Sigma\) должна быть неотрицательно определенной;
+\item
+  почему линейное преобразование гауссовского вектора гауссово;
+\item
+  почему для совместно гауссовских некоррелированность равна
+  независимости;
+\item
+  как задается гауссовская последовательность через \(m_n\) и
+  \(K(n,m)\);
+\item
+  почему для гауссовских широкая стационарность влечет узкую.
+\end{itemize}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{itemize}
+\tightlist
+\item
+  плотность многомерного нормального закона при \(\Sigma>0\);
+\item
+  предупреждение про вырожденный случай \(\det\Sigma=0\);
+\item
+  доказательство через характеристические функции;
+\item
+  пример нормальных координат без совместной гауссовости;
+\item
+  блочно-диагональную ковариационную матрицу как критерий независимости
+  групп;
+\item
+  связь с теоремой Колмогорова для построения гауссовской
+  последовательности;
+\item
+  связь со стационарностью и спектральными характеристиками.
+\end{itemize}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Начинаю с одномерного нормального закона:
+\end{enumerate}
+
+\[
+X\sim N(m,\sigma^2),
+\qquad
+\varphi_X(t)=\exp\left\{itm-\frac12\sigma^2t^2\right\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Гауссовский вектор \(X=(X_1,\ldots,X_n)\) определяется так: любая
+  линейная комбинация координат нормальна.
+\item
+  Это сильнее, чем нормальность каждой координаты отдельно.
+\item
+  Средний вектор и ковариационная матрица:
+\end{enumerate}
+
+\[
+m=\mathbb EX,
+\qquad
+\Sigma_{ij}=\operatorname{Cov}(X_i,X_j).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Характеристическая функция:
+\end{enumerate}
+
+\[
+\varphi_X(u)
+=
+\exp\left\{i\langle u,m\rangle-\frac12u^T\Sigma u\right\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Поэтому гауссовский закон полностью задается \(m\) и \(\Sigma\).
+\item
+  Линейное преобразование гауссовского вектора снова гауссово:
+\end{enumerate}
+
+\[
+Y=AX+b.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Для совместно гауссовских величин нулевая ковариация означает
+  независимость. В общем случае это неверно.
+\item
+  Гауссовская последовательность - это последовательность, у которой
+  любой конечный вектор гауссовский.
+\item
+  Она задается средней функцией \(m_n\) и ковариационной функцией
+  \(K(n,m)\).
+\item
+  Для гауссовской последовательности широкая стационарность влечет
+  узкую, потому что конечномерные распределения задаются средними и
+  ковариациями.
+\item
+  Примеры: стандартная нормальная величина, белый гауссовский шум,
+  гауссовский \(AR(1)\).
+\end{enumerate}
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить главное.
+
+Одномерная нормальная:
+
+\[
+\varphi_X(t)=\exp\left\{itm-\frac12\sigma^2t^2\right\}.
+\]
+
+Гауссовский вектор:
+
+\[
+\langle u,X\rangle\ \text{нормальна для всех}\ u.
+\]
+
+Характеристическая функция:
+
+\[
+\varphi_X(u)
+=
+\exp\left\{i\langle u,m\rangle-\frac12u^T\Sigma u\right\}.
+\]
+
+Гауссовская последовательность:
+
+\[
+(X_{n_1},\ldots,X_{n_k})\ \text{гауссовский для всех конечных наборов}.
+\]
+
+Главные ловушки:
+
+\begin{itemize}
+\tightlist
+\item
+  нормальность координат не означает совместную гауссовость;
+\item
+  некоррелированность равна независимости только в совместно гауссовском
+  случае;
+\item
+  плотность с \(\Sigma^{-1}\) пишется только при невырожденной
+  \(\Sigma\).
+\end{itemize}
+
+\newpage
+
+\end{document}

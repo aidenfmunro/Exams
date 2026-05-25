@@ -1,0 +1,1898 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 13. Связи математического ожидания и матрицы корреляции с
+характеристической
+функцией}\label{ux431ux438ux43bux435ux442-13.-ux441ux432ux44fux437ux438-ux43cux430ux442ux435ux43cux430ux442ux438ux447ux435ux441ux43aux43eux433ux43e-ux43eux436ux438ux434ux430ux43dux438ux44f-ux438-ux43cux430ux442ux440ux438ux446ux44b-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux438-ux441-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux43eux439-ux444ux443ux43dux43aux446ux438ux435ux439}
+
+Источники: Ширяев 1, гл. II, §12; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Характеристическая функция конечномерного распределения кодирует не
+только само распределение, но и моменты, если они существуют.
+
+Для случайной величины \(X\):
+
+\[
+\varphi_X(t)=\mathbb E e^{itX}.
+\]
+
+Если \(\mathbb E|X|^k<\infty\), то \(\varphi_X\) имеет производные до
+порядка \(k\), и
+
+\[
+\varphi_X^{(r)}(0)=i^r\mathbb E X^r,
+\qquad r=1,\ldots,k.
+\]
+
+В частности,
+
+\[
+\mathbb EX=\frac{\varphi_X'(0)}{i}=-i\varphi_X'(0),
+\]
+
+а если существует второй момент, то
+
+\[
+\mathbb EX^2=-\varphi_X''(0),
+\qquad
+\operatorname{Var}X=-\varphi_X''(0)-(\mathbb EX)^2.
+\]
+
+Для случайного вектора \(X=(X_1,\ldots,X_n)^T\):
+
+\[
+\varphi_X(t)=\mathbb E e^{i\langle t,X\rangle},
+\qquad t\in\mathbb R^n.
+\]
+
+Если \(\mathbb E|X_j|<\infty\), то
+
+\[
+\frac{\partial\varphi_X}{\partial t_j}(0)=i\mathbb EX_j.
+\]
+
+Если существуют вторые моменты, то
+
+\[
+\frac{\partial^2\varphi_X}{\partial t_i\partial t_j}(0)
+=
+-\mathbb E[X_iX_j].
+\]
+
+Значит средний вектор и матрица вторых моментов восстанавливаются из
+производных характеристической функции в нуле:
+
+\[
+m_j=\mathbb EX_j=-i\partial_j\varphi_X(0),
+\]
+
+\[
+R_{ij}=\mathbb E[X_iX_j]=-\partial_{ij}\varphi_X(0).
+\]
+
+Ковариационная матрица:
+
+\[
+\Sigma_{ij}
+=
+\operatorname{Cov}(X_i,X_j)
+=
+R_{ij}-m_im_j.
+\]
+
+Терминологически в курсах случайных процессов матрицу
+\(R=(\mathbb E X_iX_j)\) часто называют корреляционной матрицей, а
+\(\Sigma\) - ковариационной. Если величины центрированы, то
+\(R=\Sigma\).
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Введение и связь с предыдущими
+билетами}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux438-ux441ux432ux44fux437ux44c-ux441-ux43fux440ux435ux434ux44bux434ux443ux449ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+Этот билет продолжает Билет 08 о характеристических функциях и Билет 11
+о моментах через интегралы по распределению. В билете 8
+характеристическая функция была введена как преобразование Фурье
+конечномерного распределения:
+
+\[
+\varphi_X(t)
+=
+\mathbb E e^{i\langle t,X\rangle}
+=
+\int_{\mathbb R^n} e^{i\langle t,x\rangle}\,P_X(dx).
+\]
+
+Здесь нужно объяснить, как из этой функции получить математическое
+ожидание, вторые моменты и корреляционную или ковариационную матрицу.
+
+\subsubsection{2.2. Одномерный случай: моменты случайной
+величины}\label{ux43eux434ux43dux43eux43cux435ux440ux43dux44bux439-ux441ux43bux443ux447ux430ux439-ux43cux43eux43cux435ux43dux442ux44b-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+Начнем с одномерного случая. Пусть \(X\) - вещественная случайная
+величина. Ее характеристическая функция:
+
+\[
+\varphi(t)=\mathbb E e^{itX}.
+\]
+
+Она существует всегда, потому что
+
+\[
+|e^{itX}|=1.
+\]
+
+Но производные характеристической функции и моменты требуют
+дополнительных условий. Если \(\mathbb E|X|<\infty\), то можно
+дифференцировать под знаком математического ожидания:
+
+\[
+\varphi'(t)=\mathbb E\left[iXe^{itX}\right].
+\]
+
+При \(t=0\):
+
+\[
+\varphi'(0)=i\mathbb EX.
+\]
+
+Поэтому
+
+\[
+\mathbb EX=\frac{\varphi'(0)}{i}=-i\varphi'(0).
+\]
+
+Если \(\mathbb EX^2<\infty\), то
+
+\[
+\varphi''(t)=\mathbb E\left[(iX)^2e^{itX}\right]
+=
+-\mathbb E\left[X^2e^{itX}\right],
+\]
+
+и при \(t=0\):
+
+\[
+\varphi''(0)=-\mathbb EX^2.
+\]
+
+Значит
+
+\[
+\mathbb EX^2=-\varphi''(0).
+\]
+
+Дисперсия:
+
+\[
+\operatorname{Var}X
+=
+\mathbb EX^2-(\mathbb EX)^2
+=
+-\varphi''(0)-(-i\varphi'(0))^2.
+\]
+
+Можно записать и проще:
+
+\[
+\operatorname{Var}X=-\varphi''(0)-(\mathbb EX)^2.
+\]
+
+Общая одномерная формула такая. Если
+
+\[
+\mathbb E|X|^k<\infty,
+\]
+
+то для \(r=1,\ldots,k\):
+
+\[
+\varphi^{(r)}(t)
+=
+\mathbb E\left[(iX)^r e^{itX}\right],
+\]
+
+а в нуле:
+
+\[
+\varphi^{(r)}(0)
+=
+i^r\mathbb EX^r.
+\]
+
+Отсюда
+
+\[
+\mathbb EX^r
+=
+\frac{\varphi^{(r)}(0)}{i^r}.
+\]
+
+\subsubsection{2.3. Случайный вектор: математическое ожидание и матрица
+вторых
+моментов}\label{ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux432ux435ux43aux442ux43eux440-ux43cux430ux442ux435ux43cux430ux442ux438ux447ux435ux441ux43aux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux438-ux43cux430ux442ux440ux438ux446ux430-ux432ux442ux43eux440ux44bux445-ux43cux43eux43cux435ux43dux442ux43eux432}
+
+Теперь случайный вектор. Пусть
+
+\[
+X=(X_1,\ldots,X_n)^T
+\]
+
+и \(P_X\) - его конечномерное распределение на \(\mathbb R^n\).
+Характеристическая функция:
+
+\[
+\varphi(t)
+=
+\varphi_X(t_1,\ldots,t_n)
+=
+\mathbb E\exp\left(i\sum_{j=1}^n t_jX_j\right).
+\]
+
+Если компоненты интегрируемы, то частные производные первого порядка в
+нуле дают математические ожидания:
+
+\[
+\partial_j\varphi(t)
+=
+\mathbb E\left[iX_j e^{i\langle t,X\rangle}\right],
+\]
+
+и
+
+\[
+\partial_j\varphi(0)=i\mathbb EX_j.
+\]
+
+Поэтому средний вектор
+
+\[
+m=\mathbb EX=(m_1,\ldots,m_n)^T
+\]
+
+получается по формуле
+
+\[
+m_j=-i\partial_j\varphi(0).
+\]
+
+Если существуют вторые моменты, то вторые частные производные дают
+смешанные вторые моменты:
+
+\[
+\partial_{ij}\varphi(t)
+=
+\frac{\partial^2\varphi(t)}{\partial t_i\partial t_j}
+=
+\mathbb E\left[(iX_i)(iX_j)e^{i\langle t,X\rangle}\right]
+=
+-\mathbb E\left[X_iX_j e^{i\langle t,X\rangle}\right].
+\]
+
+При \(t=0\):
+
+\[
+\partial_{ij}\varphi(0)
+=
+-\mathbb E[X_iX_j].
+\]
+
+Обозначим матрицу вторых моментов:
+
+\[
+R=\mathbb E[XX^T],
+\qquad
+R_{ij}=\mathbb E[X_iX_j].
+\]
+
+Тогда
+
+\[
+R_{ij}=-\partial_{ij}\varphi(0).
+\]
+
+В терминах матрицы Гессе:
+
+\[
+R=-D^2\varphi(0),
+\]
+
+если \(D^2\varphi(0)\) понимается как матрица вторых частных
+производных.
+
+\subsubsection{2.4. Ковариационная матрица и
+терминология}\label{ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430-ux438-ux442ux435ux440ux43cux438ux43dux43eux43bux43eux433ux438ux44f}
+
+Ковариационная матрица:
+
+\[
+\Sigma
+=
+\operatorname{Cov}(X)
+=
+\mathbb E[(X-m)(X-m)^T].
+\]
+
+По формуле из Билета 11:
+
+\[
+\Sigma=R-mm^T.
+\]
+
+Следовательно, через характеристическую функцию:
+
+\[
+\Sigma_{ij}
+=
+-\partial_{ij}\varphi(0)-m_im_j.
+\]
+
+Если выразить \(m_i\) и \(m_j\) тоже через производные \(\varphi\), то
+
+\[
+\Sigma_{ij}
+=
+-\partial_{ij}\varphi(0)
++\partial_i\varphi(0)\partial_j\varphi(0).
+\]
+
+Проверка знака: так как \(\partial_i\varphi(0)=im_i\), то
+
+\[
+\partial_i\varphi(0)\partial_j\varphi(0)
+=
+-m_im_j.
+\]
+
+Поэтому последняя формула действительно равна
+
+\[
+-\partial_{ij}\varphi(0)-m_im_j.
+\]
+
+Отдельно полезно сказать про термин ``матрица корреляции''. В разных
+курсах используются три близких объекта:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  матрица вторых моментов, или корреляционная матрица в теории случайных
+  процессов:
+\end{enumerate}
+
+\[
+R_{ij}=\mathbb E[X_iX_j];
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  ковариационная матрица:
+\end{enumerate}
+
+\[
+\Sigma_{ij}=\operatorname{Cov}(X_i,X_j);
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  нормированная матрица коэффициентов корреляции:
+\end{enumerate}
+
+\[
+\rho_{ij}
+=
+\frac{\operatorname{Cov}(X_i,X_j)}
+{\sqrt{\operatorname{Var}X_i\,\operatorname{Var}X_j}},
+\]
+
+если дисперсии положительны.
+
+В билете 13 обычно нужна связь характеристической функции именно с
+математическим ожиданием и матрицей вторых моментов \(R\), а затем с
+ковариационной матрицей \(\Sigma\). Если \(X\) центрирован, то
+
+\[
+m=0,
+\qquad
+\Sigma=R,
+\]
+
+и корреляционная матрица в смысле вторых моментов совпадает с
+ковариационной.
+
+\subsubsection{2.5. Приложение к конечномерным распределениям случайных
+процессов}\label{ux43fux440ux438ux43bux43eux436ux435ux43dux438ux435-ux43a-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux43c-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44fux43c-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux43fux440ux43eux446ux435ux441ux441ux43eux432}
+
+Для конечномерного распределения случайного процесса запись такая же.
+Если выбран набор моментов времени
+
+\[
+t_1,\ldots,t_n,
+\]
+
+и
+
+\[
+X=(X_{t_1},\ldots,X_{t_n})^T,
+\]
+
+то его конечномерная характеристическая функция:
+
+\[
+\varphi_{t_1,\ldots,t_n}(u_1,\ldots,u_n)
+=
+\mathbb E\exp\left(i\sum_{j=1}^n u_jX_{t_j}\right).
+\]
+
+Тогда
+
+\[
+\mathbb EX_{t_j}
+=
+-i\frac{\partial}{\partial u_j}
+\varphi_{t_1,\ldots,t_n}(0),
+\]
+
+а корреляционная функция на выбранном конечном наборе индексов:
+
+\[
+R(t_i,t_j)
+=
+\mathbb E[X_{t_i}X_{t_j}]
+=
+-\frac{\partial^2}{\partial u_i\partial u_j}
+\varphi_{t_1,\ldots,t_n}(0).
+\]
+
+Ковариационная функция:
+
+\[
+K(t_i,t_j)
+=
+\operatorname{Cov}(X_{t_i},X_{t_j})
+=
+R(t_i,t_j)-m(t_i)m(t_j).
+\]
+
+В стационарных задачах второго порядка это переходит в билеты Билет 17,
+Билет 24 и Билет 25: среднее постоянно, а корреляция или ковариация
+зависит от лага.
+
+\subsubsection{2.6. Логарифм характеристической функции и
+кумулянты}\label{ux43bux43eux433ux430ux440ux438ux444ux43c-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux43eux439-ux444ux443ux43dux43aux446ux438ux438-ux438-ux43aux443ux43cux443ux43bux44fux43dux442ux44b}
+
+Иногда удобнее использовать логарифм характеристической функции. Так как
+\(\varphi(0)=1\), в некоторой окрестности нуля при достаточной гладкости
+можно рассматривать
+
+\[
+\psi(t)=\log\varphi(t).
+\]
+
+Тогда первые производные \(\psi\) дают среднее, а вторые - ковариации:
+
+\[
+\partial_j\psi(0)=i m_j,
+\]
+
+\[
+\partial_{ij}\psi(0)=-\Sigma_{ij}.
+\]
+
+Это форма через кумулянты: первая кумулянта - среднее, вторая кумулянта
+- ковариация. Для экзамена достаточно знать основную формулу через
+производные \(\varphi\); логарифм можно добавить как сильное замечание.
+
+\subsubsection{2.7. Главная идея
+билета}\label{ux433ux43bux430ux432ux43dux430ux44f-ux438ux434ux435ux44f-ux431ux438ux43bux435ux442ux430}
+
+Главная идея всего билета: характеристическая функция является
+преобразованием Фурье распределения. Дифференцирование по параметрам
+\(t_j\) выносит из экспоненты множители \(iX_j\). Поэтому производные в
+нуле превращаются в моменты.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Характеристическая функция случайной
+величины}\label{ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+\[
+\varphi_X(t)=\mathbb E e^{itX},
+\qquad t\in\mathbb R.
+\]
+
+\subsubsection{Характеристическая функция случайного
+вектора}\label{ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430}
+
+\[
+\varphi_X(t)=\mathbb E e^{i\langle t,X\rangle},
+\qquad t\in\mathbb R^n.
+\]
+
+\subsubsection{Характеристическая функция конечномерного распределения
+процесса}\label{ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux433ux43e-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43fux440ux43eux446ux435ux441ux441ux430}
+
+Для процесса \((X_s)_{s\in T}\) и индексов \(s_1,\ldots,s_n\):
+
+\[
+\varphi_{s_1,\ldots,s_n}(u)
+=
+\mathbb E\exp\left(i\sum_{j=1}^n u_jX_{s_j}\right).
+\]
+
+\subsubsection{Математическое ожидание
+вектора}\label{ux43cux430ux442ux435ux43cux430ux442ux438ux447ux435ux441ux43aux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux432ux435ux43aux442ux43eux440ux430}
+
+\[
+m=\mathbb EX,
+\qquad
+m_j=\mathbb EX_j.
+\]
+
+Оно существует, если все компоненты \(X_j\) интегрируемы.
+
+\subsubsection{Матрица вторых
+моментов}\label{ux43cux430ux442ux440ux438ux446ux430-ux432ux442ux43eux440ux44bux445-ux43cux43eux43cux435ux43dux442ux43eux432}
+
+\[
+R=\mathbb E[XX^T],
+\qquad
+R_{ij}=\mathbb E[X_iX_j].
+\]
+
+В теории случайных процессов ее часто называют корреляционной матрицей.
+
+\subsubsection{Ковариационная
+матрица}\label{ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430}
+
+\[
+\Sigma=\operatorname{Cov}(X)=\mathbb E[(X-m)(X-m)^T],
+\]
+
+то есть
+
+\[
+\Sigma_{ij}
+=
+\operatorname{Cov}(X_i,X_j)
+=
+\mathbb E[(X_i-m_i)(X_j-m_j)].
+\]
+
+\subsubsection{\texorpdfstring{Связь матриц \(R\) и
+\(\Sigma\)}{Связь матриц R и \textbackslash Sigma}}\label{ux441ux432ux44fux437ux44c-ux43cux430ux442ux440ux438ux446-r-ux438-sigma}
+
+\[
+\Sigma=R-mm^T.
+\]
+
+Если \(m=0\), то
+
+\[
+\Sigma=R.
+\]
+
+\subsubsection{Нормированная матрица коэффициентов
+корреляции}\label{ux43dux43eux440ux43cux438ux440ux43eux432ux430ux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430-ux43aux43eux44dux444ux444ux438ux446ux438ux435ux43dux442ux43eux432-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux438}
+
+Если \(\operatorname{Var}X_i>0\), то
+
+\[
+\rho_{ij}
+=
+\frac{\Sigma_{ij}}
+{\sqrt{\Sigma_{ii}\Sigma_{jj}}}.
+\]
+
+Диагональные элементы равны \(1\), а \(|\rho_{ij}|\le1\).
+
+\subsubsection{Мультииндексная форма
+момента}\label{ux43cux443ux43bux44cux442ux438ux438ux43dux434ux435ux43aux441ux43dux430ux44f-ux444ux43eux440ux43cux430-ux43cux43eux43cux435ux43dux442ux430}
+
+Для \(\alpha=(\alpha_1,\ldots,\alpha_n)\):
+
+\[
+|\alpha|=\alpha_1+\cdots+\alpha_n,
+\]
+
+\[
+\partial^\alpha
+=
+\frac{\partial^{|\alpha|}}
+{\partial t_1^{\alpha_1}\cdots\partial t_n^{\alpha_n}},
+\]
+
+и при существовании соответствующего абсолютного момента:
+
+\[
+\partial^\alpha\varphi(0)
+=
+i^{|\alpha|}
+\mathbb E\left[X_1^{\alpha_1}\cdots X_n^{\alpha_n}\right].
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Теорема 1. Моменты одномерной величины через производные
+характеристической
+функции}\label{ux442ux435ux43eux440ux435ux43cux430-1.-ux43cux43eux43cux435ux43dux442ux44b-ux43eux434ux43dux43eux43cux435ux440ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b-ux447ux435ux440ux435ux437-ux43fux440ux43eux438ux437ux432ux43eux434ux43dux44bux435-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Если
+
+\[
+\mathbb E|X|^k<\infty,
+\]
+
+то \(\varphi_X\) имеет непрерывные производные до порядка \(k\), и
+
+\[
+\varphi_X^{(r)}(t)
+=
+\mathbb E[(iX)^r e^{itX}],
+\qquad r=1,\ldots,k.
+\]
+
+В частности,
+
+\[
+\varphi_X^{(r)}(0)=i^r\mathbb EX^r.
+\]
+
+\subsubsection{Следствие. Среднее и
+дисперсия}\label{ux441ux43bux435ux434ux441ux442ux432ux438ux435.-ux441ux440ux435ux434ux43dux435ux435-ux438-ux434ux438ux441ux43fux435ux440ux441ux438ux44f}
+
+Если \(\mathbb E|X|<\infty\), то
+
+\[
+\mathbb EX=-i\varphi_X'(0).
+\]
+
+Если \(\mathbb EX^2<\infty\), то
+
+\[
+\mathbb EX^2=-\varphi_X''(0),
+\]
+
+\[
+\operatorname{Var}X=-\varphi_X''(0)-(-i\varphi_X'(0))^2.
+\]
+
+\subsubsection{Теорема 2. Моменты вектора через частные
+производные}\label{ux442ux435ux43eux440ux435ux43cux430-2.-ux43cux43eux43cux435ux43dux442ux44b-ux432ux435ux43aux442ux43eux440ux430-ux447ux435ux440ux435ux437-ux447ux430ux441ux442ux43dux44bux435-ux43fux440ux43eux438ux437ux432ux43eux434ux43dux44bux435}
+
+Пусть \(X=(X_1,\ldots,X_n)^T\) и существует момент
+
+\[
+\mathbb E|X_1|^{\alpha_1}\cdots |X_n|^{\alpha_n}<\infty.
+\]
+
+Тогда
+
+\[
+\partial^\alpha\varphi_X(0)
+=
+i^{|\alpha|}
+\mathbb E\left[X_1^{\alpha_1}\cdots X_n^{\alpha_n}\right].
+\]
+
+Для первого и второго порядков:
+
+\[
+\partial_j\varphi(0)=i\mathbb EX_j,
+\]
+
+\[
+\partial_{ij}\varphi(0)=-\mathbb E[X_iX_j].
+\]
+
+\subsubsection{Свойство 3. Матрица вторых моментов через матрицу Гессе
+характеристической
+функции}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-3.-ux43cux430ux442ux440ux438ux446ux430-ux432ux442ux43eux440ux44bux445-ux43cux43eux43cux435ux43dux442ux43eux432-ux447ux435ux440ux435ux437-ux43cux430ux442ux440ux438ux446ux443-ux433ux435ux441ux441ux435-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Если все вторые моменты существуют, то
+
+\[
+R=-D^2\varphi(0),
+\]
+
+то есть
+
+\[
+R_{ij}=-\partial_{ij}\varphi(0).
+\]
+
+\subsubsection{Свойство 4. Ковариационная матрица через производные
+характеристической
+функции}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-4.-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430-ux447ux435ux440ux435ux437-ux43fux440ux43eux438ux437ux432ux43eux434ux43dux44bux435-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Если все вторые моменты существуют, то
+
+\[
+\Sigma_{ij}
+=
+-\partial_{ij}\varphi(0)
++\partial_i\varphi(0)\partial_j\varphi(0).
+\]
+
+Эквивалентно:
+
+\[
+\Sigma=-D^2\varphi(0)-mm^T,
+\qquad
+m_j=-i\partial_j\varphi(0).
+\]
+
+\subsubsection{Свойство 5. Через логарифм характеристической
+функции}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-5.-ux447ux435ux440ux435ux437-ux43bux43eux433ux430ux440ux438ux444ux43c-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Если \(\psi(t)=\log\varphi(t)\) определена и дважды дифференцируема в
+окрестности нуля, то
+
+\[
+\partial_j\psi(0)=im_j,
+\]
+
+\[
+\partial_{ij}\psi(0)=-\Sigma_{ij}.
+\]
+
+\subsubsection{Свойство 6. Неотрицательная определенность матриц второго
+порядка}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-6.-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux430ux44f-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux43dux43eux441ux442ux44c-ux43cux430ux442ux440ux438ux446-ux432ux442ux43eux440ux43eux433ux43e-ux43fux43eux440ux44fux434ux43aux430}
+
+Матрица вторых моментов \(R\) неотрицательно определена:
+
+\[
+a^TRa
+=
+\mathbb E(a^TX)^2
+\ge0.
+\]
+
+Ковариационная матрица \(\Sigma\) тоже неотрицательно определена:
+
+\[
+a^T\Sigma a
+=
+\operatorname{Var}(a^TX)
+\ge0.
+\]
+
+Это согласуется с Билетом 12: \(R\) и \(\Sigma\) являются матрицами
+Грама соответствующих случайных величин в \(L^2\).
+
+\subsubsection{Свойство 7. Независимые
+координаты}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-7.-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux43aux43eux43eux440ux434ux438ux43dux430ux442ux44b}
+
+Если \(X_1,\ldots,X_n\) независимы, то
+
+\[
+\varphi_X(t_1,\ldots,t_n)
+=
+\prod_{j=1}^n\varphi_{X_j}(t_j).
+\]
+
+Тогда смешанные моменты, если они существуют, раскладываются. Например:
+
+\[
+\mathbb E[X_iX_j]=\mathbb EX_i\,\mathbb EX_j,
+\qquad i\ne j.
+\]
+
+Поэтому
+
+\[
+\operatorname{Cov}(X_i,X_j)=0
+\]
+
+для \(i\ne j\), если вторые моменты конечны.
+
+\subsubsection{Свойство 8. Для гауссовского
+вектора}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-8.-ux434ux43bux44f-ux433ux430ux443ux441ux441ux43eux432ux441ux43aux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430}
+
+Если
+
+\[
+X\sim N(m,\Sigma),
+\]
+
+то
+
+\[
+\varphi_X(t)
+=
+\exp\left(i\langle t,m\rangle-\frac12 t^T\Sigma t\right).
+\]
+
+Дифференцирование в нуле дает тот же средний вектор \(m\) и
+ковариационную матрицу \(\Sigma\). Это связь с Билетом 18.
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Вырожденная случайная
+величина}\label{ux43fux440ux438ux43cux435ux440-1.-ux432ux44bux440ux43eux436ux434ux435ux43dux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Пусть \(X=c\) почти наверное. Тогда
+
+\[
+\varphi(t)=e^{itc}.
+\]
+
+Производная:
+
+\[
+\varphi'(t)=ice^{itc},
+\qquad
+\varphi'(0)=ic.
+\]
+
+Значит
+
+\[
+\mathbb EX=-i\varphi'(0)=c.
+\]
+
+Вторая производная:
+
+\[
+\varphi''(0)=-c^2,
+\]
+
+поэтому
+
+\[
+\mathbb EX^2=-\varphi''(0)=c^2,
+\]
+
+и
+
+\[
+\operatorname{Var}X=c^2-c^2=0.
+\]
+
+\subsubsection{Пример 2. Бернуллиевская случайная
+величина}\label{ux43fux440ux438ux43cux435ux440-2.-ux431ux435ux440ux43dux443ux43bux43bux438ux435ux432ux441ux43aux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Пусть
+
+\[
+P\{X=1\}=p,
+\qquad
+P\{X=0\}=q,
+\qquad
+p+q=1.
+\]
+
+Тогда
+
+\[
+\varphi(t)=q+pe^{it}.
+\]
+
+Первая производная:
+
+\[
+\varphi'(t)=ipe^{it},
+\qquad
+\varphi'(0)=ip.
+\]
+
+Значит
+
+\[
+\mathbb EX=p.
+\]
+
+Вторая производная:
+
+\[
+\varphi''(t)=-pe^{it},
+\qquad
+\varphi''(0)=-p.
+\]
+
+Поэтому
+
+\[
+\mathbb EX^2=p.
+\]
+
+Дисперсия:
+
+\[
+\operatorname{Var}X=p-p^2=pq.
+\]
+
+\subsubsection{Пример 3. Нормальная случайная
+величина}\label{ux43fux440ux438ux43cux435ux440-3.-ux43dux43eux440ux43cux430ux43bux44cux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Если
+
+\[
+X\sim N(m,\sigma^2),
+\]
+
+то
+
+\[
+\varphi(t)=\exp\left(imt-\frac12\sigma^2t^2\right).
+\]
+
+Логарифм:
+
+\[
+\psi(t)=\log\varphi(t)=imt-\frac12\sigma^2t^2.
+\]
+
+Тогда
+
+\[
+\psi'(0)=im,
+\qquad
+\psi''(0)=-\sigma^2.
+\]
+
+Значит
+
+\[
+\mathbb EX=m,
+\qquad
+\operatorname{Var}X=\sigma^2.
+\]
+
+\subsubsection{Пример 4. Дискретный двумерный
+вектор}\label{ux43fux440ux438ux43cux435ux440-4.-ux434ux438ux441ux43aux440ux435ux442ux43dux44bux439-ux434ux432ux443ux43cux435ux440ux43dux44bux439-ux432ux435ux43aux442ux43eux440}
+
+Пусть \(X=(X_1,X_2)\) принимает значения
+
+\[
+(0,0),\ (1,0),\ (0,1)
+\]
+
+с вероятностями \(p_0,p_1,p_2\), где \(p_0+p_1+p_2=1\). Тогда
+
+\[
+\varphi(t_1,t_2)
+=
+p_0+p_1e^{it_1}+p_2e^{it_2}.
+\]
+
+Средние:
+
+\[
+\partial_1\varphi(0)=ip_1,
+\qquad
+\partial_2\varphi(0)=ip_2,
+\]
+
+поэтому
+
+\[
+\mathbb EX_1=p_1,
+\qquad
+\mathbb EX_2=p_2.
+\]
+
+Смешанный второй момент:
+
+\[
+\partial_{12}\varphi(0)=0,
+\]
+
+значит
+
+\[
+\mathbb E[X_1X_2]=0.
+\]
+
+Ковариация:
+
+\[
+\operatorname{Cov}(X_1,X_2)
+=
+0-p_1p_2
+=
+-p_1p_2.
+\]
+
+Это хороший пример того, что смешанный второй момент и ковариация - не
+одно и то же.
+
+\subsubsection{Пример 5. Независимые
+координаты}\label{ux43fux440ux438ux43cux435ux440-5.-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux43aux43eux43eux440ux434ux438ux43dux430ux442ux44b}
+
+Пусть \(X_1\) и \(X_2\) независимы. Тогда
+
+\[
+\varphi_{(X_1,X_2)}(t_1,t_2)
+=
+\varphi_{X_1}(t_1)\varphi_{X_2}(t_2).
+\]
+
+Если существуют вторые моменты, то
+
+\[
+\mathbb E[X_1X_2]
+=
+\mathbb EX_1\,\mathbb EX_2,
+\]
+
+и поэтому
+
+\[
+\operatorname{Cov}(X_1,X_2)=0.
+\]
+
+Но обратное неверно: нулевая ковариация не означает независимость.
+
+\subsubsection{Пример 6. Конечномерное распределение
+процесса}\label{ux43fux440ux438ux43cux435ux440-6.-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux43fux440ux43eux446ux435ux441ux441ux430}
+
+Пусть есть процесс \((X_t)\) и выбраны \(s,t\). Тогда
+
+\[
+\varphi_{s,t}(u,v)
+=
+\mathbb E e^{i(uX_s+vX_t)}.
+\]
+
+Если существуют вторые моменты, то
+
+\[
+\mathbb EX_s=-i\partial_u\varphi_{s,t}(0,0),
+\]
+
+\[
+\mathbb E[X_sX_t]
+=
+-\partial_{uv}\varphi_{s,t}(0,0).
+\]
+
+Это и есть связь конечномерной характеристической функции с
+корреляционной функцией процесса.
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\textbf{Почему производная дает математическое ожидание.}
+
+Пусть \(\mathbb E|X|<\infty\). Для фиксированного \(t\) формально:
+
+\[
+\frac{d}{dt}e^{itX}=iXe^{itX}.
+\]
+
+Чтобы вынести производную под знак ожидания, используем доминирование.
+Например, разностное отношение:
+
+\[
+\frac{e^{i(t+h)X}-e^{itX}}{h}
+=
+e^{itX}\frac{e^{ihX}-1}{h}.
+\]
+
+Поточечно при \(h\to0\) оно стремится к
+
+\[
+iXe^{itX}.
+\]
+
+Кроме того,
+
+\[
+\left|\frac{e^{ihX}-1}{h}\right|
+\le |X|
+\]
+
+из оценки \(|e^{iy}-1|\le |y|\). Так как \(\mathbb E|X|<\infty\), можно
+применить теорему Лебега о доминированной сходимости. Получаем
+
+\[
+\varphi'(t)=\mathbb E[iXe^{itX}].
+\]
+
+При \(t=0\):
+
+\[
+\varphi'(0)=i\mathbb EX.
+\]
+
+\textbf{Почему вторая производная дает второй момент.}
+
+Если \(\mathbb EX^2<\infty\), то аналогично дифференцируем еще раз:
+
+\[
+\varphi''(t)
+=
+\mathbb E[(iX)^2e^{itX}]
+=
+-\mathbb E[X^2e^{itX}].
+\]
+
+При \(t=0\):
+
+\[
+\varphi''(0)=-\mathbb EX^2.
+\]
+
+Знак минус появляется из-за \(i^2=-1\).
+
+\textbf{Доказательная схема для вектора.}
+
+Для \(X=(X_1,\ldots,X_n)\):
+
+\[
+\varphi(t)=\mathbb E e^{i(t_1X_1+\cdots+t_nX_n)}.
+\]
+
+Дифференцирование по \(t_j\) выносит множитель \(iX_j\):
+
+\[
+\partial_j\varphi(t)
+=
+\mathbb E[iX_je^{i\langle t,X\rangle}].
+\]
+
+Дифференцирование по \(t_i\) и \(t_j\) выносит множитель
+
+\[
+(iX_i)(iX_j)=-X_iX_j.
+\]
+
+Отсюда:
+
+\[
+\partial_{ij}\varphi(0)=-\mathbb E[X_iX_j].
+\]
+
+\textbf{Почему ковариационная матрица неотрицательно определена.}
+
+Для любого \(a\in\mathbb R^n\):
+
+\[
+a^T\Sigma a
+=
+\sum_{i,j}a_i a_j\operatorname{Cov}(X_i,X_j)
+=
+\operatorname{Var}\left(\sum_i a_iX_i\right)
+\ge0.
+\]
+
+Это также следует из геометрии \(L^2\): ковариационная матрица - матрица
+Грама центрированных величин.
+
+\textbf{Почему через логарифм получается ковариация.}
+
+Пусть
+
+\[
+\psi=\log\varphi.
+\]
+
+Тогда
+
+\[
+\partial_i\psi=\frac{\partial_i\varphi}{\varphi}.
+\]
+
+В нуле \(\varphi(0)=1\), поэтому
+
+\[
+\partial_i\psi(0)=\partial_i\varphi(0)=im_i.
+\]
+
+Для второй производной:
+
+\[
+\partial_{ij}\psi(0)
+=
+\partial_{ij}\varphi(0)
+-\partial_i\varphi(0)\partial_j\varphi(0).
+\]
+
+Подставляем:
+
+\[
+\partial_{ij}\varphi(0)=-\mathbb E[X_iX_j],
+\]
+
+\[
+\partial_i\varphi(0)\partial_j\varphi(0)
+=
+(im_i)(im_j)
+=
+-m_im_j.
+\]
+
+Получаем
+
+\[
+\partial_{ij}\psi(0)
+=
+-\mathbb E[X_iX_j]+m_im_j
+=
+-\operatorname{Cov}(X_i,X_j).
+\]
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Характеристическая функция:
+\end{enumerate}
+
+\[
+\varphi_X(t)=\mathbb E e^{i\langle t,X\rangle}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Одномерные моменты:
+\end{enumerate}
+
+\[
+\varphi_X^{(k)}(0)=i^k\mathbb EX^k.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Средний вектор:
+\end{enumerate}
+
+\[
+m_j=\mathbb EX_j=-i\partial_j\varphi(0).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Матрица вторых моментов:
+\end{enumerate}
+
+\[
+R_{ij}=\mathbb E[X_iX_j]=-\partial_{ij}\varphi(0).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Ковариационная матрица:
+\end{enumerate}
+
+\[
+\Sigma_{ij}=R_{ij}-m_im_j.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Через производные \(\varphi\):
+\end{enumerate}
+
+\[
+\Sigma_{ij}
+=
+-\partial_{ij}\varphi(0)
++\partial_i\varphi(0)\partial_j\varphi(0).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Через логарифм:
+\end{enumerate}
+
+\[
+\partial_{ij}\log\varphi(0)=-\Sigma_{ij}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Для процесса:
+\end{enumerate}
+
+\[
+R(s,t)=\mathbb E[X_sX_t]
+=
+-\partial_{uv}\varphi_{s,t}(0,0).
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Характеристическая функция всегда существует?}
+
+Да. Для любого \(t\):
+
+\[
+|e^{i\langle t,X\rangle}|=1,
+\]
+
+поэтому математическое ожидание существует как ожидание ограниченной
+комплексной случайной величины.
+
+\textbf{Вопрос. Если характеристическая функция существует всегда,
+значит ли это, что все моменты существуют?}
+
+Нет. Существование \(\varphi\) не означает существования моментов.
+Например, у распределения Коши характеристическая функция существует, но
+математическое ожидание не существует.
+
+\textbf{Вопрос. Что нужно для формулы \(\varphi'(0)=i\mathbb EX\)?}
+
+Достаточно \(\mathbb E|X|<\infty\). Тогда можно дифференцировать под
+знаком ожидания.
+
+\textbf{Вопрос. Что нужно для формулы \(\varphi''(0)=-\mathbb EX^2\)?}
+
+Достаточно \(\mathbb EX^2<\infty\).
+
+\textbf{Вопрос. Почему во второй производной стоит минус?}
+
+Потому что
+
+\[
+\frac{d^2}{dt^2}e^{itX}
+=(iX)^2e^{itX}
+=-X^2e^{itX}.
+\]
+
+\textbf{Вопрос. Как получить математическое ожидание вектора?}
+
+По компонентам:
+
+\[
+\mathbb EX_j=-i\partial_j\varphi(0).
+\]
+
+\textbf{Вопрос. Как получить смешанный момент \(\mathbb E[X_iX_j]\)?}
+
+Через смешанную вторую производную:
+
+\[
+\mathbb E[X_iX_j]=-\partial_{ij}\varphi(0).
+\]
+
+\textbf{Вопрос. Чем отличается матрица вторых моментов от ковариационной
+матрицы?}
+
+Матрица вторых моментов:
+
+\[
+R_{ij}=\mathbb E[X_iX_j].
+\]
+
+Ковариационная матрица:
+
+\[
+\Sigma_{ij}=\mathbb E[(X_i-m_i)(X_j-m_j)].
+\]
+
+Связь:
+
+\[
+\Sigma=R-mm^T.
+\]
+
+\textbf{Вопрос. Когда корреляционная матрица совпадает с
+ковариационной?}
+
+Когда вектор центрирован:
+
+\[
+\mathbb EX=0.
+\]
+
+Тогда
+
+\[
+R=\Sigma.
+\]
+
+\textbf{Вопрос. Что дает логарифм характеристической функции?}
+
+Он дает кумулянты. Первая производная в нуле дает среднее, а вторая -
+ковариационную матрицу:
+
+\[
+\partial_j\log\varphi(0)=im_j,
+\qquad
+\partial_{ij}\log\varphi(0)=-\Sigma_{ij}.
+\]
+
+\textbf{Вопрос. Как это связано с гауссовским распределением?}
+
+Для гауссовского вектора
+
+\[
+\varphi(t)=\exp\left(i\langle t,m\rangle-\frac12t^T\Sigma t\right).
+\]
+
+Из логарифма сразу видны \(m\) и \(\Sigma\).
+
+\textbf{Вопрос. Как это связано со случайными процессами?}
+
+Если взять конечномерное распределение
+
+\[
+(X_{t_1},\ldots,X_{t_n}),
+\]
+
+то производные его характеристической функции в нуле дают средние
+\(m(t_i)\) и корреляции \(R(t_i,t_j)\).
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Писать \(\varphi''(0)=\mathbb EX^2\) без минуса.
+\item
+  Забывать множитель \(i\) в первой производной.
+\item
+  Считать, что характеристическая функция существует только при
+  существовании моментов.
+\item
+  Считать, что существование характеристической функции автоматически
+  дает существование всех моментов.
+\item
+  Путать матрицу вторых моментов \(R=\mathbb E[XX^T]\) и ковариационную
+  матрицу \(\Sigma=R-mm^T\).
+\item
+  Не центрировать величины при переходе от вторых моментов к
+  ковариациям.
+\item
+  Путать корреляционную матрицу в смысле \(R_{ij}=\mathbb E[X_iX_j]\) с
+  нормированной матрицей коэффициентов корреляции \(\rho_{ij}\).
+\item
+  Забывать, что формулы с производными в нуле требуют существования
+  соответствующих моментов.
+\item
+  Дифференцировать по одному аргументу, когда нужен смешанный момент
+  \(\mathbb E[X_iX_j]\).
+\item
+  Делать вывод о независимости из нулевой ковариации.
+\end{enumerate}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 08.} Там вводятся характеристические функции конечномерных
+распределений и их основные свойства; здесь используются производные
+этих функций.
+
+\textbf{Билет 11.} Моменты, дисперсии и ковариации выражаются через
+интегралы по распределению; характеристическая функция является другим
+способом кодировать те же моменты.
+
+\textbf{Билет 12.} Ковариационная матрица - матрица Грама центрированных
+случайных величин в \(L^2\).
+
+\textbf{Билет 14.} Коэффициенты корреляции получаются из ковариационной
+матрицы нормировкой на стандартные отклонения.
+
+\textbf{Билет 15.} Согласованные конечномерные распределения можно
+задавать через согласованные конечномерные характеристические функции.
+
+\textbf{Билет 18.} Гауссовское распределение полностью задается средним
+и ковариационной матрицей, которые видны в характеристической функции.
+
+\textbf{Билет 24.} Корреляционная функция процесса - это второй момент
+или ковариация, получаемая из конечномерных характеристических функций.
+
+\textbf{Билет 25.} Спектральные характеристики связаны с корреляционной
+функцией как с коэффициентами Фурье.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Характеристическая функция:
+\end{enumerate}
+
+\[
+\varphi_X(t)=\mathbb E e^{i\langle t,X\rangle}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Если существуют моменты, то производные в нуле дают эти моменты.
+\item
+  Для случайной величины:
+\end{enumerate}
+
+\[
+\varphi'(0)=i\mathbb EX,
+\qquad
+\varphi''(0)=-\mathbb EX^2.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Для вектора:
+\end{enumerate}
+
+\[
+\partial_j\varphi(0)=i\mathbb EX_j,
+\qquad
+\partial_{ij}\varphi(0)=-\mathbb E[X_iX_j].
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Ковариационная матрица:
+\end{enumerate}
+
+\[
+\Sigma_{ij}=\mathbb E[X_iX_j]-\mathbb EX_i\,\mathbb EX_j.
+\]
+
+Главная ловушка: во второй производной стоит минус.
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  назвать условие существования соответствующих моментов;
+\item
+  объяснить, почему дифференцирование выносит множитель \(iX_j\);
+\item
+  различить матрицу вторых моментов \(R\) и ковариационную матрицу
+  \(\Sigma\);
+\item
+  записать формулы
+\end{enumerate}
+
+\[
+m_j=-i\partial_j\varphi(0),
+\]
+
+\[
+R_{ij}=-\partial_{ij}\varphi(0),
+\]
+
+\[
+\Sigma=R-mm^T;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  привести пример Бернулли или нормального распределения.
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  мультииндексную формулу
+\end{enumerate}
+
+\[
+\partial^\alpha\varphi(0)
+=
+i^{|\alpha|}
+\mathbb E[X^\alpha];
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  доказательную схему через теорему Лебега о доминированной сходимости;
+\item
+  формулу через логарифм характеристической функции:
+\end{enumerate}
+
+\[
+\partial_{ij}\log\varphi(0)=-\Sigma_{ij};
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  связь с конечномерными распределениями процесса:
+\end{enumerate}
+
+\[
+R(s,t)=-\partial_{uv}\varphi_{s,t}(0,0);
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  неотрицательную определенность матриц \(R\) и \(\Sigma\);
+\item
+  связь с гауссовским вектором:
+\end{enumerate}
+
+\[
+\varphi(t)=
+\exp\left(i\langle t,m\rangle-\frac12t^T\Sigma t\right).
+\]
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Сначала я напоминаю определение характеристической функции. Для
+случайного вектора
+
+\[
+X=(X_1,\ldots,X_n)
+\]
+
+она равна
+
+\[
+\varphi_X(t)=\mathbb E e^{i\langle t,X\rangle}.
+\]
+
+Она существует всегда, потому что экспонента имеет модуль \(1\). Но
+производные в нуле связаны с моментами только при существовании
+соответствующих моментов.
+
+В одномерном случае, если \(\mathbb E|X|^k<\infty\), то
+
+\[
+\varphi_X^{(r)}(0)=i^r\mathbb EX^r,
+\qquad r\le k.
+\]
+
+В частности,
+
+\[
+\varphi'(0)=i\mathbb EX,
+\qquad
+\varphi''(0)=-\mathbb EX^2.
+\]
+
+Значит
+
+\[
+\mathbb EX=-i\varphi'(0),
+\qquad
+\operatorname{Var}X=-\varphi''(0)-(\mathbb EX)^2.
+\]
+
+Для вектора дифференцируем по координатам:
+
+\[
+\partial_j\varphi(0)=i\mathbb EX_j,
+\]
+
+\[
+\partial_{ij}\varphi(0)=-\mathbb E[X_iX_j].
+\]
+
+Поэтому средний вектор и матрица вторых моментов находятся как
+
+\[
+m_j=-i\partial_j\varphi(0),
+\]
+
+\[
+R_{ij}=-\partial_{ij}\varphi(0).
+\]
+
+Дальше ковариационная матрица:
+
+\[
+\Sigma_{ij}
+=
+\operatorname{Cov}(X_i,X_j)
+=
+R_{ij}-m_im_j.
+\]
+
+Если вектор центрирован, то \(m=0\), и корреляционная матрица вторых
+моментов совпадает с ковариационной.
+
+Доказательная идея простая: при дифференцировании
+
+\[
+e^{i\langle t,X\rangle}
+\]
+
+по \(t_j\) появляется множитель \(iX_j\), а при втором дифференцировании
+по \(t_i,t_j\) появляется \((iX_i)(iX_j)=-X_iX_j\). При существовании
+нужных моментов дифференцирование под знаком ожидания оправдывается
+доминированной сходимостью.
+
+Завершаю примером. Для Бернулли
+
+\[
+\varphi(t)=q+pe^{it}.
+\]
+
+Тогда
+
+\[
+\varphi'(0)=ip,
+\qquad
+\varphi''(0)=-p,
+\]
+
+поэтому
+
+\[
+\mathbb EX=p,
+\qquad
+\operatorname{Var}X=p-p^2.
+\]
+
+Главные ошибки: потерять минус во второй производной, забыть множитель
+\(i\), перепутать вторые моменты и ковариации.
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить четыре строки.
+
+\textbf{Характеристическая функция:}
+
+\[
+\varphi_X(t)=\mathbb E e^{i\langle t,X\rangle}.
+\]
+
+\textbf{Среднее:}
+
+\[
+m_j=\mathbb EX_j=-i\partial_j\varphi(0).
+\]
+
+\textbf{Вторые моменты:}
+
+\[
+R_{ij}=\mathbb E[X_iX_j]=-\partial_{ij}\varphi(0).
+\]
+
+\textbf{Ковариации:}
+
+\[
+\Sigma_{ij}=R_{ij}-m_im_j.
+\]
+
+Главная ловушка: характеристическая функция существует всегда, но
+производные-моменты требуют существования соответствующих моментов; во
+второй производной стоит минус.
+
+\newpage
+
+\end{document}

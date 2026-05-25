@@ -1,0 +1,1941 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 12. Упорядоченные и алгебраические структуры; гильбертовы
+пространства и
+проекторы}\label{ux431ux438ux43bux435ux442-12.-ux443ux43fux43eux440ux44fux434ux43eux447ux435ux43dux43dux44bux435-ux438-ux430ux43bux433ux435ux431ux440ux430ux438ux447ux435ux441ux43aux438ux435-ux441ux442ux440ux443ux43aux442ux443ux440ux44b-ux433ux438ux43bux44cux431ux435ux440ux442ux43eux432ux44b-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux430-ux438-ux43fux440ux43eux435ux43aux442ux43eux440ux44b}
+
+Источники: Ширяев 1, гл. II, §11; Сердобольская, лекция 6; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+В этом билете нужно связать общий язык структур с вероятностной
+геометрией второго порядка.
+
+\textbf{Упорядоченная структура} - это множество с отношением порядка.
+Например, для случайных величин можно писать
+
+\[
+X\le Y \quad \text{почти наверное}.
+\]
+
+\textbf{Алгебраическая структура} - это множество с операциями. В
+вероятности главные примеры: линейные пространства случайных величин,
+пространства \(L^p\), алгебры событий, \(\sigma\)-алгебры.
+
+Главная часть билета: случайные величины с конечным вторым моментом
+образуют гильбертово пространство
+
+\[
+L^2(\Omega,\mathcal F,P),
+\]
+
+со скалярным произведением
+
+\[
+\langle X,Y\rangle=\mathbb E[XY]
+\]
+
+в вещественном случае и нормой
+
+\[
+\|X\|_2=(\mathbb EX^2)^{1/2}.
+\]
+
+Для центрированных величин скалярное произведение становится
+ковариацией:
+
+\[
+\langle X-\mathbb EX,\ Y-\mathbb EY\rangle
+=
+\operatorname{Cov}(X,Y).
+\]
+
+Если \(H\) - замкнутое подпространство гильбертова пространства, то для
+любого \(x\) существует единственная ортогональная проекция
+\(P_Hx\in H\):
+
+\[
+x-P_Hx\perp H.
+\]
+
+То есть \(P_Hx\) - ближайший к \(x\) элемент из \(H\):
+
+\[
+\|x-P_Hx\|=\min_{h\in H}\|x-h\|.
+\]
+
+В вероятности это дает геометрический смысл условного ожидания:
+
+\[
+\mathbb E[X\mid\mathcal G]
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  ортогональная проекция \(X\in L^2\) на замкнутое подпространство
+  \(\mathcal G\)-измеримых величин из \(L^2\).
+\end{itemize}
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Переход к геометрии случайных
+величин}\label{ux43fux435ux440ux435ux445ux43eux434-ux43a-ux433ux435ux43eux43cux435ux442ux440ux438ux438-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux432ux435ux43bux438ux447ux438ux43d}
+
+В программе этот билет стоит как переход от меры и интеграла к линейной
+геометрии случайных величин. До этого случайные величины рассматривались
+как измеримые функции, у которых есть распределения и моменты. Теперь
+добавляется идея: если у случайных величин есть вторые моменты, то с
+ними можно работать как с векторами в гильбертовом пространстве.
+
+\subsubsection{2.2. Упорядоченные
+структуры}\label{ux443ux43fux43eux440ux44fux434ux43eux447ux435ux43dux43dux44bux435-ux441ux442ux440ux443ux43aux442ux443ux440ux44b}
+
+Сначала нужен общий язык структур.
+
+\textbf{Упорядоченная структура} - это множество \(M\) с отношением
+\(\le\). Отношение называется частичным порядком, если для любых
+\(a,b,c\in M\) выполнены:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  рефлексивность:
+\end{enumerate}
+
+\[
+a\le a;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  антисимметричность:
+\end{enumerate}
+
+\[
+a\le b,\ b\le a\quad\Rightarrow\quad a=b;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  транзитивность:
+\end{enumerate}
+
+\[
+a\le b,\ b\le c\quad\Rightarrow\quad a\le c.
+\]
+
+Если любые два элемента сравнимы, порядок называется линейным, или
+полным. Например, на \(\mathbb R\) обычный порядок полный. На множестве
+подмножеств \(\Omega\) порядок по включению
+
+\[
+A\subset B
+\]
+
+частичный: не любые два множества сравнимы.
+
+В вероятности важны несколько порядков:
+
+\[
+A\subset B
+\]
+
+для событий,
+
+\[
+X\le Y
+\]
+
+для случайных величин, обычно в смысле почти наверное. Строго говоря,
+это частичный порядок на классах эквивалентности по равенству почти
+наверное; на конкретных версиях случайных величин это только
+предпорядок. Также используют порядок
+
+\[
+f\le g
+\]
+
+для измеримых функций. Этот порядок нужен в теореме Беппо Леви,
+монотонности интеграла и монотонности условного ожидания.
+
+Есть также порядок на неотрицательно определенных матрицах:
+
+\[
+A\le B
+\quad\Longleftrightarrow\quad
+B-A\ge0
+\]
+
+в смысле квадратичных форм:
+
+\[
+x^T(B-A)x\ge0
+\]
+
+для всех \(x\). Такой порядок используется для ковариационных матриц.
+
+\subsubsection{2.3. Алгебраические
+структуры}\label{ux430ux43bux433ux435ux431ux440ux430ux438ux447ux435ux441ux43aux438ux435-ux441ux442ux440ux443ux43aux442ux443ux440ux44b}
+
+\textbf{Алгебраическая структура} - это множество с одной или
+несколькими операциями, удовлетворяющими аксиомам. Примеры:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  полугруппа - множество с ассоциативной операцией;
+\item
+  моноид - полугруппа с нейтральным элементом;
+\item
+  группа - моноид, где у каждого элемента есть обратный;
+\item
+  кольцо - множество с операциями сложения и умножения;
+\item
+  поле - кольцо, где можно делить на ненулевые элементы;
+\item
+  линейное пространство - множество, где можно складывать векторы и
+  умножать их на числа из поля.
+\end{enumerate}
+
+\subsubsection{2.4. Линейное пространство случайных
+величин}\label{ux43bux438ux43dux435ux439ux43dux43eux435-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux432ux435ux43bux438ux447ux438ux43d}
+
+В этом билете главный пример - линейное пространство случайных величин.
+Если \(X\) и \(Y\) - случайные величины, а \(a,b\in\mathbb R\), то
+
+\[
+aX+bY
+\]
+
+снова случайная величина. Если \(X,Y\in L^2\), то по неравенству
+
+\[
+(aX+bY)^2\le 2a^2X^2+2b^2Y^2
+\]
+
+получаем \(aX+bY\in L^2\). Значит \(L^2\) - линейное пространство.
+
+\subsubsection{2.5. Гильбертовы
+пространства}\label{ux433ux438ux43bux44cux431ux435ux440ux442ux43eux432ux44b-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux430}
+
+Теперь переходим к гильбертовым пространствам. Сначала определения.
+
+Линейное пространство \(V\) над \(\mathbb R\) называется пространством
+со скалярным произведением, если задана функция
+
+\[
+\langle x,y\rangle
+\]
+
+такая, что:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  линейность по первому аргументу:
+\end{enumerate}
+
+\[
+\langle ax_1+bx_2,y\rangle
+=
+a\langle x_1,y\rangle+b\langle x_2,y\rangle;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  симметрия:
+\end{enumerate}
+
+\[
+\langle x,y\rangle=\langle y,x\rangle;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  положительная определенность:
+\end{enumerate}
+
+\[
+\langle x,x\rangle\ge0,
+\qquad
+\langle x,x\rangle=0\Longleftrightarrow x=0.
+\]
+
+В комплексном случае вместо симметрии берут эрмитову симметрию:
+
+\[
+\langle x,y\rangle=\overline{\langle y,x\rangle},
+\]
+
+и одно из направлений линейно, другое сопряженно-линейно.
+
+Скалярное произведение задает норму:
+
+\[
+\|x\|=\sqrt{\langle x,x\rangle}.
+\]
+
+Пространство со скалярным произведением называется гильбертовым, если
+оно полно по этой норме: всякая фундаментальная последовательность
+сходится к элементу того же пространства.
+
+\subsubsection{\texorpdfstring{2.6. Пространство
+\(L^2\)}{2.6. Пространство L\^{}2}}\label{ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-l2}
+
+Главный пример для вероятности:
+
+\[
+L^2(\Omega,\mathcal F,P)
+=
+\{X:\mathbb E X^2<\infty\}/\sim,
+\]
+
+где
+
+\[
+X\sim Y
+\quad\Longleftrightarrow\quad
+X=Y\ \text{почти наверное}.
+\]
+
+Важно: строго элементы \(L^2\) - не отдельные функции, а классы
+эквивалентности по равенству почти наверное. В устном ответе обычно
+говорят ``случайная величина из \(L^2\)'', понимая этот класс.
+
+Скалярное произведение:
+
+\[
+\langle X,Y\rangle=\mathbb E[XY].
+\]
+
+Оно корректно определено, потому что по неравенству Коши-Буняковского
+
+\[
+\mathbb E|XY|
+\le
+(\mathbb EX^2)^{1/2}(\mathbb EY^2)^{1/2}<\infty.
+\]
+
+Норма:
+
+\[
+\|X\|_2=(\mathbb EX^2)^{1/2}.
+\]
+
+Расстояние:
+
+\[
+d(X,Y)=\|X-Y\|_2
+=
+\left(\mathbb E[(X-Y)^2]\right)^{1/2}.
+\]
+
+То есть близость в \(L^2\) - это малая среднеквадратичная ошибка.
+
+Пространство \(L^2\) полно, поэтому это гильбертово пространство. В
+вероятности это фундаментально: задачи прогноза, регрессии и фильтрации
+можно формулировать как задачи ортогонального проектирования.
+
+\subsubsection{2.7. Ортогональность и
+ковариация}\label{ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux43eux441ux442ux44c-ux438-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux44f}
+
+Ортогональность в \(L^2\):
+
+\[
+X\perp Y
+\quad\Longleftrightarrow\quad
+\langle X,Y\rangle=\mathbb E[XY]=0.
+\]
+
+Если \(X\) и \(Y\) центрированы, то есть
+
+\[
+\mathbb EX=\mathbb EY=0,
+\]
+
+то
+
+\[
+\operatorname{Cov}(X,Y)=\mathbb E[XY]=\langle X,Y\rangle.
+\]
+
+В общем случае удобнее работать с центрированными величинами
+
+\[
+X^0=X-\mathbb EX,
+\qquad
+Y^0=Y-\mathbb EY.
+\]
+
+Тогда
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\mathbb E[X^0Y^0]
+=
+\langle X^0,Y^0\rangle.
+\]
+
+Отсюда корреляция в Билете 14 имеет геометрический смысл косинуса угла:
+
+\[
+\rho(X,Y)
+=
+\frac{\langle X^0,Y^0\rangle}{\|X^0\|_2\|Y^0\|_2}.
+\]
+
+\subsubsection{2.8. Ортогональные
+проекторы}\label{ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux44bux435-ux43fux440ux43eux435ux43aux442ux43eux440ux44b}
+
+Теперь проекторы. Пусть \(H\) - линейное подпространство гильбертова
+пространства \(\mathcal H\). Элемент \(y\in H\) называется ортогональной
+проекцией \(x\) на \(H\), если
+
+\[
+x-y\perp H,
+\]
+
+то есть
+
+\[
+\langle x-y,h\rangle=0
+\]
+
+для всех \(h\in H\).
+
+Главная теорема о проекции: если \(H\) - замкнутое линейное
+подпространство гильбертова пространства \(\mathcal H\), то для любого
+\(x\in\mathcal H\) существует единственный элемент \(P_Hx\in H\), такой
+что
+
+\[
+x-P_Hx\perp H.
+\]
+
+Этот элемент является ближайшим к \(x\) элементом из \(H\):
+
+\[
+\|x-P_Hx\|
+=
+\inf_{h\in H}\|x-h\|.
+\]
+
+Более того, для любого \(h\in H\):
+
+\[
+\|x-h\|^2
+=
+\|x-P_Hx\|^2+\|P_Hx-h\|^2.
+\]
+
+Это просто теорема Пифагора, потому что
+
+\[
+x-h=(x-P_Hx)+(P_Hx-h),
+\]
+
+а две части ортогональны.
+
+Отображение
+
+\[
+P_H:\mathcal H\to H
+\]
+
+называется ортогональным проектором. Оно обладает свойствами:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  линейность:
+\end{enumerate}
+
+\[
+P_H(ax+by)=aP_Hx+bP_Hy;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  идемпотентность:
+\end{enumerate}
+
+\[
+P_H^2=P_H;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  самосопряженность:
+\end{enumerate}
+
+\[
+\langle P_Hx,y\rangle=\langle x,P_Hy\rangle;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  сжатие нормы:
+\end{enumerate}
+
+\[
+\|P_Hx\|\le\|x\|;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  разложение:
+\end{enumerate}
+
+\[
+x=P_Hx+(x-P_Hx),
+\qquad
+P_Hx\in H,
+\quad
+x-P_Hx\in H^\perp.
+\]
+
+Условие замкнутости \(H\) важно. Если подпространство не замкнуто,
+ближайший элемент может не существовать внутри самого \(H\).
+
+\subsubsection{2.9. Матрица Грама и линейная
+регрессия}\label{ux43cux430ux442ux440ux438ux446ux430-ux433ux440ux430ux43cux430-ux438-ux43bux438ux43dux435ux439ux43dux430ux44f-ux440ux435ux433ux440ux435ux441ux441ux438ux44f}
+
+В конечномерном случае проекция вычисляется через матрицу Грама. Пусть
+\(h_1,\ldots,h_n\) - линейно независимые элементы гильбертова
+пространства, а
+
+\[
+H=\operatorname{span}(h_1,\ldots,h_n).
+\]
+
+Ищем проекцию в виде
+
+\[
+P_Hx=\sum_{j=1}^n a_jh_j.
+\]
+
+Условие ортогональности ошибки:
+
+\[
+x-\sum_{j=1}^n a_jh_j\perp h_i,
+\qquad i=1,\ldots,n.
+\]
+
+Значит коэффициенты удовлетворяют нормальным уравнениям:
+
+\[
+\sum_{j=1}^n a_j\langle h_j,h_i\rangle
+=
+\langle x,h_i\rangle,
+\qquad i=1,\ldots,n.
+\]
+
+Матрица
+
+\[
+G=(\langle h_i,h_j\rangle)_{i,j=1}^n
+\]
+
+называется матрицей Грама. Если \(h_1,\ldots,h_n\) линейно независимы,
+то \(G\) положительно определена и обратима. В ортонормированном случае
+
+\[
+\langle h_i,h_j\rangle=\delta_{ij},
+\]
+
+и формула упрощается:
+
+\[
+P_Hx=\sum_{j=1}^n \langle x,h_j\rangle h_j.
+\]
+
+В вероятности это дает линейную регрессию. Пусть
+\(X,Y_1,\ldots,Y_n\in L^2\), и мы хотим приблизить \(X\) линейной
+комбинацией \(Y_1,\ldots,Y_n\):
+
+\[
+\widehat X=\sum_{j=1}^n a_jY_j.
+\]
+
+Оптимальная в среднеквадратичном смысле оценка минимизирует
+
+\[
+\mathbb E\left(X-\sum_{j=1}^n a_jY_j\right)^2.
+\]
+
+Она является ортогональной проекцией \(X\) на
+
+\[
+H=\operatorname{span}(Y_1,\ldots,Y_n).
+\]
+
+Нормальные уравнения:
+
+\[
+\mathbb E\left[\left(X-\sum_{j=1}^n a_jY_j\right)Y_i\right]=0,
+\qquad i=1,\ldots,n.
+\]
+
+То есть ошибка оптимального прогноза ортогональна всем используемым
+регрессорам.
+
+Если работают с центрированными величинами, то матрица Грама становится
+ковариационной матрицей:
+
+\[
+G_{ij}
+=
+\langle Y_i^0,Y_j^0\rangle
+=
+\operatorname{Cov}(Y_i,Y_j).
+\]
+
+Поэтому ковариационные матрицы всегда неотрицательно определены:
+
+\[
+a^TGa
+=
+\left\|\sum_{i=1}^n a_iY_i^0\right\|_2^2
+\ge0.
+\]
+
+\subsubsection{2.10. Условное ожидание как ортогональная
+проекция}\label{ux443ux441ux43bux43eux432ux43dux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43aux430ux43a-ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux430ux44f-ux43fux440ux43eux435ux43aux446ux438ux44f}
+
+Теперь условное ожидание как проектор. Пусть \(X\in L^2\) и
+\(\mathcal G\subset\mathcal F\) - под-\(\sigma\)-алгебра. Рассмотрим
+
+\[
+L^2(\mathcal G)
+=
+\{Y\in L^2(\Omega,\mathcal F,P):Y\ \mathcal G\text{-измерима}\}.
+\]
+
+Это замкнутое линейное подпространство \(L^2(\mathcal F)\). Тогда
+
+\[
+\mathbb E[X\mid\mathcal G]
+\]
+
+является ортогональной проекцией \(X\) на \(L^2(\mathcal G)\):
+
+\[
+P_{L^2(\mathcal G)}X=\mathbb E[X\mid\mathcal G].
+\]
+
+Почему? По определению условного ожидания для любого \(G\in\mathcal G\):
+
+\[
+\int_G(X-\mathbb E[X\mid\mathcal G])\,dP=0.
+\]
+
+Это означает ортогональность ошибки индикаторам \(\mathbf 1_G\). А через
+линейность и предельный переход ошибка ортогональна всем ограниченным
+\(\mathcal G\)-измеримым величинам, а затем всем величинам из
+\(L^2(\mathcal G)\). Значит
+
+\[
+X-\mathbb E[X\mid\mathcal G]\perp L^2(\mathcal G).
+\]
+
+Отсюда следует оптимальное свойство условного ожидания:
+
+\[
+\mathbb E[(X-\mathbb E[X\mid\mathcal G])^2]
+=
+\min_{Y\in L^2(\mathcal G)}
+\mathbb E[(X-Y)^2].
+\]
+
+То есть условное ожидание - лучший среднеквадратичный прогноз \(X\) по
+информации \(\mathcal G\).
+
+\subsubsection{2.11.
+Заключение}\label{ux437ux430ux43aux43bux44eux447ux435ux43dux438ux435}
+
+Итак, билет строит мост: порядок и алгебраические операции задают общий
+язык; \(L^2\) превращает случайные величины в векторы; ковариации
+становятся скалярными произведениями; условные ожидания и линейные
+оценки становятся ортогональными проекциями.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Частично упорядоченное
+множество}\label{ux447ux430ux441ux442ux438ux447ux43dux43e-ux443ux43fux43eux440ux44fux434ux43eux447ux435ux43dux43dux43eux435-ux43cux43dux43eux436ux435ux441ux442ux432ux43e}
+
+Множество \(M\) с отношением \(\le\), которое рефлексивно,
+антисимметрично и транзитивно.
+
+\subsubsection{Линейный
+порядок}\label{ux43bux438ux43dux435ux439ux43dux44bux439-ux43fux43eux440ux44fux434ux43eux43a}
+
+Частичный порядок, в котором любые два элемента сравнимы.
+
+\subsubsection{Верхняя и нижняя
+грань}\label{ux432ux435ux440ux445ux43dux44fux44f-ux438-ux43dux438ux436ux43dux44fux44f-ux433ux440ux430ux43dux44c}
+
+Для \(A\subset M\) элемент \(u\) - верхняя грань, если \(a\le u\) для
+всех \(a\in A\). Нижняя грань определяется аналогично.
+
+\subsubsection{Супремум и
+инфимум}\label{ux441ux443ux43fux440ux435ux43cux443ux43c-ux438-ux438ux43dux444ux438ux43cux443ux43c}
+
+Наименьшая верхняя грань называется супремумом, наибольшая нижняя грань
+- инфимумом.
+
+\subsubsection{Алгебраическая
+структура}\label{ux430ux43bux433ux435ux431ux440ux430ux438ux447ux435ux441ux43aux430ux44f-ux441ux442ux440ux443ux43aux442ux443ux440ux430}
+
+Множество с заданными операциями, удовлетворяющими аксиомам. Примеры:
+группа, кольцо, поле, линейное пространство.
+
+\subsubsection{Линейное
+пространство}\label{ux43bux438ux43dux435ux439ux43dux43eux435-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e}
+
+Множество \(V\), где определены сложение векторов и умножение на
+скаляры, причем выполнены стандартные аксиомы линейности.
+
+\subsubsection{Линейное
+подпространство}\label{ux43bux438ux43dux435ux439ux43dux43eux435-ux43fux43eux434ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e}
+
+Подмножество \(H\subset V\), замкнутое относительно линейных комбинаций:
+
+\[
+x,y\in H,\ a,b\in\mathbb R
+\quad\Rightarrow\quad
+ax+by\in H.
+\]
+
+\subsubsection{Скалярное
+произведение}\label{ux441ux43aux430ux43bux44fux440ux43dux43eux435-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux435}
+
+Функция \(\langle x,y\rangle\), линейная по одному аргументу,
+симметричная в вещественном случае и положительно определенная.
+
+\subsubsection{Норма, порожденная скалярным
+произведением}\label{ux43dux43eux440ux43cux430-ux43fux43eux440ux43eux436ux434ux435ux43dux43dux430ux44f-ux441ux43aux430ux43bux44fux440ux43dux44bux43c-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux435ux43c}
+
+\[
+\|x\|=\sqrt{\langle x,x\rangle}.
+\]
+
+\subsubsection{Гильбертово
+пространство}\label{ux433ux438ux43bux44cux431ux435ux440ux442ux43eux432ux43e-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e}
+
+Полное линейное пространство со скалярным произведением.
+
+\subsubsection{\texorpdfstring{Пространство
+\(L^2\)}{Пространство L\^{}2}}\label{ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-l2-1}
+
+\[
+L^2(\Omega,\mathcal F,P)=\{X:\mathbb EX^2<\infty\}/\sim,
+\]
+
+где \(X\sim Y\), если \(X=Y\) почти наверное.
+
+\subsubsection{\texorpdfstring{Скалярное произведение в
+\(L^2\)}{Скалярное произведение в L\^{}2}}\label{ux441ux43aux430ux43bux44fux440ux43dux43eux435-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux435-ux432-l2}
+
+\[
+\langle X,Y\rangle=\mathbb E[XY].
+\]
+
+Для комплексных величин обычно берут
+
+\[
+\langle X,Y\rangle=\mathbb E[X\overline Y]
+\]
+
+или сопряжение в другом аргументе, в зависимости от конвенции.
+
+\subsubsection{Ортогональность}\label{ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux43eux441ux442ux44c}
+
+\[
+x\perp y
+\quad\Longleftrightarrow\quad
+\langle x,y\rangle=0.
+\]
+
+В \(L^2\):
+
+\[
+X\perp Y
+\quad\Longleftrightarrow\quad
+\mathbb E[XY]=0.
+\]
+
+\subsubsection{Ортогональное
+дополнение}\label{ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux43eux435-ux434ux43eux43fux43eux43bux43dux435ux43dux438ux435}
+
+\[
+H^\perp=\{x:\langle x,h\rangle=0\ \text{для всех }h\in H\}.
+\]
+
+\subsubsection{Ортогональная
+проекция}\label{ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux430ux44f-ux43fux440ux43eux435ux43aux446ux438ux44f}
+
+Элемент \(P_Hx\in H\), такой что
+
+\[
+x-P_Hx\perp H.
+\]
+
+\subsubsection{Ортогональный
+проектор}\label{ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux44bux439-ux43fux440ux43eux435ux43aux442ux43eux440}
+
+Отображение \(P_H:x\mapsto P_Hx\) на замкнутое подпространство \(H\).
+
+\subsubsection{Матрица
+Грама}\label{ux43cux430ux442ux440ux438ux446ux430-ux433ux440ux430ux43cux430}
+
+Для \(h_1,\ldots,h_n\):
+
+\[
+G=(\langle h_i,h_j\rangle)_{i,j=1}^n.
+\]
+
+\subsubsection{Ортонормированная
+система}\label{ux43eux440ux442ux43eux43dux43eux440ux43cux438ux440ux43eux432ux430ux43dux43dux430ux44f-ux441ux438ux441ux442ux435ux43cux430}
+
+Система \((e_i)\), для которой
+
+\[
+\langle e_i,e_j\rangle=\delta_{ij}.
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{\texorpdfstring{Теорема 1. \(L^2\) - гильбертово
+пространство}{Теорема 1. L\^{}2 - гильбертово пространство}}\label{ux442ux435ux43eux440ux435ux43cux430-1.-l2---ux433ux438ux43bux44cux431ux435ux440ux442ux43eux432ux43e-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e}
+
+Пространство случайных величин с конечным вторым моментом и скалярным
+произведением
+
+\[
+\langle X,Y\rangle=\mathbb E[XY]
+\]
+
+является гильбертовым пространством после отождествления случайных
+величин, равных почти наверное.
+
+\subsubsection{Условие
+корректности}\label{ux443ux441ux43bux43eux432ux438ux435-ux43aux43eux440ux440ux435ux43aux442ux43dux43eux441ux442ux438}
+
+Если \(X,Y\in L^2\), то \(\mathbb E|XY|<\infty\) по Коши-Буняковскому.
+
+\subsubsection{Теорема 2.
+Коши-Буняковский}\label{ux442ux435ux43eux440ux435ux43cux430-2.-ux43aux43eux448ux438-ux431ux443ux43dux44fux43aux43eux432ux441ux43aux438ux439}
+
+В любом пространстве со скалярным произведением:
+
+\[
+|\langle x,y\rangle|
+\le
+\|x\|\|y\|.
+\]
+
+В \(L^2\):
+
+\[
+|\mathbb E[XY]|
+\le
+(\mathbb EX^2)^{1/2}(\mathbb EY^2)^{1/2}.
+\]
+
+\subsubsection{Теорема 3. Проекция на замкнутое
+подпространство}\label{ux442ux435ux43eux440ux435ux43cux430-3.-ux43fux440ux43eux435ux43aux446ux438ux44f-ux43dux430-ux437ux430ux43cux43aux43dux443ux442ux43eux435-ux43fux43eux434ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e}
+
+Если \(H\) - замкнутое линейное подпространство гильбертова пространства
+\(\mathcal H\), то для любого \(x\in\mathcal H\) существует единственный
+\(P_Hx\in H\), такой что
+
+\[
+x-P_Hx\perp H.
+\]
+
+При этом
+
+\[
+\|x-P_Hx\|
+=
+\min_{h\in H}\|x-h\|.
+\]
+
+\subsubsection{Свойство 4. Пифагорова формула для
+проекции}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-4.-ux43fux438ux444ux430ux433ux43eux440ux43eux432ux430-ux444ux43eux440ux43cux443ux43bux430-ux434ux43bux44f-ux43fux440ux43eux435ux43aux446ux438ux438}
+
+Для любого \(h\in H\):
+
+\[
+\|x-h\|^2
+=
+\|x-P_Hx\|^2+\|P_Hx-h\|^2.
+\]
+
+\subsubsection{Свойство 5. Свойства ортогонального
+проектора}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-5.-ux441ux432ux43eux439ux441ux442ux432ux430-ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux43eux433ux43e-ux43fux440ux43eux435ux43aux442ux43eux440ux430}
+
+Ортогональный проектор \(P_H\):
+
+\[
+P_H^2=P_H,
+\]
+
+линеен,
+
+\[
+\langle P_Hx,y\rangle=\langle x,P_Hy\rangle,
+\]
+
+и
+
+\[
+\|P_Hx\|\le\|x\|.
+\]
+
+\subsubsection{Теорема 6. Нормальные уравнения конечномерной
+проекции}\label{ux442ux435ux43eux440ux435ux43cux430-6.-ux43dux43eux440ux43cux430ux43bux44cux43dux44bux435-ux443ux440ux430ux432ux43dux435ux43dux438ux44f-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux439-ux43fux440ux43eux435ux43aux446ux438ux438}
+
+Если \(H=\operatorname{span}(h_1,\ldots,h_n)\) и
+
+\[
+P_Hx=\sum_{j=1}^n a_jh_j,
+\]
+
+то коэффициенты \(a_j\) определяются системой
+
+\[
+\sum_{j=1}^n a_j\langle h_j,h_i\rangle
+=
+\langle x,h_i\rangle,
+\qquad i=1,\ldots,n.
+\]
+
+\subsubsection{Свойство 7. Проекция на ортонормированную
+систему}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-7.-ux43fux440ux43eux435ux43aux446ux438ux44f-ux43dux430-ux43eux440ux442ux43eux43dux43eux440ux43cux438ux440ux43eux432ux430ux43dux43dux443ux44e-ux441ux438ux441ux442ux435ux43cux443}
+
+Если \(e_1,\ldots,e_n\) ортонормированы, то
+
+\[
+P_Hx=\sum_{j=1}^n\langle x,e_j\rangle e_j.
+\]
+
+\subsubsection{Свойство 8. Матрица Грама неотрицательно
+определена}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-8.-ux43cux430ux442ux440ux438ux446ux430-ux433ux440ux430ux43cux430-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux43e-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux430}
+
+Для любых \(a_1,\ldots,a_n\):
+
+\[
+\sum_{i,j=1}^n a_i a_j\langle h_i,h_j\rangle
+=
+\left\|\sum_{i=1}^n a_ih_i\right\|^2
+\ge0.
+\]
+
+Если \(h_1,\ldots,h_n\) линейно независимы, то матрица Грама
+положительно определена.
+
+\subsubsection{Свойство 9. Ковариационная матрица как матрица
+Грама}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-9.-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430-ux43aux430ux43a-ux43cux430ux442ux440ux438ux446ux430-ux433ux440ux430ux43cux430}
+
+Для центрированных величин \(X_1,\ldots,X_n\in L^2\):
+
+\[
+G_{ij}=\mathbb E[X_iX_j]
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  матрица Грама. Поэтому она неотрицательно определена.
+\end{itemize}
+
+Для нецентрированных величин ковариационная матрица является матрицей
+Грама центрированных величин:
+
+\[
+\Sigma_{ij}
+=
+\operatorname{Cov}(X_i,X_j)
+=
+\langle X_i-\mathbb EX_i,\ X_j-\mathbb EX_j\rangle.
+\]
+
+\subsubsection{Теорема 10. Условное ожидание как ортогональная
+проекция}\label{ux442ux435ux43eux440ux435ux43cux430-10.-ux443ux441ux43bux43eux432ux43dux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43aux430ux43a-ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux430ux44f-ux43fux440ux43eux435ux43aux446ux438ux44f}
+
+Если \(X\in L^2\) и \(\mathcal G\subset\mathcal F\), то
+
+\[
+\mathbb E[X\mid\mathcal G]
+=
+P_{L^2(\mathcal G)}X.
+\]
+
+Эквивалентно:
+
+\[
+X-\mathbb E[X\mid\mathcal G]\perp L^2(\mathcal G).
+\]
+
+И оптимальное свойство:
+
+\[
+\mathbb E[(X-\mathbb E[X\mid\mathcal G])^2]
+=
+\min_{Y\in L^2(\mathcal G)}
+\mathbb E[(X-Y)^2].
+\]
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Евклидово
+пространство}\label{ux43fux440ux438ux43cux435ux440-1.-ux435ux432ux43aux43bux438ux434ux43eux432ux43e-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e}
+
+В \(\mathbb R^n\):
+
+\[
+\langle x,y\rangle=x^Ty,
+\qquad
+\|x\|=\sqrt{x_1^2+\cdots+x_n^2}.
+\]
+
+Проекция точки на прямую или плоскость - обычная ортогональная проекция
+из геометрии.
+
+\subsubsection{\texorpdfstring{Пример 2. Пространство
+\(L^2\)}{Пример 2. Пространство L\^{}2}}\label{ux43fux440ux438ux43cux435ux440-2.-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-l2}
+
+Пусть \(X,Y\in L^2\). Тогда
+
+\[
+\langle X,Y\rangle=\mathbb E[XY].
+\]
+
+Если \(\mathbb EX=\mathbb EY=0\), то
+
+\[
+X\perp Y
+\quad\Longleftrightarrow\quad
+\operatorname{Cov}(X,Y)=0.
+\]
+
+То есть ортогональность центрированных величин - это
+некоррелированность.
+
+\subsubsection{Пример 3. Проекция на
+константы}\label{ux43fux440ux438ux43cux435ux440-3.-ux43fux440ux43eux435ux43aux446ux438ux44f-ux43dux430-ux43aux43eux43dux441ux442ux430ux43dux442ux44b}
+
+Пусть \(H\) - подпространство констант:
+
+\[
+H=\{c:\ c\in\mathbb R\}.
+\]
+
+Проекция \(X\in L^2\) на \(H\) равна
+
+\[
+P_HX=\mathbb EX.
+\]
+
+Действительно,
+
+\[
+\mathbb E[X-\mathbb EX]=0,
+\]
+
+то есть ошибка ортогональна всем константам.
+
+\subsubsection{Пример 4. Условное ожидание по
+разбиению}\label{ux43fux440ux438ux43cux435ux440-4.-ux443ux441ux43bux43eux432ux43dux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43fux43e-ux440ux430ux437ux431ux438ux435ux43dux438ux44e}
+
+Пусть \(\mathcal G=\sigma(D_1,\ldots,D_n)\), где \(D_i\) - атомы
+разбиения и \(P(D_i)>0\). Тогда
+
+\[
+\mathbb E[X\mid\mathcal G]
+=
+\sum_{i=1}^n
+\frac{\int_{D_i}X\,dP}{P(D_i)}\mathbf 1_{D_i}.
+\]
+
+Это проекция \(X\) на подпространство функций, постоянных на каждом
+\(D_i\).
+
+\subsubsection{Пример 5. Линейная регрессия на одну
+величину}\label{ux43fux440ux438ux43cux435ux440-5.-ux43bux438ux43dux435ux439ux43dux430ux44f-ux440ux435ux433ux440ux435ux441ux441ux438ux44f-ux43dux430-ux43eux434ux43dux443-ux432ux435ux43bux438ux447ux438ux43dux443}
+
+Пусть \(X,Y\in L^2\), \(\mathbb EY=0\), \(\mathbb EY^2>0\). Ищем лучшую
+оценку \(X\) вида \(aY\). Минимизируем
+
+\[
+\mathbb E(X-aY)^2.
+\]
+
+Условие ортогональности:
+
+\[
+\mathbb E[(X-aY)Y]=0.
+\]
+
+Отсюда
+
+\[
+a=\frac{\mathbb E[XY]}{\mathbb E[Y^2]}.
+\]
+
+Если \(X,Y\) центрированы, то
+
+\[
+a=\frac{\operatorname{Cov}(X,Y)}{\operatorname{Var}Y}.
+\]
+
+\subsubsection{Пример 6. Матрица Грама и ковариационная
+матрица}\label{ux43fux440ux438ux43cux435ux440-6.-ux43cux430ux442ux440ux438ux446ux430-ux433ux440ux430ux43cux430-ux438-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430}
+
+Пусть \(X=(X_1,\ldots,X_n)\), где все \(X_i\) центрированы и имеют
+вторые моменты. Тогда
+
+\[
+G_{ij}=\mathbb E[X_iX_j]
+\]
+
+является матрицей Грама. Для любого \(a\in\mathbb R^n\):
+
+\[
+a^TGa
+=
+\mathbb E\left(\sum_{i=1}^n a_iX_i\right)^2
+\ge0.
+\]
+
+Поэтому ковариационная матрица неотрицательно определена.
+
+\subsubsection{Пример 7. Ортогональность не равна
+независимости}\label{ux43fux440ux438ux43cux435ux440-7.-ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux43eux441ux442ux44c-ux43dux435-ux440ux430ux432ux43dux430-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux438}
+
+Пусть \(X\) равномерна на \([-1,1]\), а
+
+\[
+Y=X^2.
+\]
+
+Тогда \(Y\) полностью определяется по \(X\), значит независимости нет.
+Но
+
+\[
+\mathbb E[X]=0,
+\qquad
+\mathbb E[XY]=\mathbb E[X^3]=0,
+\]
+
+поэтому центрированные величины могут быть ортогональны или
+некоррелированы без независимости.
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\textbf{Почему \(L^2\) - пространство со скалярным произведением.}
+
+Для \(X,Y\in L^2\) произведение \(XY\) интегрируемо по
+Коши-Буняковскому:
+
+\[
+\mathbb E|XY|
+\le
+(\mathbb EX^2)^{1/2}(\mathbb EY^2)^{1/2}.
+\]
+
+Линейность и симметрия следуют из линейности математического ожидания.
+Положительность:
+
+\[
+\langle X,X\rangle=\mathbb EX^2\ge0.
+\]
+
+Если \(\mathbb EX^2=0\), то \(X=0\) почти наверное, поэтому в \(L^2\)
+это нулевой элемент.
+
+\textbf{Идея полноты \(L^2\).}
+
+Если \((X_n)\) фундаментальна по норме \(\|\cdot\|_2\), то существует
+\(X\in L^2\), к которому \(X_n\) сходится в среднем квадратичном:
+
+\[
+\mathbb E[(X_n-X)^2]\to0.
+\]
+
+Полное доказательство относится к теории \(L^p\), но для экзамена важно
+знать результат: \(L^2\) полно, значит это гильбертово пространство.
+
+\textbf{Доказательство теоремы о проекции: идея.}
+
+Нужно минимизировать функцию
+
+\[
+h\mapsto\|x-h\|^2
+\]
+
+по \(h\in H\). В гильбертовом пространстве замкнутость \(H\)
+обеспечивает существование ближайшего элемента. Если \(y=P_Hx\) -
+минимум, то для любого направления \(u\in H\) функция
+
+\[
+\varphi(t)=\|x-y-tu\|^2
+\]
+
+имеет минимум при \(t=0\). Поэтому
+
+\[
+\varphi'(0)=-2\langle x-y,u\rangle=0.
+\]
+
+Значит
+
+\[
+x-y\perp H.
+\]
+
+Обратно, если \(x-y\perp H\), то для любого \(h\in H\)
+
+\[
+x-h=(x-y)+(y-h)
+\]
+
+и по Пифагору
+
+\[
+\|x-h\|^2=\|x-y\|^2+\|y-h\|^2\ge\|x-y\|^2.
+\]
+
+Значит \(y\) - ближайший элемент.
+
+\textbf{Доказательство нормальных уравнений.}
+
+Пусть
+
+\[
+\widehat x=\sum_{j=1}^n a_jh_j.
+\]
+
+Условие проекции:
+
+\[
+x-\widehat x\perp h_i
+\]
+
+для каждого \(i\). Поэтому
+
+\[
+\left\langle x-\sum_{j=1}^n a_jh_j,\ h_i\right\rangle=0.
+\]
+
+Раскрывая линейность, получаем
+
+\[
+\sum_{j=1}^n a_j\langle h_j,h_i\rangle=\langle x,h_i\rangle.
+\]
+
+\textbf{Почему условное ожидание - проекция.}
+
+Пусть \(Y=\mathbb E[X\mid\mathcal G]\). По определению условного
+ожидания
+
+\[
+\int_G(X-Y)\,dP=0
+\]
+
+для всех \(G\in\mathcal G\). Это значит
+
+\[
+\mathbb E[(X-Y)\mathbf 1_G]=0.
+\]
+
+Линейные комбинации индикаторов дают простые \(\mathcal G\)-измеримые
+функции. Предельным переходом получаем
+
+\[
+\mathbb E[(X-Y)Z]=0
+\]
+
+для всех \(Z\in L^2(\mathcal G)\). Значит
+
+\[
+X-Y\perp L^2(\mathcal G),
+\]
+
+и \(Y\) является ортогональной проекцией.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Частичный порядок:
+\end{enumerate}
+
+\[
+a\le a,\quad
+a\le b,\ b\le a\Rightarrow a=b,\quad
+a\le b,\ b\le c\Rightarrow a\le c.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(L^2\):
+\end{enumerate}
+
+\[
+L^2=\{X:\mathbb EX^2<\infty\}/\sim.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Скалярное произведение:
+\end{enumerate}
+
+\[
+\langle X,Y\rangle=\mathbb E[XY],
+\qquad
+\|X\|_2=(\mathbb EX^2)^{1/2}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Центрированные величины:
+\end{enumerate}
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\langle X-\mathbb EX,\ Y-\mathbb EY\rangle.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Проектор:
+\end{enumerate}
+
+\[
+P_Hx\in H,
+\qquad
+x-P_Hx\perp H.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Нормальные уравнения:
+\end{enumerate}
+
+\[
+\sum_j a_j\langle h_j,h_i\rangle=\langle x,h_i\rangle.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Условное ожидание как проекция:
+\end{enumerate}
+
+\[
+\mathbb E[X\mid\mathcal G]
+=
+P_{L^2(\mathcal G)}X.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Матрица Грама:
+\end{enumerate}
+
+\[
+G_{ij}=\langle h_i,h_j\rangle,
+\qquad
+a^TGa=\left\|\sum_i a_ih_i\right\|^2\ge0.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Что такое частичный порядок?}
+
+Это отношение \(\le\), которое рефлексивно, антисимметрично и
+транзитивно. Пример: включение множеств \(A\subset B\).
+
+\textbf{Вопрос. Чем частичный порядок отличается от линейного?}
+
+В линейном порядке любые два элемента сравнимы. В частичном - не
+обязательно. Например, два события могут не быть вложены друг в друга.
+
+\textbf{Вопрос. Какие алгебраические структуры важны в вероятности?}
+
+Линейные пространства случайных величин, пространства \(L^p\), алгебры и
+\(\sigma\)-алгебры событий, матрицы с операциями сложения и умножения.
+
+\textbf{Вопрос. Почему \(L^2\) - линейное пространство?}
+
+Если \(X,Y\in L^2\), то \(aX+bY\in L^2\), потому что квадрат линейной
+комбинации оценивается через \(X^2\) и \(Y^2\).
+
+\textbf{Вопрос. Почему \(\mathbb E[XY]\) корректно определено для
+\(X,Y\in L^2\)?}
+
+По неравенству Коши-Буняковского:
+
+\[
+\mathbb E|XY|\le(\mathbb EX^2)^{1/2}(\mathbb EY^2)^{1/2}.
+\]
+
+\textbf{Вопрос. Что значит полнота \(L^2\)?}
+
+Всякая фундаментальная по среднеквадратичной норме последовательность
+случайных величин сходится в \(L^2\) к случайной величине из \(L^2\).
+
+\textbf{Вопрос. Что такое ортогональность в \(L^2\)?}
+
+\[
+X\perp Y
+\quad\Longleftrightarrow\quad
+\mathbb E[XY]=0.
+\]
+
+Для центрированных величин это то же самое, что некоррелированность.
+
+\textbf{Вопрос. Ортогональность означает независимость?}
+
+Нет. Ортогональность означает нулевое скалярное произведение, то есть
+для центрированных величин нулевую ковариацию. Независимость сильнее.
+
+\textbf{Вопрос. Зачем нужна замкнутость подпространства в теореме о
+проекции?}
+
+Чтобы ближайший элемент действительно лежал в \(H\). Без замкнутости
+минимум может достигаться только в замыкании \(H\).
+
+\textbf{Вопрос. Как найти проекцию на конечномерное подпространство?}
+
+Записать
+
+\[
+P_Hx=\sum_j a_jh_j
+\]
+
+и решить нормальные уравнения:
+
+\[
+\sum_j a_j\langle h_j,h_i\rangle=\langle x,h_i\rangle.
+\]
+
+\textbf{Вопрос. Что такое матрица Грама?}
+
+\[
+G_{ij}=\langle h_i,h_j\rangle.
+\]
+
+Она неотрицательно определена, потому что
+
+\[
+a^TGa=\left\|\sum_i a_ih_i\right\|^2\ge0.
+\]
+
+\textbf{Вопрос. Почему ковариационная матрица неотрицательно
+определена?}
+
+Она является матрицей Грама центрированных случайных величин:
+
+\[
+\Sigma_{ij}
+=
+\langle X_i-\mathbb EX_i,\ X_j-\mathbb EX_j\rangle.
+\]
+
+\textbf{Вопрос. Почему условное ожидание - проекция?}
+
+Потому что ошибка
+
+\[
+X-\mathbb E[X\mid\mathcal G]
+\]
+
+ортогональна всем \(\mathcal G\)-измеримым величинам из \(L^2\).
+
+\textbf{Вопрос. Какой оптимальный смысл условного ожидания?}
+
+Это лучший среднеквадратичный прогноз:
+
+\[
+\mathbb E[(X-\mathbb E[X\mid\mathcal G])^2]
+=
+\min_{Y\in L^2(\mathcal G)}
+\mathbb E[(X-Y)^2].
+\]
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Путать ортогональность и независимость.
+\item
+  Забывать, что в \(L^2\) элементы считаются с точностью до равенства
+  почти наверное.
+\item
+  Использовать скалярное произведение \(\mathbb E[XY]\) без проверки
+  вторых моментов.
+\item
+  Называть любое линейное подпространство подходящим для проекции,
+  забывая замкнутость.
+\item
+  Путать матрицу вторых моментов \(\mathbb E[XX^T]\) и ковариационную
+  матрицу \(\mathbb E[(X-m)(X-m)^T]\).
+\item
+  Забывать центрирование при связи ковариации со скалярным
+  произведением.
+\item
+  Считать, что условное ожидание как проекция верно только для конечных
+  разбиений. На самом деле оно верно для любой под-\(\sigma\)-алгебры
+  при \(X\in L^2\).
+\item
+  В нормальных уравнениях ставить коэффициенты без матрицы Грама, как
+  будто система всегда ортонормирована.
+\item
+  Путать проектор \(P_H\) и произвольный линейный оператор с \(P^2=P\):
+  ортогональный проектор еще самосопряжен.
+\item
+  Забывать, что \(L^2\)-норма измеряет среднеквадратичную ошибку, а не
+  поточечное расстояние.
+\end{enumerate}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 10.} Условное ожидание определяется через интегральное
+свойство, а в \(L^2\) получает геометрический смысл ортогональной
+проекции.
+
+\textbf{Билет 11.} Вторые моменты, дисперсии и ковариации вычисляются
+через интегралы по распределению; здесь они становятся нормами и
+скалярными произведениями.
+
+\textbf{Билет 13.} Матрица вторых моментов и ковариационная матрица
+связаны с производными характеристической функции.
+
+\textbf{Билет 14.} Коэффициент корреляции - косинус угла между
+центрированными величинами в \(L^2\).
+
+\textbf{Билет 18.} Гауссовские векторы задаются средним и ковариационной
+матрицей; ортогонализация и проекции особенно удобны в гауссовском
+случае.
+
+\textbf{Билет 24.} Корреляционная функция и эргодичность по среднему
+используют \(L^2\)-оценки и дисперсии средних.
+
+\textbf{Билет 25.} Спектральная теория стационарных последовательностей
+строится в гильбертовом пространстве второго порядка.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Частичный порядок - рефлексивность, антисимметричность,
+  транзитивность.
+\item
+  \(L^2\) - пространство случайных величин с конечным вторым моментом:
+\end{enumerate}
+
+\[
+L^2=\{X:\mathbb EX^2<\infty\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Скалярное произведение:
+\end{enumerate}
+
+\[
+\langle X,Y\rangle=\mathbb E[XY].
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Для центрированных величин:
+\end{enumerate}
+
+\[
+\operatorname{Cov}(X,Y)=\langle X,Y\rangle.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Проекция на замкнутое подпространство:
+\end{enumerate}
+
+\[
+x-P_Hx\perp H.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Условное ожидание в \(L^2\):
+\end{enumerate}
+
+\[
+\mathbb E[X\mid\mathcal G]
+=
+P_{L^2(\mathcal G)}X.
+\]
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  объяснить, что \(L^2\) является гильбертовым пространством;
+\item
+  записать норму
+\end{enumerate}
+
+\[
+\|X\|_2=(\mathbb EX^2)^{1/2};
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  сформулировать теорему о проекции на замкнутое подпространство;
+\item
+  записать нормальные уравнения для конечномерной проекции;
+\item
+  объяснить матрицу Грама и ее неотрицательную определенность;
+\item
+  привести пример проекции на константы:
+\end{enumerate}
+
+\[
+P_HX=\mathbb EX.
+\]
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  различие между частичным и линейным порядком;
+\item
+  примеры алгебраических структур в вероятности;
+\item
+  доказательную идею проекторной теоремы через минимизацию
+  \(\|x-h\|^2\);
+\item
+  Пифагорову формулу для проекции;
+\item
+  свойства проектора: линейность, идемпотентность, самосопряженность;
+\item
+  условное ожидание как лучший среднеквадратичный прогноз;
+\item
+  предупреждение, что ортогональность не равна независимости.
+\end{enumerate}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Сначала я называю общий язык. Упорядоченная структура - это множество с
+отношением порядка. Частичный порядок рефлексивен, антисимметричен и
+транзитивен. Примеры: включение событий \(A\subset B\), порядок
+случайных величин \(X\le Y\) почти наверное, порядок на неотрицательно
+определенных матрицах.
+
+Алгебраическая структура - это множество с операциями. В этом билете
+главный пример - линейное пространство случайных величин. Если
+\(X,Y\in L^2\), то \(aX+bY\in L^2\).
+
+Дальше перехожу к гильбертову пространству. Рассматриваем
+
+\[
+L^2(\Omega,\mathcal F,P)=\{X:\mathbb EX^2<\infty\}/\sim.
+\]
+
+Скалярное произведение:
+
+\[
+\langle X,Y\rangle=\mathbb E[XY],
+\]
+
+норма:
+
+\[
+\|X\|_2=(\mathbb EX^2)^{1/2}.
+\]
+
+По Коши-Буняковскому \(\mathbb E[XY]\) корректно определено.
+Пространство \(L^2\) полно, поэтому это гильбертово пространство.
+
+Для центрированных величин
+
+\[
+X^0=X-\mathbb EX,\qquad Y^0=Y-\mathbb EY
+\]
+
+получаем
+
+\[
+\operatorname{Cov}(X,Y)=\langle X^0,Y^0\rangle.
+\]
+
+Значит ковариация - это скалярное произведение центрированных случайных
+величин.
+
+Потом формулирую теорему о проекции. Если \(H\) - замкнутое
+подпространство гильбертова пространства, то для любого \(x\) существует
+единственный \(P_Hx\in H\), такой что
+
+\[
+x-P_Hx\perp H.
+\]
+
+Это ближайший элемент из \(H\):
+
+\[
+\|x-P_Hx\|=\min_{h\in H}\|x-h\|.
+\]
+
+Проектор линеен, идемпотентен и самосопряжен.
+
+В конечномерном случае, если
+
+\[
+P_Hx=\sum_j a_jh_j,
+\]
+
+то коэффициенты находятся из нормальных уравнений:
+
+\[
+\sum_j a_j\langle h_j,h_i\rangle=\langle x,h_i\rangle.
+\]
+
+Матрица \(\langle h_i,h_j\rangle\) - матрица Грама. Она неотрицательно
+определена.
+
+Завершаю вероятностным смыслом. Если \(X\in L^2\) и
+\(\mathcal G\subset\mathcal F\), то
+
+\[
+\mathbb E[X\mid\mathcal G]
+=
+P_{L^2(\mathcal G)}X.
+\]
+
+То есть условное ожидание - лучший среднеквадратичный прогноз \(X\) по
+информации \(\mathcal G\):
+
+\[
+\mathbb E[(X-\mathbb E[X\mid\mathcal G])^2]
+=
+\min_{Y\in L^2(\mathcal G)}\mathbb E[(X-Y)^2].
+\]
+
+Главные ловушки: не путать ортогональность и независимость, не забывать
+вторые моменты и замкнутость подпространства.
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить четыре формулы.
+
+\textbf{\(L^2\) как гильбертово пространство:}
+
+\[
+\langle X,Y\rangle=\mathbb E[XY],
+\qquad
+\|X\|_2=(\mathbb EX^2)^{1/2}.
+\]
+
+\textbf{Ковариация как скалярное произведение:}
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\langle X-\mathbb EX,\ Y-\mathbb EY\rangle.
+\]
+
+\textbf{Проектор:}
+
+\[
+P_Hx\in H,
+\qquad
+x-P_Hx\perp H.
+\]
+
+\textbf{Условное ожидание как проекция:}
+
+\[
+\mathbb E[X\mid\mathcal G]
+=
+P_{L^2(\mathcal G)}X.
+\]
+
+Главная ловушка: ортогональность/некоррелированность не означает
+независимость; проекция гарантируется на замкнутое подпространство.
+
+\newpage
+
+\end{document}

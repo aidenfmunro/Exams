@@ -1,0 +1,1930 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 10. Теорема Радона-Никодима, плотности распределений и
+условные математические
+ожидания}\label{ux431ux438ux43bux435ux442-10.-ux442ux435ux43eux440ux435ux43cux430-ux440ux430ux434ux43eux43dux430-ux43dux438ux43aux43eux434ux438ux43cux430-ux43fux43bux43eux442ux43dux43eux441ux442ux438-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux439-ux438-ux443ux441ux43bux43eux432ux43dux44bux435-ux43cux430ux442ux435ux43cux430ux442ux438ux447ux435ux441ux43aux438ux435-ux43eux436ux438ux434ux430ux43dux438ux44f}
+
+Источники: Ширяев 1, гл. II, §§6-7; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Теорема Радона-Никодима говорит: если одна мера абсолютно непрерывна
+относительно другой, то первая выражается через интеграл некоторой
+функции по второй мере. Эта функция называется плотностью, или
+производной Радона-Никодима.
+
+Главная формула:
+
+\[
+\nu\ll\mu
+\quad\Longrightarrow\quad
+\nu(A)=\int_A f\,d\mu,
+\qquad
+f=\frac{d\nu}{d\mu}.
+\]
+
+В вероятности плотность распределения - это частный случай этой
+производной:
+
+\[
+P_X\ll\lambda_n
+\quad\Longrightarrow\quad
+P_X(B)=\int_B p_X(x)\,dx,
+\qquad
+p_X=\frac{dP_X}{d\lambda_n}.
+\]
+
+Условное математическое ожидание - это среднее значение случайной
+величины при заданной информации. Если \(X\in L^1\) и
+\(\mathcal G\subset\mathcal F\), то
+
+\[
+Y=\mathbb E[X\mid\mathcal G]
+\]
+
+означает:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(Y\) является \(\mathcal G\)-измеримой;
+\item
+  для всех \(G\in\mathcal G\)
+\end{enumerate}
+
+\[
+\int_G Y\,dP=\int_G X\,dP.
+\]
+
+Существование условного ожидания получается из теоремы Радона-Никодима:
+на \(\mathcal G\) рассматривают меру со знаком
+
+\[
+Q(G)=\int_G X\,dP,
+\]
+
+она абсолютно непрерывна относительно \(P|_{\mathcal G}\), а ее
+производная Радона-Никодима и есть \(\mathbb E[X\mid\mathcal G]\).
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Три уровня производной
+Радона-Никодима}\label{ux442ux440ux438-ux443ux440ux43eux432ux43dux44f-ux43fux440ux43eux438ux437ux432ux43eux434ux43dux43eux439-ux440ux430ux434ux43eux43dux430-ux43dux438ux43aux43eux434ux438ux43cux430}
+
+В этом билете соединяются три уровня одной идеи.
+
+Первый уровень - теорема Радона-Никодима. Она отвечает на вопрос: когда
+меру \(\nu\) можно записать как интеграл по другой мере \(\mu\)? Ответ:
+когда \(\nu\) абсолютно непрерывна относительно \(\mu\), то есть когда
+\(\mu\)-нулевые множества являются и \(\nu\)-нулевыми.
+
+Второй уровень - плотности распределений. Если распределение случайного
+вектора абсолютно непрерывно относительно меры Лебега, то у него есть
+плотность. То есть плотность - это не отдельный объект, который
+существует всегда, а производная Радона-Никодима распределения по мере
+Лебега.
+
+Третий уровень - условное математическое ожидание. Оно строится как
+производная Радона-Никодима меры
+
+\[
+G\mapsto\int_G X\,dP
+\]
+
+относительно вероятности, но только на меньшей \(\sigma\)-алгебре
+\(\mathcal G\). Поэтому условное ожидание - это не ``значение при
+фиксированном исходе'', а \(\mathcal G\)-измеримая случайная величина,
+которая сохраняет интегралы по всем событиям из \(\mathcal G\).
+
+\subsubsection{2.2. Абсолютная непрерывность
+мер}\label{ux430ux431ux441ux43eux43bux44eux442ux43dux430ux44f-ux43dux435ux43fux440ux435ux440ux44bux432ux43dux43eux441ux442ux44c-ux43cux435ux440}
+
+Пусть \((E,\mathcal E)\) - измеримое пространство, а \(\mu\) и \(\nu\) -
+меры на нем. Говорят, что \(\nu\) абсолютно непрерывна относительно
+\(\mu\), и пишут
+
+\[
+\nu\ll\mu,
+\]
+
+если
+
+\[
+\mu(A)=0\quad\Longrightarrow\quad \nu(A)=0
+\]
+
+для всех \(A\in\mathcal E\). Интуитивно: мера \(\nu\) не видит ничего
+вне того, что видит \(\mu\); у \(\nu\) нет массы на \(\mu\)-нулевых
+множествах.
+
+\subsubsection{2.3. Теорема
+Радона-Никодима}\label{ux442ux435ux43eux440ux435ux43cux430-ux440ux430ux434ux43eux43dux430-ux43dux438ux43aux43eux434ux438ux43cux430}
+
+Теорема Радона-Никодима в вероятностно нужной форме звучит так. Пусть
+\(\mu\) - \(\sigma\)-конечная мера, а \(\nu\) - \(\sigma\)-конечная
+неотрицательная мера на \((E,\mathcal E)\), причем
+
+\[
+\nu\ll\mu.
+\]
+
+Тогда существует \(\mathcal E\)-измеримая функция
+
+\[
+f:E\to[0,\infty]
+\]
+
+такая, что для всех \(A\in\mathcal E\)
+
+\[
+\nu(A)=\int_A f\,d\mu.
+\]
+
+Функция \(f\) называется производной Радона-Никодима меры \(\nu\)
+относительно \(\mu\) и обозначается
+
+\[
+f=\frac{d\nu}{d\mu}.
+\]
+
+Эта функция единственна \(\mu\)-почти всюду. Это значит, что если \(f\)
+и \(g\) дают одну и ту же меру:
+
+\[
+\nu(A)=\int_A f\,d\mu=\int_A g\,d\mu
+\]
+
+для всех \(A\), то
+
+\[
+f=g
+\qquad \mu\text{-почти всюду}.
+\]
+
+Для мер со знаком формулировка аналогична: если \(\eta\) - мера со
+знаком конечной вариации или более общо допустимая в стандартной
+формулировке, \(\eta\ll\mu\), то существует измеримая функция \(f\),
+возможно знакопеременная, такая что
+
+\[
+\eta(A)=\int_A f\,d\mu.
+\]
+
+Именно этот вариант нужен для условного ожидания, потому что
+
+\[
+Q(G)=\int_G X\,dP
+\]
+
+может быть мерой со знаком.
+
+\subsubsection{2.4. Плотность распределения как производная
+Радона-Никодима}\label{ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43aux430ux43a-ux43fux440ux43eux438ux437ux432ux43eux434ux43dux430ux44f-ux440ux430ux434ux43eux43dux430-ux43dux438ux43aux43eux434ux438ux43cux430}
+
+Теперь связь с плотностями распределений. Пусть
+\(X:\Omega\to\mathbb R^n\) - случайный вектор, а \(P_X\) - его
+распределение:
+
+\[
+P_X(B)=P\{X\in B\},
+\qquad
+B\in\mathcal B(\mathbb R^n).
+\]
+
+Если
+
+\[
+P_X\ll\lambda_n,
+\]
+
+где \(\lambda_n\) - \(n\)-мерная мера Лебега, то по теореме
+Радона-Никодима существует борелевская функция \(p_X\ge0\), такая что
+
+\[
+P_X(B)=\int_B p_X(x)\,\lambda_n(dx)
+=
+\int_B p_X(x)\,dx.
+\]
+
+Эта функция \(p_X\) называется плотностью распределения \(X\)
+относительно меры Лебега:
+
+\[
+p_X=\frac{dP_X}{d\lambda_n}.
+\]
+
+Она определена не поточечно единственным образом, а только почти всюду
+относительно \(\lambda_n\). Поэтому значения плотности в отдельных
+точках не имеют вероятностного смысла. Вероятности получаются только
+после интегрирования по множествам:
+
+\[
+P\{X\in B\}=\int_B p_X(x)\,dx.
+\]
+
+Для конечномерных распределений случайного процесса \((X_t)_{t\in T}\)
+все то же самое применяется к вектору
+
+\[
+(X_{t_1},\ldots,X_{t_n}).
+\]
+
+Если его распределение абсолютно непрерывно относительно \(\lambda_n\),
+то есть плотность конечномерного распределения:
+
+\[
+p_{t_1,\ldots,t_n}(x_1,\ldots,x_n)
+=
+\frac{dP_{(X_{t_1},\ldots,X_{t_n})}}{d\lambda_n}.
+\]
+
+Тогда
+
+\[
+P\{(X_{t_1},\ldots,X_{t_n})\in B\}
+=
+\int_B p_{t_1,\ldots,t_n}(x)\,dx.
+\]
+
+Если есть совместная плотность \(p_{X,Y}(x,y)\), то маргинальные
+плотности находятся интегрированием:
+
+\[
+p_X(x)=\int_{\mathbb R^m}p_{X,Y}(x,y)\,dy,
+\qquad
+p_Y(y)=\int_{\mathbb R^n}p_{X,Y}(x,y)\,dx,
+\]
+
+что связано с Билетом 09 о Фубини.
+
+Для условных плотностей используется та же логика. Если \((X,Y)\) имеет
+совместную плотность \(p_{X,Y}(x,y)\), то для \(P_Y\)-почти всех \(y\),
+для которых
+
+\[
+p_Y(y)>0,
+\]
+
+можно взять версию условной плотности \(X\) при \(Y=y\) по формуле
+
+\[
+p_{X\mid Y}(x\mid y)
+=
+\frac{p_{X,Y}(x,y)}{p_Y(y)}.
+\]
+
+При \(p_Y(y)=0\) значение версии условной плотности задают произвольно.
+
+Тогда
+
+\[
+\mathbb E[g(X)\mid Y=y]
+=
+\int g(x)p_{X\mid Y}(x\mid y)\,dx,
+\]
+
+если интеграл определен. А условное ожидание относительно случайной
+величины \(Y\) записывается как
+
+\[
+\mathbb E[g(X)\mid Y]
+=
+m(Y),
+\]
+
+где
+
+\[
+m(y)=\int g(x)p_{X\mid Y}(x\mid y)\,dx.
+\]
+
+Важно: формула с условной плотностью - удобный вычислительный случай.
+Общий объект \(\mathbb E[X\mid\mathcal G]\) существует и без плотностей.
+
+\subsubsection{2.5. Определение условного математического
+ожидания}\label{ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux443ux441ux43bux43eux432ux43dux43eux433ux43e-ux43cux430ux442ux435ux43cux430ux442ux438ux447ux435ux441ux43aux43eux433ux43e-ux43eux436ux438ux434ux430ux43dux438ux44f}
+
+Перейдем к строгому определению условного математического ожидания.
+Пусть
+
+\[
+(\Omega,\mathcal F,P)
+\]
+
+вероятностное пространство, \(\mathcal G\subset\mathcal F\) -
+под-\(\sigma\)-алгебра, а \(X\) - интегрируемая случайная величина:
+
+\[
+\mathbb E|X|<\infty.
+\]
+
+Случайная величина \(Y\) называется условным математическим ожиданием
+\(X\) относительно \(\mathcal G\), если:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(Y\) является \(\mathcal G\)-измеримой;
+\item
+  \(Y\) интегрируема;
+\item
+  для каждого события \(G\in\mathcal G\)
+\end{enumerate}
+
+\[
+\int_G Y\,dP=\int_G X\,dP.
+\]
+
+Пишут
+
+\[
+Y=\mathbb E[X\mid\mathcal G].
+\]
+
+Смысл условий такой. \(\mathcal G\) - это доступная информация.
+\(\mathcal G\)-измеримость означает, что \(Y\) зависит только от этой
+информации. Интегральное равенство означает, что на любом событии,
+различимом с помощью \(\mathcal G\), средняя масса \(Y\) такая же, как у
+исходной величины \(X\).
+
+\subsubsection{2.6. Существование и единственность условного
+ожидания}\label{ux441ux443ux449ux435ux441ux442ux432ux43eux432ux430ux43dux438ux435-ux438-ux435ux434ux438ux43dux441ux442ux432ux435ux43dux43dux43eux441ux442ux44c-ux443ux441ux43bux43eux432ux43dux43eux433ux43e-ux43eux436ux438ux434ux430ux43dux438ux44f}
+
+Существование доказывается через Радона-Никодима. На \(\mathcal G\)
+определим функцию множеств
+
+\[
+Q(G)=\int_G X\,dP,
+\qquad
+G\in\mathcal G.
+\]
+
+Так как \(X\in L^1\), \(Q\) является конечной мерой со знаком на
+\((\Omega,\mathcal G)\). Если
+
+\[
+P(G)=0,
+\]
+
+то
+
+\[
+Q(G)=\int_G X\,dP=0,
+\]
+
+значит
+
+\[
+Q\ll P|_{\mathcal G}.
+\]
+
+По теореме Радона-Никодима существует \(\mathcal G\)-измеримая функция
+\(Y\), такая что
+
+\[
+Q(G)=\int_G Y\,dP.
+\]
+
+То есть
+
+\[
+\int_G X\,dP=\int_G Y\,dP
+\]
+
+для всех \(G\in\mathcal G\). Именно эта \(Y\) и есть
+\(\mathbb E[X\mid\mathcal G]\).
+
+Единственность условного ожидания тоже понимается почти наверное. Если
+\(Y_1\) и \(Y_2\) удовлетворяют определению, то
+
+\[
+Y_1=Y_2
+\qquad P\text{-почти наверное}.
+\]
+
+Поэтому условное ожидание - это класс эквивалентности случайных величин
+с точностью до изменения на множестве вероятности ноль. Конкретно
+выбранную функцию называют версией условного ожидания.
+
+\subsubsection{2.7. Условная вероятность и ожидание относительно
+случайной
+величины}\label{ux443ux441ux43bux43eux432ux43dux430ux44f-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux44c-ux438-ux43eux436ux438ux434ux430ux43dux438ux435-ux43eux442ux43dux43eux441ux438ux442ux435ux43bux44cux43dux43e-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+Условная вероятность - частный случай условного ожидания. Для события
+\(A\in\mathcal F\):
+
+\[
+P(A\mid\mathcal G)=\mathbb E[\mathbf 1_A\mid\mathcal G].
+\]
+
+Это \(\mathcal G\)-измеримая случайная величина, для которой
+
+\[
+\int_G P(A\mid\mathcal G)\,dP
+=
+P(A\cap G),
+\qquad
+G\in\mathcal G.
+\]
+
+Если \(\mathcal G=\sigma(Y)\), то пишут
+
+\[
+\mathbb E[X\mid Y]
+\]
+
+вместо
+
+\[
+\mathbb E[X\mid\sigma(Y)].
+\]
+
+Так как \(\mathbb E[X\mid Y]\) является \(\sigma(Y)\)-измеримой, при
+стандартных условиях она представляется как функция от \(Y\):
+
+\[
+\mathbb E[X\mid Y]=m(Y)
+\]
+
+для некоторой борелевской функции \(m\). Эту функцию часто обозначают
+
+\[
+m(y)=\mathbb E[X\mid Y=y].
+\]
+
+Но нужно помнить: \(\mathbb E[X\mid Y=y]\) как поточечная функция
+определена только с точностью до \(P_Y\)-нулевых множеств. При
+непрерывном \(Y\) событие \(\{Y=y\}\) обычно имеет вероятность ноль,
+поэтому нельзя определять условное ожидание простой формулой
+\(\mathbb E[X\mathbf 1_{\{Y=y\}}]/P\{Y=y\}\).
+
+\subsubsection{2.8. Свойства условного
+ожидания}\label{ux441ux432ux43eux439ux441ux442ux432ux430-ux443ux441ux43bux43eux432ux43dux43eux433ux43e-ux43eux436ux438ux434ux430ux43dux438ux44f}
+
+Основные свойства условного ожидания следуют из определения и
+единственности.
+
+Линейность:
+
+\[
+\mathbb E[aX+bZ\mid\mathcal G]
+=
+a\mathbb E[X\mid\mathcal G]
++b\mathbb E[Z\mid\mathcal G],
+\]
+
+если все ожидания корректно определены.
+
+Монотонность:
+
+\[
+X\le Z\ \text{п.н.}
+\quad\Longrightarrow\quad
+\mathbb E[X\mid\mathcal G]\le\mathbb E[Z\mid\mathcal G]\ \text{п.н.}
+\]
+
+Сохранение среднего:
+
+\[
+\mathbb E\,\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+Если \(X\) уже \(\mathcal G\)-измерима, то
+
+\[
+\mathbb E[X\mid\mathcal G]=X.
+\]
+
+Если \(X\) независима от \(\mathcal G\), то
+
+\[
+\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+Башенное свойство: если
+\(\mathcal H\subset\mathcal G\subset\mathcal F\), то
+
+\[
+\mathbb E[\mathbb E[X\mid\mathcal G]\mid\mathcal H]
+=
+\mathbb E[X\mid\mathcal H].
+\]
+
+В частности,
+
+\[
+\mathbb E[\mathbb E[X\mid\mathcal G]]
+=
+\mathbb EX.
+\]
+
+Вынос известного множителя: если \(Z\) ограничена и
+\(\mathcal G\)-измерима, то
+
+\[
+\mathbb E[ZX\mid\mathcal G]
+=
+Z\,\mathbb E[X\mid\mathcal G].
+\]
+
+Более общо формула верна при интегрируемости \(ZX\) и
+\(Z\,\mathbb E[X\mid\mathcal G]\).
+
+Это свойство часто формулируют как ``известное относительно
+\(\mathcal G\) можно выносить за знак условного ожидания''.
+
+\subsubsection{2.9. Геометрический смысл и
+итоги}\label{ux433ux435ux43eux43cux435ux442ux440ux438ux447ux435ux441ux43aux438ux439-ux441ux43cux44bux441ux43b-ux438-ux438ux442ux43eux433ux438}
+
+Есть и геометрический смысл: если \(X\in L^2\), то
+\(\mathbb E[X\mid\mathcal G]\) - ортогональная проекция \(X\) на
+подпространство \(\mathcal G\)-измеримых квадратично интегрируемых
+случайных величин. Это связывает билет с Билетом 12.
+
+Итак, Радон-Никодим дает общий язык плотностей: плотность меры
+относительно меры, плотность распределения относительно Лебега, условная
+плотность как отношение совместной и маргинальной плотностей. Условное
+ожидание - тот же механизм, примененный к мере \(G\mapsto\int_G X\,dP\)
+на под-\(\sigma\)-алгебре.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Абсолютная непрерывность
+мер}\label{ux430ux431ux441ux43eux43bux44eux442ux43dux430ux44f-ux43dux435ux43fux440ux435ux440ux44bux432ux43dux43eux441ux442ux44c-ux43cux435ux440-1}
+
+Мера \(\nu\) абсолютно непрерывна относительно меры \(\mu\), если
+
+\[
+\mu(A)=0\quad\Rightarrow\quad \nu(A)=0
+\]
+
+для всех измеримых \(A\). Обозначение:
+
+\[
+\nu\ll\mu.
+\]
+
+\subsubsection{Сингулярность
+мер}\label{ux441ux438ux43dux433ux443ux43bux44fux440ux43dux43eux441ux442ux44c-ux43cux435ux440}
+
+Меры \(\nu\) и \(\mu\) сингулярны, если существует измеримое множество
+\(A\), такое что
+
+\[
+\mu(A)=0,\qquad \nu(E\setminus A)=0.
+\]
+
+Иными словами, меры сосредоточены на непересекающихся с точностью до
+нулевых множеств частях пространства.
+
+\subsubsection{Производная
+Радона-Никодима}\label{ux43fux440ux43eux438ux437ux432ux43eux434ux43dux430ux44f-ux440ux430ux434ux43eux43dux430-ux43dux438ux43aux43eux434ux438ux43cux430}
+
+Если \(\nu\ll\mu\) и
+
+\[
+\nu(A)=\int_A f\,d\mu
+\]
+
+для всех \(A\), то
+
+\[
+f=\frac{d\nu}{d\mu}
+\]
+
+называется производной Радона-Никодима, или плотностью \(\nu\)
+относительно \(\mu\).
+
+\subsubsection{Плотность
+распределения}\label{ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Если \(P_X\ll\lambda_n\), то
+
+\[
+p_X=\frac{dP_X}{d\lambda_n}
+\]
+
+называется плотностью распределения \(X\) относительно меры Лебега.
+
+\subsubsection{Плотность конечномерного
+распределения}\label{ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux433ux43e-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Для процесса \((X_t)\) плотность вектора \((X_{t_1},\ldots,X_{t_n})\):
+
+\[
+p_{t_1,\ldots,t_n}
+=
+\frac{dP_{(X_{t_1},\ldots,X_{t_n})}}{d\lambda_n},
+\]
+
+если соответствующее распределение абсолютно непрерывно относительно
+\(\lambda_n\).
+
+\subsubsection{\texorpdfstring{Под-\(\sigma\)-алгебра}{Под-\textbackslash sigma-алгебра}}\label{ux43fux43eux434-sigma-ux430ux43bux433ux435ux431ux440ux430}
+
+\(\mathcal G\subset\mathcal F\) - \(\sigma\)-алгебра, содержащая
+доступную информацию. Чем больше \(\mathcal G\), тем больше событий мы
+различаем.
+
+\subsubsection{\texorpdfstring{Условное математическое ожидание
+относительно
+\(\mathcal G\)}{Условное математическое ожидание относительно \textbackslash mathcal G}}\label{ux443ux441ux43bux43eux432ux43dux43eux435-ux43cux430ux442ux435ux43cux430ux442ux438ux447ux435ux441ux43aux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43eux442ux43dux43eux441ux438ux442ux435ux43bux44cux43dux43e-mathcal-g}
+
+Для \(X\in L^1\):
+
+\[
+Y=\mathbb E[X\mid\mathcal G]
+\]
+
+если \(Y\) \(\mathcal G\)-измерима, интегрируема и
+
+\[
+\int_GY\,dP=\int_GX\,dP
+\]
+
+для всех \(G\in\mathcal G\).
+
+\subsubsection{Версия условного
+ожидания}\label{ux432ux435ux440ux441ux438ux44f-ux443ux441ux43bux43eux432ux43dux43eux433ux43e-ux43eux436ux438ux434ux430ux43dux438ux44f}
+
+Конкретная \(\mathcal G\)-измеримая функция \(Y\), удовлетворяющая
+определению. Две версии совпадают \(P\)-почти наверное.
+
+\subsubsection{\texorpdfstring{Условная вероятность относительно
+\(\mathcal G\)}{Условная вероятность относительно \textbackslash mathcal G}}\label{ux443ux441ux43bux43eux432ux43dux430ux44f-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux44c-ux43eux442ux43dux43eux441ux438ux442ux435ux43bux44cux43dux43e-mathcal-g}
+
+\[
+P(A\mid\mathcal G)=\mathbb E[\mathbf 1_A\mid\mathcal G].
+\]
+
+\subsubsection{Условное ожидание относительно случайной
+величины}\label{ux443ux441ux43bux43eux432ux43dux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43eux442ux43dux43eux441ux438ux442ux435ux43bux44cux43dux43e-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+\[
+\mathbb E[X\mid Y]
+=
+\mathbb E[X\mid\sigma(Y)].
+\]
+
+Обычно
+
+\[
+\mathbb E[X\mid Y]=m(Y)
+\]
+
+для некоторой борелевской функции \(m\).
+
+\subsubsection{Условная
+плотность}\label{ux443ux441ux43bux43eux432ux43dux430ux44f-ux43fux43bux43eux442ux43dux43eux441ux442ux44c}
+
+Если \((X,Y)\) имеет совместную плотность \(p_{X,Y}\) и \(Y\) имеет
+плотность \(p_Y\), то при \(p_Y(y)>0\)
+
+\[
+p_{X\mid Y}(x\mid y)
+=
+\frac{p_{X,Y}(x,y)}{p_Y(y)}.
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Теорема 1. Радона-Никодима для неотрицательных
+мер}\label{ux442ux435ux43eux440ux435ux43cux430-1.-ux440ux430ux434ux43eux43dux430-ux43dux438ux43aux43eux434ux438ux43cux430-ux434ux43bux44f-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux44bux445-ux43cux435ux440}
+
+Пусть \(\mu\) - \(\sigma\)-конечная мера, \(\nu\) - \(\sigma\)-конечная
+неотрицательная мера и
+
+\[
+\nu\ll\mu.
+\]
+
+Тогда существует измеримая функция \(f\ge0\), такая что
+
+\[
+\nu(A)=\int_A f\,d\mu
+\]
+
+для всех \(A\). Функция \(f\) единственна \(\mu\)-почти всюду и
+обозначается
+
+\[
+f=\frac{d\nu}{d\mu}.
+\]
+
+\subsubsection{Теорема 2. Радона-Никодима для меры со
+знаком}\label{ux442ux435ux43eux440ux435ux43cux430-2.-ux440ux430ux434ux43eux43dux430-ux43dux438ux43aux43eux434ux438ux43cux430-ux434ux43bux44f-ux43cux435ux440ux44b-ux441ux43e-ux437ux43dux430ux43aux43eux43c}
+
+Если \(\eta\) - конечная мера со знаком, \(\eta\ll\mu\), а \(\mu\)
+\(\sigma\)-конечна, то существует измеримая функция \(f\), интегрируемая
+по \(\mu\), такая что
+
+\[
+\eta(A)=\int_A f\,d\mu.
+\]
+
+Этот вариант нужен для построения \(\mathbb E[X\mid\mathcal G]\) при
+знакопеременной \(X\).
+
+\subsubsection{Теорема 3. Плотность распределения как производная
+Радона-Никодима}\label{ux442ux435ux43eux440ux435ux43cux430-3.-ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43aux430ux43a-ux43fux440ux43eux438ux437ux432ux43eux434ux43dux430ux44f-ux440ux430ux434ux43eux43dux430-ux43dux438ux43aux43eux434ux438ux43cux430}
+
+Для случайного вектора \(X\) в \(\mathbb R^n\) плотность существует
+тогда и только тогда, когда
+
+\[
+P_X\ll\lambda_n.
+\]
+
+Тогда
+
+\[
+p_X=\frac{dP_X}{d\lambda_n},
+\qquad
+P\{X\in B\}=\int_B p_X(x)\,dx.
+\]
+
+\subsubsection{Свойство 4. Плотность определена почти
+всюду}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-4.-ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux430-ux43fux43eux447ux442ux438-ux432ux441ux44eux434ux443}
+
+Если \(p\) и \(\tilde p\) - две плотности одного распределения, то
+
+\[
+p=\tilde p
+\qquad \lambda_n\text{-почти всюду}.
+\]
+
+Значения плотности в отдельных точках можно менять без изменения
+распределения.
+
+\subsubsection{Теорема 5. Существование условного математического
+ожидания}\label{ux442ux435ux43eux440ux435ux43cux430-5.-ux441ux443ux449ux435ux441ux442ux432ux43eux432ux430ux43dux438ux435-ux443ux441ux43bux43eux432ux43dux43eux433ux43e-ux43cux430ux442ux435ux43cux430ux442ux438ux447ux435ux441ux43aux43eux433ux43e-ux43eux436ux438ux434ux430ux43dux438ux44f}
+
+Если \(X\in L^1\) и \(\mathcal G\subset\mathcal F\), то существует
+
+\[
+\mathbb E[X\mid\mathcal G],
+\]
+
+причем оно единственно \(P\)-почти наверное.
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e}
+
+На \((\Omega,\mathcal G)\) задаем меру со знаком
+
+\[
+Q(G)=\int_GX\,dP.
+\]
+
+Она абсолютно непрерывна относительно \(P|_{\mathcal G}\). По
+Радону-Никодиму существует \(\mathcal G\)-измеримая \(Y\), такая что
+
+\[
+Q(G)=\int_GY\,dP.
+\]
+
+Это и есть определение условного ожидания.
+
+\subsubsection{Свойство 6.
+Линейность}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-6.-ux43bux438ux43dux435ux439ux43dux43eux441ux442ux44c}
+
+\[
+\mathbb E[aX+bZ\mid\mathcal G]
+=
+a\mathbb E[X\mid\mathcal G]
++b\mathbb E[Z\mid\mathcal G].
+\]
+
+\subsubsection{Свойство 7.
+Монотонность}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-7.-ux43cux43eux43dux43eux442ux43eux43dux43dux43eux441ux442ux44c}
+
+\[
+X\le Z\ \text{п.н.}
+\quad\Rightarrow\quad
+\mathbb E[X\mid\mathcal G]\le \mathbb E[Z\mid\mathcal G]\ \text{п.н.}
+\]
+
+\subsubsection{Свойство 8. Сохранение
+среднего}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-8.-ux441ux43eux445ux440ux430ux43dux435ux43dux438ux435-ux441ux440ux435ux434ux43dux435ux433ux43e}
+
+\[
+\mathbb E\,\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+\subsubsection{Свойство 9. Если величина уже
+известна}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-9.-ux435ux441ux43bux438-ux432ux435ux43bux438ux447ux438ux43dux430-ux443ux436ux435-ux438ux437ux432ux435ux441ux442ux43dux430}
+
+Если \(X\) \(\mathcal G\)-измерима, то
+
+\[
+\mathbb E[X\mid\mathcal G]=X.
+\]
+
+\subsubsection{Свойство 10.
+Независимость}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-10.-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c}
+
+Если \(X\) независима от \(\mathcal G\), то
+
+\[
+\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+\subsubsection{Свойство 11. Башенное
+свойство}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-11.-ux431ux430ux448ux435ux43dux43dux43eux435-ux441ux432ux43eux439ux441ux442ux432ux43e}
+
+Если \(\mathcal H\subset\mathcal G\), то
+
+\[
+\mathbb E[\mathbb E[X\mid\mathcal G]\mid\mathcal H]
+=
+\mathbb E[X\mid\mathcal H].
+\]
+
+\subsubsection{Свойство 12. Вынос известного
+множителя}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-12.-ux432ux44bux43dux43eux441-ux438ux437ux432ux435ux441ux442ux43dux43eux433ux43e-ux43cux43dux43eux436ux438ux442ux435ux43bux44f}
+
+Если \(Z\) \(\mathcal G\)-измерима и \(ZX\in L^1\), то
+
+\[
+\mathbb E[ZX\mid\mathcal G]
+=
+Z\mathbb E[X\mid\mathcal G].
+\]
+
+\subsubsection{Свойство 13. Условная
+вероятность}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-13.-ux443ux441ux43bux43eux432ux43dux430ux44f-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux44c}
+
+Для \(A\in\mathcal F\):
+
+\[
+P(A\mid\mathcal G)=\mathbb E[\mathbf 1_A\mid\mathcal G],
+\]
+
+и для всех \(G\in\mathcal G\)
+
+\[
+\int_G P(A\mid\mathcal G)\,dP=P(A\cap G).
+\]
+
+\subsubsection{Свойство 14. Условное ожидание при совместной
+плотности}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-14.-ux443ux441ux43bux43eux432ux43dux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43fux440ux438-ux441ux43eux432ux43cux435ux441ux442ux43dux43eux439-ux43fux43bux43eux442ux43dux43eux441ux442ux438}
+
+Если \((X,Y)\) имеет совместную плотность \(p_{X,Y}\), то
+
+\[
+\mathbb E[g(X)\mid Y=y]
+=
+\int g(x)\frac{p_{X,Y}(x,y)}{p_Y(y)}\,dx
+\]
+
+при \(p_Y(y)>0\). Тогда
+
+\[
+\mathbb E[g(X)\mid Y]=m(Y),
+\]
+
+где
+
+\[
+m(y)=\int g(x)p_{X\mid Y}(x\mid y)\,dx.
+\]
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Обычная плотность как
+Радон-Никодим}\label{ux43fux440ux438ux43cux435ux440-1.-ux43eux431ux44bux447ux43dux430ux44f-ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux43aux430ux43a-ux440ux430ux434ux43eux43d-ux43dux438ux43aux43eux434ux438ux43c}
+
+Пусть \(X\) равномерна на \([0,1]\). Тогда
+
+\[
+P_X(B)=\lambda(B\cap[0,1]).
+\]
+
+Значит
+
+\[
+P_X\ll\lambda,
+\qquad
+\frac{dP_X}{d\lambda}(x)=\mathbf 1_{[0,1]}(x)
+\]
+
+почти всюду.
+
+\subsubsection{Пример 2. Нет плотности относительно
+Лебега}\label{ux43fux440ux438ux43cux435ux440-2.-ux43dux435ux442-ux43fux43bux43eux442ux43dux43eux441ux442ux438-ux43eux442ux43dux43eux441ux438ux442ux435ux43bux44cux43dux43e-ux43bux435ux431ux435ux433ux430}
+
+Если \(X\equiv a\), то
+
+\[
+P_X=\delta_a.
+\]
+
+Мера \(\delta_a\) не абсолютно непрерывна относительно меры Лебега,
+потому что
+
+\[
+\lambda(\{a\})=0,
+\qquad
+\delta_a(\{a\})=1.
+\]
+
+Значит плотности относительно Лебега нет. Это важный контрпример:
+распределение есть всегда, плотность - не всегда.
+
+\subsubsection{Пример 3. Условное ожидание по конечному
+разбиению}\label{ux43fux440ux438ux43cux435ux440-3.-ux443ux441ux43bux43eux432ux43dux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43fux43e-ux43aux43eux43dux435ux447ux43dux43eux43cux443-ux440ux430ux437ux431ux438ux435ux43dux438ux44e}
+
+Пусть
+
+\[
+\mathcal G=\sigma(D_1,\ldots,D_n),
+\]
+
+где \(D_i\) попарно не пересекаются, \(\bigcup_iD_i=\Omega\),
+\(P(D_i)>0\). Тогда
+
+\[
+\mathbb E[X\mid\mathcal G]
+=
+\sum_{i=1}^n
+\frac{\int_{D_i}X\,dP}{P(D_i)}\mathbf 1_{D_i}.
+\]
+
+То есть на каждом атоме разбиения условное ожидание равно среднему \(X\)
+по этому атому.
+
+\subsubsection{Пример 4. Условное ожидание при
+независимости}\label{ux43fux440ux438ux43cux435ux440-4.-ux443ux441ux43bux43eux432ux43dux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43fux440ux438-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux438}
+
+Если \(X\) независима от \(\mathcal G\), то
+
+\[
+\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+Например, если \(X\) и \(Y\) независимы, то
+
+\[
+\mathbb E[X\mid Y]=\mathbb EX.
+\]
+
+\subsubsection{Пример 5. Если величина уже
+известна}\label{ux43fux440ux438ux43cux435ux440-5.-ux435ux441ux43bux438-ux432ux435ux43bux438ux447ux438ux43dux430-ux443ux436ux435-ux438ux437ux432ux435ux441ux442ux43dux430}
+
+Если \(X\) является функцией от \(Y\), например
+
+\[
+X=Y^2,
+\]
+
+то \(X\) \(\sigma(Y)\)-измерима, поэтому
+
+\[
+\mathbb E[X\mid Y]=X=Y^2.
+\]
+
+\subsubsection{Пример 6. Условное ожидание через совместную
+плотность}\label{ux43fux440ux438ux43cux435ux440-6.-ux443ux441ux43bux43eux432ux43dux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux447ux435ux440ux435ux437-ux441ux43eux432ux43cux435ux441ux442ux43dux443ux44e-ux43fux43bux43eux442ux43dux43eux441ux442ux44c}
+
+Пусть \((X,Y)\) имеет совместную плотность \(p_{X,Y}\). Тогда
+
+\[
+p_Y(y)=\int p_{X,Y}(x,y)\,dx.
+\]
+
+Если \(p_Y(y)>0\), то
+
+\[
+\mathbb E[X\mid Y=y]
+=
+\int x\frac{p_{X,Y}(x,y)}{p_Y(y)}\,dx.
+\]
+
+В частности,
+
+\[
+\mathbb E[X\mid Y]=m(Y),
+\]
+
+где
+
+\[
+m(y)=\int x\,p_{X\mid Y}(x\mid y)\,dx.
+\]
+
+\subsubsection{Пример 7. Условное ожидание как
+прогноз}\label{ux43fux440ux438ux43cux435ux440-7.-ux443ux441ux43bux43eux432ux43dux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43aux430ux43a-ux43fux440ux43eux433ux43dux43eux437}
+
+Пусть
+
+\[
+X=Y+\varepsilon,
+\]
+
+где \(\varepsilon\) независима от \(Y\) и \(\mathbb E\varepsilon=0\).
+Тогда
+
+\[
+\mathbb E[X\mid Y]
+=
+\mathbb E[Y+\varepsilon\mid Y]
+=
+Y+\mathbb E[\varepsilon\mid Y]
+=
+Y.
+\]
+
+Здесь \(Y\) - известная часть, а независимый шум усредняется до нуля.
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\textbf{Идея теоремы Радона-Никодима.}
+
+Полное доказательство - теорема теории меры. Интуитивная идея такая:
+если \(\nu\ll\mu\), то \(\nu\) не имеет массы вне \(\mu\)-массы, значит
+ее можно описать локальной ``плотностью'' относительно \(\mu\). В
+простом случае, когда пространство разбито на конечные атомы \(A_i\) с
+\(\mu(A_i)>0\), плотность равна
+
+\[
+f=\sum_i \frac{\nu(A_i)}{\mu(A_i)}\mathbf 1_{A_i}.
+\]
+
+Общая теорема строит аналог этой локальной плотности для произвольной
+\(\sigma\)-алгебры.
+
+\textbf{Доказательство существования условного ожидания.}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Берем \(X\in L^1\) и под-\(\sigma\)-алгебру \(\mathcal G\).
+\item
+  На \(\mathcal G\) задаем
+\end{enumerate}
+
+\[
+Q(G)=\int_GX\,dP.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(Q\) - конечная мера со знаком.
+\item
+  Если \(P(G)=0\), то \(Q(G)=0\), значит \(Q\ll P|_{\mathcal G}\).
+\item
+  По Радону-Никодиму существует \(Y=dQ/dP|_{\mathcal G}\).
+\item
+  Получаем
+\end{enumerate}
+
+\[
+\int_GY\,dP=Q(G)=\int_GX\,dP.
+\]
+
+Значит \(Y=\mathbb E[X\mid\mathcal G]\).
+
+\textbf{Доказательство единственности условного ожидания.}
+
+Пусть \(Y_1\) и \(Y_2\) удовлетворяют определению. Тогда для всех
+\(G\in\mathcal G\)
+
+\[
+\int_G(Y_1-Y_2)\,dP=0.
+\]
+
+Положим
+
+\[
+G_+=\{Y_1>Y_2\}.
+\]
+
+Так как \(Y_1,Y_2\) \(\mathcal G\)-измеримы, то \(G_+\in\mathcal G\).
+Тогда
+
+\[
+\int_{G_+}(Y_1-Y_2)\,dP=0.
+\]
+
+Но подынтегральная функция положительна на \(G_+\), значит \(P(G_+)=0\).
+Аналогично для \(\{Y_2>Y_1\}\). Поэтому \(Y_1=Y_2\) почти наверное.
+
+\textbf{Доказательство башенного свойства.}
+
+Пусть \(\mathcal H\subset\mathcal G\). Обозначим
+
+\[
+Z=\mathbb E[\mathbb E[X\mid\mathcal G]\mid\mathcal H].
+\]
+
+Для любого \(H\in\mathcal H\) имеем \(H\in\mathcal G\), поэтому
+
+\[
+\int_H Z\,dP
+=
+\int_H \mathbb E[X\mid\mathcal G]\,dP
+=
+\int_H X\,dP.
+\]
+
+Кроме того, \(Z\) \(\mathcal H\)-измерима. Значит по определению
+
+\[
+Z=\mathbb E[X\mid\mathcal H].
+\]
+
+\textbf{Доказательство свойства независимости.}
+
+Если \(X\) независима от \(\mathcal G\), то постоянная \(\mathbb EX\)
+является \(\mathcal G\)-измеримой. Для любого \(G\in\mathcal G\):
+
+\[
+\int_G X\,dP
+=
+\mathbb E[X\mathbf 1_G]
+=
+\mathbb EX\,P(G)
+=
+\int_G \mathbb EX\,dP.
+\]
+
+По единственности
+
+\[
+\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+\textbf{Доказательство формулы для условной плотности.}
+
+Для борелевского \(A\):
+
+\[
+P\{X\in A,\ Y\in dy\}
+\]
+
+имеет плотность по \(y\), равную
+
+\[
+\int_A p_{X,Y}(x,y)\,dx.
+\]
+
+Делим на маргинальную плотность
+
+\[
+p_Y(y)=\int p_{X,Y}(x,y)\,dx
+\]
+
+и получаем условную плотность
+
+\[
+p_{X\mid Y}(x\mid y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}.
+\]
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Абсолютная непрерывность:
+\end{enumerate}
+
+\[
+\nu\ll\mu
+\quad\Longleftrightarrow\quad
+\mu(A)=0\Rightarrow\nu(A)=0.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Радон-Никодим:
+\end{enumerate}
+
+\[
+\nu(A)=\int_A \frac{d\nu}{d\mu}\,d\mu.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Плотность распределения:
+\end{enumerate}
+
+\[
+P_X\ll\lambda_n,
+\qquad
+p_X=\frac{dP_X}{d\lambda_n},
+\qquad
+P_X(B)=\int_Bp_X(x)\,dx.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Условное ожидание:
+\end{enumerate}
+
+\[
+Y=\mathbb E[X\mid\mathcal G]
+\iff
+\begin{cases}
+Y\ \mathcal G\text{-измерима},\\
+\int_GY\,dP=\int_GX\,dP,\quad G\in\mathcal G.
+\end{cases}
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Построение через Радона-Никодима:
+\end{enumerate}
+
+\[
+Q(G)=\int_GX\,dP,
+\qquad
+\mathbb E[X\mid\mathcal G]=\frac{dQ}{dP|_{\mathcal G}}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Главные свойства:
+\end{enumerate}
+
+\[
+\mathbb E\,\mathbb E[X\mid\mathcal G]=\mathbb EX,
+\]
+
+\[
+\mathcal H\subset\mathcal G
+\Rightarrow
+\mathbb E[\mathbb E[X\mid\mathcal G]\mid\mathcal H]
+=
+\mathbb E[X\mid\mathcal H],
+\]
+
+\[
+X\perp\mathcal G
+\Rightarrow
+\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Условная плотность:
+\end{enumerate}
+
+\[
+p_{X\mid Y}(x\mid y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Что означает \(\nu\ll\mu\)?}
+
+Это значит, что всякое \(\mu\)-нулевое множество является
+\(\nu\)-нулевым:
+
+\[
+\mu(A)=0\Rightarrow\nu(A)=0.
+\]
+
+\textbf{Вопрос. Почему плотность распределения - это производная
+Радона-Никодима?}
+
+Потому что плотность \(p_X\) задает распределение через интеграл по мере
+Лебега:
+
+\[
+P_X(B)=\int_Bp_X\,d\lambda.
+\]
+
+Это ровно представление Радона-Никодима для \(P_X\ll\lambda\).
+
+\textbf{Вопрос. Любое ли распределение имеет плотность?}
+
+Нет. Распределение Дирака \(\delta_a\) не имеет плотности относительно
+меры Лебега, потому что оно дает массу точке, а мера Лебега этой точки
+равна нулю.
+
+\textbf{Вопрос. Плотность единственна?}
+
+Только почти всюду относительно меры, по которой берется плотность.
+Значения на нулевых множествах можно менять.
+
+\textbf{Вопрос. Что такое условное ожидание строго?}
+
+Это \(\mathcal G\)-измеримая случайная величина \(Y\), такая что
+
+\[
+\int_GY\,dP=\int_GX\,dP
+\]
+
+для всех \(G\in\mathcal G\).
+
+\textbf{Вопрос. Почему условное ожидание существует?}
+
+Потому что мера со знаком
+
+\[
+Q(G)=\int_GX\,dP
+\]
+
+абсолютно непрерывна относительно \(P\) на \(\mathcal G\), и можно
+применить теорему Радона-Никодима.
+
+\textbf{Вопрос. Почему условное ожидание определено только почти
+наверное?}
+
+Потому что производная Радона-Никодима единственна только с точностью до
+изменения на множестве меры ноль.
+
+\textbf{Вопрос. Что будет, если \(\mathcal G\) тривиальна?}
+
+Если
+
+\[
+\mathcal G=\{\varnothing,\Omega\},
+\]
+
+то
+
+\[
+\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+\textbf{Вопрос. Что будет, если \(X\) \(\mathcal G\)-измерима?}
+
+Тогда
+
+\[
+\mathbb E[X\mid\mathcal G]=X.
+\]
+
+\textbf{Вопрос. Что будет, если \(X\) независима от \(\mathcal G\)?}
+
+Тогда
+
+\[
+\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+\textbf{Вопрос. Что такое башенное свойство?}
+
+Если \(\mathcal H\subset\mathcal G\), то
+
+\[
+\mathbb E[\mathbb E[X\mid\mathcal G]\mid\mathcal H]
+=
+\mathbb E[X\mid\mathcal H].
+\]
+
+\textbf{Вопрос. Чем условная вероятность отличается от условного
+ожидания?}
+
+Условная вероятность - частный случай:
+
+\[
+P(A\mid\mathcal G)=\mathbb E[\mathbf 1_A\mid\mathcal G].
+\]
+
+\textbf{Вопрос. Почему нельзя всегда писать
+\(P(A\mid Y=y)=P(A\cap\{Y=y\})/P(Y=y)\)?}
+
+Если \(Y\) непрерывна, то обычно
+
+\[
+P(Y=y)=0.
+\]
+
+Нужно использовать условное ожидание относительно \(\sigma(Y)\) или
+регулярные условные распределения.
+
+\textbf{Вопрос. Как найти \(\mathbb E[X\mid Y]\) при совместной
+плотности?}
+
+Сначала найти
+
+\[
+p_Y(y)=\int p_{X,Y}(x,y)\,dx,
+\]
+
+затем
+
+\[
+p_{X\mid Y}(x\mid y)=\frac{p_{X,Y}(x,y)}{p_Y(y)},
+\]
+
+и после этого
+
+\[
+\mathbb E[X\mid Y=y]=\int x p_{X\mid Y}(x\mid y)\,dx.
+\]
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Говорить о плотности распределения, не проверив абсолютную
+  непрерывность относительно меры Лебега.
+\item
+  Считать значение плотности \(p(x)\) вероятностью точки.
+\item
+  Забывать, что производная Радона-Никодима единственна только почти
+  всюду.
+\item
+  Путать абсолютную непрерывность меры \(\nu\ll\mu\) с абсолютной
+  непрерывностью функции распределения.
+\item
+  Путать условное ожидание и условную вероятность: условная вероятность
+  - это условное ожидание индикатора.
+\item
+  Определять \(\mathbb E[X\mid Y=y]\) через деление на \(P(Y=y)\) в
+  непрерывном случае.
+\item
+  Забывать условие \(X\in L^1\) для обычного условного ожидания.
+\item
+  Думать, что \(\mathbb E[X\mid\mathcal G]\) - число. Обычно это
+  случайная величина.
+\item
+  Забывать \(\mathcal G\)-измеримость в определении условного ожидания.
+\item
+  Применять формулу условной плотности при \(p_Y(y)=0\).
+\item
+  Путать равенство почти наверное с поточечным равенством.
+\item
+  Забывать, что при независимости условное ожидание становится
+  константой \(\mathbb EX\).
+\end{enumerate}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 06.} Плотности распределений в общем виде определяются как
+производные Радона-Никодима.
+
+\textbf{Билет 07.} Все определения используют интеграл Лебега и свойства
+интегрируемости.
+
+\textbf{Билет 09.} Совместные и маргинальные плотности, условные
+плотности и независимость используют Фубини.
+
+\textbf{Билет 11.} Замена переменной позволяет записывать
+
+\[
+\mathbb E g(X)=\int g\,dP_X,
+\]
+
+а при плотности
+
+\[
+\mathbb E g(X)=\int g(x)p_X(x)\,dx.
+\]
+
+\textbf{Билет 12.} В \(L^2\) условное ожидание является ортогональным
+проектором на подпространство \(\mathcal G\)-измеримых величин.
+
+\textbf{Билет 14.} Условное ожидание связано с регрессией и оптимальным
+среднеквадратичным прогнозом.
+
+\textbf{Билет 22.} Марковские переходные функции можно понимать как
+условные распределения будущего при известном текущем состоянии.
+
+\textbf{Билет 23.} Марковское свойство формулируется через условные
+вероятности и условные распределения.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Абсолютная непрерывность:
+\end{enumerate}
+
+\[
+\nu\ll\mu
+\quad\Longleftrightarrow\quad
+\mu(A)=0\Rightarrow\nu(A)=0.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Радон-Никодим:
+\end{enumerate}
+
+\[
+\nu(A)=\int_A f\,d\mu,
+\qquad
+f=\frac{d\nu}{d\mu}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Плотность распределения:
+\end{enumerate}
+
+\[
+P_X(B)=\int_Bp_X(x)\,dx.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Условное ожидание:
+\end{enumerate}
+
+\[
+Y=\mathbb E[X\mid\mathcal G]
+\]
+
+если \(Y\) \(\mathcal G\)-измерима и
+
+\[
+\int_GY\,dP=\int_GX\,dP
+\]
+
+для всех \(G\in\mathcal G\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Условная вероятность:
+\end{enumerate}
+
+\[
+P(A\mid\mathcal G)=\mathbb E[\mathbf 1_A\mid\mathcal G].
+\]
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  объяснить, что плотность существует не всегда;
+\item
+  сказать, что плотность и условное ожидание определены почти всюду;
+\item
+  вывести условное ожидание через Радона-Никодима:
+\end{enumerate}
+
+\[
+Q(G)=\int_GX\,dP,
+\qquad
+\mathbb E[X\mid\mathcal G]=\frac{dQ}{dP|_{\mathcal G}};
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  назвать свойства:
+\end{enumerate}
+
+\[
+\mathbb E\,\mathbb E[X\mid\mathcal G]=\mathbb EX,
+\]
+
+\[
+\mathbb E[X\mid\mathcal G]=X
+\quad\text{если }X\text{ }\mathcal G\text{-измерима},
+\]
+
+\[
+\mathbb E[X\mid\mathcal G]=\mathbb EX
+\quad\text{если }X\perp\mathcal G;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  привести пример условного ожидания по разбиению.
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  формулировку Радона-Никодима для мер со знаком;
+\item
+  доказательство существования условного ожидания через меру
+  \(Q(G)=\int_GX\,dP\);
+\item
+  доказательство единственности почти наверное;
+\item
+  башенное свойство;
+\item
+  вынос \(\mathcal G\)-измеримого множителя;
+\item
+  условную плотность
+\end{enumerate}
+
+\[
+p_{X\mid Y}(x\mid y)=\frac{p_{X,Y}(x,y)}{p_Y(y)};
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  предупреждение про непрерывное условие \(Y=y\), где \(P(Y=y)=0\).
+\end{enumerate}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Сначала формулирую абсолютную непрерывность мер:
+
+\[
+\nu\ll\mu
+\quad\Longleftrightarrow\quad
+\mu(A)=0\Rightarrow\nu(A)=0.
+\]
+
+Затем формулирую теорему Радона-Никодима: если \(\mu\)
+\(\sigma\)-конечна, \(\nu\ll\mu\), то существует измеримая функция
+\(f\), такая что
+
+\[
+\nu(A)=\int_A f\,d\mu.
+\]
+
+Эта функция называется производной Радона-Никодима:
+
+\[
+f=\frac{d\nu}{d\mu},
+\]
+
+и она единственна \(\mu\)-почти всюду.
+
+Дальше объясняю плотности. Если \(X\) - случайный вектор в
+\(\mathbb R^n\) и
+
+\[
+P_X\ll\lambda_n,
+\]
+
+то
+
+\[
+p_X=\frac{dP_X}{d\lambda_n}
+\]
+
+и
+
+\[
+P\{X\in B\}=\int_Bp_X(x)\,dx.
+\]
+
+Если абсолютной непрерывности нет, плотности относительно Лебега нет.
+Например, у константы \(X=a\) распределение \(\delta_a\), и оно не имеет
+лебеговой плотности.
+
+Потом перехожу к условному ожиданию. Пусть \(X\in L^1\),
+\(\mathcal G\subset\mathcal F\). Случайная величина \(Y\) называется
+\(\mathbb E[X\mid\mathcal G]\), если \(Y\) \(\mathcal G\)-измерима и для
+любого \(G\in\mathcal G\)
+
+\[
+\int_GY\,dP=\int_GX\,dP.
+\]
+
+Существование строится через Радона-Никодима: задаем на \(\mathcal G\)
+
+\[
+Q(G)=\int_GX\,dP.
+\]
+
+Тогда \(Q\ll P|_{\mathcal G}\), поэтому
+
+\[
+\mathbb E[X\mid\mathcal G]
+=
+\frac{dQ}{dP|_{\mathcal G}}.
+\]
+
+Условная вероятность - частный случай:
+
+\[
+P(A\mid\mathcal G)=\mathbb E[\mathbf 1_A\mid\mathcal G].
+\]
+
+Называю свойства:
+
+\[
+\mathbb E\,\mathbb E[X\mid\mathcal G]=\mathbb EX,
+\]
+
+если \(X\) \(\mathcal G\)-измерима, то
+
+\[
+\mathbb E[X\mid\mathcal G]=X,
+\]
+
+если \(X\) независима от \(\mathcal G\), то
+
+\[
+\mathbb E[X\mid\mathcal G]=\mathbb EX,
+\]
+
+и башня:
+
+\[
+\mathcal H\subset\mathcal G
+\Rightarrow
+\mathbb E[\mathbb E[X\mid\mathcal G]\mid\mathcal H]
+=
+\mathbb E[X\mid\mathcal H].
+\]
+
+В конце даю вычислительный пример: если есть совместная плотность
+\(p_{X,Y}\), то
+
+\[
+p_{X\mid Y}(x\mid y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}
+\]
+
+и
+
+\[
+\mathbb E[X\mid Y=y]=\int x p_{X\mid Y}(x\mid y)\,dx.
+\]
+
+Главные ловушки: плотность существует не всегда; условное ожидание -
+случайная величина, а не число; все версии определены почти наверное.
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить четыре формулы.
+
+\textbf{Радон-Никодим:}
+
+\[
+\nu\ll\mu
+\Rightarrow
+\nu(A)=\int_A\frac{d\nu}{d\mu}\,d\mu.
+\]
+
+\textbf{Плотность распределения:}
+
+\[
+P_X\ll\lambda_n,
+\qquad
+p_X=\frac{dP_X}{d\lambda_n},
+\qquad
+P_X(B)=\int_Bp_X\,dx.
+\]
+
+\textbf{Условное ожидание:}
+
+\[
+Y=\mathbb E[X\mid\mathcal G]
+\iff
+Y\text{ }\mathcal G\text{-измерима и }
+\int_GY\,dP=\int_GX\,dP.
+\]
+
+\textbf{Построение через Радона-Никодима:}
+
+\[
+Q(G)=\int_GX\,dP,
+\qquad
+\mathbb E[X\mid\mathcal G]=\frac{dQ}{dP|_{\mathcal G}}.
+\]
+
+Главная ловушка: условное ожидание и плотность определяются почти всюду;
+поточечные значения на нулевых множествах не важны.
+
+\newpage
+
+\end{document}

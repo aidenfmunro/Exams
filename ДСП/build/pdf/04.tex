@@ -1,0 +1,1103 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{\texorpdfstring{Билет 04. Борелевские множества, борелевские
+\(\sigma\)-алгебры, пополнение меры и борелевские меры
+Лебега}{Билет 04. Борелевские множества, борелевские \textbackslash sigma-алгебры, пополнение меры и борелевские меры Лебега}}\label{ux431ux438ux43bux435ux442-04.-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux438ux435-ux43cux43dux43eux436ux435ux441ux442ux432ux430-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux438ux435-sigma-ux430ux43bux433ux435ux431ux440ux44b-ux43fux43eux43fux43eux43bux43dux435ux43dux438ux435-ux43cux435ux440ux44b-ux438-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux438ux435-ux43cux435ux440ux44b-ux43bux435ux431ux435ux433ux430}
+
+Источники: Ширяев 1, гл. II; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Если \(X\) - топологическое пространство, то борелевская
+\(\sigma\)-алгебра на \(X\) - это минимальная \(\sigma\)-алгебра,
+содержащая все открытые множества:
+
+\[
+\mathcal B(X)=\sigma\{G\subset X:\ G\text{ открыто}\}.
+\]
+
+Ее элементы называются борелевскими множествами. В \(\mathbb R^d\)
+борелевскую \(\sigma\)-алгебру можно порождать открытыми шарами,
+открытыми множествами, замкнутыми множествами, прямоугольниками или
+полуинтервалами:
+
+\[
+\mathcal B(\mathbb R^d)
+=
+\sigma\left\{\prod_{j=1}^d(a_j,b_j):a_j<b_j\right\}.
+\]
+
+Борелевская мера - это мера, заданная на \(\mathcal B(X)\). Борелевская
+мера Лебега на \(\mathbb R^d\) - это мера на
+\(\mathcal B(\mathbb R^d)\), которая на прямоугольниках равна обычному
+объему:
+
+\[
+\lambda_d^B\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+Мера называется полной, если любое подмножество множества меры ноль
+измеримо:
+
+\[
+N\subset Z,\quad Z\in\mathcal F,\quad \mu(Z)=0
+\quad\Longrightarrow\quad
+N\in\mathcal F.
+\]
+
+Пополнение меры добавляет к \(\mathcal F\) все подмножества нулевых
+множеств. Полная мера Лебега - это пополнение борелевской меры Лебега.
+Поэтому каждое борелевское множество лебегово измеримо, но не каждое
+лебегово измеримое множество является борелевским.
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Введение: Соотношение борелевских и лебеговых
+множеств}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux441ux43eux43eux442ux43dux43eux448ux435ux43dux438ux435-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux438ux445-ux438-ux43bux435ux431ux435ux433ux43eux432ux44bux445-ux43cux43dux43eux436ux435ux441ux442ux432}
+
+В предыдущем билете мера Лебега строилась как продолжение
+геометрического объема. Теперь нужно различить две близкие, но не
+одинаковые системы множеств: борелевские множества и лебегово измеримые
+множества.
+
+\subsubsection{\texorpdfstring{2.2. Определение борелевской
+\(\sigma\)-алгебры}{2.2. Определение борелевской \textbackslash sigma-алгебры}}\label{ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux43eux439-sigma-ux430ux43bux433ux435ux431ux440ux44b}
+
+Борелевская \(\sigma\)-алгебра появляется из топологии. Если на
+множестве \(X\) задана топология, то известны открытые множества. Но для
+меры и вероятности открытых множеств недостаточно: нужна
+\(\sigma\)-алгебра, чтобы брать дополнения, счетные объединения и
+счетные пересечения. Поэтому берут минимальную \(\sigma\)-алгебру,
+содержащую все открытые множества:
+
+\[
+\mathcal B(X)=\sigma(\text{открытые множества}).
+\]
+
+Такую \(\sigma\)-алгебру называют борелевской, а ее элементы -
+борелевскими множествами.
+
+На прямой и в \(\mathbb R^d\) это основной класс множеств для
+распределений. Например, если \(X\) - случайная величина, то ее
+распределение является вероятностной мерой на \(\mathcal B(\mathbb R)\).
+Если \(\xi\) - случайный вектор в \(\mathbb R^d\), то его распределение
+является мерой на \(\mathcal B(\mathbb R^d)\).
+
+\subsubsection{\texorpdfstring{2.3. Порождающие классы в
+\(\mathbb R^d\)}{2.3. Порождающие классы в \textbackslash mathbb R\^{}d}}\label{ux43fux43eux440ux43eux436ux434ux430ux44eux449ux438ux435-ux43aux43bux430ux441ux441ux44b-ux432-mathbb-rd}
+
+В \(\mathbb R^d\) борелевская \(\sigma\)-алгебра может быть порождена
+разными удобными классами:
+
+\[
+\mathcal B(\mathbb R^d)
+=
+\sigma(\text{открытые шары})
+=
+\sigma(\text{замкнутые множества})
+=
+\sigma(\text{полуоткрытые прямоугольники}).
+\]
+
+Это важно практически: функцию распределения удобно задавать через лучи
+\((-\infty,x]\), меру Лебега - через прямоугольники, а топологические
+рассуждения - через открытые множества. Все эти подходы ведут к одной и
+той же борелевской \(\sigma\)-алгебре.
+
+\subsubsection{2.4. Борелевская мера и проблема
+полноты}\label{ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-ux43cux435ux440ux430-ux438-ux43fux440ux43eux431ux43bux435ux43cux430-ux43fux43eux43bux43dux43eux442ux44b}
+
+Борелевская мера - это просто мера на \(\mathcal B(X)\). Например,
+борелевская мера Лебега \(\lambda_d^B\) на \(\mathbb R^d\) задается как
+продолжение объема прямоугольников на \(\mathcal B(\mathbb R^d)\):
+
+\[
+\lambda_d^B\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+Но борелевская мера Лебега не полна. Это значит, что может существовать
+борелевское множество \(Z\) меры ноль и подмножество \(N\subset Z\),
+которое не является борелевским. Тогда \(N\) должно иметь меру ноль с
+геометрической точки зрения, но оно не лежит в области определения
+борелевской меры.
+
+\subsubsection{2.5. Процедура пополнения
+меры}\label{ux43fux440ux43eux446ux435ux434ux443ux440ux430-ux43fux43eux43fux43eux43bux43dux435ux43dux438ux44f-ux43cux435ux440ux44b}
+
+Чтобы исправить это, меру пополняют. Пусть есть пространство с мерой
+\((\Omega,\mathcal F,\mu)\). Полное пополнение имеет \(\sigma\)-алгебру
+
+\[
+\overline{\mathcal F}^{\,\mu}
+=
+\{A\cup N:\ A\in\mathcal F,\ N\subset Z,\ Z\in\mathcal F,\ \mu(Z)=0\}.
+\]
+
+Идея: берем старые измеримые множества \(A\) и разрешаем добавлять к ним
+произвольные подмножества старых нулевых множеств. Мера на таком
+множестве определяется по формуле
+
+\[
+\overline{\mu}(A\cup N)=\mu(A).
+\]
+
+Это корректно: добавление или удаление подмножеств нулевых множеств не
+должно менять меру.
+
+\subsubsection{2.6. Мера Лебега и иерархия
+измеримости}\label{ux43cux435ux440ux430-ux43bux435ux431ux435ux433ux430-ux438-ux438ux435ux440ux430ux440ux445ux438ux44f-ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux438}
+
+Полная мера Лебега \(\lambda_d\) - это пополнение борелевской меры
+Лебега \(\lambda_d^B\). Поэтому есть строгая цепочка:
+
+\[
+\mathcal B(\mathbb R^d)
+\subset
+\mathcal L(\mathbb R^d)
+\subset
+2^{\mathbb R^d},
+\]
+
+где \(\mathcal L(\mathbb R^d)\) - \(\sigma\)-алгебра лебегово измеримых
+множеств. Первое включение строго: существуют лебегово измеримые
+множества, которые не являются борелевскими. Второе включение тоже
+строго: существуют неизмеримые по Лебегу множества, например множество
+Витали.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Топологическое
+пространство}\label{ux442ux43eux43fux43eux43bux43eux433ux438ux447ux435ux441ux43aux43eux435-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e}
+
+Пара \((X,\tau)\), где \(\tau\) - семейство открытых подмножеств \(X\),
+замкнутое относительно произвольных объединений и конечных пересечений.
+
+\subsubsection{\texorpdfstring{Борелевская
+\(\sigma\)-алгебра}{Борелевская \textbackslash sigma-алгебра}}\label{ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-sigma-ux430ux43bux433ux435ux431ux440ux430}
+
+\[
+\mathcal B(X)=\sigma(\tau)
+=
+\sigma\{G\subset X:\ G\text{ открыто}\}.
+\]
+
+Это минимальная \(\sigma\)-алгебра, содержащая все открытые множества.
+
+\subsubsection{Борелевское
+множество}\label{ux431ux43eux440ux435ux43bux435ux432ux441ux43aux43eux435-ux43cux43dux43eux436ux435ux441ux442ux432ux43e}
+
+Элемент \(\mathcal B(X)\).
+
+\subsubsection{Борелевская
+мера}\label{ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-ux43cux435ux440ux430}
+
+Мера \(\mu\) на измеримом пространстве \((X,\mathcal B(X))\).
+
+\subsubsection{Борелевская вероятностная
+мера}\label{ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux430ux44f-ux43cux435ux440ux430}
+
+Борелевская мера \(\mu\) такая, что
+
+\[
+\mu(X)=1.
+\]
+
+\subsubsection{Борелевская мера
+Лебега}\label{ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-ux43cux435ux440ux430-ux43bux435ux431ux435ux433ux430}
+
+Мера \(\lambda_d^B\) на \(\mathcal B(\mathbb R^d)\), совпадающая с
+объемом на полуоткрытых прямоугольниках:
+
+\[
+\lambda_d^B\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+\subsubsection{Полная
+мера}\label{ux43fux43eux43bux43dux430ux44f-ux43cux435ux440ux430}
+
+Мера \(\mu\) на \((\Omega,\mathcal F)\) называется полной, если
+
+\[
+N\subset Z,\quad Z\in\mathcal F,\quad \mu(Z)=0
+\quad\Longrightarrow\quad
+N\in\mathcal F.
+\]
+
+\subsubsection{\texorpdfstring{Пополнение \(\sigma\)-алгебры по
+мере}{Пополнение \textbackslash sigma-алгебры по мере}}\label{ux43fux43eux43fux43eux43bux43dux435ux43dux438ux435-sigma-ux430ux43bux433ux435ux431ux440ux44b-ux43fux43e-ux43cux435ux440ux435}
+
+\[
+\overline{\mathcal F}^{\,\mu}
+=
+\{A\cup N:\ A\in\mathcal F,\ N\subset Z,\ Z\in\mathcal F,\ \mu(Z)=0\}.
+\]
+
+\subsubsection{Пополненная
+мера}\label{ux43fux43eux43fux43eux43bux43dux435ux43dux43dux430ux44f-ux43cux435ux440ux430}
+
+Если \(E=A\cup N\in\overline{\mathcal F}^{\,\mu}\), где
+\(A\in\mathcal F\) и \(N\) лежит в измеримом нулевом множестве, то
+
+\[
+\overline{\mu}(E)=\mu(A).
+\]
+
+\subsubsection{\texorpdfstring{Лебегова
+\(\sigma\)-алгебра}{Лебегова \textbackslash sigma-алгебра}}\label{ux43bux435ux431ux435ux433ux43eux432ux430-sigma-ux430ux43bux433ux435ux431ux440ux430}
+
+Пополнение борелевской \(\sigma\)-алгебры \(\mathcal B(\mathbb R^d)\)
+относительно борелевской меры Лебега:
+
+\[
+\mathcal L(\mathbb R^d)
+=
+\overline{\mathcal B(\mathbb R^d)}^{\,\lambda_d^B}.
+\]
+
+\subsubsection{Мера
+Лебега}\label{ux43cux435ux440ux430-ux43bux435ux431ux435ux433ux430}
+
+Пополнение борелевской меры Лебега. Обозначается \(\lambda_d\).
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{\texorpdfstring{Свойство 1. Борелевская
+\(\sigma\)-алгебра
+существует}{Свойство 1. Борелевская \textbackslash sigma-алгебра существует}}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-1.-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-sigma-ux430ux43bux433ux435ux431ux440ux430-ux441ux443ux449ux435ux441ux442ux432ux443ux435ux442}
+
+Для любого топологического пространства \(X\) существует минимальная
+\(\sigma\)-алгебра, содержащая все открытые множества.
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e}
+
+Рассмотрим все \(\sigma\)-алгебры на \(X\), содержащие все открытые
+множества. Такой класс не пуст, потому что \(2^X\) - \(\sigma\)-алгебра
+и содержит все подмножества \(X\). Пересечение любого семейства
+\(\sigma\)-алгебр снова является \(\sigma\)-алгеброй. Поэтому
+
+\[
+\mathcal B(X)=
+\bigcap\{\mathcal F:\ \mathcal F\text{ - }\sigma\text{-алгебра},\ \tau\subset\mathcal F\}
+\]
+
+является \(\sigma\)-алгеброй, содержит все открытые множества и
+содержится в любой другой \(\sigma\)-алгебре с этим свойством. Значит
+она минимальна. \(\square\)
+
+\subsubsection{Свойство 2. Замкнутые множества
+борелевские}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-2.-ux437ux430ux43cux43aux43dux443ux442ux44bux435-ux43cux43dux43eux436ux435ux441ux442ux432ux430-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux438ux435}
+
+Если \(F\subset X\) замкнуто, то \(F\in\mathcal B(X)\).
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-1}
+
+Если \(F\) замкнуто, то \(\overline{F}=X\setminus F\) открыто. Открытое
+множество лежит в \(\mathcal B(X)\), а \(\sigma\)-алгебра замкнута
+относительно дополнений. Значит \(F\in\mathcal B(X)\). \(\square\)
+
+\subsubsection{\texorpdfstring{Свойство 3. В пространстве со счетной
+базой борелевская \(\sigma\)-алгебра порождена
+базой}{Свойство 3. В пространстве со счетной базой борелевская \textbackslash sigma-алгебра порождена базой}}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-3.-ux432-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux435-ux441ux43e-ux441ux447ux435ux442ux43dux43eux439-ux431ux430ux437ux43eux439-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-sigma-ux430ux43bux433ux435ux431ux440ux430-ux43fux43eux440ux43eux436ux434ux435ux43dux430-ux431ux430ux437ux43eux439}
+
+Пусть \(\{U_n\}_{n\ge1}\) - счетная база топологии \(X\). Тогда
+
+\[
+\mathcal B(X)=\sigma(U_1,U_2,\ldots).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-2}
+
+Так как все \(U_n\) открыты, то
+
+\[
+\sigma(U_1,U_2,\ldots)\subset\mathcal B(X).
+\]
+
+Обратно, любое открытое множество \(G\) представляется как объединение
+базовых элементов:
+
+\[
+G=\bigcup_{n:\ U_n\subset G}U_n.
+\]
+
+Так как база счетная, это счетное объединение. Значит
+\(G\in\sigma(U_1,U_2,\ldots)\) для любого открытого \(G\).
+Следовательно, \(\mathcal B(X)\subset\sigma(U_1,U_2,\ldots)\). Получаем
+равенство. \(\square\)
+
+\subsubsection{\texorpdfstring{Свойство 4. Порождающие классы для
+\(\mathcal B(\mathbb R^d)\)}{Свойство 4. Порождающие классы для \textbackslash mathcal B(\textbackslash mathbb R\^{}d)}}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-4.-ux43fux43eux440ux43eux436ux434ux430ux44eux449ux438ux435-ux43aux43bux430ux441ux441ux44b-ux434ux43bux44f-mathcal-bmathbb-rd}
+
+В \(\mathbb R^d\):
+
+\[
+\mathcal B(\mathbb R^d)
+=
+\sigma(\text{открытые шары})
+=
+\sigma(\text{замкнутые множества})
+=
+\sigma(\text{полуоткрытые прямоугольники}).
+\]
+
+Можно также брать только шары или прямоугольники с рациональными
+координатами.
+
+\subsubsection{Доказательство-идея}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux438ux434ux435ux44f}
+
+Открытые шары порождают топологию. Замкнутые множества порождают ту же
+\(\sigma\)-алгебру, потому что дополнение замкнутого множества открыто,
+а дополнение открытого замкнуто. Прямоугольники с рациональными
+координатами образуют счетную базу обычной топологии в \(\mathbb R^d\).
+По свойству 3 они порождают борелевскую \(\sigma\)-алгебру.
+
+\subsubsection{\texorpdfstring{Свойство 5. Борелевская
+\(\sigma\)-алгебра на прямой порождается
+лучами}{Свойство 5. Борелевская \textbackslash sigma-алгебра на прямой порождается лучами}}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-5.-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-sigma-ux430ux43bux433ux435ux431ux440ux430-ux43dux430-ux43fux440ux44fux43cux43eux439-ux43fux43eux440ux43eux436ux434ux430ux435ux442ux441ux44f-ux43bux443ux447ux430ux43cux438}
+
+На \(\mathbb R\):
+
+\[
+\mathcal B(\mathbb R)=\sigma\{(-\infty,x]:x\in\mathbb R\}.
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-3}
+
+Каждый луч \((-\infty,x]\) замкнут, значит борелевский. Поэтому
+
+\[
+\sigma\{(-\infty,x]\}\subset\mathcal B(\mathbb R).
+\]
+
+Обратно, интервалы вида \((a,b]\) выражаются через лучи:
+
+\[
+(a,b]=(-\infty,b]\setminus(-\infty,a].
+\]
+
+Открытый интервал можно представить как счетное объединение:
+
+\[
+(a,b)=\bigcup_{n=1}^{\infty}\left(a,b-\frac1n\right]
+\]
+
+для достаточно больших \(n\); точнее можно брать все \(n\), для которых
+\(b-\frac1n>a\). Значит открытые интервалы лежат в
+\(\sigma\{(-\infty,x]\}\). Любое открытое множество на прямой является
+счетным объединением открытых интервалов с рациональными концами,
+поэтому оно также лежит в этой \(\sigma\)-алгебре. Следовательно,
+
+\[
+\mathcal B(\mathbb R)\subset\sigma\{(-\infty,x]\}.
+\]
+
+Получаем равенство. \(\square\)
+
+\subsubsection{Теорема 6. Пополнение
+меры}\label{ux442ux435ux43eux440ux435ux43cux430-6.-ux43fux43eux43fux43eux43bux43dux435ux43dux438ux435-ux43cux435ux440ux44b}
+
+Пусть \((\Omega,\mathcal F,\mu)\) - пространство с мерой. Тогда
+
+\[
+\overline{\mathcal F}^{\,\mu}
+=
+\{A\cup N:\ A\in\mathcal F,\ N\subset Z,\ Z\in\mathcal F,\ \mu(Z)=0\}
+\]
+
+является \(\sigma\)-алгеброй, а формула
+
+\[
+\overline{\mu}(A\cup N)=\mu(A)
+\]
+
+задает на ней полную меру. Кроме того, \(\overline{\mu}\) продолжает
+\(\mu\).
+
+\subsubsection{Доказательство-идея}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux438ux434ux435ux44f-1}
+
+Если множество отличается от измеримого множества только на подмножество
+нулевого множества, то его можно считать измеримым после пополнения.
+Удобная эквивалентная форма:
+
+\[
+E\in\overline{\mathcal F}^{\,\mu}
+\quad\Longleftrightarrow\quad
+\exists A\in\mathcal F:\ E\triangle A\subset Z,\ Z\in\mathcal F,\ \mu(Z)=0,
+\]
+
+где \(E\triangle A\) - симметрическая разность. Из этой формы легко
+проверить замкнутость относительно дополнений и счетных объединений.
+Если
+
+\[
+E_n\triangle A_n\subset Z_n,\qquad \mu(Z_n)=0,
+\]
+
+то
+
+\[
+\left(\bigcup_n E_n\right)\triangle\left(\bigcup_n A_n\right)
+\subset
+\bigcup_n Z_n,
+\]
+
+а \(\bigcup_n Z_n\) имеет меру \(0\) по счетной субаддитивности. Значит
+счетное объединение снова лежит в пополнении.
+
+Корректность \(\overline{\mu}\) следует из того, что два возможных
+измеримых представителя отличаются только на множестве меры \(0\),
+поэтому имеют одинаковую меру. Полнота очевидна из построения: все
+подмножества старых и новых нулевых множеств добавлены.
+
+\subsubsection{Свойство 7. Борелевская мера Лебега не
+полна}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-7.-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-ux43cux435ux440ux430-ux43bux435ux431ux435ux433ux430-ux43dux435-ux43fux43eux43bux43dux430}
+
+Борелевская мера Лебега \(\lambda_d^B\) на \(\mathcal B(\mathbb R^d)\)
+не является полной.
+
+\subsubsection{Обоснование}\label{ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux435}
+
+Достаточно рассмотреть \(d=1\). Канторово множество \(C\) замкнуто,
+значит борелевское, и имеет меру Лебега \(0\). Все подмножества \(C\)
+имеют внешнюю меру \(0\) и входят в лебегово пополнение. Но подмножеств
+у \(C\) больше, чем борелевских множеств на прямой: борелевских множеств
+имеет мощность континуума, а подмножеств канторова множества -
+\(2^{\mathfrak c}\). Поэтому существуют подмножества \(C\), которые не
+являются борелевскими. Они лежат в лебеговом пополнении, но не лежат в
+\(\mathcal B(\mathbb R)\). Значит борелевская мера Лебега не полна.
+
+\subsubsection{\texorpdfstring{Свойство 8. Лебегова \(\sigma\)-алгебра
+строго шире
+борелевской}{Свойство 8. Лебегова \textbackslash sigma-алгебра строго шире борелевской}}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-8.-ux43bux435ux431ux435ux433ux43eux432ux430-sigma-ux430ux43bux433ux435ux431ux440ux430-ux441ux442ux440ux43eux433ux43e-ux448ux438ux440ux435-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux43eux439}
+
+На \(\mathbb R^d\):
+
+\[
+\mathcal B(\mathbb R^d)\subsetneq\mathcal L(\mathbb R^d).
+\]
+
+При этом
+
+\[
+\mathcal L(\mathbb R^d)\ne 2^{\mathbb R^d}.
+\]
+
+Первое строгое включение следует из предыдущего свойства. Второе
+означает существование неизмеримых по Лебегу множеств, например множеств
+Витали.
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Интервалы
+борелевские}\label{ux43fux440ux438ux43cux435ux440-1.-ux438ux43dux442ux435ux440ux432ux430ux43bux44b-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux438ux435}
+
+На прямой открытые интервалы борелевские по определению, замкнутые
+интервалы борелевские как замкнутые множества, а полуинтервалы
+борелевские, потому что
+
+\[
+(a,b]=(-\infty,b]\setminus(-\infty,a].
+\]
+
+\subsubsection{Пример 2. Счетные множества
+борелевские}\label{ux43fux440ux438ux43cux435ux440-2.-ux441ux447ux435ux442ux43dux44bux435-ux43cux43dux43eux436ux435ux441ux442ux432ux430-ux431ux43eux440ux435ux43bux435ux432ux441ux43aux438ux435}
+
+Каждая точка \(\{x\}\) замкнута, значит борелевская. Если
+\(A=\{x_1,x_2,\ldots\}\) счетно, то
+
+\[
+A=\bigcup_{n=1}^{\infty}\{x_n\},
+\]
+
+поэтому \(A\) борелевско. В частности, \(\mathbb Q\) и
+\(\mathbb Q\cap[0,1]\) борелевские.
+
+\subsubsection{Пример 3. Счетные множества имеют меру Лебега
+ноль}\label{ux43fux440ux438ux43cux435ux440-3.-ux441ux447ux435ux442ux43dux44bux435-ux43cux43dux43eux436ux435ux441ux442ux432ux430-ux438ux43cux435ux44eux442-ux43cux435ux440ux443-ux43bux435ux431ux435ux433ux430-ux43dux43eux43bux44c}
+
+Так как \(\lambda(\{x\})=0\), то
+
+\[
+\lambda(\mathbb Q\cap[0,1])
+\le
+\sum_{q\in\mathbb Q\cap[0,1]}\lambda(\{q\})
+=0.
+\]
+
+Значит
+
+\[
+\lambda(\mathbb Q\cap[0,1])=0.
+\]
+
+\subsubsection{Пример 4. Подмножества нулевых множеств после
+пополнения}\label{ux43fux440ux438ux43cux435ux440-4.-ux43fux43eux434ux43cux43dux43eux436ux435ux441ux442ux432ux430-ux43dux443ux43bux435ux432ux44bux445-ux43cux43dux43eux436ux435ux441ux442ux432-ux43fux43eux441ux43bux435-ux43fux43eux43fux43eux43bux43dux435ux43dux438ux44f}
+
+Пусть \(C\) - канторово множество. Оно замкнуто, значит борелевское, и
+
+\[
+\lambda(C)=0.
+\]
+
+Любое \(N\subset C\) входит в лебегово пополнение и имеет меру \(0\). Но
+не каждое такое \(N\) борелевское.
+
+\subsubsection{Пример 5. Неизмеримое
+множество}\label{ux43fux440ux438ux43cux435ux440-5.-ux43dux435ux438ux437ux43cux435ux440ux438ux43cux43eux435-ux43cux43dux43eux436ux435ux441ux442ux432ux43e}
+
+Множество Витали \(V\subset[0,1]\) не является лебегово измеримым.
+Значит даже после пополнения меры Лебега область определения не
+становится равной \(2^{\mathbb R}\).
+
+\subsection{6. Доказательства и
+обоснования}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux430-ux438-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux44f}
+
+\textbf{Почему борелевская \(\sigma\)-алгебра зависит от топологии.}
+
+Определение
+
+\[
+\mathcal B(X)=\sigma(\text{открытые множества})
+\]
+
+использует открытые множества. Если на одном и том же \(X\) взять другую
+топологию, то изменится класс открытых множеств, а значит может
+измениться и борелевская \(\sigma\)-алгебра.
+
+\textbf{Почему в \(\mathbb R^d\) достаточно рациональных
+прямоугольников.}
+
+Обычная топология в \(\mathbb R^d\) имеет счетную базу из
+прямоугольников с рациональными координатами. Любое открытое множество
+является объединением всех таких базовых прямоугольников, которые в нем
+лежат. Так как база счетна, это счетное объединение. Поэтому
+\(\sigma\)-алгебра, порожденная рациональными прямоугольниками, уже
+содержит все открытые множества.
+
+\textbf{Почему пополнение не меняет старую меру.}
+
+Если \(A\in\mathcal F\), то можно представить \(A=A\cup\varnothing\),
+где \(\varnothing\) лежит в любом нулевом множестве. Тогда
+
+\[
+\overline{\mu}(A)=\mu(A).
+\]
+
+Поэтому пополнение является именно продолжением меры, а не новой мерой с
+другими значениями на старых множествах.
+
+\textbf{Почему добавляются только подмножества нулевых множеств.}
+
+Если \(N\subset Z\) и \(\mu(Z)=0\), то по монотонности любая разумная
+мера должна давать
+
+\[
+0\le\mu(N)\le\mu(Z)=0.
+\]
+
+Значит единственно возможное значение для \(N\) - ноль. Поэтому такие
+множества можно добавить без противоречия. Для произвольных подмножеств
+положительных множеств такой аргумент не работает.
+
+\textbf{Почему не все лебегово измеримые множества борелевские.}
+
+Пополнение добавляет все подмножества борелевских нулевых множеств. У
+канторова множества мера \(0\), но подмножеств у него больше, чем всех
+борелевских множеств на прямой. Поэтому среди этих подмножеств есть
+неборелевские, но после пополнения они становятся лебегово измеримыми.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Борелевская \(\sigma\)-алгебра:
+\end{enumerate}
+
+\[
+\mathcal B(X)=\sigma\{G\subset X:\ G\text{ открыто}\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  В \(\mathbb R^d\):
+\end{enumerate}
+
+\[
+\mathcal B(\mathbb R^d)
+=
+\sigma(\text{открытые шары})
+=
+\sigma(\text{полуоткрытые прямоугольники}).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Борелевская мера Лебега:
+\end{enumerate}
+
+\[
+\lambda_d^B\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Полная мера:
+\end{enumerate}
+
+\[
+N\subset Z,\quad Z\in\mathcal F,\quad \mu(Z)=0
+\Rightarrow
+N\in\mathcal F.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Пополнение:
+\end{enumerate}
+
+\[
+\overline{\mathcal F}^{\,\mu}
+=
+\{A\cup N:\ A\in\mathcal F,\ N\subset Z,\ Z\in\mathcal F,\ \mu(Z)=0\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Борелевская и лебегова \(\sigma\)-алгебры:
+\end{enumerate}
+
+\[
+\mathcal B(\mathbb R^d)\subsetneq\mathcal L(\mathbb R^d)\subsetneq 2^{\mathbb R^d}.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Что такое борелевское множество?}
+
+Это элемент минимальной \(\sigma\)-алгебры, содержащей все открытые
+множества:
+
+\[
+A\in\mathcal B(X).
+\]
+
+\textbf{Вопрос. Почему замкнутые множества борелевские?}
+
+Потому что дополнение замкнутого множества открыто, а \(\sigma\)-алгебра
+замкнута относительно дополнений.
+
+\textbf{Вопрос. Почему в \(\mathbb R\) борелевская \(\sigma\)-алгебра
+порождается лучами \((-\infty,x]\)?}
+
+Потому что из лучей получаются полуинтервалы \((a,b]\), из них -
+открытые интервалы, а открытые интервалы с рациональными концами
+порождают обычную топологию прямой.
+
+\textbf{Вопрос. Что значит, что мера полная?}
+
+Это значит, что все подмножества измеримых множеств меры ноль тоже
+измеримы.
+
+\textbf{Вопрос. Чем борелевская мера Лебега отличается от меры Лебега?}
+
+Борелевская мера Лебега задана только на \(\mathcal B(\mathbb R^d)\).
+Полная мера Лебега задана на большей \(\sigma\)-алгебре
+\(\mathcal L(\mathbb R^d)\), полученной пополнением.
+
+\textbf{Вопрос. Может ли лебегово измеримое множество быть
+неборелевским?}
+
+Да. Например, некоторые подмножества канторова множества лебегово
+измеримы, потому что лежат в множестве меры ноль, но не являются
+борелевскими.
+
+\textbf{Вопрос. Все ли подмножества \(\mathbb R\) становятся измеримыми
+после пополнения?}
+
+Нет. Существуют неизмеримые по Лебегу множества, например множества
+Витали.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Считать борелевские и лебегово измеримые множества одним и тем же
+  классом. Правильно:
+\end{enumerate}
+
+\[
+\mathcal B(\mathbb R^d)\subsetneq\mathcal L(\mathbb R^d).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Не уточнять топологию в определении \(\mathcal B(X)\).
+\item
+  Думать, что пополнение добавляет все подмножества пространства. Оно
+  добавляет только подмножества множеств меры ноль и их объединения со
+  старыми измеримыми множествами.
+\item
+  Путать внешнюю меру и пополненную меру. Внешняя мера определена на
+  всех подмножествах, но не является мерой на всех подмножествах.
+\item
+  Забывать, что борелевская мера Лебега не полна.
+\item
+  Думать, что всякое множество меры ноль счетно. Канторово множество
+  несчетно и имеет меру ноль.
+\item
+  Использовать дополнение через верхний индекс. В этих конспектах:
+\end{enumerate}
+
+\[
+\overline{A}=X\setminus A.
+\]
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 01.} Борелевская \(\sigma\)-алгебра - важнейший пример
+\(\sigma\)-алгебры.
+
+\textbf{Билет 02.} Распределения случайных величин являются
+вероятностными мерами на борелевских \(\sigma\)-алгебрах.
+
+\textbf{Билет 03.} Борелевская мера Лебега строится как продолжение меры
+с полуалгебры прямоугольников, а полная мера Лебега получается
+пополнением.
+
+\textbf{Билет 05.} Измеримость случайной величины означает, что
+прообразы борелевских множеств измеримы.
+
+\textbf{Билет 06.} Распределения случайных величин и векторов задаются
+на \(\mathcal B(\mathbb R)\) и \(\mathcal B(\mathbb R^d)\).
+
+\textbf{Билет 07.} Интеграл Лебега обычно строится по полной мере Лебега
+или по абстрактной полной мере.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Борелевская \(\sigma\)-алгебра:
+\end{enumerate}
+
+\[
+\mathcal B(X)=\sigma(\text{открытые множества}).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Борелевская мера - мера на \(\mathcal B(X)\).
+\item
+  Борелевская мера Лебега на \(\mathbb R^d\) совпадает с объемом на
+  прямоугольниках.
+\item
+  Полная мера содержит все подмножества множеств меры ноль.
+\item
+  Полная мера Лебега - пополнение борелевской меры Лебега.
+\end{enumerate}
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Кроме минимума на удовлетворительно, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Доказать существование \(\mathcal B(X)\) как пересечения всех
+  \(\sigma\)-алгебр, содержащих открытые множества.
+\item
+  Объяснить, почему замкнутые множества борелевские.
+\item
+  Назвать порождающие классы для \(\mathcal B(\mathbb R^d)\): шары,
+  рациональные прямоугольники, полуоткрытые прямоугольники.
+\item
+  Сформулировать пополнение:
+\end{enumerate}
+
+\[
+\overline{\mathcal F}^{\,\mu}
+=
+\{A\cup N:\ A\in\mathcal F,\ N\subset Z,\ \mu(Z)=0\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Объяснить различие между борелевскими и лебегово измеримыми
+  множествами.
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Доказательство, что в пространстве со счетной базой борелевская
+  \(\sigma\)-алгебра порождена базой.
+\item
+  Доказательство, что \(\mathcal B(\mathbb R)=\sigma\{(-\infty,x]\}\).
+\item
+  Эквивалентное описание пополнения через симметрическую разность:
+\end{enumerate}
+
+\[
+E\triangle A\subset Z,\qquad \mu(Z)=0.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Обоснование, почему борелевская мера Лебега не полна, через
+  подмножества канторова множества.
+\item
+  Цепочку:
+\end{enumerate}
+
+\[
+\mathcal B(\mathbb R^d)\subsetneq\mathcal L(\mathbb R^d)\subsetneq 2^{\mathbb R^d}.
+\]
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Борелевская \(\sigma\)-алгебра строится из топологии. Если \(X\) -
+топологическое пространство, то
+
+\[
+\mathcal B(X)=\sigma\{G\subset X:\ G\text{ открыто}\}.
+\]
+
+Это минимальная \(\sigma\)-алгебра, содержащая все открытые множества.
+Ее элементы называются борелевскими множествами. Замкнутые множества
+тоже борелевские, потому что они являются дополнениями открытых
+множеств.
+
+В \(\mathbb R^d\) борелевскую \(\sigma\)-алгебру можно порождать разными
+классами: открытыми шарами, замкнутыми множествами, прямоугольниками,
+полуоткрытыми прямоугольниками. Если взять прямоугольники с
+рациональными координатами, они образуют счетную базу топологии, поэтому
+тоже порождают \(\mathcal B(\mathbb R^d)\).
+
+Борелевская мера - это мера на \(\mathcal B(X)\). Борелевская мера
+Лебега на \(\mathbb R^d\) - это мера, которая на полуоткрытых
+прямоугольниках равна объему:
+
+\[
+\lambda_d^B\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+Но борелевская мера Лебега не полна: могут быть подмножества борелевских
+множеств меры ноль, которые сами не являются борелевскими.
+
+Поэтому вводят пополнение меры. Мера \(\mu\) на \((\Omega,\mathcal F)\)
+называется полной, если
+
+\[
+N\subset Z,\quad Z\in\mathcal F,\quad \mu(Z)=0
+\Rightarrow N\in\mathcal F.
+\]
+
+Пополнение добавляет к \(\mathcal F\) все множества вида
+
+\[
+A\cup N,
+\]
+
+где \(A\in\mathcal F\), а \(N\) лежит в измеримом множестве меры ноль.
+Формально:
+
+\[
+\overline{\mathcal F}^{\,\mu}
+=
+\{A\cup N:\ A\in\mathcal F,\ N\subset Z,\ Z\in\mathcal F,\ \mu(Z)=0\}.
+\]
+
+Полная мера Лебега - это пополнение борелевской меры Лебега. Поэтому
+
+\[
+\mathcal B(\mathbb R^d)\subsetneq\mathcal L(\mathbb R^d)\subsetneq 2^{\mathbb R^d}.
+\]
+
+Первое включение строго, потому что есть лебегово измеримые
+неборелевские множества, например некоторые подмножества канторова
+множества. Второе включение строго, потому что существуют неизмеримые
+множества, например множества Витали.
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить:
+
+\[
+\mathcal B(X)=\sigma(\text{открытые множества}).
+\]
+
+Борелевская мера - мера на \(\mathcal B(X)\).
+
+Борелевская мера Лебега:
+
+\[
+\lambda_d^B\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+Полная мера:
+
+\[
+N\subset Z,\quad \mu(Z)=0
+\Rightarrow
+N\text{ измеримо}.
+\]
+
+Пополнение:
+
+\[
+\overline{\mathcal F}^{\,\mu}
+=
+\{A\cup N:\ A\in\mathcal F,\ N\subset Z,\ Z\in\mathcal F,\ \mu(Z)=0\}.
+\]
+
+Главная мысль:
+
+\[
+\mathcal B(\mathbb R^d)\subsetneq\mathcal L(\mathbb R^d)\subsetneq 2^{\mathbb R^d}.
+\]
+
+Борелевские множества - не то же самое, что все лебегово измеримые
+множества.
+
+\newpage
+
+\end{document}

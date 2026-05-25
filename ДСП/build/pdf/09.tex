@@ -1,0 +1,1629 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 09. Теоремы Фубини и независимые случайные
+величины}\label{ux431ux438ux43bux435ux442-09.-ux442ux435ux43eux440ux435ux43cux44b-ux444ux443ux431ux438ux43dux438-ux438-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux441ux43bux443ux447ux430ux439ux43dux44bux435-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+Источники: Ширяев 1, гл. I, §3; гл. II, §§5-6; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+В этом билете две связанные идеи.
+
+Первая: если на произведении измеримых пространств задана произведенная
+мера, то интеграл по произведению можно считать как повторный интеграл.
+Для неотрицательной измеримой функции работает теорема Тонелли:
+
+\[
+\int_{\Omega_1\times\Omega_2} f(\omega_1,\omega_2)\,(\mu_1\otimes\mu_2)(d\omega_1,d\omega_2)
+=
+\int_{\Omega_1}
+\left(
+\int_{\Omega_2} f(\omega_1,\omega_2)\,\mu_2(d\omega_2)
+\right)
+\mu_1(d\omega_1),
+\]
+
+и аналогично с другим порядком интегрирования. Значения могут быть
+бесконечными.
+
+Вторая: независимость означает, что совместное распределение
+раскладывается в произведение маргинальных распределений. Для случайных
+элементов \(X\) и \(Y\):
+
+\[
+X\ \text{и}\ Y\ \text{независимы}
+\quad\Longleftrightarrow\quad
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+Отсюда через Фубини получается ключевая формула:
+
+\[
+\mathbb E[g(X)h(Y)]
+=
+\mathbb E g(X)\,\mathbb E h(Y),
+\]
+
+если соответствующие интегралы корректно определены. Для независимых
+случайных величин с плотностями совместная плотность равна произведению:
+
+\[
+p_{X,Y}(x,y)=p_X(x)p_Y(y)
+\]
+
+почти всюду.
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Введение и область
+применения}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux438-ux43eux431ux43bux430ux441ux442ux44c-ux43fux440ux438ux43cux435ux43dux435ux43dux438ux44f}
+
+Теоремы Фубини нужны для того, чтобы корректно переходить от интеграла
+по произведению пространств к повторным интегралам. В вероятности это
+появляется постоянно: совместные распределения случайных векторов,
+математические ожидания функций нескольких случайных величин, свертки
+распределений, марковские переходы, корреляционные функции и
+спектральные формулы.
+
+\subsubsection{2.2. Конструкция произведения пространств и
+мер}\label{ux43aux43eux43dux441ux442ux440ux443ux43aux446ux438ux44f-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux44f-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432-ux438-ux43cux435ux440}
+
+Пусть заданы два измеримых пространства с мерами:
+
+\[
+(\Omega_1,\mathcal F_1,\mu_1),
+\qquad
+(\Omega_2,\mathcal F_2,\mu_2).
+\]
+
+На декартовом произведении \(\Omega_1\times\Omega_2\) рассматривают
+произведенную \(\sigma\)-алгебру
+
+\[
+\mathcal F_1\otimes\mathcal F_2
+=
+\sigma\{A\times B:\ A\in\mathcal F_1,\ B\in\mathcal F_2\}.
+\]
+
+Если меры \(\mu_1\) и \(\mu_2\) \(\sigma\)-конечны, то существует
+единственная мера \(\mu_1\otimes\mu_2\) на
+\(\mathcal F_1\otimes\mathcal F_2\), такая что
+
+\[
+(\mu_1\otimes\mu_2)(A\times B)=\mu_1(A)\mu_2(B).
+\]
+
+Для вероятностных мер \(\sigma\)-конечность автоматически выполнена,
+потому что \(P(\Omega)=1\).
+
+\subsubsection{2.3. Сечения функций и теорема
+Тонелли}\label{ux441ux435ux447ux435ux43dux438ux44f-ux444ux443ux43dux43aux446ux438ux439-ux438-ux442ux435ux43eux440ux435ux43cux430-ux442ux43eux43dux435ux43bux43bux438}
+
+Пусть
+
+\[
+f:\Omega_1\times\Omega_2\to[0,\infty]
+\]
+
+измерима относительно \(\mathcal F_1\otimes\mathcal F_2\). Тогда для
+фиксированного \(\omega_1\) функция
+
+\[
+\omega_2\mapsto f(\omega_1,\omega_2)
+\]
+
+измерима по \(\mathcal F_2\), а для фиксированного \(\omega_2\) функция
+
+\[
+\omega_1\mapsto f(\omega_1,\omega_2)
+\]
+
+измерима по \(\mathcal F_1\). Эти функции называются сечениями функции
+\(f\).
+
+Теорема Тонелли утверждает, что для неотрицательной измеримой функции
+повторные интегралы существуют как расширенные неотрицательные числа и
+равны интегралу по произведенной мере:
+
+\[
+\int f\,d(\mu_1\otimes\mu_2)
+=
+\int_{\Omega_1}
+\left(\int_{\Omega_2} f(\omega_1,\omega_2)\,\mu_2(d\omega_2)\right)
+\mu_1(d\omega_1)
+\]
+
+\[
+=
+\int_{\Omega_2}
+\left(\int_{\Omega_1} f(\omega_1,\omega_2)\,\mu_1(d\omega_1)\right)
+\mu_2(d\omega_2).
+\]
+
+Здесь не требуется заранее знать конечность интеграла. Можно получить
+значение \(+\infty\). Это важно: для неотрицательных функций порядок
+интегрирования можно менять без проверки абсолютной интегрируемости.
+
+\subsubsection{2.4. Теорема Фубини для интегрируемых
+функций}\label{ux442ux435ux43eux440ux435ux43cux430-ux444ux443ux431ux438ux43dux438-ux434ux43bux44f-ux438ux43dux442ux435ux433ux440ux438ux440ux443ux435ux43cux44bux445-ux444ux443ux43dux43aux446ux438ux439}
+
+Теорема Фубини - это версия для знакопеременных или комплекснозначных
+функций. Пусть
+
+\[
+f\in L^1(\mu_1\otimes\mu_2),
+\qquad
+\int_{\Omega_1\times\Omega_2}|f|\,d(\mu_1\otimes\mu_2)<\infty.
+\]
+
+Тогда:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  для \(\mu_1\)-почти всех \(\omega_1\) функция \(f(\omega_1,\cdot)\)
+  интегрируема по \(\mu_2\);
+\item
+  для \(\mu_2\)-почти всех \(\omega_2\) функция \(f(\cdot,\omega_2)\)
+  интегрируема по \(\mu_1\);
+\item
+  функции повторных интегралов измеримы и интегрируемы;
+\item
+  выполнено равенство
+\end{enumerate}
+
+\[
+\int_{\Omega_1\times\Omega_2} f\,d(\mu_1\otimes\mu_2)
+=
+\int_{\Omega_1}
+\left(\int_{\Omega_2} f(\omega_1,\omega_2)\,\mu_2(d\omega_2)\right)
+\mu_1(d\omega_1)
+\]
+
+\[
+=
+\int_{\Omega_2}
+\left(\int_{\Omega_1} f(\omega_1,\omega_2)\,\mu_1(d\omega_1)\right)
+\mu_2(d\omega_2).
+\]
+
+Главное условие Фубини - интегрируемость \(|f|\) по произведенной мере.
+Практически часто проверяют достаточное условие:
+
+\[
+\int_{\Omega_1}
+\left(\int_{\Omega_2}|f(\omega_1,\omega_2)|\,\mu_2(d\omega_2)\right)
+\mu_1(d\omega_1)
+<\infty.
+\]
+
+Тогда по Тонелли
+
+\[
+\int |f|\,d(\mu_1\otimes\mu_2)<\infty,
+\]
+
+значит применима теорема Фубини.
+
+\subsubsection{2.5. Независимость событий и
+сигма-алгебр}\label{ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c-ux441ux43eux431ux44bux442ux438ux439-ux438-ux441ux438ux433ux43cux430-ux430ux43bux433ux435ux431ux440}
+
+Теперь перейдем к независимости. Для двух событий \(A,B\in\mathcal F\)
+независимость определяется формулой
+
+\[
+P(A\cap B)=P(A)P(B).
+\]
+
+Интуиция: знание того, что произошло \(A\), не меняет вероятность \(B\).
+Если \(P(A)>0\), это равносильно
+
+\[
+P(B\mid A)=P(B).
+\]
+
+Для нескольких событий \(A_1,\ldots,A_n\) независимость в совокупности
+означает, что для любого непустого набора индексов \(i_1,\ldots,i_k\)
+
+\[
+P(A_{i_1}\cap\cdots\cap A_{i_k})
+=
+P(A_{i_1})\cdots P(A_{i_k}).
+\]
+
+Важно: попарная независимость не равна независимости в совокупности.
+
+Для \(\sigma\)-алгебр
+\(\mathcal G_1,\ldots,\mathcal G_n\subset\mathcal F\) независимость
+означает:
+
+\[
+P(G_1\cap\cdots\cap G_n)
+=
+P(G_1)\cdots P(G_n)
+\]
+
+для любых \(G_i\in\mathcal G_i\). Случайные элементы \(X_1,\ldots,X_n\)
+независимы, если независимы порожденные ими \(\sigma\)-алгебры:
+
+\[
+\sigma(X_1),\ldots,\sigma(X_n).
+\]
+
+Эквивалентно, для любых борелевских множеств \(B_i\):
+
+\[
+P\{X_1\in B_1,\ldots,X_n\in B_n\}
+=
+\prod_{i=1}^n P\{X_i\in B_i\}.
+\]
+
+\subsubsection{2.6. Независимость случайных элементов и совместное
+распределение}\label{ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux44dux43bux435ux43cux435ux43dux442ux43eux432-ux438-ux441ux43eux432ux43cux435ux441ux442ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+В терминах распределений это записывается особенно компактно. Для двух
+случайных элементов
+
+\[
+X:\Omega\to E,
+\qquad
+Y:\Omega\to F
+\]
+
+с распределениями \(P_X\) и \(P_Y\) совместное распределение вектора
+\((X,Y)\) есть мера
+
+\[
+P_{(X,Y)}(C)=P\{(X,Y)\in C\},
+\qquad
+C\in\mathcal E\otimes\mathcal F.
+\]
+
+Тогда
+
+\[
+X\ \text{и}\ Y\ \text{независимы}
+\quad\Longleftrightarrow\quad
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+Действительно, на прямоугольниках \(A\times B\) равенство дает
+
+\[
+P\{X\in A,\ Y\in B\}
+=
+P_X(A)P_Y(B),
+\]
+
+то есть ровно определение независимости. А поскольку прямоугольники
+порождают произведенную \(\sigma\)-алгебру, равенство переносится на все
+измеримые множества стандартным аргументом через монотонный класс.
+
+\subsubsection{2.7. Функции распределения и
+плотности}\label{ux444ux443ux43dux43aux446ux438ux438-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux438-ux43fux43bux43eux442ux43dux43eux441ux442ux438}
+
+Если \(X\) и \(Y\) - вещественные случайные величины, то независимость
+эквивалентна факторизации совместной функции распределения:
+
+\[
+F_{X,Y}(x,y)
+=
+P\{X\le x,\ Y\le y\}
+=
+F_X(x)F_Y(y)
+\]
+
+для всех \(x,y\in\mathbb R\).
+
+Если у совместного распределения есть плотность \(p_{X,Y}\) относительно
+меры Лебега на \(\mathbb R^2\), то маргинальные плотности выражаются
+через повторные интегралы:
+
+\[
+p_X(x)=\int_{\mathbb R}p_{X,Y}(x,y)\,dy,
+\qquad
+p_Y(y)=\int_{\mathbb R}p_{X,Y}(x,y)\,dx.
+\]
+
+Здесь используется Фубини/Тонелли. В этом случае
+
+\[
+X\ \text{и}\ Y\ \text{независимы}
+\quad\Longleftrightarrow\quad
+p_{X,Y}(x,y)=p_X(x)p_Y(y)
+\]
+
+почти всюду относительно двумерной меры Лебега.
+
+\subsubsection{2.8. Математическое ожидание произведения
+функций}\label{ux43cux430ux442ux435ux43cux430ux442ux438ux447ux435ux441ux43aux43eux435-ux43eux436ux438ux434ux430ux43dux438ux435-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux44f-ux444ux443ux43dux43aux446ux438ux439}
+
+Фубини дает основную вычислительную формулу для независимых величин.
+Пусть \(X\) и \(Y\) независимы, а \(g\) и \(h\) - измеримые функции.
+Если \(g(X)\) и \(h(Y)\) неотрицательны или если все нужные величины
+интегрируемы, то
+
+\[
+\mathbb E[g(X)h(Y)]
+=
+\int_{E\times F} g(x)h(y)\,P_{(X,Y)}(dx,dy).
+\]
+
+По независимости
+
+\[
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+По Фубини:
+
+\[
+\mathbb E[g(X)h(Y)]
+=
+\int_E\int_F g(x)h(y)\,P_Y(dy)\,P_X(dx)
+\]
+
+\[
+=
+\left(\int_E g(x)\,P_X(dx)\right)
+\left(\int_F h(y)\,P_Y(dy)\right)
+=
+\mathbb E g(X)\,\mathbb E h(Y).
+\]
+
+В частности, если \(X,Y\in L^1\) и независимы, то
+
+\[
+\mathbb E[XY]=\mathbb EX\,\mathbb EY.
+\]
+
+Если дополнительно \(X,Y\in L^2\), то
+
+\[
+\operatorname{Cov}(X,Y)=0.
+\]
+
+Но обратное неверно: нулевая ковариация вообще не означает
+независимости. Исключение - специальные классы, например совместно
+гауссовские величины, что относится к Билет 18.
+
+\subsubsection{2.9. Распределение суммы независимых величин
+(свертка)}\label{ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux441ux443ux43cux43cux44b-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux445-ux432ux435ux43bux438ux447ux438ux43d-ux441ux432ux435ux440ux442ux43aux430}
+
+Еще одно важное следствие - распределение суммы независимых величин.
+Если \(X\) и \(Y\) независимы, то закон \(X+Y\) равен свертке законов:
+
+\[
+P_{X+Y}=P_X*P_Y.
+\]
+
+Для борелевского множества \(B\subset\mathbb R\):
+
+\[
+P\{X+Y\in B\}
+=
+\int_{\mathbb R}\int_{\mathbb R}\mathbf 1_B(x+y)\,P_X(dx)P_Y(dy).
+\]
+
+В дискретном случае:
+
+\[
+P\{X+Y=z\}
+=
+\sum_x P\{X=x\}P\{Y=z-x\}.
+\]
+
+Если есть плотности \(p_X\) и \(p_Y\), то плотность суммы:
+
+\[
+p_{X+Y}(z)
+=
+\int_{\mathbb R}p_X(x)p_Y(z-x)\,dx.
+\]
+
+Через характеристические функции это превращается в произведение:
+
+\[
+\varphi_{X+Y}(t)=\varphi_X(t)\varphi_Y(t),
+\]
+
+что связывает билет с Билет 08 и предельными теоремами.
+
+\subsubsection{2.10. Резюме}\label{ux440ux435ux437ux44eux43cux435}
+
+Итак, логика билета такая: произведенная мера описывает независимое
+совместное распределение; Фубини и Тонелли позволяют корректно
+интегрировать по этому произведению; поэтому из независимости следуют
+факторизация ожиданий, произведение плотностей, свертка распределений и
+произведение характеристических функций.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{\texorpdfstring{Произведенная
+\(\sigma\)-алгебра}{Произведенная \textbackslash sigma-алгебра}}\label{ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux43dux430ux44f-sigma-ux430ux43bux433ux435ux431ux440ux430}
+
+Для измеримых пространств \((\Omega_1,\mathcal F_1)\) и
+\((\Omega_2,\mathcal F_2)\):
+
+\[
+\mathcal F_1\otimes\mathcal F_2
+=
+\sigma\{A\times B:\ A\in\mathcal F_1,\ B\in\mathcal F_2\}.
+\]
+
+\subsubsection{Произведение
+мер}\label{ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux435-ux43cux435ux440}
+
+Если \(\mu_1\) и \(\mu_2\) \(\sigma\)-конечны, то \(\mu_1\otimes\mu_2\)
+- мера на \(\mathcal F_1\otimes\mathcal F_2\), задаваемая на
+прямоугольниках формулой
+
+\[
+(\mu_1\otimes\mu_2)(A\times B)=\mu_1(A)\mu_2(B).
+\]
+
+\subsubsection{Сечение
+множества}\label{ux441ux435ux447ux435ux43dux438ux435-ux43cux43dux43eux436ux435ux441ux442ux432ux430}
+
+Для \(C\subset\Omega_1\times\Omega_2\):
+
+\[
+C_{\omega_1}=\{\omega_2:\ (\omega_1,\omega_2)\in C\},
+\qquad
+C^{\omega_2}=\{\omega_1:\ (\omega_1,\omega_2)\in C\}.
+\]
+
+\subsubsection{Сечение
+функции}\label{ux441ux435ux447ux435ux43dux438ux435-ux444ux443ux43dux43aux446ux438ux438}
+
+Для \(f(\omega_1,\omega_2)\):
+
+\[
+f_{\omega_1}(\omega_2)=f(\omega_1,\omega_2),
+\qquad
+f^{\omega_2}(\omega_1)=f(\omega_1,\omega_2).
+\]
+
+\subsubsection{Интегрируемость на
+произведении}\label{ux438ux43dux442ux435ux433ux440ux438ux440ux443ux435ux43cux43eux441ux442ux44c-ux43dux430-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux438}
+
+Функция \(f\) интегрируема относительно \(\mu_1\otimes\mu_2\), если
+
+\[
+\int_{\Omega_1\times\Omega_2}|f|\,d(\mu_1\otimes\mu_2)<\infty.
+\]
+
+\subsubsection{Независимые
+события}\label{ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux441ux43eux431ux44bux442ux438ux44f}
+
+События \(A\) и \(B\) независимы, если
+
+\[
+P(A\cap B)=P(A)P(B).
+\]
+
+\subsubsection{Независимость событий в
+совокупности}\label{ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c-ux441ux43eux431ux44bux442ux438ux439-ux432-ux441ux43eux432ux43eux43aux443ux43fux43dux43eux441ux442ux438}
+
+События \(A_1,\ldots,A_n\) независимы в совокупности, если для любого
+непустого набора индексов \(i_1,\ldots,i_k\):
+
+\[
+P(A_{i_1}\cap\cdots\cap A_{i_k})
+=
+P(A_{i_1})\cdots P(A_{i_k}).
+\]
+
+\subsubsection{\texorpdfstring{Независимые
+\(\sigma\)-алгебры}{Независимые \textbackslash sigma-алгебры}}\label{ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-sigma-ux430ux43bux433ux435ux431ux440ux44b}
+
+\(\sigma\)-алгебры \(\mathcal G_1,\ldots,\mathcal G_n\) независимы, если
+для любых \(G_i\in\mathcal G_i\):
+
+\[
+P(G_1\cap\cdots\cap G_n)
+=
+\prod_{i=1}^nP(G_i).
+\]
+
+\subsubsection{Независимые случайные
+элементы}\label{ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux441ux43bux443ux447ux430ux439ux43dux44bux435-ux44dux43bux435ux43cux435ux43dux442ux44b}
+
+Случайные элементы \(X_1,\ldots,X_n\) независимы, если независимы
+\(\sigma(X_1),\ldots,\sigma(X_n)\).
+
+\subsubsection{Распределительный критерий
+независимости}\label{ux440ux430ux441ux43fux440ux435ux434ux435ux43bux438ux442ux435ux43bux44cux43dux44bux439-ux43aux440ux438ux442ux435ux440ux438ux439-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux438}
+
+\[
+X_1,\ldots,X_n\ \text{независимы}
+\quad\Longleftrightarrow\quad
+P_{(X_1,\ldots,X_n)}
+=
+P_{X_1}\otimes\cdots\otimes P_{X_n}.
+\]
+
+\subsubsection{Свертка
+распределений}\label{ux441ux432ux435ux440ux442ux43aux430-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux439}
+
+Для вероятностных мер \(\mu\) и \(\nu\) на \(\mathbb R\) свертка
+\(\mu*\nu\) задается формулой
+
+\[
+(\mu*\nu)(B)
+=
+\int_{\mathbb R}\int_{\mathbb R}\mathbf 1_B(x+y)\,\mu(dx)\nu(dy).
+\]
+
+Если \(X,Y\) независимы, то
+
+\[
+P_{X+Y}=P_X*P_Y.
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Теорема 1. Существование произведения
+мер}\label{ux442ux435ux43eux440ux435ux43cux430-1.-ux441ux443ux449ux435ux441ux442ux432ux43eux432ux430ux43dux438ux435-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux44f-ux43cux435ux440}
+
+Если \(\mu_1\) и \(\mu_2\) - \(\sigma\)-конечные меры, то существует
+единственная мера \(\mu_1\otimes\mu_2\) на
+\(\mathcal F_1\otimes\mathcal F_2\), такая что
+
+\[
+(\mu_1\otimes\mu_2)(A\times B)=\mu_1(A)\mu_2(B).
+\]
+
+Для вероятностных пространств это условие всегда выполнено.
+
+\subsubsection{Теорема 2.
+Тонелли}\label{ux442ux435ux43eux440ux435ux43cux430-2.-ux442ux43eux43dux435ux43bux43bux438}
+
+Пусть \(f\ge0\) и \(f\) измерима на \(\Omega_1\times\Omega_2\). Тогда
+функции
+
+\[
+\omega_1\mapsto\int_{\Omega_2}f(\omega_1,\omega_2)\,\mu_2(d\omega_2),
+\]
+
+\[
+\omega_2\mapsto\int_{\Omega_1}f(\omega_1,\omega_2)\,\mu_1(d\omega_1)
+\]
+
+измеримы, и
+
+\[
+\int f\,d(\mu_1\otimes\mu_2)
+=
+\int_{\Omega_1}\int_{\Omega_2}f(\omega_1,\omega_2)\,\mu_2(d\omega_2)\mu_1(d\omega_1)
+\]
+
+\[
+=
+\int_{\Omega_2}\int_{\Omega_1}f(\omega_1,\omega_2)\,\mu_1(d\omega_1)\mu_2(d\omega_2).
+\]
+
+Значения могут быть равны \(+\infty\).
+
+\subsubsection{Теорема 3.
+Фубини}\label{ux442ux435ux43eux440ux435ux43cux430-3.-ux444ux443ux431ux438ux43dux438}
+
+Если \(f\in L^1(\mu_1\otimes\mu_2)\), то повторные интегралы существуют
+почти всюду, являются интегрируемыми функциями и
+
+\[
+\int f\,d(\mu_1\otimes\mu_2)
+=
+\int_{\Omega_1}\int_{\Omega_2}f\,d\mu_2\,d\mu_1
+=
+\int_{\Omega_2}\int_{\Omega_1}f\,d\mu_1\,d\mu_2.
+\]
+
+\subsubsection{Следствие. Проверка условия
+Фубини}\label{ux441ux43bux435ux434ux441ux442ux432ux438ux435.-ux43fux440ux43eux432ux435ux440ux43aux430-ux443ux441ux43bux43eux432ux438ux44f-ux444ux443ux431ux438ux43dux438}
+
+Если
+
+\[
+\int_{\Omega_1}\int_{\Omega_2}|f(\omega_1,\omega_2)|\,\mu_2(d\omega_2)\mu_1(d\omega_1)<\infty,
+\]
+
+то \(f\in L^1(\mu_1\otimes\mu_2)\) и порядок интегрирования можно
+менять.
+
+\subsubsection{Теорема 4. Независимость и произведение
+распределений}\label{ux442ux435ux43eux440ux435ux43cux430-4.-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c-ux438-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux439}
+
+Случайные элементы \(X\) и \(Y\) независимы тогда и только тогда, когда
+
+\[
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+Для \(n\) случайных элементов:
+
+\[
+P_{(X_1,\ldots,X_n)}
+=
+P_{X_1}\otimes\cdots\otimes P_{X_n}.
+\]
+
+\subsubsection{Теорема 5. Факторизация функций
+распределения}\label{ux442ux435ux43eux440ux435ux43cux430-5.-ux444ux430ux43aux442ux43eux440ux438ux437ux430ux446ux438ux44f-ux444ux443ux43dux43aux446ux438ux439-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Для вещественных случайных величин \(X_1,\ldots,X_n\) независимость
+эквивалентна равенству
+
+\[
+F_{X_1,\ldots,X_n}(x_1,\ldots,x_n)
+=
+\prod_{k=1}^n F_{X_k}(x_k)
+\]
+
+для всех \(x_1,\ldots,x_n\).
+
+\subsubsection{Теорема 6. Факторизация
+плотности}\label{ux442ux435ux43eux440ux435ux43cux430-6.-ux444ux430ux43aux442ux43eux440ux438ux437ux430ux446ux438ux44f-ux43fux43bux43eux442ux43dux43eux441ux442ux438}
+
+Если у \((X,Y)\) есть совместная плотность \(p_{X,Y}\), то \(X\) и \(Y\)
+независимы тогда и только тогда, когда
+
+\[
+p_{X,Y}(x,y)=p_X(x)p_Y(y)
+\]
+
+почти всюду.
+
+\subsubsection{Теорема 7. Ожидание произведения независимых
+функций}\label{ux442ux435ux43eux440ux435ux43cux430-7.-ux43eux436ux438ux434ux430ux43dux438ux435-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux44f-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux445-ux444ux443ux43dux43aux446ux438ux439}
+
+Если \(X\) и \(Y\) независимы, то для неотрицательных измеримых \(g,h\):
+
+\[
+\mathbb E[g(X)h(Y)]
+=
+\mathbb E g(X)\,\mathbb E h(Y),
+\]
+
+где равенство понимается в расширенном смысле \([0,+\infty]\) через
+теорему Тонелли. Случай \(0\cdot\infty\) понимается естественно: если,
+например, \(\mathbb E g(X)=0\), то \(g(X)=0\) почти наверное, поэтому
+обе части равны нулю. Если \(g,h\) знакопеременные, достаточно условий
+\(\mathbb E|g(X)|<\infty\) и \(\mathbb E|h(Y)|<\infty\); при
+независимости тогда \(g(X)h(Y)\) интегрируема и формула верна без
+расширенных значений.
+
+В частности:
+
+\[
+\mathbb E[XY]=\mathbb EX\,\mathbb EY
+\]
+
+для независимых \(X,Y\in L^1\).
+
+\subsubsection{Теорема 8. Независимые
+преобразования}\label{ux442ux435ux43eux440ux435ux43cux430-8.-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux43fux440ux435ux43eux431ux440ux430ux437ux43eux432ux430ux43dux438ux44f}
+
+Если \(X\) и \(Y\) независимы, а \(g,h\) измеримы, то \(g(X)\) и
+\(h(Y)\) независимы. Более общо, измеримые функции от независимых групп
+случайных величин независимы.
+
+\subsubsection{Свойство 9. Сумма независимых
+величин}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-9.-ux441ux443ux43cux43cux430-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux445-ux432ux435ux43bux438ux447ux438ux43d}
+
+Если \(X\) и \(Y\) независимы, то
+
+\[
+P_{X+Y}=P_X*P_Y.
+\]
+
+Если есть плотности:
+
+\[
+p_{X+Y}(z)=\int_{\mathbb R}p_X(x)p_Y(z-x)\,dx.
+\]
+
+Если есть характеристические функции:
+
+\[
+\varphi_{X+Y}(t)=\varphi_X(t)\varphi_Y(t).
+\]
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Повторный интеграл по
+прямоугольнику}\label{ux43fux440ux438ux43cux435ux440-1.-ux43fux43eux432ux442ux43eux440ux43dux44bux439-ux438ux43dux442ux435ux433ux440ux430ux43b-ux43fux43e-ux43fux440ux44fux43cux43eux443ux433ux43eux43bux44cux43dux438ux43aux443}
+
+Пусть \(f(x,y)=x+y\) на \([0,1]\times[0,2]\) с мерой Лебега. Тогда
+
+\[
+\int_0^1\int_0^2(x+y)\,dy\,dx
+=
+\int_0^1(2x+2)\,dx
+=
+3.
+\]
+
+В другом порядке:
+
+\[
+\int_0^2\int_0^1(x+y)\,dx\,dy
+=
+\int_0^2\left(\frac12+y\right)\,dy
+=
+3.
+\]
+
+Равенство обеспечивается Фубини, так как функция ограничена на множестве
+конечной меры.
+
+\subsubsection{Пример 2. Независимые бернуллиевские
+величины}\label{ux43fux440ux438ux43cux435ux440-2.-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux431ux435ux440ux43dux443ux43bux43bux438ux435ux432ux441ux43aux438ux435-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+Пусть \(X,Y\) независимы и
+
+\[
+P\{X=1\}=p,\qquad P\{Y=1\}=q.
+\]
+
+Тогда
+
+\[
+P\{X=1,Y=1\}=pq,
+\]
+
+а совместное распределение задается произведениями вероятностей:
+
+\[
+P\{X=x,Y=y\}=P\{X=x\}P\{Y=y\}.
+\]
+
+Для суммы \(S=X+Y\):
+
+\[
+P\{S=2\}=pq,
+\]
+
+\[
+P\{S=1\}=p(1-q)+(1-p)q,
+\]
+
+\[
+P\{S=0\}=(1-p)(1-q).
+\]
+
+Это дискретная свертка.
+
+\subsubsection{Пример 3. Независимые величины с
+плотностями}\label{ux43fux440ux438ux43cux435ux440-3.-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux432ux435ux43bux438ux447ux438ux43dux44b-ux441-ux43fux43bux43eux442ux43dux43eux441ux442ux44fux43cux438}
+
+Пусть \(X\) и \(Y\) независимы, причем \(X\) имеет плотность \(p_X\), а
+\(Y\) - плотность \(p_Y\). Тогда
+
+\[
+p_{X,Y}(x,y)=p_X(x)p_Y(y).
+\]
+
+Например, если \(X,Y\) независимы и равномерны на \([0,1]\), то
+
+\[
+p_{X,Y}(x,y)=\mathbf 1_{[0,1]}(x)\mathbf 1_{[0,1]}(y),
+\]
+
+то есть совместная плотность постоянна на единичном квадрате.
+
+\subsubsection{Пример 4. Плотность суммы независимых равномерных
+величин}\label{ux43fux440ux438ux43cux435ux440-4.-ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux441ux443ux43cux43cux44b-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux445-ux440ux430ux432ux43dux43eux43cux435ux440ux43dux44bux445-ux432ux435ux43bux438ux447ux438ux43d}
+
+Пусть \(X,Y\) независимы и равномерны на \([0,1]\). Тогда
+
+\[
+p_{X+Y}(z)
+=
+\int_{\mathbb R}\mathbf 1_{[0,1]}(x)\mathbf 1_{[0,1]}(z-x)\,dx.
+\]
+
+Отсюда
+
+\[
+p_{X+Y}(z)=
+\begin{cases}
+z, & 0\le z\le1,\\
+2-z, & 1<z\le2,\\
+0, & \text{иначе}.
+\end{cases}
+\]
+
+Это стандартный пример свертки.
+
+\subsubsection{Пример 5. Нулевая ковариация без
+независимости}\label{ux43fux440ux438ux43cux435ux440-5.-ux43dux443ux43bux435ux432ux430ux44f-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux44f-ux431ux435ux437-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux438}
+
+Пусть \(X\) принимает значения \(-1,0,1\) с вероятностями \(1/3\), а
+
+\[
+Y=X^2.
+\]
+
+Тогда \(Y\) полностью определяется по \(X\), значит \(X\) и \(Y\)
+зависимы. Но
+
+\[
+\mathbb EX=0,\qquad
+\mathbb E[XY]=\mathbb E[X^3]=0,
+\]
+
+поэтому
+
+\[
+\operatorname{Cov}(X,Y)=0.
+\]
+
+Следовательно, некоррелированность не равна независимости.
+
+\subsubsection{Пример 6. Попарная независимость не дает независимости в
+совокупности}\label{ux43fux440ux438ux43cux435ux440-6.-ux43fux43eux43fux430ux440ux43dux430ux44f-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c-ux43dux435-ux434ux430ux435ux442-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux438-ux432-ux441ux43eux432ux43eux43aux443ux43fux43dux43eux441ux442ux438}
+
+Пусть бросаются две независимые честные монеты, а события:
+
+\[
+A=\{\text{первая монета - орел}\},
+\]
+
+\[
+B=\{\text{вторая монета - орел}\},
+\]
+
+\[
+C=\{\text{результаты монет совпали}\}.
+\]
+
+Тогда \(A,B,C\) попарно независимы, но
+
+\[
+P(A\cap B\cap C)=\frac14
+\]
+
+и
+
+\[
+P(A)P(B)P(C)=\frac18.
+\]
+
+Значит независимости в совокупности нет.
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\textbf{Схема доказательства существования произведения мер.}
+
+Сначала на прямоугольниках задают
+
+\[
+\mu(A\times B)=\mu_1(A)\mu_2(B).
+\]
+
+Затем продолжают эту функцию с полукольца или алгебры прямоугольников на
+порожденную \(\sigma\)-алгебру. Единственность получается из теоремы
+продолжения меры при \(\sigma\)-конечности. Для вероятностных мер это
+особенно просто, потому что меры конечны.
+
+\textbf{Схема доказательства Тонелли.}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Сначала проверяют формулу для индикатора прямоугольника:
+\end{enumerate}
+
+\[
+f=\mathbf 1_{A\times B}.
+\]
+
+Тогда обе стороны равны \(\mu_1(A)\mu_2(B)\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Затем переходят к индикаторам множеств из
+  \(\mathcal F_1\otimes\mathcal F_2\) через монотонный класс.
+\item
+  Потом доказывают формулу для неотрицательных простых функций по
+  линейности.
+\item
+  Для произвольной \(f\ge0\) берут простые функции \(f_n\uparrow f\) и
+  применяют теорему Беппо Леви о монотонной сходимости из Билет 07.
+\end{enumerate}
+
+\textbf{Схема доказательства Фубини.}
+
+Для интегрируемой функции \(f\) раскладывают
+
+\[
+f=f^+-f^-.
+\]
+
+Так как
+
+\[
+\int |f|\,d(\mu_1\otimes\mu_2)<\infty,
+\]
+
+то интегралы от \(f^+\) и \(f^-\) конечны. К ним применяют Тонелли,
+затем вычитают равенства. Это дает существование повторных интегралов
+почти всюду и равенство всех трех интегралов.
+
+\textbf{Схема доказательства критерия независимости через произведение
+распределений.}
+
+Если \(X\) и \(Y\) независимы, то для прямоугольников \(A\times B\):
+
+\[
+P_{(X,Y)}(A\times B)
+=
+P\{X\in A,Y\in B\}
+=
+P_X(A)P_Y(B)
+=
+(P_X\otimes P_Y)(A\times B).
+\]
+
+Так как прямоугольники порождают произведенную \(\sigma\)-алгебру,
+равенство мер на прямоугольниках переносится на всю \(\sigma\)-алгебру.
+Обратное следует сразу из той же формулы на прямоугольниках.
+
+\textbf{Схема доказательства формулы
+\(\mathbb E[g(X)h(Y)]=\mathbb E g(X)\mathbb E h(Y)\).}
+
+По теореме о замене переменной:
+
+\[
+\mathbb E[g(X)h(Y)]
+=
+\int g(x)h(y)\,P_{(X,Y)}(dx,dy).
+\]
+
+По независимости:
+
+\[
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+По Фубини:
+
+\[
+\int g(x)h(y)\,P_X(dx)P_Y(dy)
+=
+\left(\int g\,dP_X\right)\left(\int h\,dP_Y\right).
+\]
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Произведенная мера:
+\end{enumerate}
+
+\[
+(\mu_1\otimes\mu_2)(A\times B)=\mu_1(A)\mu_2(B).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Тонелли:
+\end{enumerate}
+
+\[
+f\ge0
+\quad\Rightarrow\quad
+\int f\,d(\mu_1\otimes\mu_2)
+=
+\int\int f\,d\mu_2\,d\mu_1
+=
+\int\int f\,d\mu_1\,d\mu_2.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Фубини:
+\end{enumerate}
+
+\[
+f\in L^1(\mu_1\otimes\mu_2)
+\quad\Rightarrow\quad
+\int f\,d(\mu_1\otimes\mu_2)
+=
+\int\int f\,d\mu_2\,d\mu_1.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Независимость:
+\end{enumerate}
+
+\[
+P(A\cap B)=P(A)P(B).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Независимость случайных элементов:
+\end{enumerate}
+
+\[
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Ожидание произведения:
+\end{enumerate}
+
+\[
+\mathbb E[g(X)h(Y)]
+=
+\mathbb E g(X)\,\mathbb E h(Y).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Плотности и свертка:
+\end{enumerate}
+
+\[
+p_{X,Y}(x,y)=p_X(x)p_Y(y),
+\qquad
+p_{X+Y}(z)=\int p_X(x)p_Y(z-x)\,dx.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Чем Тонелли отличается от Фубини?}
+
+Тонелли работает для \(f\ge0\) и допускает бесконечные значения
+интегралов. Фубини работает для знакопеременных функций, но требует
+\(f\in L^1\), то есть \(\int |f|<\infty\).
+
+\textbf{Вопрос. Можно ли менять порядок интегрирования без условий?}
+
+Нет. Для неотрицательных функций можно по Тонелли. Для знакопеременных
+нужно проверять абсолютную интегрируемость или другое условие,
+гарантирующее применимость Фубини.
+
+\textbf{Вопрос. Почему в Фубини повторные интегралы определены только
+почти всюду?}
+
+Потому что для отдельных сечений интеграл может быть не определен или
+бесконечен на множестве внешней переменной меры ноль. Интеграл Лебега не
+различает изменения на нулевых множествах.
+
+\textbf{Вопрос. Что значит независимость случайных величин через
+\(\sigma\)-алгебры?}
+
+Это независимость всей информации, содержащейся в величинах. Формально
+независимы \(\sigma(X)\) и \(\sigma(Y)\), то есть все события вида
+\(\{X\in A\}\) и \(\{Y\in B\}\).
+
+\textbf{Вопрос. Как связаны независимость и совместное распределение?}
+
+Независимость означает, что совместный закон равен произведению
+маргинальных законов:
+
+\[
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+\textbf{Вопрос. Как проверить независимость по функции распределения?}
+
+Для вещественных \(X,Y\) нужно проверить
+
+\[
+F_{X,Y}(x,y)=F_X(x)F_Y(y)
+\]
+
+для всех \(x,y\).
+
+\textbf{Вопрос. Как проверить независимость по плотности?}
+
+Если есть совместная плотность, то нужно проверить
+
+\[
+p_{X,Y}(x,y)=p_X(x)p_Y(y)
+\]
+
+почти всюду.
+
+\textbf{Вопрос. Почему из независимости следует
+\(\mathbb E[XY]=\mathbb EX\,\mathbb EY\)?}
+
+Потому что совместное распределение равно \(P_X\otimes P_Y\), а по
+Фубини интеграл от \(xy\) по произведению мер раскладывается в
+произведение интегралов.
+
+\textbf{Вопрос. Верно ли обратное: если
+\(\mathbb E[XY]=\mathbb EX\,\mathbb EY\), то \(X,Y\) независимы?}
+
+Нет. Это означает только нулевую ковариацию при наличии вторых моментов.
+Независимость сильнее.
+
+\textbf{Вопрос. Почему попарная независимость не равна независимости в
+совокупности?}
+
+Потому что попарная независимость проверяет только пересечения двух
+событий, а независимость в совокупности требует факторизации всех
+пересечений любых поднаборов.
+
+\textbf{Вопрос. Что происходит с функциями от независимых величин?}
+
+Если \(X\) и \(Y\) независимы, а \(g,h\) измеримы, то \(g(X)\) и
+\(h(Y)\) тоже независимы.
+
+\textbf{Вопрос. Как распределение суммы связано с независимостью?}
+
+При независимости закон суммы есть свертка:
+
+\[
+P_{X+Y}=P_X*P_Y.
+\]
+
+Без независимости маргинальных распределений недостаточно: нужен
+совместный закон.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Менять порядок интегрирования для знакопеременной функции без проверки
+  \(\int |f|<\infty\).
+\item
+  Называть любую перестановку интегралов ``Фубини'', хотя для \(f\ge0\)
+  точнее говорить ``Тонелли''.
+\item
+  Забывать, что повторные интегралы в Фубини определены почти всюду, а
+  не обязательно при каждом значении внешней переменной.
+\item
+  Путать попарную независимость и независимость в совокупности.
+\item
+  Считать, что некоррелированность означает независимость.
+\item
+  Проверять независимость только на одном значении функции
+  распределения, а не для всех \(x,y\).
+\item
+  Забывать ``почти всюду'' в равенстве плотностей
+\end{enumerate}
+
+\[
+p_{X,Y}=p_Xp_Y.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Использовать формулу
+\end{enumerate}
+
+\[
+\mathbb E[g(X)h(Y)]=\mathbb E g(X)\mathbb E h(Y)
+\]
+
+без независимости или без условий существования ожиданий. 9. Считать,
+что распределение суммы всегда является сверткой маргинальных
+распределений. Это верно только при независимости. 10. Путать
+произведение случайных величин \(XY\) и произведение мер
+\(P_X\otimes P_Y\).
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 06.} Совместные распределения, конечномерные распределения
+и плотности дают язык, в котором формулируется независимость.
+
+\textbf{Билет 07.} Тонелли и Фубини опираются на интеграл Лебега и
+теоремы о монотонной и мажорированной сходимости.
+
+\textbf{Билет 08.} Для независимых сумм характеристические функции
+перемножаются:
+
+\[
+\varphi_{X+Y}=\varphi_X\varphi_Y.
+\]
+
+\textbf{Билет 10.} Условное ожидание использует независимость от
+\(\sigma\)-алгебры: если \(X\) независима от \(\mathcal G\), то
+
+\[
+\mathbb E[X\mid\mathcal G]=\mathbb EX.
+\]
+
+\textbf{Билет 11.} Замена переменной в интеграле используется вместе с
+Фубини для перехода от \(\mathbb E g(X,Y)\) к интегралу по
+\(P_{(X,Y)}\).
+
+\textbf{Билет 14.} Независимость дает нулевую ковариацию, но нулевая
+ковариация не дает независимости.
+
+\textbf{Билет 18.} Для совместно гауссовских величин некоррелированность
+эквивалентна независимости.
+
+\textbf{Билет 19.} Независимые приращения и блуждания используют
+факторизацию совместных законов и свертки.
+
+\textbf{Билет 21.} Закон больших чисел и центральная предельная теорема
+требуют независимости или ее ослабленных вариантов.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Теорема Фубини позволяет считать интеграл по произведению мер как
+  повторный интеграл.
+\item
+  Для \(f\ge0\) работает Тонелли, для знакопеременной \(f\) нужно
+  \(f\in L^1\).
+\item
+  Независимость событий:
+\end{enumerate}
+
+\[
+P(A\cap B)=P(A)P(B).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Независимость случайных величин означает
+\end{enumerate}
+
+\[
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  При независимости
+\end{enumerate}
+
+\[
+\mathbb E[XY]=\mathbb EX\,\mathbb EY.
+\]
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  различать Тонелли и Фубини;
+\item
+  записать условие абсолютной интегрируемости;
+\item
+  сформулировать независимость \(\sigma\)-алгебр и случайных величин;
+\item
+  объяснить факторизацию функции распределения:
+\end{enumerate}
+
+\[
+F_{X,Y}(x,y)=F_X(x)F_Y(y);
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  привести пример свертки для суммы независимых величин;
+\item
+  сказать, что попарная независимость не равна независимости в
+  совокупности.
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  произведенную \(\sigma\)-алгебру \(\mathcal F_1\otimes\mathcal F_2\);
+\item
+  существование и единственность произведенной меры при
+  \(\sigma\)-конечности;
+\item
+  доказательную схему через индикаторы прямоугольников, простые функции
+  и монотонную сходимость;
+\item
+  равенство плотностей почти всюду:
+\end{enumerate}
+
+\[
+p_{X,Y}=p_Xp_Y;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  формулу свертки плотностей;
+\item
+  контрпример ``некоррелированность не означает независимость'';
+\item
+  контрпример ``попарная независимость не означает независимость в
+  совокупности''.
+\end{enumerate}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Сначала я ввожу произведение измеримых пространств. Если есть
+\((\Omega_1,\mathcal F_1,\mu_1)\) и \((\Omega_2,\mathcal F_2,\mu_2)\),
+то на произведении берут
+
+\[
+\mathcal F_1\otimes\mathcal F_2
+=
+\sigma\{A\times B\}.
+\]
+
+При \(\sigma\)-конечности существует произведенная мера:
+
+\[
+(\mu_1\otimes\mu_2)(A\times B)=\mu_1(A)\mu_2(B).
+\]
+
+Дальше формулирую Тонелли: если \(f\ge0\) измерима, то
+
+\[
+\int f\,d(\mu_1\otimes\mu_2)
+=
+\int\int f\,d\mu_2\,d\mu_1
+=
+\int\int f\,d\mu_1\,d\mu_2.
+\]
+
+Значение может быть бесконечным. Затем формулирую Фубини: если
+
+\[
+\int |f|\,d(\mu_1\otimes\mu_2)<\infty,
+\]
+
+то повторные интегралы существуют почти всюду, конечны после внешнего
+интегрирования и равны интегралу по произведению. Отличие такое: Тонелли
+- для неотрицательных функций без проверки конечности, Фубини - для
+интегрируемых функций.
+
+После этого перехожу к независимости. События \(A\) и \(B\) независимы,
+если
+
+\[
+P(A\cap B)=P(A)P(B).
+\]
+
+\(\sigma\)-алгебры независимы, если такая факторизация верна для всех
+событий из них. Случайные величины независимы, если независимы
+порожденные ими \(\sigma\)-алгебры. Эквивалентная и самая полезная
+запись:
+
+\[
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+Для вещественных величин это значит
+
+\[
+F_{X,Y}(x,y)=F_X(x)F_Y(y).
+\]
+
+Если есть плотности, то
+
+\[
+p_{X,Y}(x,y)=p_X(x)p_Y(y)
+\]
+
+почти всюду.
+
+Главное вычислительное следствие: если \(X,Y\) независимы, то
+
+\[
+\mathbb E[g(X)h(Y)]
+=
+\mathbb E g(X)\mathbb E h(Y),
+\]
+
+потому что интеграл идет по произведенной мере и раскладывается по
+Фубини. В частности, для независимых интегрируемых \(X,Y\):
+
+\[
+\mathbb E[XY]=\mathbb EX\,\mathbb EY.
+\]
+
+Для суммы независимых величин получаем свертку:
+
+\[
+p_{X+Y}(z)=\int p_X(x)p_Y(z-x)\,dx,
+\]
+
+а для характеристических функций:
+
+\[
+\varphi_{X+Y}(t)=\varphi_X(t)\varphi_Y(t).
+\]
+
+В конце называю ловушки: нельзя менять порядок интегрирования без
+условий, попарная независимость не равна независимости в совокупности, а
+нулевая ковариация не означает независимости.
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить три блока.
+
+\textbf{Фубини/Тонелли:}
+
+\[
+f\ge0
+\Rightarrow
+\int f\,d(\mu\otimes\nu)
+=
+\int\int f(x,y)\,\nu(dy)\mu(dx)
+=
+\int\int f(x,y)\,\mu(dx)\nu(dy).
+\]
+
+Для знакопеременной функции нужно
+
+\[
+\int |f|\,d(\mu\otimes\nu)<\infty.
+\]
+
+\textbf{Независимость:}
+
+\[
+P(A\cap B)=P(A)P(B),
+\qquad
+P_{(X,Y)}=P_X\otimes P_Y.
+\]
+
+\textbf{Главные следствия:}
+
+\[
+\mathbb E[g(X)h(Y)]
+=
+\mathbb E g(X)\mathbb E h(Y),
+\]
+
+\[
+p_{X,Y}=p_Xp_Y,
+\qquad
+P_{X+Y}=P_X*P_Y.
+\]
+
+Главная ловушка: Фубини требует условий, а независимость намного сильнее
+некоррелированности.
+
+\newpage
+
+\end{document}

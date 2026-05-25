@@ -1,0 +1,1306 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 19. Случайные последовательности с независимыми
+приращениями.
+Блуждания}\label{ux431ux438ux43bux435ux442-19.-ux441ux43bux443ux447ux430ux439ux43dux44bux435-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438-ux441-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux43cux438-ux43fux440ux438ux440ux430ux449ux435ux43dux438ux44fux43cux438.-ux431ux43bux443ux436ux434ux430ux43dux438ux44f}
+
+Источники: Ширяев 2; Сердобольская, лекции 2-3.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Случайная последовательность \((S_n)_{n\ge0}\) имеет независимые
+приращения, если для любых
+
+\[
+0\le n_0<n_1<\cdots<n_k
+\]
+
+случайные величины
+
+\[
+S_{n_1}-S_{n_0},\quad S_{n_2}-S_{n_1},\quad\ldots,\quad S_{n_k}-S_{n_{k-1}}
+\]
+
+независимы.
+
+Главный дискретный пример - случайное блуждание:
+
+\[
+S_0=0,
+\qquad
+S_n=\xi_1+\cdots+\xi_n,
+\]
+
+где \(\xi_1,\xi_2,\ldots\) - независимые случайные величины. Если шаги
+одинаково распределены, то приращения не только независимы, но и
+стационарны:
+
+\[
+S_{n+k}-S_n\stackrel d=S_k.
+\]
+
+Для iid-шагов характеристическая функция суммы:
+
+\[
+\varphi_{S_n}(t)=\left(\varphi_\xi(t)\right)^n.
+\]
+
+Если \(\mathbb E\xi_1=a\) и \(\operatorname{Var}\xi_1=\sigma^2\), то
+
+\[
+\mathbb ES_n=na,
+\qquad
+\operatorname{Var}S_n=n\sigma^2.
+\]
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{19.1. Определение независимых
+приращений}\label{ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux445-ux43fux440ux438ux440ux430ux449ux435ux43dux438ux439}
+
+Этот билет продолжает Билет 16 о случайных последовательностях и связан
+с Билетом 09 о независимости. Здесь важный объект не просто
+последовательность независимых величин, а процесс, у которого независимы
+изменения на непересекающихся промежутках времени.
+
+Пусть
+
+\[
+(S_n)_{n\ge0}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  случайная последовательность со значениями в \(\mathbb R\),
+  \(\mathbb Z\) или \(\mathbb R^d\). Приращением за промежуток от \(m\)
+  до \(n\) называется
+\end{itemize}
+
+\[
+S_n-S_m,
+\qquad
+0\le m<n.
+\]
+
+Последовательность имеет независимые приращения, если для любых моментов
+времени
+
+\[
+0\le n_0<n_1<\cdots<n_k
+\]
+
+приращения по непересекающимся промежуткам
+
+\[
+S_{n_1}-S_{n_0},\quad
+S_{n_2}-S_{n_1},\quad\ldots,\quad
+S_{n_k}-S_{n_{k-1}}
+\]
+
+независимы.
+
+Важно: независимые приращения не означают, что сами значения
+\(S_0,S_1,S_2,\ldots\) независимы. Наоборот, значения обычно сильно
+зависимы, потому что
+
+\[
+S_{n+1}=S_n+(S_{n+1}-S_n).
+\]
+
+Например, в случайном блуждании \(S_{10}\) содержит в себе все шаги,
+которые входят в \(S_9\).
+
+\subsubsection{19.2. Стационарные
+приращения}\label{ux441ux442ux430ux446ux438ux43eux43dux430ux440ux43dux44bux435-ux43fux440ux438ux440ux430ux449ux435ux43dux438ux44f}
+
+Если распределение приращения зависит только от длины промежутка, то
+говорят о стационарных приращениях:
+
+\[
+S_{n+k}-S_n\stackrel d=S_k-S_0.
+\]
+
+Если обычно берут \(S_0=0\), то:
+
+\[
+S_{n+k}-S_n\stackrel d=S_k.
+\]
+
+\subsubsection{19.3. Конструкция процесса через суммы независимых
+величин}\label{ux43aux43eux43dux441ux442ux440ux443ux43aux446ux438ux44f-ux43fux440ux43eux446ux435ux441ux441ux430-ux447ux435ux440ux435ux437-ux441ux443ux43cux43cux44b-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux445-ux432ux435ux43bux438ux447ux438ux43d}
+
+Главная конструкция дискретного процесса с независимыми приращениями -
+сумма независимых шагов. Пусть
+
+\[
+\xi_1,\xi_2,\ldots
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  независимые случайные величины. Определим
+\end{itemize}
+
+\[
+S_0=0,
+\qquad
+S_n=\sum_{j=1}^n\xi_j.
+\]
+
+Тогда
+
+\[
+S_n-S_m=\sum_{j=m+1}^n\xi_j.
+\]
+
+Если промежутки времени не пересекаются, то соответствующие суммы
+состоят из непересекающихся наборов независимых величин \(\xi_j\).
+Поэтому такие приращения независимы.
+
+Если \(\xi_j\) одинаково распределены, то приращение
+
+\[
+S_{n+k}-S_n=\xi_{n+1}+\cdots+\xi_{n+k}
+\]
+
+имеет то же распределение, что
+
+\[
+S_k=\xi_1+\cdots+\xi_k.
+\]
+
+Значит при iid-шагах процесс имеет независимые и стационарные
+приращения.
+
+\subsubsection{19.4. Характеристические функции и
+моменты}\label{ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux438ux435-ux444ux443ux43dux43aux446ux438ux438-ux438-ux43cux43eux43cux435ux43dux442ux44b}
+
+Распределение суммы выражается через свертку. Если шаги iid с законом
+\(\mu\), то
+
+\[
+S_n\sim \mu^{*n},
+\]
+
+где \(\mu^{*n}\) - \(n\)-кратная свертка меры \(\mu\). Через
+характеристические функции это особенно просто. Пусть
+
+\[
+\varphi_\xi(t)=\mathbb E e^{it\xi_1}.
+\]
+
+Тогда из независимости:
+
+\[
+\varphi_{S_n}(t)
+=
+\mathbb E e^{it(\xi_1+\cdots+\xi_n)}
+=
+\prod_{j=1}^n\mathbb E e^{it\xi_j}
+=
+\left(\varphi_\xi(t)\right)^n.
+\]
+
+Для не одинаково распределенных независимых шагов:
+
+\[
+\varphi_{S_n}(t)=\prod_{j=1}^n\varphi_{\xi_j}(t).
+\]
+
+Если существуют первые два момента, то они складываются:
+
+\[
+\mathbb ES_n
+=
+\sum_{j=1}^n\mathbb E\xi_j,
+\]
+
+и при независимости
+
+\[
+\operatorname{Var}S_n
+=
+\sum_{j=1}^n\operatorname{Var}\xi_j.
+\]
+
+В iid-случае, если
+
+\[
+\mathbb E\xi_1=a,
+\qquad
+\operatorname{Var}\xi_1=\sigma^2,
+\]
+
+получаем
+
+\[
+\mathbb ES_n=na,
+\qquad
+\operatorname{Var}S_n=n\sigma^2.
+\]
+
+\subsubsection{19.5. Случайное
+блуждание}\label{ux441ux43bux443ux447ux430ux439ux43dux43eux435-ux431ux43bux443ux436ux434ux430ux43dux438ux435}
+
+Случайное блуждание - это процесс вида
+
+\[
+S_n=S_0+\xi_1+\cdots+\xi_n,
+\]
+
+обычно с \(S_0=0\) или заданным начальным состоянием. Если шаги
+принимают значения в \(\mathbb Z\), то блуждание идет по целочисленной
+решетке. Самый классический пример - простое блуждание на \(\mathbb Z\):
+
+\[
+P\{\xi_k=1\}=p,
+\qquad
+P\{\xi_k=-1\}=q=1-p.
+\]
+
+Если
+
+\[
+p=q=\frac12,
+\]
+
+блуждание называется простым симметричным.
+
+Для простого блуждания
+
+\[
+S_n=\xi_1+\cdots+\xi_n.
+\]
+
+Если за \(n\) шагов было \(r\) шагов вправо и \(n-r\) шагов влево, то
+
+\[
+S_n=r-(n-r)=2r-n.
+\]
+
+Поэтому
+
+\[
+P\{S_n=x\}
+=
+\binom n{(n+x)/2}p^{(n+x)/2}q^{(n-x)/2},
+\]
+
+если \(n+x\) четно и \(|x|\le n\); иначе вероятность равна \(0\).
+
+Для простого блуждания:
+
+\[
+\mathbb E\xi_1=p-q=2p-1,
+\]
+
+\[
+\operatorname{Var}\xi_1=1-(p-q)^2=4pq.
+\]
+
+Следовательно,
+
+\[
+\mathbb ES_n=n(p-q),
+\qquad
+\operatorname{Var}S_n=4npq.
+\]
+
+В симметричном случае:
+
+\[
+\mathbb ES_n=0,
+\qquad
+\operatorname{Var}S_n=n.
+\]
+
+\subsubsection{19.6. Марковское свойство и
+асимптотика}\label{ux43cux430ux440ux43aux43eux432ux441ux43aux43eux435-ux441ux432ux43eux439ux441ux442ux432ux43e-ux438-ux430ux441ux438ux43cux43fux442ux43eux442ux438ux43aux430}
+
+Случайное блуждание является марковской цепью. Если текущее состояние
+равно \(i\), то следующее состояние равно
+
+\[
+i+\xi_{n+1}.
+\]
+
+Будущий шаг независим от прошлого, поэтому условное распределение
+будущего зависит только от текущего состояния. Для простого блуждания на
+\(\mathbb Z\) переходные вероятности:
+
+\[
+p_{i,i+1}=p,
+\qquad
+p_{i,i-1}=q,
+\]
+
+а остальные переходы равны нулю. Это связывает билет с Билетом 22 и
+Билетом 23.
+
+Случайное блуждание обычно не является стационарным по значениям:
+распределение \(S_n\) меняется с \(n\), дисперсия растет как \(n\). Но
+при iid-шагах оно имеет стационарные приращения. Это типичная ловушка:
+стационарные приращения не равны стационарности самого процесса.
+
+Асимптотически блуждание связано с законом больших чисел и центральной
+предельной теоремой. Если шаги iid и имеют конечное среднее \(a\), то
+
+\[
+\frac{S_n}{n}\xrightarrow{P} a
+\]
+
+по закону больших чисел. Если дисперсия \(\sigma^2>0\) конечна, то
+
+\[
+\frac{S_n-na}{\sigma\sqrt n}
+\Rightarrow
+N(0,1).
+\]
+
+Это связь с Билетом 21.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Приращение}\label{ux43fux440ux438ux440ux430ux449ux435ux43dux438ux435}
+
+Для последовательности \((S_n)\) приращение на промежутке \((m,n]\):
+
+\[
+S_n-S_m.
+\]
+
+\subsubsection{Независимые
+приращения}\label{ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux43fux440ux438ux440ux430ux449ux435ux43dux438ux44f}
+
+Последовательность имеет независимые приращения, если для любых
+
+\[
+0\le n_0<n_1<\cdots<n_k
+\]
+
+величины
+
+\[
+S_{n_1}-S_{n_0},\ldots,S_{n_k}-S_{n_{k-1}}
+\]
+
+независимы.
+
+\subsubsection{Стационарные
+приращения}\label{ux441ux442ux430ux446ux438ux43eux43dux430ux440ux43dux44bux435-ux43fux440ux438ux440ux430ux449ux435ux43dux438ux44f-1}
+
+Распределение приращения зависит только от длины промежутка:
+
+\[
+S_{n+k}-S_n\stackrel d=S_k-S_0.
+\]
+
+Если \(S_0=0\), то
+
+\[
+S_{n+k}-S_n\stackrel d=S_k.
+\]
+
+\subsubsection{Случайное
+блуждание}\label{ux441ux43bux443ux447ux430ux439ux43dux43eux435-ux431ux43bux443ux436ux434ux430ux43dux438ux435-1}
+
+Процесс, задаваемый суммами шагов:
+
+\[
+S_0=x,
+\qquad
+S_n=x+\sum_{j=1}^n\xi_j,
+\]
+
+где \(\xi_j\) - независимые шаги.
+
+\subsubsection{\texorpdfstring{Простое блуждание на
+\(\mathbb Z\)}{Простое блуждание на \textbackslash mathbb Z}}\label{ux43fux440ux43eux441ux442ux43eux435-ux431ux43bux443ux436ux434ux430ux43dux438ux435-ux43dux430-mathbb-z}
+
+Блуждание с шагами
+
+\[
+\xi_j\in\{-1,1\}.
+\]
+
+Если
+
+\[
+P\{\xi_j=1\}=P\{\xi_j=-1\}=\frac12,
+\]
+
+оно называется простым симметричным блужданием.
+
+\subsubsection{Блуждание с одинаково распределенными
+шагами}\label{ux431ux43bux443ux436ux434ux430ux43dux438ux435-ux441-ux43eux434ux438ux43dux430ux43aux43eux432ux43e-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux43dux44bux43cux438-ux448ux430ux433ux430ux43cux438}
+
+Блуждание с одинаково распределенными шагами. В этом случае приращения
+стационарны.
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\begin{itemize}
+\tightlist
+\item
+  Если
+\end{itemize}
+
+\[
+S_n=S_0+\sum_{j=1}^n\xi_j
+\]
+
+и \(\xi_j\) независимы, то \((S_n)\) имеет независимые приращения.
+
+\begin{itemize}
+\tightlist
+\item
+  Если шаги iid, то приращения независимы и стационарны:
+\end{itemize}
+
+\[
+S_{n+k}-S_n\stackrel d=S_k-S_0.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Распределение суммы независимых шагов - свертка:
+\end{itemize}
+
+\[
+P_{S_n}=\mu_1*\cdots*\mu_n.
+\]
+
+В iid-случае:
+
+\[
+P_{S_n}=\mu^{*n}.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Характеристические функции независимых шагов перемножаются:
+\end{itemize}
+
+\[
+\varphi_{S_n}(t)=\prod_{j=1}^n\varphi_{\xi_j}(t).
+\]
+
+В iid-случае:
+
+\[
+\varphi_{S_n}(t)=\left(\varphi_\xi(t)\right)^n.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  При существовании моментов:
+\end{itemize}
+
+\[
+\mathbb ES_n=S_0+\sum_{j=1}^n\mathbb E\xi_j,
+\]
+
+\[
+\operatorname{Var}S_n=\sum_{j=1}^n\operatorname{Var}\xi_j.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Случайное блуждание с независимыми шагами является марковской цепью.
+\item
+  Блуждание обычно не стационарно по значениям, но при iid-шагах имеет
+  стационарные приращения.
+\item
+  Для iid-шагов применимы ЗБЧ и ЦПТ:
+\end{itemize}
+
+\[
+\frac{S_n}{n}\xrightarrow{P}\mathbb E\xi_1,
+\qquad
+\frac{S_n-n\mathbb E\xi_1}{\sqrt{n\operatorname{Var}\xi_1}}
+\Rightarrow N(0,1).
+\]
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Простое симметричное
+блуждание}\label{ux43fux440ux43eux441ux442ux43eux435-ux441ux438ux43cux43cux435ux442ux440ux438ux447ux43dux43eux435-ux431ux43bux443ux436ux434ux430ux43dux438ux435}
+
+Пусть
+
+\[
+P\{\xi_k=1\}=P\{\xi_k=-1\}=\frac12.
+\]
+
+Тогда
+
+\[
+S_n=\xi_1+\cdots+\xi_n
+\]
+
+и
+
+\[
+P\{S_n=x\}
+=
+\binom n{(n+x)/2}2^{-n},
+\]
+
+если \(n+x\) четно и \(|x|\le n\). Иначе вероятность равна \(0\).
+
+Среднее и дисперсия:
+
+\[
+\mathbb ES_n=0,
+\qquad
+\operatorname{Var}S_n=n.
+\]
+
+\subsubsection{Несимметричное
+блуждание}\label{ux43dux435ux441ux438ux43cux43cux435ux442ux440ux438ux447ux43dux43eux435-ux431ux43bux443ux436ux434ux430ux43dux438ux435}
+
+Пусть
+
+\[
+P\{\xi_k=1\}=p,
+\qquad
+P\{\xi_k=-1\}=q=1-p.
+\]
+
+Тогда
+
+\[
+\mathbb ES_n=n(p-q),
+\qquad
+\operatorname{Var}S_n=4npq.
+\]
+
+Если \(p>q\), блуждание имеет положительный дрейф; если \(p<q\),
+отрицательный.
+
+\subsubsection{Сумма
+Бернулли}\label{ux441ux443ux43cux43cux430-ux431ux435ux440ux43dux443ux43bux43bux438}
+
+Пусть
+
+\[
+\xi_k\sim \operatorname{Bernoulli}(p),
+\qquad
+\xi_k\in\{0,1\}.
+\]
+
+Тогда
+
+\[
+S_n=\sum_{k=1}^n\xi_k
+\]
+
+считает число успехов за \(n\) испытаний:
+
+\[
+S_n\sim \operatorname{Bin}(n,p).
+\]
+
+Это процесс с независимыми стационарными приращениями, но он не является
+блужданием на всей \(\mathbb Z\), а является неубывающим счетчиком.
+
+\subsubsection{\texorpdfstring{Блуждание в
+\(\mathbb R^d\)}{Блуждание в \textbackslash mathbb R\^{}d}}\label{ux431ux43bux443ux436ux434ux430ux43dux438ux435-ux432-mathbb-rd}
+
+Пусть шаги \(\xi_k\) принимают значения в \(\mathbb R^d\). Тогда
+
+\[
+S_n=S_0+\xi_1+\cdots+\xi_n
+\]
+
+задает блуждание в многомерном пространстве. Например, на решетке
+\(\mathbb Z^2\) можно на каждом шаге переходить к одному из соседей.
+
+\subsubsection{Пуассоновский процесс как
+аналог}\label{ux43fux443ux430ux441ux441ux43eux43dux43eux432ux441ux43aux438ux439-ux43fux440ux43eux446ux435ux441ux441-ux43aux430ux43a-ux430ux43dux430ux43bux43eux433}
+
+Пуассоновский процесс \(N(t)\) в непрерывном времени имеет независимые и
+стационарные приращения:
+
+\[
+N(t+s)-N(t)\sim \operatorname{Poisson}(\lambda s).
+\]
+
+Это не дискретная случайная последовательность, но полезный аналог: он
+показывает, что идея независимых приращений используется и в непрерывном
+времени.
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\subsubsection{Почему сумма независимых шагов имеет независимые
+приращения}\label{ux43fux43eux447ux435ux43cux443-ux441ux443ux43cux43cux430-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux445-ux448ux430ux433ux43eux432-ux438ux43cux435ux435ux442-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux43fux440ux438ux440ux430ux449ux435ux43dux438ux44f}
+
+Пусть
+
+\[
+S_n=\sum_{j=1}^n\xi_j.
+\]
+
+Для моментов
+
+\[
+0\le n_0<n_1<\cdots<n_k
+\]
+
+приращение
+
+\[
+S_{n_r}-S_{n_{r-1}}
+=
+\sum_{j=n_{r-1}+1}^{n_r}\xi_j.
+\]
+
+Разные приращения зависят от непересекающихся наборов независимых шагов.
+Поэтому они независимы.
+
+\subsubsection{Почему характеристическая функция суммы
+факторизуется}\label{ux43fux43eux447ux435ux43cux443-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux441ux443ux43cux43cux44b-ux444ux430ux43aux442ux43eux440ux438ux437ux443ux435ux442ux441ux44f}
+
+Если \(\xi_j\) независимы, то
+
+\[
+\varphi_{S_n}(t)
+=
+\mathbb E\exp\left(it\sum_{j=1}^n\xi_j\right)
+=
+\mathbb E\prod_{j=1}^n e^{it\xi_j}.
+\]
+
+По независимости математическое ожидание произведения равно произведению
+математических ожиданий:
+
+\[
+\varphi_{S_n}(t)
+=
+\prod_{j=1}^n\mathbb E e^{it\xi_j}
+=
+\prod_{j=1}^n\varphi_{\xi_j}(t).
+\]
+
+\subsubsection{Почему блуждание является марковской
+цепью}\label{ux43fux43eux447ux435ux43cux443-ux431ux43bux443ux436ux434ux430ux43dux438ux435-ux44fux432ux43bux44fux435ux442ux441ux44f-ux43cux430ux440ux43aux43eux432ux441ux43aux43eux439-ux446ux435ux43fux44cux44e}
+
+Для блуждания
+
+\[
+S_{n+1}=S_n+\xi_{n+1}.
+\]
+
+Шаг \(\xi_{n+1}\) независим от прошлого
+
+\[
+S_0,\ldots,S_n.
+\]
+
+Поэтому условное распределение \(S_{n+1}\) при известном прошлом зависит
+только от \(S_n\). В счетном случае:
+
+\[
+P\{S_{n+1}=j\mid S_0=i_0,\ldots,S_n=i\}
+=
+P\{\xi_{n+1}=j-i\}.
+\]
+
+Это марковское свойство.
+
+\subsubsection{Почему блуждание не стационарно по
+значениям}\label{ux43fux43eux447ux435ux43cux443-ux431ux43bux443ux436ux434ux430ux43dux438ux435-ux43dux435-ux441ux442ux430ux446ux438ux43eux43dux430ux440ux43dux43e-ux43fux43e-ux437ux43dux430ux447ux435ux43dux438ux44fux43c}
+
+Для симметричного блуждания
+
+\[
+\operatorname{Var}S_n=n.
+\]
+
+Значит распределение \(S_n\) зависит от \(n\). Например, \(S_0=0\) почти
+наверное, а \(S_1\) принимает значения \(\pm1\). Поэтому значения
+процесса не стационарны, хотя приращения стационарны.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Приращение:
+\end{enumerate}
+
+\[
+S_n-S_m.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Независимые приращения:
+\end{enumerate}
+
+\[
+S_{n_1}-S_{n_0},\ldots,S_{n_k}-S_{n_{k-1}}
+\quad\text{независимы}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Блуждание:
+\end{enumerate}
+
+\[
+S_0=0,
+\qquad
+S_n=\sum_{j=1}^n\xi_j.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Стационарные приращения при iid-шагах:
+\end{enumerate}
+
+\[
+S_{n+k}-S_n\stackrel d=S_k.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Характеристическая функция:
+\end{enumerate}
+
+\[
+\varphi_{S_n}(t)=\left(\varphi_\xi(t)\right)^n.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Моменты:
+\end{enumerate}
+
+\[
+\mathbb ES_n=n\mathbb E\xi_1,
+\qquad
+\operatorname{Var}S_n=n\operatorname{Var}\xi_1.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Простое блуждание:
+\end{enumerate}
+
+\[
+P\{\xi=1\}=p,
+\qquad
+P\{\xi=-1\}=q.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Что является главным объектом билета?}
+
+Случайная последовательность, у которой независимы приращения на
+непересекающихся промежутках. Главный пример - случайное блуждание, то
+есть сумма независимых шагов.
+
+\textbf{В чем разница между независимыми значениями и независимыми
+приращениями?}
+
+Независимые значения означали бы независимость \(S_0,S_1,\ldots\).
+Независимые приращения означают независимость разностей \(S_n-S_m\) на
+непересекающихся промежутках. У блуждания значения обычно зависимы, но
+приращения независимы.
+
+\textbf{Что значит стационарность приращений?}
+
+Это значит, что закон приращения зависит только от длины промежутка:
+
+\[
+S_{n+k}-S_n\stackrel d=S_k-S_0.
+\]
+
+При \(S_0=0\):
+
+\[
+S_{n+k}-S_n\stackrel d=S_k.
+\]
+
+\textbf{Почему iid-шаги дают независимые стационарные приращения?}
+
+Независимость приращений следует из независимости непересекающихся
+наборов шагов. Стационарность следует из одинакового распределения
+шагов: сумма любых \(k\) последовательных шагов имеет один и тот же
+закон.
+
+\textbf{Как найти распределение \(S_n\)?}
+
+В общем случае это свертка законов шагов:
+
+\[
+P_{S_n}=\mu_1*\cdots*\mu_n.
+\]
+
+В iid-случае:
+
+\[
+P_{S_n}=\mu^{*n}.
+\]
+
+Для простого блуждания получается биномиальная формула.
+
+\textbf{Почему характеристическая функция равна степени?}
+
+Потому что характеристическая функция суммы независимых величин равна
+произведению характеристических функций:
+
+\[
+\varphi_{S_n}(t)
+=
+\prod_{j=1}^n\varphi_{\xi_j}(t).
+\]
+
+Если шаги одинаково распределены:
+
+\[
+\varphi_{S_n}(t)=\varphi_\xi(t)^n.
+\]
+
+\textbf{Почему блуждание является марковской цепью?}
+
+Потому что
+
+\[
+S_{n+1}=S_n+\xi_{n+1},
+\]
+
+а новый шаг независим от прошлого. Поэтому при известном \(S_n\) прошлые
+состояния не дают дополнительной информации о \(S_{n+1}\).
+
+\textbf{Случайное блуждание стационарно?}
+
+По значениям обычно нет: распределение \(S_n\) меняется с \(n\). Но при
+iid-шагах у него стационарные приращения.
+
+\textbf{Как связаны блуждания с ЗБЧ и ЦПТ?}
+
+Если шаги iid, то
+
+\[
+\frac{S_n}{n}\xrightarrow{P}\mathbb E\xi_1
+\]
+
+по закону больших чисел, а при конечной ненулевой дисперсии
+
+\[
+\frac{S_n-n\mathbb E\xi_1}{\sqrt{n\operatorname{Var}\xi_1}}
+\Rightarrow N(0,1).
+\]
+
+\textbf{Какая главная ошибка в этом билете?}
+
+Путать независимость приращений с независимостью самих значений процесса
+и путать стационарность приращений со стационарностью процесса.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Путать независимые значения и независимые приращения.
+\item
+  Считать, что случайное блуждание стационарно по значениям.
+\item
+  Забывать начальное состояние \(S_0\).
+\item
+  Забывать, что стационарность приращений требует одинакового
+  распределения шагов.
+\item
+  Писать \(\varphi_{S_n}=\varphi_\xi^n\) без условия одинакового
+  распределения шагов.
+\item
+  Складывать дисперсии без независимости шагов.
+\item
+  Путать блуждание на \(\mathbb Z\) и счетчик Бернулли: во втором случае
+  шаги \(0/1\), а не \(\pm1\).
+\item
+  Считать марковское свойство полной независимостью состояний.
+\end{itemize}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Билет 09: независимость и факторизация математических ожиданий
+  используются для приращений и характеристических функций.
+\item
+  Билет 16: блуждание - случайная последовательность и случайный элемент
+  пространства последовательностей.
+\item
+  Билет 17: у блуждания при iid-шагах стационарные приращения, но обычно
+  не стационарные значения.
+\item
+  Билет 21: ЗБЧ и ЦПТ описывают асимптотику \(S_n\).
+\item
+  Билет 22: блуждание задает переходную матрицу \(p_{i,i+1}=p\),
+  \(p_{i,i-1}=q\).
+\item
+  Билет 23: случайное блуждание - пример марковской цепи.
+\end{itemize}
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Приращение процесса:
+\end{enumerate}
+
+\[
+S_n-S_m.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Независимые приращения: приращения на непересекающихся промежутках
+  независимы.
+\item
+  Случайное блуждание:
+\end{enumerate}
+
+\[
+S_0=0,
+\qquad
+S_n=\xi_1+\cdots+\xi_n,
+\]
+
+где \(\xi_k\) независимы.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Если шаги iid:
+\end{enumerate}
+
+\[
+\varphi_{S_n}(t)=\varphi_\xi(t)^n.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Главная ловушка: независимые приращения не означают независимые
+  значения.
+\end{enumerate}
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно объяснить:
+
+\begin{itemize}
+\tightlist
+\item
+  что такое стационарные приращения;
+\item
+  почему сумма независимых шагов имеет независимые приращения;
+\item
+  как распределение суммы связано со сверткой;
+\item
+  почему характеристические функции перемножаются;
+\item
+  как считаются \(\mathbb ES_n\) и \(\operatorname{Var}S_n\);
+\item
+  почему случайное блуждание является марковской цепью;
+\item
+  разобрать простое симметричное блуждание.
+\end{itemize}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{itemize}
+\tightlist
+\item
+  формулу распределения простого блуждания:
+\end{itemize}
+
+\[
+P\{S_n=x\}
+=
+\binom n{(n+x)/2}p^{(n+x)/2}q^{(n-x)/2};
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  условие четности \(n+x\);
+\item
+  различие между стационарностью процесса и стационарностью приращений;
+\item
+  переходные вероятности блуждания как марковской цепи;
+\item
+  связь с ЗБЧ и ЦПТ;
+\item
+  пример счетчика Бернулли и пуассоновского процесса как аналога.
+\end{itemize}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Приращение последовательности - это разность \(S_n-S_m\).
+\item
+  Процесс имеет независимые приращения, если приращения на
+  непересекающихся промежутках независимы.
+\item
+  Главный пример - случайное блуждание:
+\end{enumerate}
+
+\[
+S_0=0,
+\qquad
+S_n=\xi_1+\cdots+\xi_n.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Если шаги \(\xi_k\) независимы, то приращения независимы, потому что
+  каждое приращение является суммой своего набора шагов.
+\item
+  Если шаги одинаково распределены, то приращения стационарны:
+\end{enumerate}
+
+\[
+S_{n+k}-S_n\stackrel d=S_k.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Распределение \(S_n\) - свертка законов шагов.
+\item
+  Через характеристические функции:
+\end{enumerate}
+
+\[
+\varphi_{S_n}(t)=\prod_{j=1}^n\varphi_{\xi_j}(t),
+\]
+
+а в iid-случае:
+
+\[
+\varphi_{S_n}(t)=\varphi_\xi(t)^n.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  При существовании моментов:
+\end{enumerate}
+
+\[
+\mathbb ES_n=n\mathbb E\xi_1,
+\qquad
+\operatorname{Var}S_n=n\operatorname{Var}\xi_1.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Для простого блуждания \(\xi_k=\pm1\), вероятности шагов \(p\) и
+  \(q\).
+\item
+  Блуждание является марковской цепью, потому что следующий шаг
+  независим от прошлого.
+\item
+  По значениям блуждание обычно не стационарно, но при iid-шагах имеет
+  стационарные приращения.
+\item
+  Асимптотика описывается ЗБЧ и ЦПТ.
+\end{enumerate}
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить:
+
+\[
+S_n-S_m
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  приращение.
+\end{itemize}
+
+Независимые приращения:
+
+\[
+S_{n_1}-S_{n_0},\ldots,S_{n_k}-S_{n_{k-1}}
+\quad\text{независимы}.
+\]
+
+Блуждание:
+
+\[
+S_0=0,
+\qquad
+S_n=\sum_{j=1}^n\xi_j.
+\]
+
+При iid-шагах:
+
+\[
+S_{n+k}-S_n\stackrel d=S_k,
+\qquad
+\varphi_{S_n}(t)=\varphi_\xi(t)^n.
+\]
+
+Главные ловушки:
+
+\begin{itemize}
+\tightlist
+\item
+  независимые приращения не означают независимые значения;
+\item
+  стационарные приращения не означают стационарный процесс;
+\item
+  формула \(\varphi_{S_n}=\varphi_\xi^n\) требует iid-шагов.
+\end{itemize}
+
+\newpage
+
+\end{document}

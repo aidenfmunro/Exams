@@ -1,0 +1,1622 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 24. Корреляционная функция. Достаточные условия
+эргодичности
+последовательности}\label{ux431ux438ux43bux435ux442-24.-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux43eux43dux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux44f.-ux434ux43eux441ux442ux430ux442ux43eux447ux43dux44bux435-ux443ux441ux43bux43eux432ux438ux44f-ux44dux440ux433ux43eux434ux438ux447ux43dux43eux441ux442ux438-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438}
+
+Источники: Ширяев 2, гл. V-VI; рукописные лекции ДСП, лекции 9-10;
+Сердобольская, разделы о ковариационной функции.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Для случайной последовательности со вторыми моментами ковариационная
+функция описывает линейную зависимость значений в разные моменты
+времени. Если последовательность стационарна в широком смысле и
+
+\[
+\mathbb E X_n=m,
+\]
+
+то ее ковариационная функция зависит только от лага:
+
+\[
+R(k)=\operatorname{Cov}(X_{n+k},X_n)
+=
+\mathbb E[(X_{n+k}-m)\overline{(X_n-m)}].
+\]
+
+Если \(R(0)>0\), нормированная корреляционная функция:
+
+\[
+\rho(k)=\frac{R(k)}{R(0)}.
+\]
+
+Эргодичность по среднему в широком смысле означает
+
+\[
+\overline X_N=\frac1N\sum_{n=0}^{N-1}X_n
+\xrightarrow[L^2]{N\to\infty}
+m.
+\]
+
+Главная формула:
+
+\[
+\mathbb E|\overline X_N-m|^2
+=
+\frac1{N^2}\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}R(i-j)
+=
+\frac1N\sum_{|k|<N}\left(1-\frac{|k|}{N}\right)R(k).
+\]
+
+Поэтому достаточное условие эргодичности:
+
+\[
+\frac1N\sum_{|k|<N}\left(1-\frac{|k|}{N}\right)R(k)\to0.
+\]
+
+Более простые достаточные условия:
+
+\[
+R(k)\to0
+\]
+
+или
+
+\[
+\sum_{k\in\mathbb Z}|R(k)|<\infty.
+\]
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Введение и связь с предыдущими
+темами}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux438-ux441ux432ux44fux437ux44c-ux441-ux43fux440ux435ux434ux44bux434ux443ux449ux438ux43cux438-ux442ux435ux43cux430ux43cux438}
+
+Этот билет продолжает Билет 17 о стационарности и эргодичности. Там были
+даны определения стационарности в узком и широком смыслах. Здесь нужно
+разобрать, как эргодичность среднего проверяется через корреляционную,
+точнее ковариационную, функцию.
+
+\subsubsection{2.2. Определение ковариации и стационарность в широком
+смысле}\label{ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux438-ux438-ux441ux442ux430ux446ux438ux43eux43dux430ux440ux43dux43eux441ux442ux44c-ux432-ux448ux438ux440ux43eux43aux43eux43c-ux441ux43cux44bux441ux43bux435}
+
+Пусть
+
+\[
+X=(X_n)_{n\in\mathbb Z}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  случайная последовательность с конечными вторыми моментами:
+\end{itemize}
+
+\[
+\mathbb E|X_n|^2<\infty.
+\]
+
+Для двух случайных величин \(X_n\) и \(X_m\) ковариация равна
+
+\[
+\operatorname{Cov}(X_n,X_m)
+=
+\mathbb E[(X_n-\mathbb EX_n)\overline{(X_m-\mathbb EX_m)}].
+\]
+
+Для действительных величин комплексное сопряжение можно не писать.
+
+Если последовательность стационарна в широком смысле, то:
+
+\[
+\mathbb EX_n=m
+\]
+
+не зависит от \(n\), а ковариация зависит только от разности индексов:
+
+\[
+\operatorname{Cov}(X_n,X_m)=R(n-m).
+\]
+
+Обычно фиксируют
+
+\[
+R(k)=\operatorname{Cov}(X_k,X_0).
+\]
+
+Если процесс центрирован, то есть \(m=0\), то
+
+\[
+R(k)=\mathbb E X_k\overline{X_0}.
+\]
+
+В рукописных лекциях это записывается как скалярное произведение в
+гильбертовом пространстве \(L_2\):
+
+\[
+R(k)=(X_k,X_0)_{L_2}.
+\]
+
+\subsubsection{2.3. Различие между ковариационной и корреляционной
+функциями}\label{ux440ux430ux437ux43bux438ux447ux438ux435-ux43cux435ux436ux434ux443-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux43eux439-ux438-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux43eux43dux43dux43eux439-ux444ux443ux43dux43aux446ux438ux44fux43cux438}
+
+Важно различать две функции:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  ковариационная функция:
+\end{enumerate}
+
+\[
+R(k)=\operatorname{Cov}(X_k,X_0);
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  корреляционная функция в нормированном смысле:
+\end{enumerate}
+
+\[
+\rho(k)=\frac{R(k)}{R(0)}
+\]
+
+при \(R(0)>0\).
+
+В разных курсах слово ``корреляционная'' иногда используют для \(R(k)\),
+а иногда для \(\rho(k)\). На экзамене лучше сразу сказать: ``я буду
+называть \(R(k)\) ковариационной функцией, а нормированную величину
+\(\rho(k)\) - корреляционной''.
+
+\subsubsection{2.4. Основные свойства ковариационной
+функции}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux441ux432ux43eux439ux441ux442ux432ux430-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Ковариационная функция имеет несколько базовых свойств.
+
+Во-первых,
+
+\[
+R(0)=\operatorname{Var}X_0\ge0.
+\]
+
+Если
+
+\[
+R(0)=0,
+\]
+
+то
+
+\[
+X_n=m
+\]
+
+почти наверное для всех \(n\), то есть процесс тривиален в смысле
+второго порядка.
+
+Во-вторых, для комплексного случая
+
+\[
+R(-k)=\overline{R(k)}.
+\]
+
+Для действительного процесса:
+
+\[
+R(-k)=R(k).
+\]
+
+В-третьих, из неравенства Коши-Буняковского:
+
+\[
+|R(k)|
+=
+|\operatorname{Cov}(X_k,X_0)|
+\le
+\sqrt{\operatorname{Var}X_k\,\operatorname{Var}X_0}
+=
+R(0).
+\]
+
+В-четвертых, \(R\) положительно определена. Для любых комплексных чисел
+\(a_1,\ldots,a_r\) и целых индексов \(n_1,\ldots,n_r\):
+
+\[
+\sum_{\alpha=1}^r\sum_{\beta=1}^r
+a_\alpha \overline{a_\beta}R(n_\alpha-n_\beta)
+\ge0.
+\]
+
+Это просто дисперсия линейной комбинации:
+
+\[
+\mathbb E\left|
+\sum_{\alpha=1}^r a_\alpha (X_{n_\alpha}-m)
+\right|^2
+\ge0.
+\]
+
+\subsubsection{2.5. Понятие эргодичности по среднему в широком
+смысле}\label{ux43fux43eux43dux44fux442ux438ux435-ux44dux440ux433ux43eux434ux438ux447ux43dux43eux441ux442ux438-ux43fux43e-ux441ux440ux435ux434ux43dux435ux43cux443-ux432-ux448ux438ux440ux43eux43aux43eux43c-ux441ux43cux44bux441ux43bux435}
+
+Теперь эргодичность. В широком смысле чаще всего рассматривают
+эргодичность по среднему: можно ли среднее по одной длинной реализации
+заменить математическим ожиданием?
+
+Определим временное среднее:
+
+\[
+\overline X_N
+=
+\frac1N\sum_{n=0}^{N-1}X_n.
+\]
+
+Последовательность называется эргодичной по среднему в широком смысле,
+если
+
+\[
+\overline X_N
+\xrightarrow[L^2]{N\to\infty}
+m.
+\]
+
+То есть
+
+\[
+\mathbb E|\overline X_N-m|^2\to0.
+\]
+
+Так как
+
+\[
+\mathbb E\overline X_N=m,
+\]
+
+это равносильно
+
+\[
+\operatorname{Var}(\overline X_N)\to0.
+\]
+
+\subsubsection{2.6. Вывод формулы для дисперсии временного
+среднего}\label{ux432ux44bux432ux43eux434-ux444ux43eux440ux43cux443ux43bux44b-ux434ux43bux44f-ux434ux438ux441ux43fux435ux440ux441ux438ux438-ux432ux440ux435ux43cux435ux43dux43dux43eux433ux43e-ux441ux440ux435ux434ux43dux435ux433ux43e}
+
+Вычислим эту дисперсию. Для центрированной последовательности
+\(Y_n=X_n-m\):
+
+\[
+\overline X_N-m
+=
+\frac1N\sum_{n=0}^{N-1}Y_n.
+\]
+
+Тогда
+
+\[
+\mathbb E|\overline X_N-m|^2
+=
+\frac1{N^2}
+\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}
+\mathbb E Y_i\overline{Y_j}.
+\]
+
+По стационарности в широком смысле:
+
+\[
+\mathbb E Y_i\overline{Y_j}=R(i-j).
+\]
+
+Значит
+
+\[
+\mathbb E|\overline X_N-m|^2
+=
+\frac1{N^2}
+\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}R(i-j).
+\]
+
+Если собрать пары с одинаковым лагом \(k=i-j\), то число таких пара
+равно \(N-|k|\). Поэтому
+
+\[
+\mathbb E|\overline X_N-m|^2
+=
+\frac1N
+\sum_{|k|<N}
+\left(1-\frac{|k|}{N}\right)R(k).
+\]
+
+Для действительной последовательности это можно записать как
+
+\[
+\operatorname{Var}(\overline X_N)
+=
+\frac{R(0)}{N}
++
+\frac{2}{N}
+\sum_{k=1}^{N-1}
+\left(1-\frac{k}{N}\right)R(k).
+\]
+
+\subsubsection{2.7. Основной критерий эргодичности и его спектральная
+интерпретация}\label{ux43eux441ux43dux43eux432ux43dux43eux439-ux43aux440ux438ux442ux435ux440ux438ux439-ux44dux440ux433ux43eux434ux438ux447ux43dux43eux441ux442ux438-ux438-ux435ux433ux43e-ux441ux43fux435ux43aux442ux440ux430ux43bux44cux43dux430ux44f-ux438ux43dux442ux435ux440ux43fux440ux435ux442ux430ux446ux438ux44f}
+
+Отсюда сразу получаем главный критерий второго порядка:
+
+\[
+\overline X_N\to m\ \text{в }L^2
+\quad\Longleftrightarrow\quad
+\frac1{N^2}
+\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}R(i-j)\to0.
+\]
+
+Для центрированной стационарной \(L^2\)-последовательности это можно
+формулировать через среднее Чезаро ковариаций:
+
+\[
+\frac1N\sum_{k=0}^{N-1}R(k)\to0
+\]
+
+как необходимое и достаточное условие сходимости средних арифметических
+в среднеквадратическом смысле. В спектральном языке это эквивалентно
+отсутствию атома спектральной меры в нуле:
+
+\[
+F(\{0\})=0.
+\]
+
+Но для билета достаточно знать простые достаточные условия.
+
+\subsubsection{2.8. Достаточные условия
+эргодичности}\label{ux434ux43eux441ux442ux430ux442ux43eux447ux43dux44bux435-ux443ux441ux43bux43eux432ux438ux44f-ux44dux440ux433ux43eux434ux438ux447ux43dux43eux441ux442ux438}
+
+\textbf{Первое достаточное условие:} корреляции затухают:
+
+\[
+R(k)\to0,
+\qquad
+|k|\to\infty.
+\]
+
+Тогда взвешенное среднее ковариаций стремится к нулю, и
+
+\[
+\overline X_N\xrightarrow{L^2}m.
+\]
+
+\textbf{Второе достаточное условие:} абсолютная суммируемость
+ковариаций:
+
+\[
+\sum_{k\in\mathbb Z}|R(k)|<\infty.
+\]
+
+Тогда
+
+\[
+\operatorname{Var}(\overline X_N)
+\le
+\frac1N\sum_{|k|<N}|R(k)|
+\le
+\frac1N\sum_{k\in\mathbb Z}|R(k)|
+\to0.
+\]
+
+Это очень удобное условие: если корреляции убывают достаточно быстро,
+среднее эргодично.
+
+\textbf{Третье достаточное условие:} среднее абсолютных корреляций
+уходит в ноль:
+
+\[
+\frac1N\sum_{k=1}^{N-1}|R(k)|\to0.
+\]
+
+Тогда из формулы для дисперсии среднего также следует
+
+\[
+\operatorname{Var}(\overline X_N)\to0.
+\]
+
+\subsubsection{2.9. Интуитивное понимание и границы
+применимости}\label{ux438ux43dux442ux443ux438ux442ux438ux432ux43dux43eux435-ux43fux43eux43dux438ux43cux430ux43dux438ux435-ux438-ux433ux440ux430ux43dux438ux446ux44b-ux43fux440ux438ux43cux435ux43dux438ux43cux43eux441ux442ux438}
+
+Интуитивно все эти условия говорят одно: далекие значения процесса почти
+не связаны линейно, поэтому усреднение по времени уничтожает случайные
+колебания.
+
+Важно понимать ограничения. Эргодичность по среднему в широком смысле -
+это не полная эргодичность в узком смысле. Она касается только средних
+самих \(X_n\) и только сходимости в \(L^2\). Узкая эргодичность сильнее
+и относится ко всем сдвиг-инвариантным событиям или временным средним
+функций \(f(X_n)\).
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Стационарность в широком
+смысле}\label{ux441ux442ux430ux446ux438ux43eux43dux430ux440ux43dux43eux441ux442ux44c-ux432-ux448ux438ux440ux43eux43aux43eux43c-ux441ux43cux44bux441ux43bux435}
+
+Последовательность \((X_n)_{n\in\mathbb Z}\) стационарна в широком
+смысле, если
+
+\[
+\mathbb E|X_n|^2<\infty,
+\]
+
+\[
+\mathbb EX_n=m
+\]
+
+не зависит от \(n\), и
+
+\[
+\operatorname{Cov}(X_n,X_m)
+\]
+
+зависит только от \(n-m\).
+
+\subsubsection{Ковариационная
+функция}\label{ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+Для стационарной в широком смысле последовательности:
+
+\[
+R(k)=\operatorname{Cov}(X_k,X_0).
+\]
+
+В общем нестационарном случае:
+
+\[
+R(n,m)=\operatorname{Cov}(X_n,X_m).
+\]
+
+\subsubsection{Корреляционная
+функция}\label{ux43aux43eux440ux440ux435ux43bux44fux446ux438ux43eux43dux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+Если \(R(0)>0\), то
+
+\[
+\rho(k)=\frac{R(k)}{R(0)}.
+\]
+
+Она нормирована:
+
+\[
+\rho(0)=1,
+\qquad
+|\rho(k)|\le1.
+\]
+
+\subsubsection{Центрированная
+последовательность}\label{ux446ux435ux43dux442ux440ux438ux440ux43eux432ux430ux43dux43dux430ux44f-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c}
+
+\[
+Y_n=X_n-\mathbb EX_n.
+\]
+
+Для стационарной последовательности:
+
+\[
+Y_n=X_n-m.
+\]
+
+\subsubsection{Эргодичность по среднему в широком
+смысле}\label{ux44dux440ux433ux43eux434ux438ux447ux43dux43eux441ux442ux44c-ux43fux43e-ux441ux440ux435ux434ux43dux435ux43cux443-ux432-ux448ux438ux440ux43eux43aux43eux43c-ux441ux43cux44bux441ux43bux435}
+
+Стационарная в широком смысле последовательность эргодична по среднему,
+если
+
+\[
+\frac1N\sum_{n=0}^{N-1}X_n
+\xrightarrow{L^2}
+\mathbb EX_0.
+\]
+
+\subsubsection{Среднеквадратичная
+сходимость}\label{ux441ux440ux435ux434ux43dux435ux43aux432ux430ux434ux440ux430ux442ux438ux447ux43dux430ux44f-ux441ux445ux43eux434ux438ux43cux43eux441ux442ux44c}
+
+\[
+Z_N\xrightarrow{L^2}Z
+\]
+
+означает
+
+\[
+\mathbb E|Z_N-Z|^2\to0.
+\]
+
+\subsubsection{Положительная определенность ковариационной
+функции}\label{ux43fux43eux43bux43eux436ux438ux442ux435ux43bux44cux43dux430ux44f-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux43dux43eux441ux442ux44c-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Функция \(R:\mathbb Z\to\mathbb C\) положительно определена, если
+
+\[
+\sum_{\alpha,\beta=1}^r
+a_\alpha\overline{a_\beta}R(n_\alpha-n_\beta)\ge0
+\]
+
+для любых \(r\), \(a_1,\ldots,a_r\in\mathbb C\) и
+\(n_1,\ldots,n_r\in\mathbb Z\).
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{1. Свойства ковариационной
+функции}\label{ux441ux432ux43eux439ux441ux442ux432ux430-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Для стационарной в широком смысле последовательности:
+
+\[
+R(0)\ge0,
+\]
+
+\[
+R(-k)=\overline{R(k)},
+\]
+
+\[
+|R(k)|\le R(0).
+\]
+
+Если процесс действительный, то
+
+\[
+R(-k)=R(k).
+\]
+
+\subsubsection{2. Положительная
+определенность}\label{ux43fux43eux43bux43eux436ux438ux442ux435ux43bux44cux43dux430ux44f-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux43dux43eux441ux442ux44c}
+
+Ковариационная функция стационарной последовательности положительно
+определена:
+
+\[
+\sum_{\alpha,\beta}
+a_\alpha\overline{a_\beta}R(n_\alpha-n_\beta)\ge0.
+\]
+
+Доказательство:
+
+\[
+\sum_{\alpha,\beta}
+a_\alpha\overline{a_\beta}R(n_\alpha-n_\beta)
+=
+\mathbb E\left|
+\sum_\alpha a_\alpha(X_{n_\alpha}-m)
+\right|^2
+\ge0.
+\]
+
+\subsubsection{3. Дисперсия временного
+среднего}\label{ux434ux438ux441ux43fux435ux440ux441ux438ux44f-ux432ux440ux435ux43cux435ux43dux43dux43eux433ux43e-ux441ux440ux435ux434ux43dux435ux433ux43e}
+
+Пусть
+
+\[
+\overline X_N=\frac1N\sum_{n=0}^{N-1}X_n.
+\]
+
+Тогда
+
+\[
+\operatorname{Var}(\overline X_N)
+=
+\frac1{N^2}
+\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}R(i-j).
+\]
+
+Эквивалентно:
+
+\[
+\operatorname{Var}(\overline X_N)
+=
+\frac1N
+\sum_{|k|<N}
+\left(1-\frac{|k|}{N}\right)R(k).
+\]
+
+В действительном случае:
+
+\[
+\operatorname{Var}(\overline X_N)
+=
+\frac{R(0)}{N}
++
+\frac{2}{N}\sum_{k=1}^{N-1}
+\left(1-\frac{k}{N}\right)R(k).
+\]
+
+\subsubsection{4. Критерий эргодичности по
+среднему}\label{ux43aux440ux438ux442ux435ux440ux438ux439-ux44dux440ux433ux43eux434ux438ux447ux43dux43eux441ux442ux438-ux43fux43e-ux441ux440ux435ux434ux43dux435ux43cux443}
+
+Последовательность эргодична по среднему в широком смысле тогда и только
+тогда, когда
+
+\[
+\operatorname{Var}(\overline X_N)\to0.
+\]
+
+По формуле выше это равносильно
+
+\[
+\frac1{N^2}
+\sum_{i,j=0}^{N-1}R(i-j)\to0.
+\]
+
+\subsubsection{5. Достаточное условие через затухание
+корреляций}\label{ux434ux43eux441ux442ux430ux442ux43eux447ux43dux43eux435-ux443ux441ux43bux43eux432ux438ux435-ux447ux435ux440ux435ux437-ux437ux430ux442ux443ux445ux430ux43dux438ux435-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux439}
+
+Если
+
+\[
+R(k)\to0,
+\qquad
+|k|\to\infty,
+\]
+
+то
+
+\[
+\overline X_N\xrightarrow{L^2}m.
+\]
+
+\subsubsection{6. Достаточное условие через абсолютную
+суммируемость}\label{ux434ux43eux441ux442ux430ux442ux43eux447ux43dux43eux435-ux443ux441ux43bux43eux432ux438ux435-ux447ux435ux440ux435ux437-ux430ux431ux441ux43eux43bux44eux442ux43dux443ux44e-ux441ux443ux43cux43cux438ux440ux443ux435ux43cux43eux441ux442ux44c}
+
+Если
+
+\[
+\sum_{k\in\mathbb Z}|R(k)|<\infty,
+\]
+
+то
+
+\[
+\operatorname{Var}(\overline X_N)=O\left(\frac1N\right)
+\]
+
+и последовательность эргодична по среднему.
+
+\subsubsection{7. Спектральная
+формулировка}\label{ux441ux43fux435ux43aux442ux440ux430ux43bux44cux43dux430ux44f-ux444ux43eux440ux43cux443ux43bux438ux440ux43eux432ux43aux430}
+
+По теореме Герглотца положительно определенная ковариационная функция
+имеет представление
+
+\[
+R(k)=\int_{-\pi}^{\pi}e^{ik\lambda}F(d\lambda),
+\]
+
+где \(F\) - конечная неотрицательная спектральная мера. Тогда средние
+сходятся к \(m\) в \(L^2\) тогда и только тогда, когда у спектральной
+меры нет атома в нуле:
+
+\[
+F(\{0\})=0.
+\]
+
+Это уже мост к Билету 25.
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Белый
+шум}\label{ux43fux440ux438ux43cux435ux440-1.-ux431ux435ux43bux44bux439-ux448ux443ux43c}
+
+Пусть
+
+\[
+\mathbb E X_n=0,
+\qquad
+\operatorname{Var}X_n=\sigma^2,
+\]
+
+и величины некоррелированы:
+
+\[
+\operatorname{Cov}(X_n,X_m)=0,
+\qquad
+n\ne m.
+\]
+
+Тогда
+
+\[
+R(k)=
+\begin{cases}
+\sigma^2, & k=0,\\
+0, & k\ne0.
+\end{cases}
+\]
+
+Значит
+
+\[
+\operatorname{Var}(\overline X_N)=\frac{\sigma^2}{N}\to0.
+\]
+
+Белый шум эргодичен по среднему.
+
+\subsubsection{Пример 2. Геометрически затухающие
+корреляции}\label{ux43fux440ux438ux43cux435ux440-2.-ux433ux435ux43eux43cux435ux442ux440ux438ux447ux435ux441ux43aux438-ux437ux430ux442ux443ux445ux430ux44eux449ux438ux435-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux438}
+
+Пусть
+
+\[
+R(k)=\sigma^2 a^{|k|},
+\qquad
+|a|<1.
+\]
+
+Тогда
+
+\[
+\sum_{k\in\mathbb Z}|R(k)|<\infty.
+\]
+
+Следовательно,
+
+\[
+\overline X_N\xrightarrow{L^2}m.
+\]
+
+Такой вид ковариаций возникает, например, у стационарной авторегрессии
+первого порядка \(AR(1)\):
+
+\[
+X_n=aX_{n-1}+\varepsilon_n,
+\qquad
+|a|<1.
+\]
+
+\subsubsection{Пример 3. Случайная
+константа}\label{ux43fux440ux438ux43cux435ux440-3.-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux43aux43eux43dux441ux442ux430ux43dux442ux430}
+
+Пусть
+
+\[
+X_n=Z
+\]
+
+для всех \(n\), где \(Z\) - нетривиальная случайная величина,
+
+\[
+\mathbb EZ=m,
+\qquad
+\operatorname{Var}Z>0.
+\]
+
+Тогда последовательность стационарна, но
+
+\[
+\overline X_N=Z
+\]
+
+для всех \(N\). Поэтому
+
+\[
+\overline X_N\nrightarrow m
+\]
+
+в \(L^2\), если \(Z\) не константа. Ковариационная функция:
+
+\[
+R(k)=\operatorname{Var}Z
+\]
+
+для всех \(k\). Она не затухает, и эргодичности среднего нет.
+
+\subsubsection{Пример 4. Общий случай с суммируемыми
+ковариациями}\label{ux43fux440ux438ux43cux435ux440-4.-ux43eux431ux449ux438ux439-ux441ux43bux443ux447ux430ux439-ux441-ux441ux443ux43cux43cux438ux440ux443ux435ux43cux44bux43cux438-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux44fux43cux438}
+
+Если
+
+\[
+|R(k)|\le \frac{C}{(1+|k|)^{1+\delta}},
+\qquad
+\delta>0,
+\]
+
+то
+
+\[
+\sum_{k\in\mathbb Z}|R(k)|<\infty.
+\]
+
+Значит среднее эргодично. Это типичный случай ``быстрого забывания''
+прошлого.
+
+\subsubsection{Пример 5. Некоррелированность не равна
+независимости}\label{ux43fux440ux438ux43cux435ux440-5.-ux43dux435ux43aux43eux440ux440ux435ux43bux438ux440ux43eux432ux430ux43dux43dux43eux441ux442ux44c-ux43dux435-ux440ux430ux432ux43dux430-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux438}
+
+Можно иметь
+
+\[
+R(k)=0
+\]
+
+при \(k\ne0\), но величины не будут независимыми. Для эргодичности по
+среднему в широком смысле достаточно контроля вторых моментов, но для
+узкой эргодичности этого уже мало.
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\textbf{Доказательство свойств \(R(k)\).}
+
+Если процесс центрирован, то
+
+\[
+R(k)=\mathbb E X_k\overline{X_0}.
+\]
+
+Тогда
+
+\[
+R(-k)=\mathbb E X_{-k}\overline{X_0}.
+\]
+
+По стационарности пара \((X_{-k},X_0)\) имеет те же характеристики
+второго порядка, что \((X_0,X_k)\), поэтому
+
+\[
+R(-k)=\overline{R(k)}.
+\]
+
+Неравенство
+
+\[
+|R(k)|\le R(0)
+\]
+
+следует из Коши-Буняковского:
+
+\[
+|\mathbb E X_k\overline{X_0}|
+\le
+\sqrt{\mathbb E|X_k|^2\,\mathbb E|X_0|^2}
+=R(0).
+\]
+
+\textbf{Вывод формулы для дисперсии среднего.}
+
+Центрируем:
+
+\[
+Y_n=X_n-m.
+\]
+
+Тогда
+
+\[
+\overline X_N-m=\frac1N\sum_{n=0}^{N-1}Y_n.
+\]
+
+Следовательно,
+
+\[
+\mathbb E|\overline X_N-m|^2
+=
+\frac1{N^2}
+\mathbb E
+\left|
+\sum_{n=0}^{N-1}Y_n
+\right|^2.
+\]
+
+Раскрываем квадрат:
+
+\[
+\mathbb E
+\left|
+\sum_{n=0}^{N-1}Y_n
+\right|^2
+=
+\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}
+\mathbb E Y_i\overline{Y_j}.
+\]
+
+По стационарности:
+
+\[
+\mathbb E Y_i\overline{Y_j}=R(i-j).
+\]
+
+Получаем:
+
+\[
+\mathbb E|\overline X_N-m|^2
+=
+\frac1{N^2}
+\sum_{i,j=0}^{N-1}R(i-j).
+\]
+
+Если собрать одинаковые лаги:
+
+\[
+\mathbb E|\overline X_N-m|^2
+=
+\frac1N
+\sum_{|k|<N}
+\left(1-\frac{|k|}{N}\right)R(k).
+\]
+
+\textbf{Почему абсолютная суммируемость достаточна.}
+
+Если
+
+\[
+\sum_{k\in\mathbb Z}|R(k)|<\infty,
+\]
+
+то
+
+\[
+\operatorname{Var}(\overline X_N)
+\le
+\frac1N
+\sum_{|k|<N}|R(k)|
+\le
+\frac1N
+\sum_{k\in\mathbb Z}|R(k)|
+\to0.
+\]
+
+Значит
+
+\[
+\overline X_N\to m
+\]
+
+в \(L^2\).
+
+\textbf{Почему \(R(k)\to0\) достаточно.}
+
+Из \(|R(k)|\le R(0)\) следует ограниченность ковариаций. Если
+\(R(k)\to0\), то средние по Чезаро тоже стремятся к нулю:
+
+\[
+\frac1N\sum_{k=0}^{N-1}R(k)\to0.
+\]
+
+С учетом симметрии \(R(-k)=\overline{R(k)}\) это дает исчезновение
+взвешенного среднего ковариаций в формуле для
+
+\[
+\operatorname{Var}(\overline X_N).
+\]
+
+Следовательно,
+
+\[
+\operatorname{Var}(\overline X_N)\to0.
+\]
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+Ковариационная функция:
+
+\[
+R(k)=\operatorname{Cov}(X_k,X_0)
+=
+\mathbb E[(X_k-m)\overline{(X_0-m)}].
+\]
+
+Нормированная корреляция:
+
+\[
+\rho(k)=\frac{R(k)}{R(0)}.
+\]
+
+Свойства:
+
+\[
+R(0)\ge0,
+\qquad
+R(-k)=\overline{R(k)},
+\qquad
+|R(k)|\le R(0).
+\]
+
+Временное среднее:
+
+\[
+\overline X_N=\frac1N\sum_{n=0}^{N-1}X_n.
+\]
+
+Дисперсия среднего:
+
+\[
+\mathbb E|\overline X_N-m|^2
+=
+\frac1{N^2}
+\sum_{i,j=0}^{N-1}R(i-j)
+=
+\frac1N
+\sum_{|k|<N}
+\left(1-\frac{|k|}{N}\right)R(k).
+\]
+
+Достаточные условия:
+
+\[
+R(k)\to0
+\quad\Rightarrow\quad
+\overline X_N\xrightarrow{L^2}m,
+\]
+
+и
+
+\[
+\sum_{k\in\mathbb Z}|R(k)|<\infty
+\quad\Rightarrow\quad
+\overline X_N\xrightarrow{L^2}m.
+\]
+
+Спектральная связка:
+
+\[
+R(k)=\int_{-\pi}^{\pi}e^{ik\lambda}F(d\lambda),
+\qquad
+F(\{0\})=0.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Чем ковариационная функция отличается от корреляционной?}
+
+Ковариационная функция:
+
+\[
+R(k)=\operatorname{Cov}(X_k,X_0).
+\]
+
+Нормированная корреляционная функция:
+
+\[
+\rho(k)=\frac{R(k)}{R(0)}.
+\]
+
+У \(\rho(0)=1\), а у \(R(0)=\operatorname{Var}X_0\).
+
+\textbf{Почему нужно центрирование?}
+
+Корреляция должна измерять совместные отклонения от среднего, поэтому
+нужно брать
+
+\[
+X_n-m.
+\]
+
+Если забыть центрирование, то постоянная ненулевая средняя компонента
+даст ложный вклад в зависимость.
+
+\textbf{Почему \(\operatorname{Var}(\overline X_N)\to0\) означает
+эргодичность по среднему?}
+
+Потому что
+
+\[
+\mathbb E\overline X_N=m.
+\]
+
+Значит
+
+\[
+\mathbb E|\overline X_N-m|^2
+=
+\operatorname{Var}(\overline X_N).
+\]
+
+Сходимость этой величины к нулю и есть сходимость в \(L^2\).
+
+\textbf{Достаточно ли условия \(R(k)\to0\)?}
+
+Да, для эргодичности среднего в широком смысле это достаточное условие.
+Оно не обязательно для всех возможных вариантов, но удобное и часто
+используемое.
+
+\textbf{Почему абсолютная суммируемость сильнее?}
+
+Если
+
+\[
+\sum_k|R(k)|<\infty,
+\]
+
+то ковариации не просто стремятся к нулю, а делают это достаточно
+быстро. Тогда дисперсия среднего убывает как \(O(1/N)\).
+
+\textbf{Пример неэргодичной последовательности?}
+
+Случайная константа:
+
+\[
+X_n=Z.
+\]
+
+Тогда
+
+\[
+\overline X_N=Z
+\]
+
+для всех \(N\), и среднее не сходится к \(\mathbb EZ\), если \(Z\) не
+константа.
+
+\textbf{Связь со спектральной мерой?}
+
+Если
+
+\[
+R(k)=\int e^{ik\lambda}F(d\lambda),
+\]
+
+то атом спектральной меры в нуле соответствует случайной постоянной
+компоненте, которая не исчезает при усреднении. Поэтому условие
+эргодичности среднего:
+
+\[
+F(\{0\})=0.
+\]
+
+\textbf{В чем отличие от узкой эргодичности?}
+
+Узкая эргодичность говорит о сдвиг-инвариантных событиях и временных
+средних функций. Эргодичность в широком смысле по среднему говорит
+только о сходимости
+
+\[
+\frac1N\sum X_n
+\]
+
+в \(L^2\).
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Путать ковариационную функцию \(R(k)\) и нормированный коэффициент
+  корреляции \(\rho(k)\).
+\item
+  Забывать центрирование: писать \(\mathbb EX_kX_0\) вместо
+  \(\mathbb E[(X_k-m)(X_0-m)]\) без условия \(m=0\).
+\item
+  Говорить ``эргодична'' без уточнения: в узком смысле, по среднему, в
+  \(L^2\).
+\item
+  Считать, что \(R(k)\to0\) означает независимость. Это только
+  некоррелированность в пределе.
+\item
+  Забывать множитель \(N-|k|\) при переходе от двойной суммы к сумме по
+  лагам.
+\item
+  Думать, что стационарность сама по себе дает эргодичность. Случайная
+  константа - контрпример.
+\item
+  Считать абсолютную суммируемость необходимой. Она достаточна, но не
+  необходима.
+\item
+  В комплексном случае забывать сопряжение и свойство
+  \(R(-k)=\overline{R(k)}\).
+\end{itemize}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Билет 12: ковариация как скалярное произведение в \(L_2\) и
+  положительная определенность.
+\item
+  Билет 14: коэффициент корреляции и геометрия центрированных величин.
+\item
+  Билет 17: стационарность и эргодичность в широком и узком смыслах.
+\item
+  Билет 18: для гауссовских последовательностей ковариация определяет
+  все конечномерные распределения.
+\item
+  Билет 21: эргодичность среднего - аналог закона больших чисел для
+  зависимых стационарных последовательностей.
+\item
+  Билет 23: стационарные марковские цепи дают примеры зависимых
+  последовательностей, где корреляции часто затухают.
+\item
+  Билет 25: спектральная мера является преобразованием Фурье
+  ковариационной функции.
+\end{itemize}
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Для стационарной в широком смысле последовательности
+\end{enumerate}
+
+\[
+R(k)=\operatorname{Cov}(X_k,X_0).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Временное среднее:
+\end{enumerate}
+
+\[
+\overline X_N=\frac1N\sum_{n=0}^{N-1}X_n.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Эргодичность по среднему:
+\end{enumerate}
+
+\[
+\overline X_N\xrightarrow{L^2}\mathbb EX_0.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Главная формула:
+\end{enumerate}
+
+\[
+\operatorname{Var}(\overline X_N)
+=
+\frac1{N^2}\sum_{i,j=0}^{N-1}R(i-j).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Если корреляции затухают достаточно быстро, например
+  \(\sum_k|R(k)|<\infty\), то среднее эргодично.
+\end{enumerate}
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно:
+
+\begin{itemize}
+\tightlist
+\item
+  различить \(R(k)\) и \(\rho(k)\);
+\item
+  назвать свойства \(R(0)\ge0\), \(R(-k)=\overline{R(k)}\),
+  \(|R(k)|\le R(0)\);
+\item
+  вывести формулу
+\end{itemize}
+
+\[
+\operatorname{Var}(\overline X_N)
+=
+\frac1N\sum_{|k|<N}\left(1-\frac{|k|}{N}\right)R(k);
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  привести пример белого шума и случайной константы;
+\item
+  объяснить, почему случайная константа стационарна, но не эргодична по
+  среднему.
+\end{itemize}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{itemize}
+\tightlist
+\item
+  положительную определенность ковариационной функции;
+\item
+  условие Чезаро:
+\end{itemize}
+
+\[
+\frac1N\sum_{k=0}^{N-1}R(k)\to0;
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  спектральную интерпретацию:
+\end{itemize}
+
+\[
+F(\{0\})=0;
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  связь с теоремой Герглотца:
+\end{itemize}
+
+\[
+R(k)=\int_{-\pi}^{\pi}e^{ik\lambda}F(d\lambda);
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  четкое различие между эргодичностью в широком смысле и узкой
+  эргодичностью.
+\end{itemize}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Пусть \(X=(X_n)_{n\in\mathbb Z}\) - стационарная в широком смысле
+случайная последовательность:
+
+\[
+\mathbb EX_n=m,
+\qquad
+\mathbb E|X_n|^2<\infty,
+\]
+
+а ковариация зависит только от лага. Тогда ковариационная функция:
+
+\[
+R(k)=\operatorname{Cov}(X_k,X_0)
+=
+\mathbb E[(X_k-m)\overline{(X_0-m)}].
+\]
+
+Если \(R(0)>0\), нормированная корреляционная функция:
+
+\[
+\rho(k)=\frac{R(k)}{R(0)}.
+\]
+
+Основные свойства:
+
+\[
+R(0)\ge0,
+\qquad
+R(-k)=\overline{R(k)},
+\qquad
+|R(k)|\le R(0).
+\]
+
+Кроме того, \(R\) положительно определена, потому что для любой линейной
+комбинации
+
+\[
+\mathbb E\left|\sum_\alpha a_\alpha(X_{n_\alpha}-m)\right|^2\ge0.
+\]
+
+Эргодичность по среднему в широком смысле означает:
+
+\[
+\overline X_N=\frac1N\sum_{n=0}^{N-1}X_n
+\xrightarrow{L^2}
+m.
+\]
+
+Так как \(\mathbb E\overline X_N=m\), это равносильно
+
+\[
+\operatorname{Var}(\overline X_N)\to0.
+\]
+
+Вычисляем дисперсию:
+
+\[
+\operatorname{Var}(\overline X_N)
+=
+\frac1{N^2}\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}R(i-j).
+\]
+
+Собирая одинаковые лаги:
+
+\[
+\operatorname{Var}(\overline X_N)
+=
+\frac1N\sum_{|k|<N}
+\left(1-\frac{|k|}{N}\right)R(k).
+\]
+
+Отсюда достаточные условия эргодичности: если
+
+\[
+R(k)\to0
+\]
+
+или тем более
+
+\[
+\sum_{k\in\mathbb Z}|R(k)|<\infty,
+\]
+
+то
+
+\[
+\operatorname{Var}(\overline X_N)\to0,
+\]
+
+а значит
+
+\[
+\overline X_N\to m
+\]
+
+в среднем квадратичном.
+
+Пример эргодичного среднего - белый шум: \(R(k)=0\) при \(k\ne0\), и
+дисперсия среднего равна \(\sigma^2/N\). Контрпример - случайная
+константа \(X_n=Z\): процесс стационарен, но \(\overline X_N=Z\),
+поэтому среднее не сходится к \(\mathbb EZ\), если \(Z\) не вырождена.
+
+В конце можно добавить связь со спектрами: по теореме Герглотца
+
+\[
+R(k)=\int_{-\pi}^{\pi}e^{ik\lambda}F(d\lambda).
+\]
+
+Эргодичность среднего соответствует отсутствию атома спектральной меры в
+нуле:
+
+\[
+F(\{0\})=0.
+\]
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить:
+
+\[
+R(k)=\operatorname{Cov}(X_k,X_0).
+\]
+
+Свойства:
+
+\[
+R(0)\ge0,
+\qquad
+R(-k)=\overline{R(k)},
+\qquad
+|R(k)|\le R(0).
+\]
+
+Эргодичность среднего:
+
+\[
+\frac1N\sum_{n=0}^{N-1}X_n
+\xrightarrow{L^2}
+\mathbb EX_0.
+\]
+
+Главная формула:
+
+\[
+\operatorname{Var}(\overline X_N)
+=
+\frac1{N^2}\sum_{i,j=0}^{N-1}R(i-j).
+\]
+
+Достаточные условия:
+
+\[
+R(k)\to0
+\]
+
+или
+
+\[
+\sum_k|R(k)|<\infty.
+\]
+
+Главная ловушка: стационарность не означает эргодичность; случайная
+константа стационарна, но не эргодична по среднему.
+
+\newpage
+
+\end{document}

@@ -1,0 +1,1245 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{\texorpdfstring{Билет 03. Продолжение меры с полуалгебры на
+алгебру и \(\sigma\)-алгебру. Мера
+Лебега}{Билет 03. Продолжение меры с полуалгебры на алгебру и \textbackslash sigma-алгебру. Мера Лебега}}\label{ux431ux438ux43bux435ux442-03.-ux43fux440ux43eux434ux43eux43bux436ux435ux43dux438ux435-ux43cux435ux440ux44b-ux441-ux43fux43eux43bux443ux430ux43bux433ux435ux431ux440ux44b-ux43dux430-ux430ux43bux433ux435ux431ux440ux443-ux438-sigma-ux430ux43bux433ux435ux431ux440ux443.-ux43cux435ux440ux430-ux43bux435ux431ux435ux433ux430}
+
+Источники: Ширяев 1, гл. II, §3; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Меру часто задают сначала на простых множествах, где ее значение
+очевидно, а затем продолжают на более богатые классы:
+
+\[
+\mathcal S\longrightarrow\mathcal A(\mathcal S)\longrightarrow\sigma(\mathcal S).
+\]
+
+Здесь \(\mathcal S\) - полуалгебра, \(\mathcal A(\mathcal S)\) - алгебра
+конечных дизъюнктных объединений элементов \(\mathcal S\), а
+\(\sigma(\mathcal S)\) - порожденная \(\sigma\)-алгебра.
+
+Если
+
+\[
+A=\bigsqcup_{k=1}^n S_k,\qquad S_k\in\mathcal S,
+\]
+
+то продолжение на алгебру задается формулой
+
+\[
+\mu(A)=\sum_{k=1}^n\mu(S_k).
+\]
+
+Главный вопрос на этом шаге - корректность: сумма не должна зависеть от
+выбранного разбиения \(A\).
+
+Продолжение на \(\sigma\)-алгебру строится через внешнюю меру:
+
+\[
+\mu^*(E)=
+\inf\left\{
+\sum_{n=1}^{\infty}\mu(A_n):
+E\subset\bigcup_{n=1}^{\infty}A_n,\ A_n\in\mathcal A
+\right\}.
+\]
+
+Из внешней меры выделяют измеримые множества по критерию Каратеодори:
+
+\[
+\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\setminus E)
+\]
+
+для всех \(B\subset\Omega\). Эти множества образуют \(\sigma\)-алгебру,
+а \(\mu^*\) на ней становится счетно-аддитивной мерой. При
+\(\sigma\)-конечности продолжение на \(\sigma(\mathcal A)\) единственно.
+
+Мера Лебега получается как продолжение объема полуоткрытых
+прямоугольников:
+
+\[
+\lambda_d\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+На прямой это просто длина:
+
+\[
+\lambda([a,b))=b-a.
+\]
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{3.1. Введение и необходимость продолжения
+меры}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux438-ux43dux435ux43eux431ux445ux43eux434ux438ux43cux43eux441ux442ux44c-ux43fux440ux43eux434ux43eux43bux436ux435ux43dux438ux44f-ux43cux435ux440ux44b}
+
+В билете 1 были введены системы множеств: полуалгебры, алгебры и
+\(\sigma\)-алгебры. В билете 2 вероятность была определена как
+счетно-аддитивная мера на \(\sigma\)-алгебре. Теперь нужно объяснить,
+откуда такие меры берутся.
+
+Обычно меру невозможно удобно задать сразу на всей \(\sigma\)-алгебре.
+Например, для меры Лебега естественно начать не со всех борелевских
+множеств, а с полуинтервалов на прямой:
+
+\[
+\lambda([a,b))=b-a.
+\]
+
+В \(\mathbb R^d\) естественно начать с полуоткрытых прямоугольников:
+
+\[
+I=\prod_{j=1}^d[a_j,b_j),
+\qquad
+\lambda_d(I)=\prod_{j=1}^d(b_j-a_j).
+\]
+
+Эти множества простые: их легко пересекать, разрезать и считать их
+длину, площадь или объем. Но для вероятности, интеграла Лебега и
+случайных процессов нужны более сложные множества: счетные объединения,
+счетные пересечения, пределы последовательностей множеств. Поэтому нужна
+процедура продолжения меры.
+
+\subsubsection{3.2. Продолжение с полуалгебры на
+алгебру}\label{ux43fux440ux43eux434ux43eux43bux436ux435ux43dux438ux435-ux441-ux43fux43eux43bux443ux430ux43bux433ux435ux431ux440ux44b-ux43dux430-ux430ux43bux433ux435ux431ux440ux443}
+
+Первый шаг - продолжение с полуалгебры \(\mathcal S\) на алгебру
+\(\mathcal A(\mathcal S)\). Алгебра \(\mathcal A(\mathcal S)\) состоит
+из конечных дизъюнктных объединений элементов \(\mathcal S\):
+
+\[
+\mathcal A(\mathcal S)=
+\left\{
+\bigsqcup_{k=1}^n S_k:\ S_k\in\mathcal S,\ n<\infty
+\right\}.
+\]
+
+Если \(A\in\mathcal A(\mathcal S)\), то \(A\) представимо в виде
+
+\[
+A=\bigsqcup_{k=1}^n S_k.
+\]
+
+Естественное определение:
+
+\[
+\mu(A)=\sum_{k=1}^n\mu(S_k).
+\]
+
+Нужно доказать, что если у \(A\) есть другое разбиение, то сумма
+получится та же. Это делается через общее измельчение двух разбиений.
+Если
+
+\[
+A=\bigsqcup_{i=1}^m S_i=\bigsqcup_{j=1}^n T_j,
+\]
+
+то элементы \(S_i\cap T_j\) дают общее разбиение. Так как полуалгебра
+замкнута относительно пересечений, эти множества снова лежат в
+\(\mathcal S\). Аддитивность на \(\mathcal S\) дает равенство сумм.
+
+\subsubsection{\texorpdfstring{3.3. Продолжение на \(\sigma\)-алгебру:
+внешняя
+мера}{3.3. Продолжение на \textbackslash sigma-алгебру: внешняя мера}}\label{ux43fux440ux43eux434ux43eux43bux436ux435ux43dux438ux435-ux43dux430-sigma-ux430ux43bux433ux435ux431ux440ux443-ux432ux43dux435ux448ux43dux44fux44f-ux43cux435ux440ux430}
+
+Второй шаг - продолжение с алгебры на \(\sigma\)-алгебру. Пусть \(\mu\)
+- предмера на алгебре \(\mathcal A\), то есть счетно-аддитивная мера на
+\(\mathcal A\) в том смысле, что счетная аддитивность выполняется для
+тех счетных дизъюнктных объединений, которые снова лежат в
+\(\mathcal A\). Тогда строят внешнюю меру:
+
+\[
+\mu^*(E)=
+\inf\left\{
+\sum_{n=1}^{\infty}\mu(A_n):
+E\subset\bigcup_{n=1}^{\infty}A_n,\ A_n\in\mathcal A
+\right\}.
+\]
+
+Смысл: множество \(E\) покрывается счетным набором уже известных
+измеримых множеств \(A_n\), а \(\mu^*(E)\) - наименьшая возможная цена
+такого покрытия.
+
+Внешняя мера определена на всех подмножествах \(\Omega\), но на всех
+подмножествах она обычно не является мерой. Поэтому выделяют класс
+хороших множеств.
+
+\subsubsection{3.4. Условие измеримости по
+Каратеодори}\label{ux443ux441ux43bux43eux432ux438ux435-ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux438-ux43fux43e-ux43aux430ux440ux430ux442ux435ux43eux434ux43eux440ux438}
+
+Множество \(E\) называется измеримым по Каратеодори, если для любого
+\(B\subset\Omega\):
+
+\[
+\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\setminus E).
+\]
+
+Это означает, что \(E\) корректно разрезает любое множество \(B\) на две
+части без потери и без лишней массы. Теорема Каратеодори утверждает, что
+все такие \(E\) образуют \(\sigma\)-алгебру, а \(\mu^*\) на ней является
+счетно-аддитивной мерой. Кроме того, эта \(\sigma\)-алгебра содержит
+исходную алгебру \(\mathcal A\), и новая мера совпадает с исходной
+\(\mu\) на \(\mathcal A\).
+
+\subsubsection{\texorpdfstring{3.5. Единственность продолжения и
+\(\sigma\)-конечность}{3.5. Единственность продолжения и \textbackslash sigma-конечность}}\label{ux435ux434ux438ux43dux441ux442ux432ux435ux43dux43dux43eux441ux442ux44c-ux43fux440ux43eux434ux43eux43bux436ux435ux43dux438ux44f-ux438-sigma-ux43aux43eux43dux435ux447ux43dux43eux441ux442ux44c}
+
+Если исходная мера \(\sigma\)-конечна, то продолжение на
+\(\sigma(\mathcal A)\) единственно. \(\sigma\)-конечность означает, что
+все пространство можно покрыть счетным числом множеств конечной меры:
+
+\[
+\Omega=\bigcup_{n=1}^{\infty}E_n,
+\qquad
+\mu(E_n)<\infty.
+\]
+
+Для меры Лебега это условие выполнено:
+
+\[
+\mathbb R^d=\bigcup_{n=1}^{\infty}[-n,n)^d,
+\qquad
+\lambda_d([-n,n)^d)=(2n)^d<\infty.
+\]
+
+\subsubsection{3.6. Резюме: построение меры
+Лебега}\label{ux440ux435ux437ux44eux43cux435-ux43fux43eux441ux442ux440ux43eux435ux43dux438ux435-ux43cux435ux440ux44b-ux43bux435ux431ux435ux433ux430}
+
+Мера Лебега строится именно по этой схеме. Сначала задают объем
+полуоткрытого прямоугольника. Затем получают меру на алгебре
+элементарных множеств, то есть конечных объединений прямоугольников.
+После этого через внешнюю меру и критерий Каратеодори получают меру на
+\(\sigma\)-алгебре. На борелевских множествах получается борелевская
+мера Лебега, а после добавления всех подмножеств множеств меры ноль
+получается полная мера Лебега.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Продолжение
+меры}\label{ux43fux440ux43eux434ux43eux43bux436ux435ux43dux438ux435-ux43cux435ux440ux44b}
+
+Пусть \(\mathcal C\subset\mathcal D\). Мера \(\nu\) на \(\mathcal D\)
+называется продолжением меры \(\mu\) с \(\mathcal C\), если
+
+\[
+\nu(A)=\mu(A),\qquad A\in\mathcal C.
+\]
+
+\subsubsection{Полуалгебра}\label{ux43fux43eux43bux443ux430ux43bux433ux435ux431ux440ux430}
+
+Семейство \(\mathcal S\subset 2^\Omega\) такое, что
+\(\varnothing\in\mathcal S\), пересечение двух множеств из
+\(\mathcal S\) снова лежит в \(\mathcal S\), а разность двух множеств из
+\(\mathcal S\) раскладывается в конечное дизъюнктное объединение
+множеств из \(\mathcal S\):
+
+\[
+S\setminus T=\bigsqcup_{k=1}^n S_k,
+\qquad S_k\in\mathcal S.
+\]
+
+\subsubsection{Алгебра, порожденная
+полуалгеброй}\label{ux430ux43bux433ux435ux431ux440ux430-ux43fux43eux440ux43eux436ux434ux435ux43dux43dux430ux44f-ux43fux43eux43bux443ux430ux43bux433ux435ux431ux440ux43eux439}
+
+\[
+\mathcal A(\mathcal S)=
+\left\{
+\bigsqcup_{k=1}^n S_k:\ S_k\in\mathcal S,\ n<\infty
+\right\}.
+\]
+
+Если \(\Omega\in\mathcal S\), то \(\mathcal A(\mathcal S)\) является
+алгеброй.
+
+\subsubsection{\texorpdfstring{\(\sigma\)-алгебра, порожденная системой
+множеств}{\textbackslash sigma-алгебра, порожденная системой множеств}}\label{sigma-ux430ux43bux433ux435ux431ux440ux430-ux43fux43eux440ux43eux436ux434ux435ux43dux43dux430ux44f-ux441ux438ux441ux442ux435ux43cux43eux439-ux43cux43dux43eux436ux435ux441ux442ux432}
+
+\[
+\sigma(\mathcal C)=
+\bigcap\{\mathcal F:\ \mathcal F\text{ - }\sigma\text{-алгебра},\ \mathcal C\subset\mathcal F\}.
+\]
+
+Это наименьшая \(\sigma\)-алгебра, содержащая \(\mathcal C\).
+
+\subsubsection{Предмера на
+алгебре}\label{ux43fux440ux435ux434ux43cux435ux440ux430-ux43dux430-ux430ux43bux433ux435ux431ux440ux435}
+
+Функция \(\mu:\mathcal A\to[0,\infty]\) называется предмерой, если
+\(\mu(\varnothing)=0\) и для любых попарно непересекающихся
+\(A_1,A_2,\ldots\in\mathcal A\), таких что
+\(\bigsqcup_{n=1}^{\infty}A_n\in\mathcal A\), выполнено
+
+\[
+\mu\left(\bigsqcup_{n=1}^{\infty}A_n\right)
+=
+\sum_{n=1}^{\infty}\mu(A_n).
+\]
+
+\subsubsection{\texorpdfstring{\(\sigma\)-конечность}{\textbackslash sigma-конечность}}\label{sigma-ux43aux43eux43dux435ux447ux43dux43eux441ux442ux44c}
+
+Мера \(\mu\) называется \(\sigma\)-конечной, если существуют множества
+\(E_n\) конечной меры такие, что
+
+\[
+\Omega=\bigcup_{n=1}^{\infty}E_n,
+\qquad
+\mu(E_n)<\infty.
+\]
+
+\subsubsection{Внешняя
+мера}\label{ux432ux43dux435ux448ux43dux44fux44f-ux43cux435ux440ux430}
+
+Функция \(\mu^*:2^\Omega\to[0,\infty]\), для которой:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\mu^*(\varnothing)=0\);
+\item
+  \(A\subset B\Rightarrow\mu^*(A)\le\mu^*(B)\);
+\item
+  для любых \(A_1,A_2,\ldots\subset\Omega\):
+\end{enumerate}
+
+\[
+\mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)
+\le
+\sum_{n=1}^{\infty}\mu^*(A_n).
+\]
+
+\subsubsection{Измеримость по
+Каратеодори}\label{ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux44c-ux43fux43e-ux43aux430ux440ux430ux442ux435ux43eux434ux43eux440ux438}
+
+Множество \(E\subset\Omega\) называется \(\mu^*\)-измеримым, если для
+любого \(B\subset\Omega\):
+
+\[
+\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\setminus E).
+\]
+
+\subsubsection{Мера
+Лебега}\label{ux43cux435ux440ux430-ux43bux435ux431ux435ux433ux430}
+
+Полная мера \(\lambda_d\) на \(\mathbb R^d\), полученная продолжением
+объема полуоткрытых прямоугольников:
+
+\[
+\lambda_d\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Теорема 1. Продолжение с полуалгебры на
+алгебру}\label{ux442ux435ux43eux440ux435ux43cux430-1.-ux43fux440ux43eux434ux43eux43bux436ux435ux43dux438ux435-ux441-ux43fux43eux43bux443ux430ux43bux433ux435ux431ux440ux44b-ux43dux430-ux430ux43bux433ux435ux431ux440ux443}
+
+Пусть \(\mathcal S\) - полуалгебра, \(\Omega\in\mathcal S\), и на
+\(\mathcal S\) задана неотрицательная функция \(\mu\) с
+\(\mu(\varnothing)=0\), согласованная с конечными дизъюнктными
+разложениями: если
+
+\[
+S=\bigsqcup_{k=1}^n S_k,\qquad S,S_k\in\mathcal S,
+\]
+
+то
+
+\[
+\mu(S)=\sum_{k=1}^n\mu(S_k).
+\]
+
+Тогда на \(\mathcal A(\mathcal S)\) можно определить
+
+\[
+\mu\left(\bigsqcup_{k=1}^n S_k\right)
+=
+\sum_{k=1}^n\mu(S_k).
+\]
+
+Это определение корректно и задает аддитивное продолжение на алгебру.
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e}
+
+Пусть
+
+\[
+A=\bigsqcup_{i=1}^m S_i
+=
+\bigsqcup_{j=1}^n T_j,
+\qquad S_i,T_j\in\mathcal S.
+\]
+
+Тогда для каждого \(i\):
+
+\[
+S_i=S_i\cap A
+=
+\bigsqcup_{j=1}^n(S_i\cap T_j).
+\]
+
+Так как \(\mathcal S\) замкнута относительно пересечений, все
+\(S_i\cap T_j\) лежат в \(\mathcal S\). По аддитивности:
+
+\[
+\mu(S_i)=\sum_{j=1}^n\mu(S_i\cap T_j).
+\]
+
+Суммируем по \(i\):
+
+\[
+\sum_{i=1}^m\mu(S_i)
+=
+\sum_{i=1}^m\sum_{j=1}^n\mu(S_i\cap T_j).
+\]
+
+С другой стороны, для каждого \(j\):
+
+\[
+T_j=\bigsqcup_{i=1}^m(S_i\cap T_j),
+\]
+
+поэтому
+
+\[
+\sum_{j=1}^n\mu(T_j)
+=
+\sum_{j=1}^n\sum_{i=1}^m\mu(S_i\cap T_j).
+\]
+
+Двойные суммы одинаковы, значит значения по двум разбиениям совпадают.
+\(\square\)
+
+\subsubsection{Теорема 2. Теорема продолжения
+меры}\label{ux442ux435ux43eux440ux435ux43cux430-2.-ux442ux435ux43eux440ux435ux43cux430-ux43fux440ux43eux434ux43eux43bux436ux435ux43dux438ux44f-ux43cux435ux440ux44b}
+
+Пусть \(\mu\) - предмера на алгебре \(\mathcal A\). Тогда существует
+мера \(\nu\) на \(\sigma\)-алгебре \(\mathcal M\), содержащей
+\(\sigma(\mathcal A)\), такая что
+
+\[
+\nu(A)=\mu(A),\qquad A\in\mathcal A.
+\]
+
+Если \(\mu\) \(\sigma\)-конечна, то продолжение на
+\(\sigma(\mathcal A)\) единственно.
+
+\subsubsection{Схема
+доказательства}\label{ux441ux445ux435ux43cux430-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux430}
+
+Строится внешняя мера
+
+\[
+\mu^*(E)=
+\inf\left\{
+\sum_{n=1}^{\infty}\mu(A_n):
+E\subset\bigcup_{n=1}^{\infty}A_n,\ A_n\in\mathcal A
+\right\}.
+\]
+
+Затем берутся все множества \(E\), удовлетворяющие критерию Каратеодори:
+
+\[
+\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\setminus E),
+\qquad B\subset\Omega.
+\]
+
+Доказывается, что они образуют \(\sigma\)-алгебру, что \(\mu^*\) на ней
+счетно-аддитивна, что все множества из \(\mathcal A\) измеримы и что
+\(\mu^*=\mu\) на \(\mathcal A\). Единственность при
+\(\sigma\)-конечности доказывается разбиением пространства на счетное
+объединение множеств конечной меры и применением теоремы единственности
+на каждом таком куске.
+
+\subsubsection{Теорема 3. Построение меры
+Лебега}\label{ux442ux435ux43eux440ux435ux43cux430-3.-ux43fux43eux441ux442ux440ux43eux435ux43dux438ux435-ux43cux435ux440ux44b-ux43bux435ux431ux435ux433ux430}
+
+На полуалгебре
+
+\[
+\mathcal S_d=
+\left\{
+\prod_{j=1}^d[a_j,b_j):\ a_j\le b_j
+\right\}
+\]
+
+формула
+
+\[
+\lambda_d\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j)
+\]
+
+задает объем. Он продолжается на алгебру элементарных множеств, затем на
+\(\mathcal B(\mathbb R^d)\), а после пополнения дает полную меру Лебега.
+
+\subsubsection{Обоснование}\label{ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux435}
+
+Полуоткрытые прямоугольники образуют полуалгебру. Объем аддитивен при
+конечном разрезании прямоугольников. Значит его можно продолжить на
+алгебру элементарных множеств. Эта мера \(\sigma\)-конечна, потому что
+
+\[
+\mathbb R^d=\bigcup_{n=1}^{\infty}[-n,n)^d,
+\qquad
+\lambda_d([-n,n)^d)<\infty.
+\]
+
+По теореме продолжения получается единственная борелевская мера,
+совпадающая с объемом на прямоугольниках. Ее пополнение и называется
+мерой Лебега.
+
+\subsubsection{Свойство 4. Внешняя мера
+Лебега}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-4.-ux432ux43dux435ux448ux43dux44fux44f-ux43cux435ux440ux430-ux43bux435ux431ux435ux433ux430}
+
+Для \(E\subset\mathbb R^d\):
+
+\[
+\lambda_d^*(E)
+=
+\inf\left\{
+\sum_{n=1}^{\infty}\lambda_d(I_n):
+E\subset\bigcup_{n=1}^{\infty}I_n,\ I_n\in\mathcal S_d
+\right\}.
+\]
+
+Если \(E\) лебегово измеримо, то
+
+\[
+\lambda_d(E)=\lambda_d^*(E).
+\]
+
+\subsubsection{Свойство 5. Инвариантность меры Лебега относительно
+сдвига}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-5.-ux438ux43dux432ux430ux440ux438ux430ux43dux442ux43dux43eux441ux442ux44c-ux43cux435ux440ux44b-ux43bux435ux431ux435ux433ux430-ux43eux442ux43dux43eux441ux438ux442ux435ux43bux44cux43dux43e-ux441ux434ux432ux438ux433ux430}
+
+Если \(E\) лебегово измеримо и \(h\in\mathbb R^d\), то
+
+\[
+\lambda_d(E+h)=\lambda_d(E),
+\qquad
+E+h=\{x+h:\ x\in E\}.
+\]
+
+Идея доказательства: сдвиг прямоугольника не меняет его объем, поэтому
+не меняет суммарные объемы покрытий. Значит внешняя мера сохраняется, а
+критерий Каратеодори переносит измеримость на сдвинутое множество.
+
+\subsubsection{Свойство 6. Точки и счетные множества имеют меру
+ноль}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-6.-ux442ux43eux447ux43aux438-ux438-ux441ux447ux435ux442ux43dux44bux435-ux43cux43dux43eux436ux435ux441ux442ux432ux430-ux438ux43cux435ux44eux442-ux43cux435ux440ux443-ux43dux43eux43bux44c}
+
+Для любой точки \(x\in\mathbb R^d\):
+
+\[
+\lambda_d(\{x\})=0.
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-1}
+
+Точку можно покрыть кубом со стороной \(\varepsilon>0\), поэтому
+
+\[
+\lambda_d^*(\{x\})\le\varepsilon^d.
+\]
+
+Так как \(\varepsilon\) можно брать сколь угодно малым, получаем
+\(\lambda_d(\{x\})=0\).
+
+Если \(E=\{x_1,x_2,\ldots\}\) счетно, то по счетной субаддитивности:
+
+\[
+\lambda_d(E)
+\le
+\sum_{n=1}^{\infty}\lambda_d(\{x_n\})
+=0.
+\]
+
+Значит \(\lambda_d(E)=0\). \(\square\)
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Длина конечного объединения
+полуинтервалов}\label{ux43fux440ux438ux43cux435ux440-1.-ux434ux43bux438ux43dux430-ux43aux43eux43dux435ux447ux43dux43eux433ux43e-ux43eux431ux44aux435ux434ux438ux43dux435ux43dux438ux44f-ux43fux43eux43bux443ux438ux43dux442ux435ux440ux432ux430ux43bux43eux432}
+
+Пусть
+
+\[
+A=[0,1)\sqcup[2,5).
+\]
+
+Тогда
+
+\[
+\lambda(A)=1+3=4.
+\]
+
+Если разбить иначе:
+
+\[
+A=[0,\tfrac12)\sqcup[\tfrac12,1)\sqcup[2,3)\sqcup[3,5),
+\]
+
+то
+
+\[
+\lambda(A)=\frac12+\frac12+1+2=4.
+\]
+
+Это иллюстрирует независимость от разбиения.
+
+\subsubsection{Пример 2. Открытые и закрытые
+интервалы}\label{ux43fux440ux438ux43cux435ux440-2.-ux43eux442ux43aux440ux44bux442ux44bux435-ux438-ux437ux430ux43aux440ux44bux442ux44bux435-ux438ux43dux442ux435ux440ux432ux430ux43bux44b}
+
+После продолжения меры:
+
+\[
+\lambda((a,b))=\lambda([a,b))=\lambda((a,b])=\lambda([a,b])=b-a.
+\]
+
+Концы не влияют на меру, потому что точки имеют меру \(0\).
+
+\subsubsection{Пример 3. Рациональные числа на
+отрезке}\label{ux43fux440ux438ux43cux435ux440-3.-ux440ux430ux446ux438ux43eux43dux430ux43bux44cux43dux44bux435-ux447ux438ux441ux43bux430-ux43dux430-ux43eux442ux440ux435ux437ux43aux435}
+
+Множество \(\mathbb Q\cap[0,1]\) счетно, поэтому
+
+\[
+\lambda(\mathbb Q\cap[0,1])=0.
+\]
+
+Но оно всюду плотно в \([0,1]\). Значит мера Лебега измеряет длину, а не
+топологическую плотность.
+
+\subsubsection{Пример 4. Иррациональные числа на
+отрезке}\label{ux43fux440ux438ux43cux435ux440-4.-ux438ux440ux440ux430ux446ux438ux43eux43dux430ux43bux44cux43dux44bux435-ux447ux438ux441ux43bux430-ux43dux430-ux43eux442ux440ux435ux437ux43aux435}
+
+Так как
+
+\[
+[0,1]=(\mathbb Q\cap[0,1])\sqcup([0,1]\setminus\mathbb Q),
+\]
+
+то
+
+\[
+\lambda([0,1]\setminus\mathbb Q)=1.
+\]
+
+\subsubsection{Пример 5. Канторово
+множество}\label{ux43fux440ux438ux43cux435ux440-5.-ux43aux430ux43dux442ux43eux440ux43eux432ux43e-ux43cux43dux43eux436ux435ux441ux442ux432ux43e}
+
+Классическое канторово множество несчетно, но имеет меру \(0\).
+Суммарная длина удаленных интервалов равна
+
+\[
+\sum_{n=1}^{\infty}\frac{2^{n-1}}{3^n}
+=
+\frac13\sum_{n=0}^{\infty}\left(\frac23\right)^n
+=1.
+\]
+
+Из отрезка длины \(1\) удалена суммарная длина \(1\), поэтому оставшееся
+канторово множество имеет меру \(0\).
+
+\subsection{6. Доказательства и
+обоснования}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux430-ux438-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux44f}
+
+\textbf{Почему продолжение на алгебру задается суммой.}
+
+Если \(A=\bigsqcup_{k=1}^n S_k\), то любая аддитивная мера обязана
+удовлетворять
+
+\[
+\mu(A)=\sum_{k=1}^n\mu(S_k).
+\]
+
+Иначе она нарушала бы аддитивность. Поэтому формула единственно
+возможная. Сложность только в том, чтобы доказать независимость от
+разбиения.
+
+\textbf{Почему нужна внешняя мера.}
+
+Алгебра закрыта только относительно конечных операций. Но
+\(\sigma\)-алгебра содержит результаты счетных операций. Внешняя мера
+назначает размер любому множеству через счетные покрытия уже известными
+множествами:
+
+\[
+E\subset\bigcup_{n=1}^{\infty}A_n.
+\]
+
+Инфимум сумм \(\sum_n\mu(A_n)\) дает наилучшую оценку размера \(E\)
+сверху.
+
+\textbf{Почему не все множества сразу измеримы.}
+
+Внешняя мера субаддитивна на всех подмножествах, но аддитивность может
+ломаться. Поэтому оставляют только те множества \(E\), которые правильно
+разрезают любое \(B\):
+
+\[
+\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\setminus E).
+\]
+
+Это и есть критерий Каратеодори.
+
+\textbf{Почему \(\sigma\)-конечность важна для единственности.}
+
+Если пространство покрыто счетным числом множеств конечной меры, то
+совпадение двух продолжений можно проверять на каждом конечном куске, а
+затем склеивать по счетному покрытию. Без \(\sigma\)-конечности
+продолжение может быть не единственным.
+
+\textbf{Почему мера Лебега продолжает геометрический объем.}
+
+На прямоугольниках объем известен. При конечном разрезании
+прямоугольника сумма объемов частей равна объему целого. Это дает меру
+на полуалгебре и алгебре элементарных множеств. Теорема продолжения
+переносит эту меру на борелевские множества, а пополнение дает полную
+меру Лебега.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Схема:
+\end{enumerate}
+
+\[
+\mathcal S\to\mathcal A(\mathcal S)\to\sigma(\mathcal S).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Алгебра из полуалгебры:
+\end{enumerate}
+
+\[
+\mathcal A(\mathcal S)=
+\left\{
+\bigsqcup_{k=1}^n S_k:\ S_k\in\mathcal S
+\right\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Продолжение на алгебру:
+\end{enumerate}
+
+\[
+\mu\left(\bigsqcup_{k=1}^n S_k\right)
+=
+\sum_{k=1}^n\mu(S_k).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Внешняя мера:
+\end{enumerate}
+
+\[
+\mu^*(E)=
+\inf\left\{
+\sum_{n=1}^{\infty}\mu(A_n):
+E\subset\bigcup_{n=1}^{\infty}A_n,\ A_n\in\mathcal A
+\right\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Критерий Каратеодори:
+\end{enumerate}
+
+\[
+\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\setminus E).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Мера Лебега:
+\end{enumerate}
+
+\[
+\lambda_d\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  \(\sigma\)-конечность:
+\end{enumerate}
+
+\[
+\mathbb R^d=\bigcup_{n=1}^{\infty}[-n,n)^d.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Почему нельзя сразу пользоваться формулой конечной суммы
+на \(\sigma(\mathcal S)\)?}
+
+Потому что элементы \(\sigma(\mathcal S)\) могут не иметь конечного
+разбиения на элементы \(\mathcal S\). Они возникают через счетные
+объединения, пересечения и пределы.
+
+\textbf{Вопрос. Что такое предмера?}
+
+Это счетно-аддитивная мера на алгебре, еще не продолженная на
+\(\sigma\)-алгебру.
+
+\textbf{Вопрос. Что дает \(\sigma\)-конечность?}
+
+Единственность продолжения на порожденную \(\sigma\)-алгебру.
+
+\textbf{Вопрос. Внешняя мера определена на всех подмножествах. Значит,
+все подмножества измеримы?}
+
+Нет. Внешняя мера есть на всех подмножествах, но счетно-аддитивной мерой
+она становится только на \(\sigma\)-алгебре измеримых по Каратеодори
+множеств.
+
+\textbf{Вопрос. Чем борелевская мера Лебега отличается от полной меры
+Лебега?}
+
+Борелевская мера задана на \(\mathcal B(\mathbb R^d)\). Полная мера
+Лебега дополнительно содержит все подмножества борелевских множеств меры
+ноль.
+
+\textbf{Вопрос. Почему \(\lambda([a,b])=b-a\), хотя исходно задавали
+\([a,b)\)?}
+
+Потому что
+
+\[
+[a,b]=[a,b)\cup\{b\},
+\]
+
+а точка имеет меру ноль.
+
+\textbf{Вопрос. Может ли несчетное множество иметь меру ноль?}
+
+Да. Пример - канторово множество.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Путать классы множеств:
+\end{enumerate}
+
+\[
+\mathcal S\subset\mathcal A(\mathcal S)\subset\sigma(\mathcal S).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Забывать, что формула
+\end{enumerate}
+
+\[
+\mu\left(\bigsqcup_{k=1}^nS_k\right)=\sum_{k=1}^n\mu(S_k)
+\]
+
+требует попарной непересекаемости.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Не проверять независимость от разбиения.
+\item
+  Считать внешнюю меру полноценной мерой на всех подмножествах.
+\item
+  Забывать \(\sigma\)-конечность в утверждении об единственности
+  продолжения.
+\item
+  Путать борелевскую меру Лебега и полную меру Лебега.
+\item
+  Думать, что множество меры ноль обязательно счетно.
+\item
+  Использовать старое обозначение дополнения через верхний индекс. В
+  этих конспектах дополнение пишется чертой сверху:
+\end{enumerate}
+
+\[
+\overline{A}=\Omega\setminus A.
+\]
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 01.} Полуалгебры, алгебры и \(\sigma\)-алгебры нужны для
+построения мер через продолжение.
+
+\textbf{Билет 02.} Вероятностная мера - частный случай меры. Мера по
+функции распределения строится той же идеей продолжения.
+
+\textbf{Билет 04.} Борелевские множества и пополнение меры продолжают
+тему меры Лебега.
+
+\textbf{Билет 05.} Измеримые функции определяются относительно
+\(\sigma\)-алгебр, полученных такими построениями.
+
+\textbf{Билет 07.} Интеграл Лебега строится по мере.
+
+\textbf{Билет 11.} Замена переменной в интеграле использует свойства
+меры Лебега.
+
+\textbf{Билет 15 и Билет 16.} Построение мер на пространствах
+последовательностей является более сложной версией идеи продолжения.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Меру задают на простом классе множеств и продолжают:
+\end{enumerate}
+
+\[
+\mathcal S\to\mathcal A(\mathcal S)\to\sigma(\mathcal S).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  На алгебре конечных дизъюнктных объединений:
+\end{enumerate}
+
+\[
+\mu\left(\bigsqcup_{k=1}^nS_k\right)=\sum_{k=1}^n\mu(S_k).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  На \(\sigma\)-алгебру продолжение строится через внешнюю меру и
+  критерий Каратеодори.
+\item
+  Мера Лебега продолжает длину:
+\end{enumerate}
+
+\[
+\lambda([a,b))=b-a.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  В \(\mathbb R^d\) она продолжает объем прямоугольника:
+\end{enumerate}
+
+\[
+\lambda_d\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Кроме минимума на удовлетворительно, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Объяснить корректность продолжения на алгебру через общее измельчение
+  разбиений.
+\item
+  Сформулировать внешнюю меру:
+\end{enumerate}
+
+\[
+\mu^*(E)=
+\inf\left\{
+\sum_{n=1}^{\infty}\mu(A_n):
+E\subset\bigcup_{n=1}^{\infty}A_n
+\right\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Сформулировать критерий Каратеодори:
+\end{enumerate}
+
+\[
+\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\setminus E).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Сказать, что при \(\sigma\)-конечности продолжение единственно.
+\item
+  Привести примеры: длина интервала, мера точки, мера
+  \(\mathbb Q\cap[0,1]\).
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Различие между мерой на полуалгебре, предмерой на алгебре и мерой на
+  \(\sigma\)-алгебре.
+\item
+  Подробную схему доказательства теоремы продолжения через внешнюю меру.
+\item
+  Объяснение, почему внешняя мера не является мерой на всех
+  подмножествах.
+\item
+  Различие между борелевской мерой Лебега и полной мерой Лебега.
+\item
+  Доказательство, что точка и любое счетное множество имеют меру ноль.
+\item
+  Пример канторова множества как несчетного множества меры ноль.
+\item
+  Упоминание, что без \(\sigma\)-конечности единственность продолжения
+  может нарушаться.
+\end{enumerate}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Тема билета - как построить меру на сложной \(\sigma\)-алгебре, если
+сначала она задана только на простых множествах. Схема:
+
+\[
+\mathcal S\to\mathcal A(\mathcal S)\to\sigma(\mathcal S).
+\]
+
+Сначала есть полуалгебра \(\mathcal S\), например полуоткрытые интервалы
+или прямоугольники. Из нее строится алгебра \(\mathcal A(\mathcal S)\)
+конечных дизъюнктных объединений. Если
+
+\[
+A=\bigsqcup_{k=1}^nS_k,
+\]
+
+то кладем
+
+\[
+\mu(A)=\sum_{k=1}^n\mu(S_k).
+\]
+
+Главное доказать, что это не зависит от разбиения. Если есть два
+разбиения \(A=\bigsqcup_iS_i=\bigsqcup_jT_j\), берем пересечения
+\(S_i\cap T_j\). Они дают общее измельчение, и по аддитивности суммы
+совпадают.
+
+Дальше строится внешняя мера:
+
+\[
+\mu^*(E)=
+\inf\left\{
+\sum_{n=1}^{\infty}\mu(A_n):
+E\subset\bigcup_{n=1}^{\infty}A_n,\ A_n\in\mathcal A
+\right\}.
+\]
+
+Она задает размер любого множества через наилучшие счетные покрытия.
+Затем по критерию Каратеодори выбираются измеримые множества:
+
+\[
+\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\setminus E).
+\]
+
+Они образуют \(\sigma\)-алгебру, и на ней \(\mu^*\) становится мерой.
+При \(\sigma\)-конечности продолжение на порожденную \(\sigma\)-алгебру
+единственно.
+
+Мера Лебега - главный пример. На полуоткрытых прямоугольниках задаем
+
+\[
+\lambda_d\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+Затем продолжаем на алгебру элементарных множеств, потом на борелевскую
+\(\sigma\)-алгебру и после пополнения получаем полную меру Лебега. На
+прямой:
+
+\[
+\lambda([a,b))=b-a.
+\]
+
+Точки и счетные множества имеют меру ноль, например
+\(\lambda(\mathbb Q\cap[0,1])=0\), а \(\lambda([0,1])=1\).
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить:
+
+\[
+\mathcal S\to\mathcal A(\mathcal S)\to\sigma(\mathcal S).
+\]
+
+На алгебре:
+
+\[
+\mu\left(\bigsqcup_{k=1}^nS_k\right)=\sum_{k=1}^n\mu(S_k).
+\]
+
+Внешняя мера:
+
+\[
+\mu^*(E)=
+\inf\left\{
+\sum_n\mu(A_n):
+E\subset\bigcup_n A_n
+\right\}.
+\]
+
+Каратеодори:
+
+\[
+\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\setminus E).
+\]
+
+Мера Лебега:
+
+\[
+\lambda([a,b))=b-a,
+\qquad
+\lambda_d\left(\prod_{j=1}^d[a_j,b_j)\right)
+=
+\prod_{j=1}^d(b_j-a_j).
+\]
+
+Главные ловушки: забыть независимость от разбиения, спутать внешнюю меру
+с мерой на всех подмножествах и забыть \(\sigma\)-конечность для
+единственности.
+
+\newpage
+
+\end{document}

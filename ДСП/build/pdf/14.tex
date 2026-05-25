@@ -1,0 +1,1383 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 14. Коэффициенты корреляции и евклидова геометрия
+центрированных величин со вторым
+моментом}\label{ux431ux438ux43bux435ux442-14.-ux43aux43eux44dux444ux444ux438ux446ux438ux435ux43dux442ux44b-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux438-ux438-ux435ux432ux43aux43bux438ux434ux43eux432ux430-ux433ux435ux43eux43cux435ux442ux440ux438ux44f-ux446ux435ux43dux442ux440ux438ux440ux43eux432ux430ux43dux43dux44bux445-ux432ux435ux43bux438ux447ux438ux43d-ux441ux43e-ux432ux442ux43eux440ux44bux43c-ux43cux43eux43cux435ux43dux442ux43eux43c}
+
+Источники: Сердобольская, лекция 6; Ширяев 1, §11.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Если случайные величины имеют конечные вторые моменты, то их можно
+рассматривать как векторы в гильбертовом пространстве
+\(L^2(\Omega,\mathcal F,P)\) со скалярным произведением
+
+\[
+\langle X,Y\rangle=\mathbb E[XY].
+\]
+
+Для центрированных величин
+
+\[
+X^0=X-\mathbb EX,\qquad Y^0=Y-\mathbb EY
+\]
+
+это скалярное произведение равно ковариации:
+
+\[
+\langle X^0,Y^0\rangle
+=
+\mathbb E[(X-\mathbb EX)(Y-\mathbb EY)]
+=
+\operatorname{Cov}(X,Y).
+\]
+
+Коэффициент корреляции при \(\operatorname{Var}X>0\) и
+\(\operatorname{Var}Y>0\):
+
+\[
+\rho(X,Y)
+=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}}
+=
+\frac{\langle X^0,Y^0\rangle}{\|X^0\|_2\|Y^0\|_2}.
+\]
+
+Поэтому \(\rho(X,Y)\) - это косинус угла между центрированными векторами
+\(X^0\) и \(Y^0\):
+
+\[
+\rho(X,Y)=\cos\angle(X^0,Y^0),
+\qquad
+|\rho(X,Y)|\le1.
+\]
+
+Равенство \(\rho=0\) означает некоррелированность, то есть
+ортогональность центрированных величин в \(L^2\). Это не означает
+независимость в общем случае.
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Введение и геометрическая
+интерпретация}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux438-ux433ux435ux43eux43cux435ux442ux440ux438ux447ux435ux441ux43aux430ux44f-ux438ux43dux442ux435ux440ux43fux440ux435ux442ux430ux446ux438ux44f}
+
+Этот билет продолжает Билет 12 о гильбертовых пространствах и связывает
+его с вероятностными понятиями ковариации и корреляции. До этого
+случайные величины рассматривались как измеримые функции, распределения
+и интегралы. Здесь важна новая точка зрения: случайные величины с
+конечным вторым моментом можно складывать, умножать на числа, измерять
+их длины и углы между ними.
+
+\subsubsection{\texorpdfstring{2.2. Пространство \(L^2\) и скалярное
+произведение}{2.2. Пространство L\^{}2 и скалярное произведение}}\label{ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-l2-ux438-ux441ux43aux430ux43bux44fux440ux43dux43eux435-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux435}
+
+Пусть задано вероятностное пространство
+
+\[
+(\Omega,\mathcal F,P).
+\]
+
+Пространство
+
+\[
+L^2(\Omega,\mathcal F,P)
+=
+\{X:\mathbb E X^2<\infty\}/\sim
+\]
+
+состоит из случайных величин с конечным вторым моментом, где величины,
+равные почти наверное, считаются одним элементом. В вещественном случае
+скалярное произведение задается формулой
+
+\[
+\langle X,Y\rangle=\mathbb E[XY].
+\]
+
+Оно корректно определено, потому что из неравенства Коши-Буняковского
+следует
+
+\[
+\mathbb E|XY|
+\le
+\sqrt{\mathbb EX^2}\sqrt{\mathbb EY^2}
+<\infty.
+\]
+
+Норма в \(L^2\):
+
+\[
+\|X\|_2=\sqrt{\mathbb EX^2}.
+\]
+
+Расстояние между двумя случайными величинами:
+
+\[
+\|X-Y\|_2
+=
+\sqrt{\mathbb E[(X-Y)^2]}.
+\]
+
+Это среднеквадратичное расстояние. Именно поэтому геометрия \(L^2\)
+естественна для дисперсий, ковариаций, регрессии, прогнозирования и
+корреляционных характеристик случайных процессов.
+
+\subsubsection{2.3. Центрирование и
+ковариация}\label{ux446ux435ux43dux442ux440ux438ux440ux43eux432ux430ux43dux438ux435-ux438-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux44f}
+
+Теперь выделим центрированные величины. Для любой \(X\in L^2\) положим
+
+\[
+X^0=X-\mathbb EX.
+\]
+
+Тогда
+
+\[
+\mathbb EX^0=0,
+\qquad
+\|X^0\|_2^2
+=
+\mathbb E[(X-\mathbb EX)^2]
+=
+\operatorname{Var}X.
+\]
+
+Для двух величин \(X,Y\in L^2\) ковариация:
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\mathbb E[(X-\mathbb EX)(Y-\mathbb EY)].
+\]
+
+В геометрических обозначениях:
+
+\[
+\operatorname{Cov}(X,Y)=\langle X^0,Y^0\rangle.
+\]
+
+То есть ковариация - это скалярное произведение центрированных версий
+\(X\) и \(Y\).
+
+\subsubsection{2.4. Коэффициент корреляции как косинус
+угла}\label{ux43aux43eux44dux444ux444ux438ux446ux438ux435ux43dux442-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux438-ux43aux430ux43a-ux43aux43eux441ux438ux43dux443ux441-ux443ux433ux43bux430}
+
+Коэффициент корреляции определяется, если обе дисперсии положительны:
+
+\[
+\operatorname{Var}X>0,
+\qquad
+\operatorname{Var}Y>0.
+\]
+
+Тогда
+
+\[
+\rho(X,Y)
+=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}}.
+\]
+
+Через геометрию \(L^2\) это
+
+\[
+\rho(X,Y)
+=
+\frac{\langle X^0,Y^0\rangle}{\|X^0\|_2\|Y^0\|_2}.
+\]
+
+В обычной евклидовой геометрии для ненулевых векторов \(u,v\):
+
+\[
+\cos\angle(u,v)
+=
+\frac{\langle u,v\rangle}{\|u\|\|v\|}.
+\]
+
+Значит
+
+\[
+\rho(X,Y)=\cos\angle(X^0,Y^0).
+\]
+
+Именно это нужно проговорить как главный смысл билета: корреляция -
+нормированная ковариация, то есть косинус угла между центрированными
+случайными величинами.
+
+\subsubsection{2.5. Неравенство Коши-Буняковского и диапазон
+значений}\label{ux43dux435ux440ux430ux432ux435ux43dux441ux442ux432ux43e-ux43aux43eux448ux438-ux431ux443ux43dux44fux43aux43eux432ux441ux43aux43eux433ux43e-ux438-ux434ux438ux430ux43fux430ux437ux43eux43d-ux437ux43dux430ux447ux435ux43dux438ux439}
+
+Из этой формулы сразу следует
+
+\[
+|\rho(X,Y)|\le1.
+\]
+
+Доказательство - это неравенство Коши-Буняковского:
+
+\[
+|\langle X^0,Y^0\rangle|
+\le
+\|X^0\|_2\|Y^0\|_2.
+\]
+
+Подставляя
+
+\[
+\langle X^0,Y^0\rangle=\operatorname{Cov}(X,Y),
+\qquad
+\|X^0\|_2^2=\operatorname{Var}X,
+\qquad
+\|Y^0\|_2^2=\operatorname{Var}Y,
+\]
+
+получаем
+
+\[
+|\operatorname{Cov}(X,Y)|
+\le
+\sqrt{\operatorname{Var}X\,\operatorname{Var}Y},
+\]
+
+а после деления на положительный знаменатель:
+
+\[
+|\rho(X,Y)|\le1.
+\]
+
+\subsubsection{2.6. Особые случаи: некоррелированность и
+независимость}\label{ux43eux441ux43eux431ux44bux435-ux441ux43bux443ux447ux430ux438-ux43dux435ux43aux43eux440ux440ux435ux43bux438ux440ux43eux432ux430ux43dux43dux43eux441ux442ux44c-ux438-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c}
+
+Разберем смысл особых случаев.
+
+Если
+
+\[
+\rho(X,Y)=0,
+\]
+
+то
+
+\[
+\operatorname{Cov}(X,Y)=0
+\]
+
+и
+
+\[
+X^0\perp Y^0
+\]
+
+в \(L^2\). Такие величины называются некоррелированными. Важно:
+некоррелированность в общем случае слабее независимости. Из
+независимости при существовании вторых моментов действительно следует
+
+\[
+\operatorname{Cov}(X,Y)=0,
+\]
+
+потому что
+
+\[
+\mathbb E[XY]=\mathbb EX\,\mathbb EY.
+\]
+
+Но обратное неверно.
+
+Классический пример: пусть \(X\) равномерна на \([-1,1]\), а
+
+\[
+Y=X^2.
+\]
+
+Тогда \(Y\) полностью определяется через \(X\), то есть независимости
+нет. Но
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\mathbb E[X^3]-\mathbb EX\,\mathbb EX^2
+=
+0-0\cdot\mathbb EX^2
+=0,
+\]
+
+поскольку распределение \(X\) симметрично и \(\mathbb E X^3=0\). Значит
+зависимые величины могут быть некоррелированными.
+
+\subsubsection{2.7. Линейная зависимость и вырожденная
+дисперсия}\label{ux43bux438ux43dux435ux439ux43dux430ux44f-ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c-ux438-ux432ux44bux440ux43eux436ux434ux435ux43dux43dux430ux44f-ux434ux438ux441ux43fux435ux440ux441ux438ux44f}
+
+Если
+
+\[
+|\rho(X,Y)|=1,
+\]
+
+то в неравенстве Коши-Буняковского достигается равенство. Это означает
+линейную зависимость центрированных величин в \(L^2\):
+
+\[
+Y^0=aX^0
+\quad\text{почти наверное}
+\]
+
+для некоторого \(a\ne0\). Эквивалентно,
+
+\[
+Y=aX+b
+\quad\text{почти наверное}.
+\]
+
+Если \(a>0\), то \(\rho=1\); если \(a<0\), то \(\rho=-1\).
+
+Если одна из дисперсий равна нулю, например
+
+\[
+\operatorname{Var}X=0,
+\]
+
+то \(X=\mathbb EX\) почти наверное, то есть \(X\) является константой в
+\(L^2\). Тогда угол с ней как с центрированным вектором не определен,
+потому что
+
+\[
+X^0=0.
+\]
+
+Поэтому коэффициент корреляции обычно не определяют при нулевой
+дисперсии.
+
+\subsubsection{2.8. Ковариационная и корреляционная
+матрицы}\label{ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux438-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux44b}
+
+Для случайного вектора
+
+\[
+X=(X_1,\ldots,X_n)^T
+\]
+
+с конечными вторыми моментами ковариационная матрица
+
+\[
+\Sigma=(\Sigma_{ij}),
+\qquad
+\Sigma_{ij}=\operatorname{Cov}(X_i,X_j)
+\]
+
+является матрицей Грама для центрированных векторов
+
+\[
+X_1^0,\ldots,X_n^0
+\]
+
+в \(L^2\):
+
+\[
+\Sigma_{ij}=\langle X_i^0,X_j^0\rangle.
+\]
+
+Отсюда сразу следует ее симметричность и неотрицательная определенность.
+Для любого \(a=(a_1,\ldots,a_n)^T\):
+
+\[
+a^T\Sigma a
+=
+\sum_{i,j}a_i a_j\operatorname{Cov}(X_i,X_j)
+=
+\operatorname{Var}\left(\sum_{i=1}^n a_iX_i\right)
+\ge0.
+\]
+
+Корреляционная матрица получается нормировкой ковариаций:
+
+\[
+\rho_{ij}
+=
+\rho(X_i,X_j)
+=
+\frac{\Sigma_{ij}}{\sqrt{\Sigma_{ii}\Sigma_{jj}}},
+\]
+
+если соответствующие дисперсии положительны. На диагонали такой матрицы
+стоят единицы:
+
+\[
+R_{ii}=1.
+\]
+
+Геометрически \(R_{ij}\) - косинус угла между \(X_i^0\) и \(X_j^0\).
+
+\subsubsection{2.9. Связь со случайными
+процессами}\label{ux441ux432ux44fux437ux44c-ux441ux43e-ux441ux43bux443ux447ux430ux439ux43dux44bux43cux438-ux43fux440ux43eux446ux435ux441ux441ux430ux43cux438}
+
+В конце ответа полезно связать билет с процессами. Для случайной
+последовательности или процесса ковариации между значениями в разные
+моменты времени образуют корреляционную функцию:
+
+\[
+R(s,t)=\operatorname{Cov}(X_s,X_t).
+\]
+
+В стационарном широком смысле она зависит только от лага:
+
+\[
+R(k)=\operatorname{Cov}(X_0,X_k).
+\]
+
+Это уже связь с Билет 17, Билет 24 и Билет 25: корреляционная функция и
+спектральные характеристики являются развитием той же геометрии второго
+порядка.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Центрированная случайная величина}:
+\end{itemize}
+
+\[
+X^0=X-\mathbb EX.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Дисперсия}:
+\end{itemize}
+
+\[
+\operatorname{Var}X=\mathbb E[(X-\mathbb EX)^2]=\|X^0\|_2^2.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Ковариация}:
+\end{itemize}
+
+\[
+\operatorname{Cov}(X,Y)=\mathbb E[(X-\mathbb EX)(Y-\mathbb EY)].
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Коэффициент корреляции}:
+\end{itemize}
+
+\[
+\rho(X,Y)
+=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}}.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Ортогональность в \(L^2\)}:
+\end{itemize}
+
+\[
+X\perp Y
+\quad\Longleftrightarrow\quad
+\mathbb E[XY]=0.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Некоррелированность}:
+\end{itemize}
+
+\[
+X^0\perp Y^0
+\quad\Longleftrightarrow\quad
+\operatorname{Cov}(X,Y)=0.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Матрица Грама}: матрица скалярных произведений векторов:
+\end{itemize}
+
+\[
+G_{ij}=\langle u_i,u_j\rangle.
+\]
+
+Ковариационная матрица - матрица Грама для центрированных величин.
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\operatorname{Cov}(X,Y)=\langle X^0,Y^0\rangle\).
+\item
+  \(\operatorname{Var}X=\|X^0\|_2^2\).
+\item
+  \(\rho(X,Y)=\cos\angle(X^0,Y^0)\) при положительных дисперсиях.
+\item
+  \(|\rho(X,Y)|\le1\).
+\item
+  \(\rho(X,Y)=0\) означает некоррелированность, то есть ортогональность
+  центрированных величин.
+\item
+  Независимость при наличии вторых моментов влечет некоррелированность,
+  но не наоборот.
+\item
+  \(|\rho(X,Y)|=1\) тогда и только тогда, когда \(X\) и \(Y\) линейно
+  связаны почти наверное:
+\end{itemize}
+
+\[
+Y=aX+b.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Ковариационная матрица симметрична и неотрицательно определена.
+\item
+  Ковариационная матрица является матрицей Грама центрированных
+  случайных величин.
+\end{itemize}
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Независимые
+величины}\label{ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+Если \(X\) и \(Y\) независимы и имеют конечные вторые моменты, то
+
+\[
+\mathbb E[XY]=\mathbb EX\,\mathbb EY.
+\]
+
+Тогда
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\mathbb E[XY]-\mathbb EX\,\mathbb EY
+=0.
+\]
+
+Значит независимые величины некоррелированы. Если дисперсии
+положительны, то \(\rho(X,Y)=0\).
+
+\subsubsection{Линейная
+зависимость}\label{ux43bux438ux43dux435ux439ux43dux430ux44f-ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c}
+
+Пусть
+
+\[
+Y=aX+b,
+\qquad a\ne0.
+\]
+
+Тогда
+
+\[
+Y-\mathbb EY
+=
+a(X-\mathbb EX).
+\]
+
+Поэтому
+
+\[
+\operatorname{Cov}(X,Y)=a\operatorname{Var}X,
+\qquad
+\operatorname{Var}Y=a^2\operatorname{Var}X.
+\]
+
+Если \(\operatorname{Var}X>0\), то
+
+\[
+\rho(X,Y)
+=
+\frac{a\operatorname{Var}X}{|a|\operatorname{Var}X}
+=
+\operatorname{sign}a.
+\]
+
+То есть при \(a>0\) корреляция равна \(1\), а при \(a<0\) равна \(-1\).
+
+\subsubsection{Некоррелированные, но зависимые
+величины}\label{ux43dux435ux43aux43eux440ux440ux435ux43bux438ux440ux43eux432ux430ux43dux43dux44bux435-ux43dux43e-ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+Пусть \(X\sim U[-1,1]\), а \(Y=X^2\). Тогда \(Y\) зависит от \(X\), но
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\operatorname{Cov}(X,X^2)
+=
+\mathbb E X^3-\mathbb EX\,\mathbb EX^2
+=0.
+\]
+
+Значит \(\rho(X,Y)=0\), если \(\operatorname{Var}Y>0\). Этот пример
+показывает главную ловушку: нулевая корреляция не равна независимости.
+
+\subsubsection{Ортогональные векторы в конечномерном
+случае}\label{ux43eux440ux442ux43eux433ux43eux43dux430ux43bux44cux43dux44bux435-ux432ux435ux43aux442ux43eux440ux44b-ux432-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux43c-ux441ux43bux443ux447ux430ux435}
+
+Если \(X=(X_1,X_2)\) - центрированный случайный вектор и
+
+\[
+\operatorname{Cov}(X_1,X_2)=0,
+\]
+
+то координаты \(X_1\) и \(X_2\) ортогональны как элементы \(L^2\). Их
+ковариационная матрица диагональна:
+
+\[
+\Sigma
+=
+\begin{pmatrix}
+\operatorname{Var}X_1 & 0\\
+0 & \operatorname{Var}X_2
+\end{pmatrix}.
+\]
+
+Но диагональность ковариационной матрицы сама по себе не означает
+независимость координат, кроме специальных классов распределений,
+например совместно гауссовского случая.
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\subsubsection{Почему ковариация - скалярное
+произведение}\label{ux43fux43eux447ux435ux43cux443-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux44f---ux441ux43aux430ux43bux44fux440ux43dux43eux435-ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux438ux435}
+
+Берем центрированные величины
+
+\[
+X^0=X-\mathbb EX,
+\qquad
+Y^0=Y-\mathbb EY.
+\]
+
+Тогда по определению скалярного произведения в \(L^2\):
+
+\[
+\langle X^0,Y^0\rangle
+=
+\mathbb E[X^0Y^0]
+=
+\mathbb E[(X-\mathbb EX)(Y-\mathbb EY)]
+=
+\operatorname{Cov}(X,Y).
+\]
+
+\subsubsection{\texorpdfstring{Почему
+\(|\rho|\le1\)}{Почему \textbar\textbackslash rho\textbar\textbackslash le1}}\label{ux43fux43eux447ux435ux43cux443-rhole1}
+
+Применяем Коши-Буняковского в \(L^2\):
+
+\[
+|\langle X^0,Y^0\rangle|
+\le
+\|X^0\|_2\|Y^0\|_2.
+\]
+
+После подстановки получаем
+
+\[
+|\operatorname{Cov}(X,Y)|
+\le
+\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}.
+\]
+
+Если дисперсии положительны, делим на знаменатель и получаем
+
+\[
+|\rho(X,Y)|\le1.
+\]
+
+\subsubsection{\texorpdfstring{Почему \(|\rho|=1\) означает линейную
+зависимость}{Почему \textbar\textbackslash rho\textbar=1 означает линейную зависимость}}\label{ux43fux43eux447ux435ux43cux443-rho1-ux43eux437ux43dux430ux447ux430ux435ux442-ux43bux438ux43dux435ux439ux43dux443ux44e-ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux44c}
+
+В неравенстве Коши-Буняковского равенство достигается тогда и только
+тогда, когда векторы линейно зависимы. Поэтому
+
+\[
+|\rho(X,Y)|=1
+\]
+
+эквивалентно существованию числа \(a\ne0\) такого, что
+
+\[
+Y^0=aX^0
+\quad\text{почти наверное}.
+\]
+
+Раскрывая центрирование:
+
+\[
+Y-\mathbb EY=a(X-\mathbb EX),
+\]
+
+то есть
+
+\[
+Y=aX+(\mathbb EY-a\mathbb EX)
+\quad\text{почти наверное}.
+\]
+
+\subsubsection{Почему ковариационная матрица неотрицательно
+определена}\label{ux43fux43eux447ux435ux43cux443-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux43e-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux430}
+
+Пусть
+
+\[
+\Sigma_{ij}=\operatorname{Cov}(X_i,X_j).
+\]
+
+Тогда для любого \(a\in\mathbb R^n\):
+
+\[
+a^T\Sigma a
+=
+\sum_{i,j}a_i a_j\operatorname{Cov}(X_i,X_j)
+=
+\operatorname{Var}\left(\sum_i a_iX_i\right)
+\ge0.
+\]
+
+Значит \(\Sigma\) неотрицательно определена.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Центрирование:
+\end{enumerate}
+
+\[
+X^0=X-\mathbb EX.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Ковариация как скалярное произведение:
+\end{enumerate}
+
+\[
+\operatorname{Cov}(X,Y)=\langle X^0,Y^0\rangle.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Дисперсия как квадрат длины:
+\end{enumerate}
+
+\[
+\operatorname{Var}X=\|X^0\|_2^2.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Коэффициент корреляции:
+\end{enumerate}
+
+\[
+\rho(X,Y)
+=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}}
+=
+\frac{\langle X^0,Y^0\rangle}{\|X^0\|_2\|Y^0\|_2}
+=
+\cos\angle(X^0,Y^0).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Главное следствие:
+\end{enumerate}
+
+\[
+|\rho(X,Y)|\le1.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Крайние случаи:
+\end{enumerate}
+
+\[
+\rho=0 \Longleftrightarrow X^0\perp Y^0,
+\]
+
+\[
+|\rho|=1 \Longleftrightarrow Y=aX+b\quad\text{п.н.}
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Почему нужно центрировать величины?}
+
+Потому что корреляция должна измерять совместные отклонения от средних,
+а не сами уровни величин. Без центрирования скалярное произведение
+\(\mathbb E[XY]\) зависит от сдвигов. Например, если заменить \(X\) на
+\(X+c\), то \(\mathbb E[(X+c)Y]\) обычно изменится, хотя форма
+случайного отклонения \(X-\mathbb EX\) не изменилась. Центрирование
+убирает постоянную часть:
+
+\[
+X^0=X-\mathbb EX.
+\]
+
+\textbf{Почему коэффициент корреляции не определяют при нулевой
+дисперсии?}
+
+Если \(\operatorname{Var}X=0\), то \(X=\mathbb EX\) почти наверное и
+
+\[
+X^0=0.
+\]
+
+У нулевого вектора нет направления и угла с другим вектором. В формуле
+для \(\rho\) появляется деление на ноль:
+
+\[
+\rho(X,Y)=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}}.
+\]
+
+\textbf{В чем разница между ковариацией и корреляцией?}
+
+Ковариация - это ненормированное скалярное произведение центрированных
+величин:
+
+\[
+\operatorname{Cov}(X,Y)=\langle X^0,Y^0\rangle.
+\]
+
+Она зависит от масштаба измерения. Если \(X\) умножить на 10, ковариация
+тоже умножится на 10. Корреляция - нормированная ковариация:
+
+\[
+\rho(X,Y)=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}},
+\]
+
+поэтому всегда лежит в \([-1,1]\) и показывает только направление
+линейной связи.
+
+\textbf{Почему \(|\rho|\le1\)?}
+
+Потому что в \(L^2\) выполняется неравенство Коши-Буняковского:
+
+\[
+|\langle X^0,Y^0\rangle|
+\le
+\|X^0\|_2\|Y^0\|_2.
+\]
+
+После подстановки \(\langle X^0,Y^0\rangle=\operatorname{Cov}(X,Y)\) и
+\(\|X^0\|_2^2=\operatorname{Var}X\) получаем
+
+\[
+|\operatorname{Cov}(X,Y)|
+\le
+\sqrt{\operatorname{Var}X\,\operatorname{Var}Y},
+\]
+
+а значит \(|\rho|\le1\).
+
+\textbf{Что означает \(\rho=0\) геометрически?}
+
+Это означает, что центрированные величины ортогональны в \(L^2\):
+
+\[
+X^0\perp Y^0.
+\]
+
+Вероятностно это называется некоррелированностью:
+
+\[
+\operatorname{Cov}(X,Y)=0.
+\]
+
+\textbf{Следует ли независимость из \(\rho=0\)?}
+
+В общем случае нет. Нулевая корреляция означает только отсутствие
+линейной связи второго порядка. Например, если \(X\sim U[-1,1]\) и
+\(Y=X^2\), то \(Y\) зависит от \(X\), но
+
+\[
+\operatorname{Cov}(X,Y)=\operatorname{Cov}(X,X^2)=0.
+\]
+
+\textbf{Когда из некоррелированности все-таки следует независимость?}
+
+Важный случай - совместно гауссовские величины. Если вектор \((X,Y)\)
+гауссовский и
+
+\[
+\operatorname{Cov}(X,Y)=0,
+\]
+
+то \(X\) и \(Y\) независимы. Это специальное свойство гауссовских
+распределений, а не общее правило.
+
+\textbf{Что означает \(|\rho|=1\)?}
+
+Это означает, что в неравенстве Коши-Буняковского достигнуто равенство,
+поэтому центрированные величины линейно зависимы:
+
+\[
+Y^0=aX^0
+\quad\text{п.н.}
+\]
+
+Эквивалентно,
+
+\[
+Y=aX+b
+\quad\text{п.н.}
+\]
+
+При \(a>0\) получаем \(\rho=1\), при \(a<0\) получаем \(\rho=-1\).
+
+\textbf{Почему ковариационная матрица неотрицательно определена?}
+
+Пусть \(\Sigma_{ij}=\operatorname{Cov}(X_i,X_j)\). Тогда для любого
+\(a\in\mathbb R^n\):
+
+\[
+a^T\Sigma a
+=
+\operatorname{Var}\left(\sum_i a_iX_i\right)
+\ge0.
+\]
+
+Значит \(\Sigma\) неотрицательно определена. Геометрически это матрица
+Грама центрированных векторов \(X_1^0,\ldots,X_n^0\).
+
+\textbf{Как билет связан с Билет 12, Билет 13, Билет 18, Билет 24 и
+Билет 25?}
+
+С Билетом 12 связь через гильбертово пространство \(L^2\). С Билетом 13
+- через получение моментов и ковариационной матрицы из
+характеристической функции. С Билетом 18 - через гауссовские векторы,
+где некоррелированность равносильна независимости. С Билетом 24 и
+Билетом 25 - через корреляционные функции и спектральные характеристики
+случайных последовательностей.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Делать вывод о независимости из \(\rho=0\).
+\item
+  Забывать центрирование и писать \(\mathbb E[XY]\) вместо
+  \(\operatorname{Cov}(X,Y)\) без условия \(\mathbb EX=\mathbb EY=0\).
+\item
+  Не проверять существование вторых моментов.
+\item
+  Не проверять, что дисперсии положительны.
+\item
+  Называть ковариационную матрицу корреляционной без пояснения
+  нормировки.
+\item
+  Путать нулевую ковариацию и ортогональность самих \(X,Y\): на самом
+  деле ортогональны центрированные величины \(X^0,Y^0\).
+\item
+  Забывать, что элементы \(L^2\) рассматриваются с точностью до
+  равенства почти наверное.
+\end{itemize}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Билет 11: математические ожидания, дисперсии и ковариации выражаются
+  через интегралы.
+\item
+  Билет 12: \(L^2\) - гильбертово пространство; корреляция использует
+  его скалярное произведение.
+\item
+  Билет 13: моменты и ковариационная матрица могут быть получены из
+  производных характеристической функции.
+\item
+  Билет 18: для совместно гауссовских величин некоррелированность
+  эквивалентна независимости.
+\item
+  Билет 24: корреляционная функция процесса - ковариация значений
+  процесса в разные моменты времени.
+\item
+  Билет 25: спектральные характеристики строятся из корреляционной
+  функции стационарной последовательности.
+\end{itemize}
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Для \(X,Y\in L^2\) определены центрированные величины:
+\end{enumerate}
+
+\[
+X^0=X-\mathbb EX,
+\qquad
+Y^0=Y-\mathbb EY.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Ковариация - скалярное произведение центрированных величин:
+\end{enumerate}
+
+\[
+\operatorname{Cov}(X,Y)=\langle X^0,Y^0\rangle.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Коэффициент корреляции:
+\end{enumerate}
+
+\[
+\rho(X,Y)=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Геометрический смысл:
+\end{enumerate}
+
+\[
+\rho(X,Y)=\cos\angle(X^0,Y^0),
+\qquad
+|\rho|\le1.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Главная ловушка: \(\rho=0\) не означает независимость.
+\end{enumerate}
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно объяснить:
+
+\begin{itemize}
+\tightlist
+\item
+  почему нужно условие \(\mathbb EX^2,\mathbb EY^2<\infty\);
+\item
+  почему нужны положительные дисперсии для \(\rho\);
+\item
+  как из Коши-Буняковского получается \(|\rho|\le1\);
+\item
+  что \(\rho=0\) означает ортогональность центрированных величин;
+\item
+  что \(|\rho|=1\) означает линейную зависимость почти наверное;
+\item
+  привести пример зависимых, но некоррелированных величин:
+  \(X\sim U[-1,1]\), \(Y=X^2\).
+\end{itemize}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{itemize}
+\tightlist
+\item
+  формулировку через гильбертово пространство
+  \(L^2(\Omega,\mathcal F,P)\);
+\item
+  замечание, что элементы \(L^2\) - классы эквивалентности по равенству
+  почти наверное;
+\item
+  доказательство \(|\rho|\le1\) через Коши-Буняковского;
+\item
+  критерий равенства \(|\rho|=1\);
+\item
+  объяснение ковариационной матрицы как матрицы Грама;
+\item
+  доказательство неотрицательной определенности ковариационной матрицы;
+\item
+  связь с гауссовским случаем: для совместно гауссовских величин
+  некоррелированность дает независимость;
+\item
+  связь с корреляционной функцией случайных процессов и спектральными
+  характеристиками.
+\end{itemize}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  В этом билете случайные величины с конечным вторым моментом
+  рассматриваются как векторы в \(L^2\).
+\item
+  В \(L^2\) скалярное произведение:
+\end{enumerate}
+
+\[
+\langle X,Y\rangle=\mathbb E[XY].
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Для геометрии корреляции надо перейти к центрированным величинам:
+\end{enumerate}
+
+\[
+X^0=X-\mathbb EX,
+\qquad
+Y^0=Y-\mathbb EY.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Тогда
+\end{enumerate}
+
+\[
+\operatorname{Cov}(X,Y)=\langle X^0,Y^0\rangle,
+\qquad
+\operatorname{Var}X=\|X^0\|_2^2.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  При положительных дисперсиях коэффициент корреляции:
+\end{enumerate}
+
+\[
+\rho(X,Y)=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}}
+=
+\frac{\langle X^0,Y^0\rangle}{\|X^0\|_2\|Y^0\|_2}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Значит \(\rho\) - косинус угла между \(X^0\) и \(Y^0\):
+\end{enumerate}
+
+\[
+\rho(X,Y)=\cos\angle(X^0,Y^0).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  По Коши-Буняковскому:
+\end{enumerate}
+
+\[
+|\rho(X,Y)|\le1.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Если \(\rho=0\), то \(X^0\) и \(Y^0\) ортогональны, то есть величины
+  некоррелированы. Это не значит, что они независимы.
+\item
+  Если \(|\rho|=1\), то центрированные величины линейно зависимы, то
+  есть \(Y=aX+b\) почти наверное.
+\item
+  Пример ловушки: \(X\sim U[-1,1]\), \(Y=X^2\). Они зависимы, но
+  \(\operatorname{Cov}(X,Y)=0\).
+\item
+  Для случайного вектора ковариационная матрица - матрица Грама
+  центрированных координат, поэтому она симметрична и неотрицательно
+  определена.
+\item
+  Завершить можно связью: эта геометрия лежит в основе корреляционных
+  функций процессов и спектральных характеристик.
+\end{enumerate}
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить три формулы:
+
+\[
+X^0=X-\mathbb EX,
+\]
+
+\[
+\operatorname{Cov}(X,Y)=\langle X^0,Y^0\rangle,
+\]
+
+\[
+\rho(X,Y)=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}X\,\operatorname{Var}Y}}
+=
+\cos\angle(X^0,Y^0).
+\]
+
+Главное следствие:
+
+\[
+|\rho|\le1.
+\]
+
+Главная ловушка: \(\rho=0\) означает только некоррелированность, а не
+независимость. Независимость из некоррелированности следует не всегда;
+важное исключение - совместно гауссовские величины.
+
+\newpage
+
+\end{document}

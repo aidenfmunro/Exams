@@ -1,0 +1,1727 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 11. Замена переменной в интеграле Лебега. Моменты через
+интегралы по пространству и по
+распределению}\label{ux431ux438ux43bux435ux442-11.-ux437ux430ux43cux435ux43dux430-ux43fux435ux440ux435ux43cux435ux43dux43dux43eux439-ux432-ux438ux43dux442ux435ux433ux440ux430ux43bux435-ux43bux435ux431ux435ux433ux430.-ux43cux43eux43cux435ux43dux442ux44b-ux447ux435ux440ux435ux437-ux438ux43dux442ux435ux433ux440ux430ux43bux44b-ux43fux43e-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux443-ux438-ux43fux43e-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44e}
+
+Источники: Ширяев 1, гл. II, §6; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Главная идея билета: интеграл функции от случайного элемента можно
+считать не по исходному вероятностному пространству, а по распределению
+этого элемента.
+
+Если
+
+\[
+X:(\Omega,\mathcal F,P)\to(E,\mathcal E)
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  случайный элемент, а \(P_X\) - его распределение:
+\end{itemize}
+
+\[
+P_X(B)=P\{X\in B\},
+\qquad B\in\mathcal E,
+\]
+
+то для измеримой функции \(g:E\to\mathbb R\) или \(\mathbb C\):
+
+\[
+\mathbb E g(X)
+=
+\int_\Omega g(X(\omega))\,P(d\omega)
+=
+\int_E g(x)\,P_X(dx),
+\]
+
+если \(g\ge0\) или если \(g(X)\) интегрируема.
+
+Если \(X\) имеет плотность \(p_X\) относительно меры Лебега на
+\(\mathbb R^n\), то
+
+\[
+\mathbb E g(X)=\int_{\mathbb R^n} g(x)p_X(x)\,dx.
+\]
+
+Отсюда моменты считаются через распределение:
+
+\[
+\mathbb EX^k=\int_{\mathbb R} x^k\,P_X(dx),
+\qquad
+\mathbb E|X|^k=\int_{\mathbb R} |x|^k\,P_X(dx),
+\]
+
+а при плотности:
+
+\[
+\mathbb EX^k=\int_{\mathbb R} x^k p_X(x)\,dx.
+\]
+
+Для случайного вектора \(X\in\mathbb R^n\):
+
+\[
+\mathbb EX=\int_{\mathbb R^n}x\,P_X(dx),
+\qquad
+\operatorname{Cov}(X)=\int_{\mathbb R^n}(x-m)(x-m)^T\,P_X(dx),
+\]
+
+где \(m=\mathbb EX\).
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+В предыдущих билетах были введены распределения, плотности и интеграл
+Лебега. Теперь нужно связать математическое ожидание на вероятностном
+пространстве с интегралом по распределению. Это и есть вероятностная
+форма замены переменной.
+
+\subsubsection{2.1. Вероятностная форма замены
+переменной}\label{ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux430ux44f-ux444ux43eux440ux43cux430-ux437ux430ux43cux435ux43dux44b-ux43fux435ux440ux435ux43cux435ux43dux43dux43eux439}
+
+Пусть
+
+\[
+(\Omega,\mathcal F,P)
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  вероятностное пространство, \((E,\mathcal E)\) - измеримое
+  пространство, а
+\end{itemize}
+
+\[
+X:\Omega\to E
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  случайный элемент, то есть \(\mathcal F/\mathcal E\)-измеримое
+  отображение. Его распределение, или образ меры \(P\) при отображении
+  \(X\), задается формулой
+\end{itemize}
+
+\[
+P_X(B)=P(X^{-1}(B))=P\{\omega:X(\omega)\in B\},
+\qquad B\in\mathcal E.
+\]
+
+Распределение \(P_X\) - это вероятностная мера на пространстве значений
+\(E\). Оно содержит всю информацию, необходимую для вычисления
+вероятностей событий вида \(\{X\in B\}\) и средних величин вида
+\(g(X)\).
+
+Теорема о замене переменной в интеграле Лебега для образа меры
+формулируется так. Пусть \(g:E\to\mathbb R\) или \(\mathbb C\) -
+\(\mathcal E\)-измеримая функция. Тогда
+
+\[
+\int_\Omega g(X(\omega))\,P(d\omega)
+=
+\int_E g(x)\,P_X(dx),
+\]
+
+если \(g\ge0\); в этом случае обе части понимаются как расширенные
+неотрицательные интегралы. Если \(g\) знакопеременная или
+комплекснозначная, то равенство верно при интегрируемости:
+
+\[
+\int_E |g(x)|\,P_X(dx)<\infty,
+\]
+
+что равносильно
+
+\[
+\mathbb E|g(X)|<\infty.
+\]
+
+В вероятностной записи:
+
+\[
+\mathbb E g(X)=\int_E g(x)\,P_X(dx).
+\]
+
+Это не ``формальная замена буквы \(\omega\) на \(x\)''. Смысл в том, что
+распределение \(P_X\) уже учитывает, с какими вероятностями значения
+\(X\) попадают в разные множества.
+
+Для вещественной случайной величины \(X\) можно писать
+
+\[
+\mathbb E g(X)=\int_{\mathbb R} g(x)\,P_X(dx).
+\]
+
+Если \(F_X\) - функция распределения, то \(P_X\) является мерой
+Лебега-Стилтьеса, порожденной \(F_X\), и часто пишут
+
+\[
+\mathbb E g(X)=\int_{\mathbb R} g(x)\,dF_X(x).
+\]
+
+Если \(P_X\) абсолютно непрерывно относительно меры Лебега и имеет
+плотность \(p_X\), то по Билету 10
+
+\[
+P_X(dx)=p_X(x)\,dx,
+\]
+
+и формула принимает вид
+
+\[
+\mathbb E g(X)=\int_{\mathbb R} g(x)p_X(x)\,dx.
+\]
+
+\subsubsection{2.2. Случайные векторы и
+процессы}\label{ux441ux43bux443ux447ux430ux439ux43dux44bux435-ux432ux435ux43aux442ux43eux440ux44b-ux438-ux43fux440ux43eux446ux435ux441ux441ux44b}
+
+Для случайного вектора \(X=(X_1,\ldots,X_n)\):
+
+\[
+\mathbb E g(X)
+=
+\int_{\mathbb R^n}g(x_1,\ldots,x_n)\,P_X(dx_1,\ldots,dx_n).
+\]
+
+Если есть плотность \(p_X\) на \(\mathbb R^n\), то
+
+\[
+\mathbb E g(X)
+=
+\int_{\mathbb R^n}g(x)p_X(x)\,dx.
+\]
+
+Это особенно важно для конечномерных распределений случайного процесса.
+Пусть \((X_t)_{t\in T}\) - процесс и выбраны моменты времени
+
+\[
+t_1,\ldots,t_n.
+\]
+
+Тогда вектор
+
+\[
+X^{(t)}=(X_{t_1},\ldots,X_{t_n})
+\]
+
+имеет конечномерное распределение \(P_{t_1,\ldots,t_n}\). Для любой
+измеримой функции \(g:\mathbb R^n\to\mathbb R\):
+
+\[
+\mathbb E g(X_{t_1},\ldots,X_{t_n})
+=
+\int_{\mathbb R^n}g(x_1,\ldots,x_n)\,P_{t_1,\ldots,t_n}(dx).
+\]
+
+Если есть плотность конечномерного распределения \(p_{t_1,\ldots,t_n}\),
+то
+
+\[
+\mathbb E g(X_{t_1},\ldots,X_{t_n})
+=
+\int_{\mathbb R^n}g(x_1,\ldots,x_n)
+p_{t_1,\ldots,t_n}(x_1,\ldots,x_n)\,dx_1\cdots dx_n.
+\]
+
+\subsubsection{2.3. Замена переменной и
+диффеоморфизмы}\label{ux437ux430ux43cux435ux43dux430-ux43fux435ux440ux435ux43cux435ux43dux43dux43eux439-ux438-ux434ux438ux444ux444ux435ux43eux43cux43eux440ux444ux438ux437ux43cux44b}
+
+Теперь классическая замена переменной в интеграле Лебега. Пусть
+\(U,V\subset\mathbb R^n\) - открытые множества, а
+
+\[
+\Phi:U\to V
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  взаимно однозначное непрерывно дифференцируемое отображение с
+  непрерывно дифференцируемым обратным, то есть \(C^1\)-диффеоморфизм.
+  Тогда для неотрицательной или интегрируемой функции \(h\):
+\end{itemize}
+
+\[
+\int_V h(y)\,dy
+=
+\int_U h(\Phi(x))\,|\det D\Phi(x)|\,dx.
+\]
+
+Эквивалентно, если \(y=\Phi(x)\), то элемент объема меняется по правилу
+
+\[
+dy=|\det D\Phi(x)|\,dx.
+\]
+
+Эта формула нужна, например, при переходе от декартовых координат к
+полярным, при линейных преобразованиях векторов и при нахождении
+плотности преобразованной случайной величины.
+
+Если \(Y=\Phi(X)\), где \(X\) имеет плотность \(p_X\) на \(U\), а
+\(\Phi:U\to V\) - диффеоморфизм, то плотность \(Y\) равна
+
+\[
+p_Y(y)
+=
+p_X(\Phi^{-1}(y))
+\left|\det D\Phi^{-1}(y)\right|.
+\]
+
+В одномерном случае, если \(Y=\phi(X)\) и \(\phi\) строго монотонна,
+дифференцируема и \(\phi'(x)\ne0\), то
+
+\[
+p_Y(y)=p_X(\phi^{-1}(y))
+\left|(\phi^{-1})'(y)\right|.
+\]
+
+Если отображение не взаимно однозначно, надо суммировать по всем
+прообразам:
+
+\[
+p_Y(y)=\sum_{x:\phi(x)=y}\frac{p_X(x)}{|\phi'(x)|},
+\]
+
+когда такая формула корректна.
+
+\subsubsection{2.4. Моменты и числовые
+характеристики}\label{ux43cux43eux43cux435ux43dux442ux44b-ux438-ux447ux438ux441ux43bux43eux432ux44bux435-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux43aux438}
+
+Теперь моменты. Момент порядка \(k\) вещественной случайной величины
+\(X\) - это математическое ожидание
+
+\[
+\mathbb EX^k,
+\]
+
+если оно существует. Абсолютный момент порядка \(k\):
+
+\[
+\mathbb E|X|^k.
+\]
+
+Существование абсолютного момента означает
+
+\[
+\mathbb E|X|^k<\infty.
+\]
+
+Через распределение:
+
+\[
+\mathbb E|X|^k
+=
+\int_{\mathbb R} |x|^k\,P_X(dx),
+\]
+
+а если этот интеграл конечен, то момент
+
+\[
+\mathbb EX^k
+=
+\int_{\mathbb R} x^k\,P_X(dx)
+\]
+
+корректно определен. При плотности:
+
+\[
+\mathbb E|X|^k=\int_{\mathbb R} |x|^k p_X(x)\,dx,
+\qquad
+\mathbb EX^k=\int_{\mathbb R} x^k p_X(x)\,dx.
+\]
+
+Математическое ожидание:
+
+\[
+\mathbb EX=\int_\Omega X(\omega)\,P(d\omega)
+=
+\int_{\mathbb R} x\,P_X(dx).
+\]
+
+При плотности:
+
+\[
+\mathbb EX=\int_{\mathbb R} x p_X(x)\,dx.
+\]
+
+Для дискретной случайной величины, принимающей значения \(x_i\) с
+вероятностями \(p_i\):
+
+\[
+\mathbb E g(X)=\sum_i g(x_i)p_i.
+\]
+
+Значит
+
+\[
+\mathbb EX=\sum_i x_i p_i,
+\qquad
+\mathbb EX^k=\sum_i x_i^k p_i.
+\]
+
+Дисперсия:
+
+\[
+\operatorname{Var}X
+=
+\mathbb E[(X-\mathbb EX)^2].
+\]
+
+Через распределение:
+
+\[
+\operatorname{Var}X
+=
+\int_{\mathbb R} (x-m)^2\,P_X(dx),
+\qquad
+m=\mathbb EX.
+\]
+
+Эквивалентная вычислительная формула:
+
+\[
+\operatorname{Var}X=\mathbb EX^2-(\mathbb EX)^2,
+\]
+
+если \(\mathbb EX^2<\infty\). При плотности:
+
+\[
+\operatorname{Var}X
+=
+\int_{\mathbb R} (x-m)^2p_X(x)\,dx
+=
+\int_{\mathbb R} x^2p_X(x)\,dx
+-
+\left(\int_{\mathbb R} xp_X(x)\,dx\right)^2.
+\]
+
+\subsubsection{2.5. Ковариация и характеристики случайных
+векторов}\label{ux43aux43eux432ux430ux440ux438ux430ux446ux438ux44f-ux438-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux43aux438-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux432ux435ux43aux442ux43eux440ux43eux432}
+
+Для двух случайных величин \(X,Y\) с конечными вторыми моментами
+ковариация:
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\mathbb E[(X-\mathbb EX)(Y-\mathbb EY)].
+\]
+
+Если \((X,Y)\) имеет совместное распределение \(P_{X,Y}\), то
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\int_{\mathbb R^2}(x-m_X)(y-m_Y)\,P_{X,Y}(dx,dy).
+\]
+
+При совместной плотности \(p_{X,Y}\):
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\int_{\mathbb R^2}(x-m_X)(y-m_Y)p_{X,Y}(x,y)\,dx\,dy.
+\]
+
+Также
+
+\[
+\operatorname{Cov}(X,Y)=\mathbb E[XY]-\mathbb EX\,\mathbb EY,
+\]
+
+если \(\mathbb E X^2<\infty\) и \(\mathbb E Y^2<\infty\).
+
+Для случайного вектора \(X=(X_1,\ldots,X_n)^T\) с конечным вторым
+моментом:
+
+\[
+m=\mathbb EX
+=
+\int_{\mathbb R^n}x\,P_X(dx),
+\]
+
+а матрица вторых моментов:
+
+\[
+M=\mathbb E[XX^T]
+=
+\int_{\mathbb R^n}xx^T\,P_X(dx).
+\]
+
+Ковариационная матрица:
+
+\[
+\Sigma
+=
+\operatorname{Cov}(X)
+=
+\mathbb E[(X-m)(X-m)^T]
+=
+\int_{\mathbb R^n}(x-m)(x-m)^T\,P_X(dx).
+\]
+
+Эквивалентно:
+
+\[
+\Sigma=M-mm^T.
+\]
+
+При плотности \(p_X\) все интегралы по \(P_X\) заменяются на интегралы
+по мере Лебега:
+
+\[
+m=\int_{\mathbb R^n}x p_X(x)\,dx,
+\]
+
+\[
+M=\int_{\mathbb R^n}xx^T p_X(x)\,dx,
+\]
+
+\[
+\Sigma=\int_{\mathbb R^n}(x-m)(x-m)^T p_X(x)\,dx.
+\]
+
+Элементы матрицы:
+
+\[
+\Sigma_{ij}
+=
+\operatorname{Cov}(X_i,X_j)
+=
+\int_{\mathbb R^n}(x_i-m_i)(x_j-m_j)\,P_X(dx).
+\]
+
+Если есть плотность:
+
+\[
+\Sigma_{ij}
+=
+\int_{\mathbb R^n}(x_i-m_i)(x_j-m_j)p_X(x)\,dx.
+\]
+
+Ковариационная матрица всегда симметрична и неотрицательно определена:
+
+\[
+a^T\Sigma a
+=
+\operatorname{Var}(a^TX)
+\ge0
+\]
+
+для любого \(a\in\mathbb R^n\). Это связывает билет с Билетом 14 и
+Билетом 18.
+
+Итак, основная логика билета: случайная величина живет на \(\Omega\), но
+ее распределение живет на пространстве значений. Теорема о замене
+переменной позволяет считать все средние функции от случайной величины
+через распределение. Если есть плотность, интеграл по распределению
+превращается в обычный лебегов интеграл с плотностью.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Образ
+меры}\label{ux43eux431ux440ux430ux437-ux43cux435ux440ux44b}
+
+Если \(X:(\Omega,\mathcal F)\to(E,\mathcal E)\) измеримо, а \(P\) - мера
+на \(\Omega\), то образ меры \(P\) при \(X\) задается формулой
+
+\[
+P_X(B)=P(X^{-1}(B)),
+\qquad B\in\mathcal E.
+\]
+
+В вероятности \(P_X\) называется распределением случайного элемента
+\(X\).
+
+\subsubsection{Замена переменной через образ
+меры}\label{ux437ux430ux43cux435ux43dux430-ux43fux435ux440ux435ux43cux435ux43dux43dux43eux439-ux447ux435ux440ux435ux437-ux43eux431ux440ux430ux437-ux43cux435ux440ux44b}
+
+Для измеримой \(g\):
+
+\[
+\int_\Omega g(X(\omega))\,P(d\omega)
+=
+\int_E g(x)\,P_X(dx).
+\]
+
+\subsubsection{Интеграл Лебега-Стилтьеса по функции
+распределения}\label{ux438ux43dux442ux435ux433ux440ux430ux43b-ux43bux435ux431ux435ux433ux430-ux441ux442ux438ux43bux442ux44cux435ux441ux430-ux43fux43e-ux444ux443ux43dux43aux446ux438ux438-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Если \(X\) вещественная, \(F_X\) - ее функция распределения, а \(P_X\) -
+соответствующая мера, то
+
+\[
+\int_{\mathbb R} g(x)\,P_X(dx)
+\]
+
+часто записывают как
+
+\[
+\int_{\mathbb R} g(x)\,dF_X(x).
+\]
+
+\subsubsection{Плотность
+распределения}\label{ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Если \(P_X\ll\lambda_n\), то
+
+\[
+p_X=\frac{dP_X}{d\lambda_n}
+\]
+
+и
+
+\[
+P_X(B)=\int_B p_X(x)\,dx.
+\]
+
+\subsubsection{Классическая замена переменной с
+якобианом}\label{ux43aux43bux430ux441ux441ux438ux447ux435ux441ux43aux430ux44f-ux437ux430ux43cux435ux43dux430-ux43fux435ux440ux435ux43cux435ux43dux43dux43eux439-ux441-ux44fux43aux43eux431ux438ux430ux43dux43eux43c}
+
+Если \(\Phi:U\to V\) - \(C^1\)-диффеоморфизм, то
+
+\[
+\int_V h(y)\,dy
+=
+\int_U h(\Phi(x))|\det D\Phi(x)|\,dx.
+\]
+
+\subsubsection{\texorpdfstring{Момент порядка
+\(k\)}{Момент порядка k}}\label{ux43cux43eux43cux435ux43dux442-ux43fux43eux440ux44fux434ux43aux430-k}
+
+Для вещественной случайной величины:
+
+\[
+\mathbb EX^k,
+\]
+
+если математическое ожидание существует.
+
+\subsubsection{\texorpdfstring{Абсолютный момент порядка
+\(k\)}{Абсолютный момент порядка k}}\label{ux430ux431ux441ux43eux43bux44eux442ux43dux44bux439-ux43cux43eux43cux435ux43dux442-ux43fux43eux440ux44fux434ux43aux430-k}
+
+\[
+\mathbb E|X|^k.
+\]
+
+Если \(\mathbb E|X|^k<\infty\), то момент \(\mathbb EX^k\) существует.
+
+\subsubsection{Дисперсия}\label{ux434ux438ux441ux43fux435ux440ux441ux438ux44f}
+
+\[
+\operatorname{Var}X=\mathbb E[(X-\mathbb EX)^2],
+\]
+
+если \(\mathbb EX^2<\infty\).
+
+\subsubsection{Ковариация}\label{ux43aux43eux432ux430ux440ux438ux430ux446ux438ux44f}
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\mathbb E[(X-\mathbb EX)(Y-\mathbb EY)],
+\]
+
+если \(X,Y\in L^2\).
+
+\subsubsection{Матрица вторых
+моментов}\label{ux43cux430ux442ux440ux438ux446ux430-ux432ux442ux43eux440ux44bux445-ux43cux43eux43cux435ux43dux442ux43eux432}
+
+\[
+M=\mathbb E[XX^T].
+\]
+
+\subsubsection{Ковариационная
+матрица}\label{ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430}
+
+\[
+\Sigma=\mathbb E[(X-\mathbb EX)(X-\mathbb EX)^T].
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Теорема 1. Замена переменной для образа
+меры}\label{ux442ux435ux43eux440ux435ux43cux430-1.-ux437ux430ux43cux435ux43dux430-ux43fux435ux440ux435ux43cux435ux43dux43dux43eux439-ux434ux43bux44f-ux43eux431ux440ux430ux437ux430-ux43cux435ux440ux44b}
+
+Пусть \(X:(\Omega,\mathcal F,P)\to(E,\mathcal E)\) - случайный элемент,
+\(P_X\) - его распределение, \(g\) - измеримая функция. Тогда
+
+\[
+\int_\Omega g(X(\omega))\,P(d\omega)
+=
+\int_E g(x)\,P_X(dx),
+\]
+
+если \(g\ge0\) или если один из интегралов от \(|g|\) конечен.
+
+\subsubsection{Теорема 2. Доказательная схема замены
+переменной}\label{ux442ux435ux43eux440ux435ux43cux430-2.-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux43dux430ux44f-ux441ux445ux435ux43cux430-ux437ux430ux43cux435ux43dux44b-ux43fux435ux440ux435ux43cux435ux43dux43dux43eux439}
+
+Сначала формула проверяется для индикатора:
+
+\[
+g=\mathbf 1_B.
+\]
+
+Тогда
+
+\[
+\int_\Omega \mathbf 1_B(X(\omega))\,dP
+=
+P\{X\in B\}
+=
+P_X(B)
+=
+\int_E\mathbf 1_B(x)\,P_X(dx).
+\]
+
+Затем формула переносится на простые функции по линейности, на
+неотрицательные измеримые функции по теореме Беппо Леви, а на
+интегрируемые знакопеременные функции через положительную и
+отрицательную части.
+
+\subsubsection{Теорема 3. Случай с
+плотностью}\label{ux442ux435ux43eux440ux435ux43cux430-3.-ux441ux43bux443ux447ux430ux439-ux441-ux43fux43bux43eux442ux43dux43eux441ux442ux44cux44e}
+
+Если \(X\) имеет плотность \(p_X\) относительно \(\lambda_n\), то
+
+\[
+\mathbb E g(X)=\int_{\mathbb R^n}g(x)p_X(x)\,dx,
+\]
+
+для \(g\ge0\) или интегрируемой \(g(X)\).
+
+\subsubsection{\texorpdfstring{Теорема 4. Классическая замена переменной
+в
+\(\mathbb R^n\)}{Теорема 4. Классическая замена переменной в \textbackslash mathbb R\^{}n}}\label{ux442ux435ux43eux440ux435ux43cux430-4.-ux43aux43bux430ux441ux441ux438ux447ux435ux441ux43aux430ux44f-ux437ux430ux43cux435ux43dux430-ux43fux435ux440ux435ux43cux435ux43dux43dux43eux439-ux432-mathbb-rn}
+
+Если \(\Phi:U\to V\) - \(C^1\)-диффеоморфизм, то
+
+\[
+\int_V h(y)\,dy
+=
+\int_U h(\Phi(x))|\det D\Phi(x)|\,dx.
+\]
+
+\subsubsection{Следствие 5. Плотность
+преобразования}\label{ux441ux43bux435ux434ux441ux442ux432ux438ux435-5.-ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux43fux440ux435ux43eux431ux440ux430ux437ux43eux432ux430ux43dux438ux44f}
+
+Если \(Y=\Phi(X)\), \(X\) имеет плотность \(p_X\), а \(\Phi\) -
+диффеоморфизм, то
+
+\[
+p_Y(y)=p_X(\Phi^{-1}(y))
+\left|\det D\Phi^{-1}(y)\right|.
+\]
+
+\subsubsection{Свойство 6. Моменты через
+распределение}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-6.-ux43cux43eux43cux435ux43dux442ux44b-ux447ux435ux440ux435ux437-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+Для вещественной \(X\):
+
+\[
+\mathbb E|X|^k=\int_{\mathbb R} |x|^k\,P_X(dx),
+\]
+
+\[
+\mathbb EX^k=\int_{\mathbb R} x^k\,P_X(dx),
+\]
+
+если соответствующие интегралы существуют.
+
+\subsubsection{Свойство 7. Моменты при
+плотности}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-7.-ux43cux43eux43cux435ux43dux442ux44b-ux43fux440ux438-ux43fux43bux43eux442ux43dux43eux441ux442ux438}
+
+Если \(X\) имеет плотность \(p_X\), то
+
+\[
+\mathbb E|X|^k=\int_{\mathbb R} |x|^k p_X(x)\,dx,
+\]
+
+\[
+\mathbb EX^k=\int_{\mathbb R} x^k p_X(x)\,dx.
+\]
+
+\subsubsection{Свойство 8. Дисперсия через
+распределение}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-8.-ux434ux438ux441ux43fux435ux440ux441ux438ux44f-ux447ux435ux440ux435ux437-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+Если \(m=\mathbb EX\) и \(\mathbb EX^2<\infty\), то
+
+\[
+\operatorname{Var}X=\int_{\mathbb R} (x-m)^2\,P_X(dx)
+=
+\mathbb EX^2-m^2.
+\]
+
+При плотности:
+
+\[
+\operatorname{Var}X=\int_{\mathbb R} (x-m)^2p_X(x)\,dx.
+\]
+
+\subsubsection{Свойство 9. Ковариация через совместное
+распределение}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-9.-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux44f-ux447ux435ux440ux435ux437-ux441ux43eux432ux43cux435ux441ux442ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+Если \(X,Y\in L^2\), то
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\int_{\mathbb R^2}(x-m_X)(y-m_Y)\,P_{X,Y}(dx,dy).
+\]
+
+При совместной плотности:
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\int_{\mathbb R^2}(x-m_X)(y-m_Y)p_{X,Y}(x,y)\,dx\,dy.
+\]
+
+\subsubsection{Свойство 10. Ковариационная
+матрица}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-10.-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux430ux44f-ux43cux430ux442ux440ux438ux446ux430}
+
+Для \(X\in\mathbb R^n\) с конечным вторым моментом:
+
+\[
+\Sigma=\int_{\mathbb R^n}(x-m)(x-m)^T\,P_X(dx).
+\]
+
+При плотности:
+
+\[
+\Sigma=\int_{\mathbb R^n}(x-m)(x-m)^T p_X(x)\,dx.
+\]
+
+\subsubsection{Свойство 11. Неотрицательная определенность
+ковариационной
+матрицы}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-11.-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux430ux44f-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux43dux43eux441ux442ux44c-ux43aux43eux432ux430ux440ux438ux430ux446ux438ux43eux43dux43dux43eux439-ux43cux430ux442ux440ux438ux446ux44b}
+
+Для любого \(a\in\mathbb R^n\):
+
+\[
+a^T\Sigma a=\operatorname{Var}(a^TX)\ge0.
+\]
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Дискретная случайная
+величина}\label{ux43fux440ux438ux43cux435ux440-1.-ux434ux438ux441ux43aux440ux435ux442ux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Пусть \(X\) принимает значения \(x_i\) с вероятностями \(p_i\). Тогда
+распределение
+
+\[
+P_X=\sum_i p_i\delta_{x_i}.
+\]
+
+Поэтому
+
+\[
+\mathbb E g(X)=\int g\,dP_X=\sum_i g(x_i)p_i.
+\]
+
+В частности:
+
+\[
+\mathbb EX=\sum_i x_i p_i,
+\qquad
+\operatorname{Var}X=\sum_i(x_i-m)^2p_i.
+\]
+
+\subsubsection{Пример 2. Непрерывная случайная величина с
+плотностью}\label{ux43fux440ux438ux43cux435ux440-2.-ux43dux435ux43fux440ux435ux440ux44bux432ux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430-ux441-ux43fux43bux43eux442ux43dux43eux441ux442ux44cux44e}
+
+Пусть \(X\) имеет плотность
+
+\[
+p_X(x)=\mathbf 1_{[0,1]}(x).
+\]
+
+Тогда
+
+\[
+\mathbb EX=\int_0^1 x\,dx=\frac12,
+\]
+
+\[
+\mathbb EX^2=\int_0^1 x^2\,dx=\frac13,
+\]
+
+\[
+\operatorname{Var}X=\frac13-\frac14=\frac1{12}.
+\]
+
+\subsubsection{Пример 3. Вектор с
+плотностью}\label{ux43fux440ux438ux43cux435ux440-3.-ux432ux435ux43aux442ux43eux440-ux441-ux43fux43bux43eux442ux43dux43eux441ux442ux44cux44e}
+
+Пусть \((X,Y)\) имеет совместную плотность \(p(x,y)\). Тогда
+
+\[
+\mathbb E[XY]
+=
+\int_{\mathbb R^2}xy\,p(x,y)\,dx\,dy.
+\]
+
+Если \(m_X=\mathbb EX\), \(m_Y=\mathbb EY\), то
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\int_{\mathbb R^2}(x-m_X)(y-m_Y)p(x,y)\,dx\,dy.
+\]
+
+\subsubsection{Пример 4. Полярные
+координаты}\label{ux43fux440ux438ux43cux435ux440-4.-ux43fux43eux43bux44fux440ux43dux44bux435-ux43aux43eux43eux440ux434ux438ux43dux430ux442ux44b}
+
+Для перехода
+
+\[
+x=r\cos\theta,\qquad y=r\sin\theta
+\]
+
+якобиан равен
+
+\[
+\left|\det\frac{\partial(x,y)}{\partial(r,\theta)}\right|=r.
+\]
+
+Поэтому
+
+\[
+\int_{\mathbb R^2}h(x,y)\,dx\,dy
+=
+\int_0^\infty\int_0^{2\pi}
+h(r\cos\theta,r\sin\theta)\,r\,d\theta\,dr.
+\]
+
+\subsubsection{Пример 5. Линейное преобразование
+плотности}\label{ux43fux440ux438ux43cux435ux440-5.-ux43bux438ux43dux435ux439ux43dux43eux435-ux43fux440ux435ux43eux431ux440ux430ux437ux43eux432ux430ux43dux438ux435-ux43fux43bux43eux442ux43dux43eux441ux442ux438}
+
+Пусть \(X\in\mathbb R^n\) имеет плотность \(p_X\), а
+
+\[
+Y=AX+b,
+\]
+
+где \(A\) - невырожденная матрица. Тогда
+
+\[
+p_Y(y)
+=
+p_X(A^{-1}(y-b))|\det A^{-1}|
+=
+\frac{p_X(A^{-1}(y-b))}{|\det A|}.
+\]
+
+Для моментов:
+
+\[
+\mathbb EY=A\mathbb EX+b,
+\]
+
+\[
+\operatorname{Cov}(Y)=A\operatorname{Cov}(X)A^T.
+\]
+
+\subsubsection{Пример 6. Момент может не
+существовать}\label{ux43fux440ux438ux43cux435ux440-6.-ux43cux43eux43cux435ux43dux442-ux43cux43eux436ux435ux442-ux43dux435-ux441ux443ux449ux435ux441ux442ux432ux43eux432ux430ux442ux44c}
+
+У распределения Коши с плотностью
+
+\[
+p(x)=\frac1{\pi(1+x^2)}
+\]
+
+математическое ожидание не существует как конечный лебегов интеграл,
+потому что
+
+\[
+\int_{\mathbb R} |x|p(x)\,dx=\infty.
+\]
+
+Поэтому нельзя автоматически писать \(\mathbb EX=\int xp(x)\,dx\) как
+конечное число.
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\textbf{Доказательство формулы \(\mathbb E g(X)=\int g\,dP_X\).}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Для \(g=\mathbf 1_B\):
+\end{enumerate}
+
+\[
+\mathbb E\mathbf 1_B(X)=P\{X\in B\}=P_X(B).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Для простой функции
+\end{enumerate}
+
+\[
+g=\sum_{k=1}^n a_k\mathbf 1_{B_k}
+\]
+
+используем линейность интеграла.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Для \(g\ge0\) берем простые функции \(g_n\uparrow g\) и применяем
+  теорему Беппо Леви.
+\item
+  Для знакопеременной \(g\) пишем
+\end{enumerate}
+
+\[
+g=g^+-g^-,
+\]
+
+и требуем интегрируемость, чтобы не получить неопределенность
+\(\infty-\infty\).
+
+\textbf{Обоснование формулы с плотностью.}
+
+Если
+
+\[
+P_X(dx)=p_X(x)\,dx,
+\]
+
+то
+
+\[
+\int g\,dP_X
+=
+\int g(x)p_X(x)\,dx
+\]
+
+по определению плотности как производной Радона-Никодима.
+
+\textbf{Обоснование дисперсии.}
+
+Если \(m=\mathbb EX\), то
+
+\[
+\operatorname{Var}X
+=
+\mathbb E[(X-m)^2]
+=
+\mathbb E[X^2-2mX+m^2]
+\]
+
+\[
+=
+\mathbb EX^2-2m\mathbb EX+m^2
+=
+\mathbb EX^2-m^2.
+\]
+
+\textbf{Обоснование неотрицательной определенности ковариационной
+матрицы.}
+
+Для любого \(a\in\mathbb R^n\):
+
+\[
+a^T\Sigma a
+=
+\mathbb E[a^T(X-m)(X-m)^Ta]
+=
+\mathbb E[(a^T(X-m))^2]
+\ge0.
+\]
+
+\textbf{Обоснование плотности преобразования.}
+
+Если \(Y=\Phi(X)\), то для борелевского \(B\subset V\):
+
+\[
+P\{Y\in B\}
+=
+\int_{\Phi^{-1}(B)}p_X(x)\,dx.
+\]
+
+По классической замене переменной \(x=\Phi^{-1}(y)\):
+
+\[
+\int_{\Phi^{-1}(B)}p_X(x)\,dx
+=
+\int_B p_X(\Phi^{-1}(y))
+\left|\det D\Phi^{-1}(y)\right|\,dy.
+\]
+
+Значит это и есть плотность \(Y\).
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Образ меры:
+\end{enumerate}
+
+\[
+P_X(B)=P\{X\in B\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Замена переменной:
+\end{enumerate}
+
+\[
+\mathbb E g(X)
+=
+\int_\Omega g(X(\omega))\,dP
+=
+\int_E g(x)\,P_X(dx).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  При плотности:
+\end{enumerate}
+
+\[
+\mathbb E g(X)
+=
+\int_{\mathbb R^n}g(x)p_X(x)\,dx.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Классическая замена:
+\end{enumerate}
+
+\[
+\int_V h(y)\,dy
+=
+\int_U h(\Phi(x))|\det D\Phi(x)|\,dx.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Моменты:
+\end{enumerate}
+
+\[
+\mathbb EX^k=\int x^k\,P_X(dx),
+\qquad
+\mathbb E|X|^k=\int |x|^k\,P_X(dx).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Дисперсия:
+\end{enumerate}
+
+\[
+\operatorname{Var}X
+=
+\int (x-m)^2\,P_X(dx)
+=
+\mathbb EX^2-m^2.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Ковариационная матрица:
+\end{enumerate}
+
+\[
+\Sigma=\int (x-m)(x-m)^T\,P_X(dx),
+\qquad
+a^T\Sigma a\ge0.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Что такое образ меры?}
+
+Это мера на пространстве значений:
+
+\[
+P_X(B)=P(X^{-1}(B)).
+\]
+
+В вероятности она называется распределением \(X\).
+
+\textbf{Вопрос. В чем смысл формулы \(\mathbb E g(X)=\int g\,dP_X\)?}
+
+Она говорит, что для вычисления среднего функции от \(X\) не нужно знать
+все вероятностное пространство. Достаточно знать распределение \(X\).
+
+\textbf{Вопрос. При каких условиях верна формула замены переменной?}
+
+Для \(g\ge0\) она верна в расширенном смысле. Для знакопеременной
+функции нужна интегрируемость:
+
+\[
+\int |g|\,dP_X<\infty.
+\]
+
+\textbf{Вопрос. Чем интеграл по распределению отличается от интеграла по
+плотности?}
+
+Интеграл по распределению
+
+\[
+\int g\,dP_X
+\]
+
+имеет смысл всегда. Интеграл
+
+\[
+\int g(x)p_X(x)\,dx
+\]
+
+требует существования плотности \(p_X\) относительно меры Лебега.
+
+\textbf{Вопрос. Что делать, если плотности нет?}
+
+Интегрировать по мере распределения \(P_X\) или использовать сумму в
+дискретном случае. Нельзя искусственно писать лебегову плотность.
+
+\textbf{Вопрос. Как посчитать момент порядка \(k\)?}
+
+Через замену переменной с \(g(x)=x^k\):
+
+\[
+\mathbb EX^k=\int x^k\,P_X(dx),
+\]
+
+если интеграл корректно определен.
+
+\textbf{Вопрос. Чем момент отличается от абсолютного момента?}
+
+Абсолютный момент:
+
+\[
+\mathbb E|X|^k.
+\]
+
+Если он конечен, то обычный момент \(\mathbb EX^k\) точно существует.
+Обратное в смысле условной сходимости для Лебега не используется:
+математическое ожидание требует интегрируемости положительной и
+отрицательной частей без неопределенности.
+
+\textbf{Вопрос. Как выразить дисперсию через распределение?}
+
+Если \(m=\mathbb EX\), то
+
+\[
+\operatorname{Var}X=\int (x-m)^2\,P_X(dx).
+\]
+
+При плотности:
+
+\[
+\operatorname{Var}X=\int (x-m)^2p_X(x)\,dx.
+\]
+
+\textbf{Вопрос. Как выразить ковариацию через совместное распределение?}
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\int (x-m_X)(y-m_Y)\,P_{X,Y}(dx,dy).
+\]
+
+При совместной плотности заменить \(P_{X,Y}(dx,dy)\) на
+\(p_{X,Y}(x,y)\,dx\,dy\).
+
+\textbf{Вопрос. Почему ковариационная матрица неотрицательно
+определена?}
+
+Потому что
+
+\[
+a^T\Sigma a=\operatorname{Var}(a^TX)\ge0.
+\]
+
+\textbf{Вопрос. Как меняется плотность при диффеоморфизме?}
+
+Если \(Y=\Phi(X)\), то
+
+\[
+p_Y(y)=p_X(\Phi^{-1}(y))
+\left|\det D\Phi^{-1}(y)\right|.
+\]
+
+\textbf{Вопрос. Почему нельзя забывать якобиан?}
+
+Потому что мера Лебега объема меняется при растяжении координат. Якобиан
+учитывает локальное изменение объема.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Писать интеграл по плотности, когда плотности нет.
+\item
+  Путать \(P\) на \(\Omega\) и \(P_X\) на пространстве значений.
+\item
+  Забывать условия интегрируемости для моментов.
+\item
+  Считать, что \(\int xp(x)\,dx\) существует как число без проверки
+  \(\int |x|p(x)\,dx<\infty\).
+\item
+  Путать момент \(\mathbb EX^2\) и дисперсию \(\operatorname{Var}X\).
+\item
+  Забывать центрирование в ковариации.
+\item
+  Считать ковариационную матрицу матрицей вторых моментов без вычитания
+  \(mm^T\).
+\item
+  Забывать якобиан в классической замене переменной.
+\item
+  В формуле плотности преобразования использовать \(|\det D\Phi|\)
+  вместо \(|\det D\Phi^{-1}|\) при записи через \(y\).
+\item
+  Интегрировать по маргинальному распределению вместо совместного при
+  вычислении \(\mathbb E g(X,Y)\).
+\end{enumerate}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 06.} Распределения случайных величин, векторов и
+конечномерные распределения - это меры, по которым интегрируют в этом
+билете.
+
+\textbf{Билет 07.} Все формулы основаны на интеграле Лебега и предельных
+теоремах для перехода от простых функций к измеримым.
+
+\textbf{Билет 08.} Характеристическая функция - это частный случай:
+
+\[
+\varphi_X(t)=\mathbb E e^{itX}
+=
+\int e^{itx}\,P_X(dx).
+\]
+
+\textbf{Билет 09.} Для совместных распределений и плотностей
+используются Фубини и повторные интегралы.
+
+\textbf{Билет 10.} Плотность \(p_X\) - это производная Радона-Никодима
+\(dP_X/d\lambda\).
+
+\textbf{Билет 13.} Моменты можно выражать через производные
+характеристической функции, а здесь - через интегралы по распределению.
+
+\textbf{Билет 14.} Ковариация и корреляция строятся из вторых моментов.
+
+\textbf{Билет 18.} Гауссовский закон задается средним вектором и
+ковариационной матрицей.
+
+\textbf{Билет 24.} Корреляционная функция стационарной
+последовательности выражается через моменты второго порядка.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Распределение:
+\end{enumerate}
+
+\[
+P_X(B)=P\{X\in B\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Замена переменной:
+\end{enumerate}
+
+\[
+\mathbb E g(X)
+=
+\int_\Omega g(X)\,dP
+=
+\int_E g(x)\,P_X(dx).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  При плотности:
+\end{enumerate}
+
+\[
+\mathbb E g(X)=\int g(x)p_X(x)\,dx.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Момент:
+\end{enumerate}
+
+\[
+\mathbb EX^k=\int x^k\,P_X(dx).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Дисперсия:
+\end{enumerate}
+
+\[
+\operatorname{Var}X=\mathbb EX^2-(\mathbb EX)^2.
+\]
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  объяснить, что формула верна для \(g\ge0\) или интегрируемой \(g\);
+\item
+  различать интеграл по \(P_X\) и интеграл по плотности;
+\item
+  записать ковариацию через совместное распределение;
+\item
+  записать матрицу
+\end{enumerate}
+
+\[
+\Sigma=\int (x-m)(x-m)^T\,P_X(dx);
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  привести дискретный и непрерывный пример;
+\item
+  назвать классическую замену переменной с якобианом.
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  доказательство через индикаторы, простые функции и теорему Беппо Леви;
+\item
+  интеграл Лебега-Стилтьеса
+\end{enumerate}
+
+\[
+\int g\,dF_X;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  формулу плотности преобразования:
+\end{enumerate}
+
+\[
+p_Y(y)=p_X(\Phi^{-1}(y))|\det D\Phi^{-1}(y)|;
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  неотрицательную определенность ковариационной матрицы;
+\item
+  предупреждение про распределение Коши или другой пример, где момент не
+  существует;
+\item
+  связь с характеристическими функциями и гауссовскими законами.
+\end{enumerate}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Сначала я формулирую главную теорему. Пусть \(X:\Omega\to E\) -
+случайный элемент, а \(P_X\) - его распределение:
+
+\[
+P_X(B)=P\{X\in B\}.
+\]
+
+Тогда для измеримой функции \(g\):
+
+\[
+\mathbb E g(X)
+=
+\int_\Omega g(X(\omega))\,dP
+=
+\int_E g(x)\,P_X(dx),
+\]
+
+если \(g\ge0\) или если \(g(X)\) интегрируема. Это называется заменой
+переменной в интеграле Лебега через образ меры.
+
+Дальше говорю: если \(X\) вещественная, можно писать
+
+\[
+\mathbb E g(X)=\int_{\mathbb R} g(x)\,dF_X(x).
+\]
+
+Если есть плотность \(p_X\), то
+
+\[
+\mathbb E g(X)=\int_{\mathbb R} g(x)p_X(x)\,dx.
+\]
+
+Важно: плотность существует не всегда. Если плотности нет, надо
+интегрировать по \(P_X\), а не по \(p_Xdx\).
+
+Затем формулирую классическую замену переменной. Если \(\Phi:U\to V\) -
+\(C^1\)-диффеоморфизм, то
+
+\[
+\int_V h(y)\,dy
+=
+\int_U h(\Phi(x))|\det D\Phi(x)|\,dx.
+\]
+
+Отсюда для \(Y=\Phi(X)\):
+
+\[
+p_Y(y)=p_X(\Phi^{-1}(y))|\det D\Phi^{-1}(y)|.
+\]
+
+После этого перехожу к моментам. Для вещественной случайной величины:
+
+\[
+\mathbb EX^k=\int x^k\,P_X(dx),
+\qquad
+\mathbb E|X|^k=\int |x|^k\,P_X(dx).
+\]
+
+При плотности:
+
+\[
+\mathbb EX^k=\int x^kp_X(x)\,dx.
+\]
+
+Дисперсия:
+
+\[
+\operatorname{Var}X
+=
+\int (x-m)^2\,P_X(dx)
+=
+\mathbb EX^2-m^2.
+\]
+
+Для пары:
+
+\[
+\operatorname{Cov}(X,Y)
+=
+\int (x-m_X)(y-m_Y)\,P_{X,Y}(dx,dy).
+\]
+
+Для вектора:
+
+\[
+\Sigma
+=
+\int (x-m)(x-m)^T\,P_X(dx).
+\]
+
+И завершаю свойством:
+
+\[
+a^T\Sigma a=\operatorname{Var}(a^TX)\ge0.
+\]
+
+Главные ловушки: не писать плотность без абсолютной непрерывности, не
+забывать существование моментов и якобиан при классической замене
+переменной.
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить четыре блока.
+
+\textbf{Замена переменной через распределение:}
+
+\[
+\mathbb E g(X)
+=
+\int_\Omega g(X)\,dP
+=
+\int_E g(x)\,P_X(dx).
+\]
+
+\textbf{Если есть плотность:}
+
+\[
+\mathbb E g(X)
+=
+\int g(x)p_X(x)\,dx.
+\]
+
+\textbf{Моменты и дисперсия:}
+
+\[
+\mathbb EX^k=\int x^k\,P_X(dx),
+\qquad
+\operatorname{Var}X=\int (x-m)^2\,P_X(dx).
+\]
+
+\textbf{Векторный случай:}
+
+\[
+m=\int x\,P_X(dx),
+\qquad
+\Sigma=\int (x-m)(x-m)^T\,P_X(dx).
+\]
+
+Главная ловушка: интеграл по плотности допустим только при наличии
+плотности; иначе нужно интегрировать по мере распределения \(P_X\).
+
+\newpage
+
+\end{document}

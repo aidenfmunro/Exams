@@ -1,0 +1,1733 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 02. Счетная аддитивность и вероятностные пространства.
+Мера, порожденная функцией
+распределения}\label{ux431ux438ux43bux435ux442-02.-ux441ux447ux435ux442ux43dux430ux44f-ux430ux434ux434ux438ux442ux438ux432ux43dux43eux441ux442ux44c-ux438-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux44bux435-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux430.-ux43cux435ux440ux430-ux43fux43eux440ux43eux436ux434ux435ux43dux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux435ux439-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Источники: Ширяев 1, гл. II; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Вероятностное пространство в аксиоматике Колмогорова - это тройка
+
+\[
+(\Omega,\mathcal F,\mathbb P),
+\]
+
+где \(\Omega\) - пространство элементарных исходов, \(\mathcal F\) -
+\(\sigma\)-алгебра событий, а \(\mathbb P\) - счетно-аддитивная мера на
+\(\mathcal F\) с полной массой \(1\).
+
+Главная аксиома:
+
+\[
+A_i\cap A_j=\varnothing,\ i\ne j
+\quad\Longrightarrow\quad
+\mathbb P\left(\bigsqcup_{n=1}^{\infty} A_n\right)
+=
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+Из нее следуют \(\mathbb P(\varnothing)=0\), конечная аддитивность,
+формула дополнения, монотонность, счетная субаддитивность и
+непрерывность вероятности снизу и сверху.
+
+Если \(F:\mathbb R\to[0,1]\) не убывает, непрерывна справа и
+
+\[
+\lim_{x\to-\infty}F(x)=0,\qquad
+\lim_{x\to+\infty}F(x)=1,
+\]
+
+то \(F\) порождает единственную вероятностную меру \(\mu_F\) на
+борелевской \(\sigma\)-алгебре \(\mathcal B(\mathbb R)\) такую, что
+
+\[
+\mu_F((a,b])=F(b)-F(a),\qquad a<b.
+\]
+
+Это мера Лебега-Стилтьеса, соответствующая функции распределения \(F\).
+В этом билете существование такой меры обычно формулируется без
+доказательства; доказательство опирается на теорему продолжения меры.
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Аксиоматический подход
+Колмогорова}\label{ux430ux43aux441ux438ux43eux43cux430ux442ux438ux447ux435ux441ux43aux438ux439-ux43fux43eux434ux445ux43eux434-ux43aux43eux43bux43cux43eux433ux43eux440ux43eux432ux430}
+
+В первом билете выбиралась система множеств, на которой можно говорить о
+событиях. Во втором билете на этой системе задается вероятность. Идея
+Колмогорова состоит в том, что вероятность является обычной мерой, но
+нормированной условием полной массы:
+
+\[
+\mathbb P(\Omega)=1.
+\]
+
+Пусть \(\Omega\) - множество всех элементарных исходов эксперимента.
+Например, для одного броска монеты \(\Omega=\{H,T\}\), для бесконечной
+последовательности бросков \(\Omega=\{H,T\}^{\mathbb N}\), для
+вещественной случайной величины естественно брать \(\Omega=\mathbb R\).
+Не каждое подмножество \(\Omega\) автоматически объявляется событием.
+Выбирается \(\sigma\)-алгебра \(\mathcal F\subset 2^\Omega\), то есть
+класс подмножеств, замкнутый относительно дополнений и счетных
+объединений. Элементы \(\mathcal F\) называются событиями.
+
+\subsubsection{2.2. Определение и аксиомы
+вероятности}\label{ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux438-ux430ux43aux441ux438ux43eux43cux44b-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux438}
+
+Вероятность - это функция
+
+\[
+\mathbb P:\mathcal F\to[0,1],
+\]
+
+которая удовлетворяет трем требованиям:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  неотрицательность: \(\mathbb P(A)\ge 0\) для всех \(A\in\mathcal F\);
+\item
+  нормировка: \(\mathbb P(\Omega)=1\);
+\item
+  счетная аддитивность: если \(A_1,A_2,\ldots\in\mathcal F\) попарно не
+  пересекаются, то
+\end{enumerate}
+
+\[
+\mathbb P\left(\bigcup_{n=1}^{\infty}A_n\right)
+=
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+Так как множества \(A_n\) попарно не пересекаются, объединение часто
+обозначают дизъюнктным объединением:
+
+\[
+\bigcup_{n=1}^{\infty}A_n=\bigsqcup_{n=1}^{\infty}A_n.
+\]
+
+\subsubsection{2.3. Счетная и конечная
+аддитивность}\label{ux441ux447ux435ux442ux43dux430ux44f-ux438-ux43aux43eux43dux435ux447ux43dux430ux44f-ux430ux434ux434ux438ux442ux438ux432ux43dux43eux441ux442ux44c}
+
+Счетная аддитивность является принципиальным усилением конечной
+аддитивности. Конечная аддитивность говорит только о конечных
+разбиениях:
+
+\[
+\mathbb P\left(\bigsqcup_{k=1}^m A_k\right)
+=
+\sum_{k=1}^m\mathbb P(A_k).
+\]
+
+Для вероятностной теории этого недостаточно, потому что основные события
+часто являются счетными объединениями или пересечениями. Например,
+событие ``хотя бы однажды произошел успех'' имеет вид
+
+\[
+\bigcup_{n=1}^{\infty}A_n,
+\]
+
+событие ``успехи происходят бесконечно часто'' имеет вид
+
+\[
+\limsup_{n\to\infty}A_n
+=
+\bigcap_{m=1}^{\infty}\bigcup_{n=m}^{\infty}A_n,
+\]
+
+а предельные теоремы работают именно с пределами последовательностей
+событий и случайных величин. Поэтому в аксиоматике Колмогорова требуется
+не просто конечная, а счетная аддитивность.
+
+\subsubsection{2.4. Свойства
+вероятности}\label{ux441ux432ux43eux439ux441ux442ux432ux430-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux438}
+
+Из аксиом вероятности выводится набор стандартных свойств:
+\(\mathbb P(\varnothing)=0\), формула дополнения, монотонность, формула
+сложения для объединения, субаддитивность, непрерывность снизу и
+непрерывность сверху. Эти свойства не являются дополнительными
+аксиомами. Их нужно уметь быстро доказывать из счетной аддитивности.
+
+\subsubsection{2.5. Вероятностная мера и функция
+распределения}\label{ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux430ux44f-ux43cux435ux440ux430-ux438-ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Вторая часть билета - пример вероятностной меры, заданной не через явное
+перечисление исходов, а через функцию распределения. Пусть
+\(F:\mathbb R\to[0,1]\) обладает свойствами:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(F\) не убывает;
+\item
+  \(F\) непрерывна справа;
+\item
+  \(\lim_{x\to-\infty}F(x)=0\);
+\item
+  \(\lim_{x\to+\infty}F(x)=1\).
+\end{enumerate}
+
+Тогда существует единственная вероятностная мера \(\mu_F\) на
+\(\mathcal B(\mathbb R)\), для которой
+
+\[
+\mu_F((-\infty,x])=F(x)
+\]
+
+и, следовательно,
+
+\[
+\mu_F((a,b])=F(b)-F(a).
+\]
+
+\subsubsection{2.6. Мера Лебега-Стилтьеса и типы
+распределений}\label{ux43cux435ux440ux430-ux43bux435ux431ux435ux433ux430-ux441ux442ux438ux43bux442ux44cux435ux441ux430-ux438-ux442ux438ux43fux44b-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux439}
+
+Эта мера называется мерой Лебега-Стилтьеса, порожденной \(F\).
+Интуитивно \(F(x)\) задает массу луча \((-\infty,x]\), а разность
+\(F(b)-F(a)\) задает массу полуинтервала \((a,b]\). Если \(F\) имеет
+скачок в точке \(a\), то в этой точке у меры есть атом:
+
+\[
+\mu_F(\{a\})=F(a)-F(a-),
+\]
+
+где
+
+\[
+F(a-)=\lim_{x\uparrow a}F(x).
+\]
+
+Если \(F\) непрерывна, атомов нет. Если \(F\) абсолютно непрерывна и
+имеет плотность \(f\), то
+
+\[
+F(x)=\int_{-\infty}^{x} f(t)\,dt,\qquad
+\mu_F((a,b])=\int_a^b f(t)\,dt.
+\]
+
+Таким образом, дискретные, непрерывные и смешанные распределения входят
+в одну общую схему: каждое распределение на прямой задается своей
+функцией распределения.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Измеримое
+пространство}\label{ux438ux437ux43cux435ux440ux438ux43cux43eux435-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e}
+
+Пара \((\Omega,\mathcal F)\), где \(\Omega\) - множество, а
+\(\mathcal F\) - \(\sigma\)-алгебра подмножеств \(\Omega\).
+
+\subsubsection{Элементарный
+исход}\label{ux44dux43bux435ux43cux435ux43dux442ux430ux440ux43dux44bux439-ux438ux441ux445ux43eux434}
+
+Элемент \(\omega\in\Omega\). Он описывает один возможный исход
+эксперимента.
+
+\subsubsection{Событие}\label{ux441ux43eux431ux44bux442ux438ux435}
+
+Множество \(A\in\mathcal F\). Если в эксперименте реализовался исход
+\(\omega\in A\), говорят, что событие \(A\) произошло.
+
+\subsubsection{Вероятностная
+мера}\label{ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux430ux44f-ux43cux435ux440ux430}
+
+Функция \(\mathbb P:\mathcal F\to[0,1]\), удовлетворяющая условиям:
+
+\[
+\mathbb P(\Omega)=1,
+\]
+
+и для любых попарно непересекающихся \(A_1,A_2,\ldots\in\mathcal F\):
+
+\[
+\mathbb P\left(\bigsqcup_{n=1}^{\infty}A_n\right)
+=
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+Неотрицательность обычно включается в определение меры. Так как значения
+берутся в \([0,1]\), она уже зафиксирована.
+
+\subsubsection{Вероятностное пространство, или абстрактная
+колмогоровская
+тройка}\label{ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux43eux435-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-ux438ux43bux438-ux430ux431ux441ux442ux440ux430ux43aux442ux43dux430ux44f-ux43aux43eux43bux43cux43eux433ux43eux440ux43eux432ux441ux43aux430ux44f-ux442ux440ux43eux439ux43aux430}
+
+Тройка
+
+\[
+(\Omega,\mathcal F,\mathbb P),
+\]
+
+где \((\Omega,\mathcal F)\) - измеримое пространство, а \(\mathbb P\) -
+вероятностная мера на \(\mathcal F\).
+
+\subsubsection{Попарно несовместные
+события}\label{ux43fux43eux43fux430ux440ux43dux43e-ux43dux435ux441ux43eux432ux43cux435ux441ux442ux43dux44bux435-ux441ux43eux431ux44bux442ux438ux44f}
+
+Последовательность \((A_n)_{n\ge1}\) называется попарно несовместной,
+если
+
+\[
+A_i\cap A_j=\varnothing,\qquad i\ne j.
+\]
+
+\subsubsection{Конечная
+аддитивность}\label{ux43aux43eux43dux435ux447ux43dux430ux44f-ux430ux434ux434ux438ux442ux438ux432ux43dux43eux441ux442ux44c}
+
+Для попарно несовместных \(A_1,\ldots,A_m\in\mathcal F\):
+
+\[
+\mathbb P\left(\bigsqcup_{k=1}^{m}A_k\right)
+=
+\sum_{k=1}^{m}\mathbb P(A_k).
+\]
+
+\subsubsection{Счетная
+аддитивность}\label{ux441ux447ux435ux442ux43dux430ux44f-ux430ux434ux434ux438ux442ux438ux432ux43dux43eux441ux442ux44c}
+
+Для попарно несовместных \(A_1,A_2,\ldots\in\mathcal F\):
+
+\[
+\mathbb P\left(\bigsqcup_{k=1}^{\infty}A_k\right)
+=
+\sum_{k=1}^{\infty}\mathbb P(A_k).
+\]
+
+\subsubsection{\texorpdfstring{Борелевская \(\sigma\)-алгебра на
+\(\mathbb R\)}{Борелевская \textbackslash sigma-алгебра на \textbackslash mathbb R}}\label{ux431ux43eux440ux435ux43bux435ux432ux441ux43aux430ux44f-sigma-ux430ux43bux433ux435ux431ux440ux430-ux43dux430-mathbb-r}
+
+Минимальная \(\sigma\)-алгебра, содержащая все открытые множества
+прямой. Обозначается \(\mathcal B(\mathbb R)\).
+
+Эквивалентно, \(\mathcal B(\mathbb R)\) порождена интервалами вида
+\((-\infty,x]\):
+
+\[
+\mathcal B(\mathbb R)=\sigma\{(-\infty,x]:x\in\mathbb R\}.
+\]
+
+\subsubsection{\texorpdfstring{Функция распределения меры \(\mu\) на
+\(\mathbb R\)}{Функция распределения меры \textbackslash mu на \textbackslash mathbb R}}\label{ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43cux435ux440ux44b-mu-ux43dux430-mathbb-r}
+
+\[
+F_\mu(x)=\mu((-\infty,x]).
+\]
+
+\subsubsection{\texorpdfstring{Функция распределения случайной величины
+\(X\)}{Функция распределения случайной величины X}}\label{ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b-x}
+
+\[
+F_X(x)=\mathbb P(X\le x)
+=
+\mathbb P(\{\omega:X(\omega)\le x\}).
+\]
+
+\subsubsection{Абстрактная функция
+распределения}\label{ux430ux431ux441ux442ux440ux430ux43aux442ux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Функция \(F:\mathbb R\to[0,1]\), которая не убывает, непрерывна справа и
+имеет пределы \(0\) на \(-\infty\) и \(1\) на \(+\infty\).
+
+\subsubsection{Мера, порожденная функцией
+распределения}\label{ux43cux435ux440ux430-ux43fux43eux440ux43eux436ux434ux435ux43dux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux435ux439-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Единственная вероятностная мера \(\mu_F\) на \(\mathcal B(\mathbb R)\),
+для которой
+
+\[
+\mu_F((-\infty,x])=F(x)
+\]
+
+для всех \(x\in\mathbb R\). Тогда для \(a<b\):
+
+\[
+\mu_F((a,b])=F(b)-F(a).
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Свойство 1. Вероятность пустого множества равна
+нулю}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-1.-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux44c-ux43fux443ux441ux442ux43eux433ux43e-ux43cux43dux43eux436ux435ux441ux442ux432ux430-ux440ux430ux432ux43dux430-ux43dux443ux43bux44e}
+
+\[
+\mathbb P(\varnothing)=0.
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e}
+
+Используем дизъюнктное разложение
+
+\[
+\Omega=\Omega\sqcup\varnothing\sqcup\varnothing\sqcup\cdots.
+\]
+
+По счетной аддитивности
+
+\[
+1=\mathbb P(\Omega)
+=
+\mathbb P(\Omega)+\sum_{n=2}^{\infty}\mathbb P(\varnothing)
+=
+1+\sum_{n=2}^{\infty}\mathbb P(\varnothing).
+\]
+
+Следовательно,
+
+\[
+\sum_{n=2}^{\infty}\mathbb P(\varnothing)=0.
+\]
+
+Слагаемые неотрицательны, значит \(\mathbb P(\varnothing)=0\).
+\(\square\)
+
+\subsubsection{Свойство 2. Из счетной аддитивности следует конечная
+аддитивность}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-2.-ux438ux437-ux441ux447ux435ux442ux43dux43eux439-ux430ux434ux434ux438ux442ux438ux432ux43dux43eux441ux442ux438-ux441ux43bux435ux434ux443ux435ux442-ux43aux43eux43dux435ux447ux43dux430ux44f-ux430ux434ux434ux438ux442ux438ux432ux43dux43eux441ux442ux44c}
+
+Если \(A_1,\ldots,A_m\) попарно не пересекаются, то
+
+\[
+\mathbb P\left(\bigsqcup_{k=1}^{m}A_k\right)
+=
+\sum_{k=1}^{m}\mathbb P(A_k).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-1}
+
+Возьмем счетную последовательность
+
+\[
+A_1,\ldots,A_m,\varnothing,\varnothing,\ldots
+\]
+
+и применим счетную аддитивность:
+
+\[
+\mathbb P\left(\bigsqcup_{k=1}^{m}A_k\right)
+=
+\sum_{k=1}^{m}\mathbb P(A_k)+\sum_{k=m+1}^{\infty}\mathbb P(\varnothing).
+\]
+
+По свойству 1 \(\mathbb P(\varnothing)=0\), поэтому
+
+\[
+\mathbb P\left(\bigsqcup_{k=1}^{m}A_k\right)
+=
+\sum_{k=1}^{m}\mathbb P(A_k).
+\]
+
+\(\square\)
+
+\subsubsection{Свойство 3. Формула
+дополнения}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-3.-ux444ux43eux440ux43cux443ux43bux430-ux434ux43eux43fux43eux43bux43dux435ux43dux438ux44f}
+
+Для любого \(A\in\mathcal F\):
+
+\[
+\mathbb P(\overline{A})=1-\mathbb P(A).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-2}
+
+Множества \(A\) и \(\overline{A}\) несовместны, причем
+
+\[
+A\sqcup \overline{A}=\Omega.
+\]
+
+По конечной аддитивности:
+
+\[
+1=\mathbb P(\Omega)=\mathbb P(A)+\mathbb P(\overline{A}).
+\]
+
+Отсюда
+
+\[
+\mathbb P(\overline{A})=1-\mathbb P(A).
+\]
+
+\(\square\)
+
+\subsubsection{Свойство 4. Монотонность и формула
+разности}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-4.-ux43cux43eux43dux43eux442ux43eux43dux43dux43eux441ux442ux44c-ux438-ux444ux43eux440ux43cux443ux43bux430-ux440ux430ux437ux43dux43eux441ux442ux438}
+
+Если \(A\subset B\), то
+
+\[
+\mathbb P(B\setminus A)=\mathbb P(B)-\mathbb P(A),
+\qquad
+\mathbb P(A)\le \mathbb P(B).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-3}
+
+При \(A\subset B\) имеем дизъюнктное разложение
+
+\[
+B=A\sqcup(B\setminus A).
+\]
+
+Значит
+
+\[
+\mathbb P(B)=\mathbb P(A)+\mathbb P(B\setminus A).
+\]
+
+Отсюда следует формула разности. Так как
+\(\mathbb P(B\setminus A)\ge0\), получаем монотонность:
+
+\[
+\mathbb P(A)\le\mathbb P(B).
+\]
+
+\(\square\)
+
+\subsubsection{Свойство 5. Формула сложения для двух
+событий}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-5.-ux444ux43eux440ux43cux443ux43bux430-ux441ux43bux43eux436ux435ux43dux438ux44f-ux434ux43bux44f-ux434ux432ux443ux445-ux441ux43eux431ux44bux442ux438ux439}
+
+Для любых \(A,B\in\mathcal F\):
+
+\[
+\mathbb P(A\cup B)=\mathbb P(A)+\mathbb P(B)-\mathbb P(A\cap B).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-4}
+
+Разложим \(A\cup B\) на попарно непересекающиеся части:
+
+\[
+A\cup B=(A\setminus B)\sqcup(B\setminus A)\sqcup(A\cap B).
+\]
+
+Также
+
+\[
+A=(A\setminus B)\sqcup(A\cap B),
+\qquad
+B=(B\setminus A)\sqcup(A\cap B).
+\]
+
+По конечной аддитивности:
+
+\[
+\mathbb P(A\cup B)
+=
+\mathbb P(A\setminus B)+\mathbb P(B\setminus A)+\mathbb P(A\cap B),
+\]
+
+а
+
+\[
+\mathbb P(A)+\mathbb P(B)
+=
+\mathbb P(A\setminus B)+\mathbb P(B\setminus A)+2\mathbb P(A\cap B).
+\]
+
+Вычитая один раз \(\mathbb P(A\cap B)\), получаем нужную формулу.
+\(\square\)
+
+\subsubsection{Свойство 6. Счетная
+субаддитивность}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-6.-ux441ux447ux435ux442ux43dux430ux44f-ux441ux443ux431ux430ux434ux434ux438ux442ux438ux432ux43dux43eux441ux442ux44c}
+
+Для любых событий \(A_1,A_2,\ldots\in\mathcal F\):
+
+\[
+\mathbb P\left(\bigcup_{n=1}^{\infty}A_n\right)
+\le
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-5}
+
+Преобразуем произвольную последовательность событий в попарно
+непересекающуюся последовательность:
+
+\[
+B_1=A_1,\qquad
+B_n=A_n\setminus\bigcup_{k=1}^{n-1}A_k,\quad n\ge2.
+\]
+
+Тогда \(B_n\subset A_n\), множества \(B_n\) попарно не пересекаются и
+
+\[
+\bigcup_{n=1}^{\infty}A_n
+=
+\bigsqcup_{n=1}^{\infty}B_n.
+\]
+
+По счетной аддитивности и монотонности:
+
+\[
+\mathbb P\left(\bigcup_{n=1}^{\infty}A_n\right)
+=
+\sum_{n=1}^{\infty}\mathbb P(B_n)
+\le
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+\(\square\)
+
+\subsubsection{Свойство 7. Непрерывность вероятности
+снизу}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-7.-ux43dux435ux43fux440ux435ux440ux44bux432ux43dux43eux441ux442ux44c-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux438-ux441ux43dux438ux437ux443}
+
+Если
+
+\[
+A_1\subset A_2\subset\cdots,
+\qquad
+A=\bigcup_{n=1}^{\infty}A_n,
+\]
+
+то
+
+\[
+\mathbb P(A_n)\uparrow\mathbb P(A),
+\qquad
+\lim_{n\to\infty}\mathbb P(A_n)=\mathbb P(A).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-6}
+
+Представим возрастающую последовательность через непересекающиеся слои:
+
+\[
+B_1=A_1,\qquad
+B_n=A_n\setminus A_{n-1},\quad n\ge2.
+\]
+
+Тогда
+
+\[
+A_N=\bigsqcup_{n=1}^{N}B_n,
+\qquad
+A=\bigsqcup_{n=1}^{\infty}B_n.
+\]
+
+Следовательно,
+
+\[
+\mathbb P(A_N)=\sum_{n=1}^{N}\mathbb P(B_n),
+\qquad
+\mathbb P(A)=\sum_{n=1}^{\infty}\mathbb P(B_n).
+\]
+
+Переходя к пределу по \(N\), получаем
+
+\[
+\lim_{N\to\infty}\mathbb P(A_N)
+=
+\mathbb P(A).
+\]
+
+\(\square\)
+
+\subsubsection{Свойство 8. Непрерывность вероятности
+сверху}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-8.-ux43dux435ux43fux440ux435ux440ux44bux432ux43dux43eux441ux442ux44c-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux438-ux441ux432ux435ux440ux445ux443}
+
+Если
+
+\[
+A_1\supset A_2\supset\cdots,
+\qquad
+A=\bigcap_{n=1}^{\infty}A_n,
+\]
+
+то
+
+\[
+\mathbb P(A_n)\downarrow\mathbb P(A),
+\qquad
+\lim_{n\to\infty}\mathbb P(A_n)=\mathbb P(A).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-7}
+
+Так как \(A_n\downarrow A\), дополнения возрастают:
+
+\[
+\overline{A_1}\subset \overline{A_2}\subset\cdots,
+\qquad
+\bigcup_{n=1}^{\infty}\overline{A_n}=\overline{A}.
+\]
+
+По непрерывности снизу:
+
+\[
+\mathbb P(\overline{A_n})\uparrow\mathbb P(\overline{A}).
+\]
+
+Используя формулу дополнения, получаем
+
+\[
+\mathbb P(A_n)=1-\mathbb P(\overline{A_n})
+\downarrow
+1-\mathbb P(\overline{A})
+=
+\mathbb P(A).
+\]
+
+\(\square\)
+
+Для общих мер в этом утверждении нужно условие конечности хотя бы
+\(\mu(A_1)<\infty\). Для вероятностной меры оно выполнено автоматически,
+потому что \(\mathbb P(A_1)\le1\).
+
+\subsubsection{Теорема 9. Функция распределения порождает
+меру}\label{ux442ux435ux43eux440ux435ux43cux430-9.-ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43fux43eux440ux43eux436ux434ux430ux435ux442-ux43cux435ux440ux443}
+
+Пусть \(F:\mathbb R\to[0,1]\) не убывает, непрерывна справа и
+
+\[
+\lim_{x\to-\infty}F(x)=0,\qquad
+\lim_{x\to+\infty}F(x)=1.
+\]
+
+Тогда существует единственная вероятностная мера \(\mu_F\) на
+\(\mathcal B(\mathbb R)\) такая, что
+
+\[
+\mu_F((-\infty,x])=F(x)
+\]
+
+для всех \(x\in\mathbb R\). Эквивалентно,
+
+\[
+\mu_F((a,b])=F(b)-F(a),\qquad a<b.
+\]
+
+\subsubsection{Комментарий к
+доказательству}\label{ux43aux43eux43cux43cux435ux43dux442ux430ux440ux438ux439-ux43a-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux443}
+
+По программе здесь доказательство не требуется. Идея такая: сначала
+задают массу полуинтервалов формулой
+
+\[
+\mu_F((a,b])=F(b)-F(a),
+\]
+
+затем задают массу конечных дизъюнктных объединений таких полуинтервалов
+как сумму масс. Монотонность \(F\) гарантирует неотрицательность,
+телескопические суммы дают конечную аддитивность, а непрерывность справа
+нужна для счетной аддитивности на исходной алгебре. После этого
+применяется теорема продолжения меры с алгебры или полуалгебры на
+порожденную \(\sigma\)-алгебру. Поскольку полуинтервалы порождают
+\(\mathcal B(\mathbb R)\), получается мера на борелевских множествах.
+Единственность следует из того, что значения на порождающем классе
+фиксированы.
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Один бросок
+монеты}\label{ux43fux440ux438ux43cux435ux440-1.-ux43eux434ux438ux43d-ux431ux440ux43eux441ux43eux43a-ux43cux43eux43dux435ux442ux44b}
+
+Пусть
+
+\[
+\Omega=\{H,T\},\qquad
+\mathcal F=2^\Omega.
+\]
+
+Для симметричной монеты:
+
+\[
+\mathbb P(\{H\})=\mathbb P(\{T\})=\frac12.
+\]
+
+Тогда
+
+\[
+\mathbb P(\Omega)=1,\qquad
+\mathbb P(\varnothing)=0.
+\]
+
+Счетная аддитивность здесь фактически сводится к конечной, потому что
+пространство конечно.
+
+\subsubsection{Пример 2. Счетное пространство
+исходов}\label{ux43fux440ux438ux43cux435ux440-2.-ux441ux447ux435ux442ux43dux43eux435-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-ux438ux441ux445ux43eux434ux43eux432}
+
+Пусть
+
+\[
+\Omega=\mathbb N,\qquad
+\mathcal F=2^{\mathbb N},
+\]
+
+и задана последовательность \(p_n\ge0\) такая, что
+
+\[
+\sum_{n=1}^{\infty}p_n=1.
+\]
+
+Тогда
+
+\[
+\mathbb P(A)=\sum_{n\in A}p_n
+\]
+
+задает вероятность на \(2^{\mathbb N}\). В частности,
+
+\[
+\mathbb P(\{n\})=p_n.
+\]
+
+Это типичная дискретная вероятностная мера.
+
+\subsubsection{Пример 3. Вырожденное распределение и мера
+Дирака}\label{ux43fux440ux438ux43cux435ux440-3.-ux432ux44bux440ux43eux436ux434ux435ux43dux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux438-ux43cux435ux440ux430-ux434ux438ux440ux430ux43aux430}
+
+Пусть \(a\in\mathbb R\) и
+
+\[
+F(x)=
+\begin{cases}
+0, & x<a,\\
+1, & x\ge a.
+\end{cases}
+\]
+
+Тогда \(\mu_F=\delta_a\), то есть вся масса сосредоточена в точке \(a\):
+
+\[
+\mu_F(A)=
+\begin{cases}
+1, & a\in A,\\
+0, & a\notin A.
+\end{cases}
+\]
+
+Скачок функции распределения равен
+
+\[
+F(a)-F(a-)=1-0=1,
+\]
+
+поэтому
+
+\[
+\mu_F(\{a\})=1.
+\]
+
+\subsubsection{\texorpdfstring{Пример 4. Распределение Бернулли на
+\(\mathbb R\)}{Пример 4. Распределение Бернулли на \textbackslash mathbb R}}\label{ux43fux440ux438ux43cux435ux440-4.-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux431ux435ux440ux43dux443ux43bux43bux438-ux43dux430-mathbb-r}
+
+Пусть случайная величина принимает значения \(0\) и \(1\):
+
+\[
+\mathbb P(X=1)=p,\qquad
+\mathbb P(X=0)=1-p.
+\]
+
+Ее функция распределения:
+
+\[
+F(x)=
+\begin{cases}
+0, & x<0,\\
+1-p, & 0\le x<1,\\
+1, & x\ge1.
+\end{cases}
+\]
+
+У меры два атома:
+
+\[
+\mu_F(\{0\})=1-p,\qquad
+\mu_F(\{1\})=p.
+\]
+
+\subsubsection{\texorpdfstring{Пример 5. Равномерное распределение на
+\([0,1]\)}{Пример 5. Равномерное распределение на {[}0,1{]}}}\label{ux43fux440ux438ux43cux435ux440-5.-ux440ux430ux432ux43dux43eux43cux435ux440ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux43dux430-01}
+
+Функция распределения:
+
+\[
+F(x)=
+\begin{cases}
+0, & x<0,\\
+x, & 0\le x<1,\\
+1, & x\ge1.
+\end{cases}
+\]
+
+Тогда для \(0\le a<b\le1\):
+
+\[
+\mu_F((a,b])=F(b)-F(a)=b-a.
+\]
+
+В этом случае мера совпадает с длиной на отрезке \([0,1]\).
+
+\subsubsection{Пример 6. Экспоненциальное
+распределение}\label{ux43fux440ux438ux43cux435ux440-6.-ux44dux43aux441ux43fux43eux43dux435ux43dux446ux438ux430ux43bux44cux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+При параметре \(\lambda>0\):
+
+\[
+F(x)=
+\begin{cases}
+0, & x<0,\\
+1-e^{-\lambda x}, & x\ge0.
+\end{cases}
+\]
+
+Тогда для \(0\le a<b\):
+
+\[
+\mu_F((a,b])=e^{-\lambda a}-e^{-\lambda b}
+=
+\int_a^b \lambda e^{-\lambda t}\,dt.
+\]
+
+Плотность равна
+
+\[
+f(t)=\lambda e^{-\lambda t}\mathbf 1_{\{t\ge0\}}.
+\]
+
+\subsubsection{Пример 7. Почему конечной аддитивности
+мало}\label{ux43fux440ux438ux43cux435ux440-7.-ux43fux43eux447ux435ux43cux443-ux43aux43eux43dux435ux447ux43dux43eux439-ux430ux434ux434ux438ux442ux438ux432ux43dux43eux441ux442ux438-ux43cux430ux43bux43e}
+
+На алгебре конечных и ко-конечных подмножеств \(\mathbb N\) можно задать
+функцию
+
+\[
+\nu(A)=
+\begin{cases}
+0, & A\text{ конечно},\\
+1, & A\text{ ко-конечно}.
+\end{cases}
+\]
+
+Она конечно-аддитивна и нормирована: \(\nu(\mathbb N)=1\). Но она не
+является счетно-аддитивной, потому что
+
+\[
+\mathbb N=\bigsqcup_{n=1}^{\infty}\{n\},
+\]
+
+и тогда счетная аддитивность потребовала бы
+
+\[
+1=\nu(\mathbb N)=\sum_{n=1}^{\infty}\nu(\{n\})=0.
+\]
+
+Это показывает, что счетная аддитивность не является формальностью. Она
+запрещает такие патологические вероятности и делает возможным предельный
+анализ.
+
+\subsection{6. Доказательства и
+обоснования}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux430-ux438-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux44f}
+
+\textbf{Почему \(\sigma\)-алгебра нужна вместе со счетной
+аддитивностью.}
+
+Счетная аддитивность говорит о вероятности счетного объединения:
+
+\[
+\mathbb P\left(\bigsqcup_{n=1}^{\infty}A_n\right).
+\]
+
+Чтобы левая часть имела смысл, само объединение должно быть событием.
+Поэтому область определения вероятности должна быть замкнута
+относительно счетных объединений. Именно это и обеспечивает
+\(\sigma\)-алгебра. Если бы \(\mathcal F\) была только алгеброй, счетное
+объединение событий могло бы не принадлежать \(\mathcal F\), и аксиома
+счетной аддитивности не была бы применима.
+
+\textbf{Почему непрерывность снизу эквивалентна счетной аддитивности при
+конечной аддитивности.}
+
+Если мера конечно-аддитивна и непрерывна снизу, то для попарно
+непересекающихся \(A_n\) положим
+
+\[
+C_N=\bigsqcup_{n=1}^{N}A_n,
+\qquad
+C=\bigsqcup_{n=1}^{\infty}A_n.
+\]
+
+Тогда
+
+\[
+C_1\subset C_2\subset\cdots,
+\qquad
+C=\bigcup_{N=1}^{\infty}C_N.
+\]
+
+По непрерывности снизу:
+
+\[
+\mathbb P(C)=\lim_{N\to\infty}\mathbb P(C_N).
+\]
+
+По конечной аддитивности:
+
+\[
+\mathbb P(C_N)=\sum_{n=1}^{N}\mathbb P(A_n).
+\]
+
+Следовательно,
+
+\[
+\mathbb P(C)
+=
+\lim_{N\to\infty}\sum_{n=1}^{N}\mathbb P(A_n)
+=
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+Значит получаем счетную аддитивность. Обратное направление уже доказано
+в свойстве о непрерывности снизу. Поэтому в вероятностной мере счетная
+аддитивность и непрерывность снизу тесно связаны.
+
+\textbf{Почему правая непрерывность важна для функции распределения.}
+
+Если \(\mu\) - вероятностная мера и
+
+\[
+F(x)=\mu((-\infty,x]),
+\]
+
+то \(F\) автоматически непрерывна справа. Действительно, если
+\(x_n\downarrow x\), то множества
+
+\[
+(-\infty,x_n]\downarrow(-\infty,x].
+\]
+
+По непрерывности меры сверху:
+
+\[
+\mu((-\infty,x_n])\downarrow\mu((-\infty,x]).
+\]
+
+То есть
+
+\[
+F(x_n)\downarrow F(x).
+\]
+
+Это и есть правая непрерывность. Поэтому в обратной теореме о построении
+меры по \(F\) правая непрерывность не случайное техническое условие, а
+необходимое свойство любой настоящей функции распределения.
+
+\textbf{Почему \(\mu_F(\{a\})=F(a)-F(a-)\).}
+
+Рассмотрим интервалы
+
+\[
+\left(a-\frac1n,a\right],\qquad n=1,2,\ldots
+\]
+
+Они убывают к одноточечному множеству:
+
+\[
+\bigcap_{n=1}^{\infty}\left(a-\frac1n,a\right]=\{a\}.
+\]
+
+По непрерывности сверху:
+
+\[
+\mu_F(\{a\})
+=
+\lim_{n\to\infty}\mu_F\left(\left(a-\frac1n,a\right]\right).
+\]
+
+По определению меры на полуинтервалах:
+
+\[
+\mu_F\left(\left(a-\frac1n,a\right]\right)
+=
+F(a)-F\left(a-\frac1n\right).
+\]
+
+Переходя к пределу, получаем
+
+\[
+\mu_F(\{a\})=F(a)-F(a-).
+\]
+
+\textbf{Почему мера по функции распределения единственна.}
+
+Полуинтервалы \((-\infty,x]\) порождают борелевскую \(\sigma\)-алгебру:
+
+\[
+\mathcal B(\mathbb R)=\sigma\{(-\infty,x]:x\in\mathbb R\}.
+\]
+
+Если две вероятностные меры совпадают на всех множествах
+\((-\infty,x]\), то они совпадают на порожденной ими \(\sigma\)-алгебре.
+Строго это доказывается через \(\pi\)-\(\lambda\)-теорему или через
+теорему единственности продолжения меры. Поэтому функция распределения
+однозначно задает борелевскую вероятность на прямой.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Определение колмогоровской тройки:
+\end{enumerate}
+
+\[
+(\Omega,\mathcal F,\mathbb P),\qquad
+\mathbb P:\mathcal F\to[0,1],\qquad
+\mathbb P(\Omega)=1.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Счетная аддитивность:
+\end{enumerate}
+
+\[
+A_i\cap A_j=\varnothing,\ i\ne j
+\quad\Rightarrow\quad
+\mathbb P\left(\bigsqcup_{n=1}^{\infty}A_n\right)
+=
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Базовые следствия:
+\end{enumerate}
+
+\[
+\mathbb P(\varnothing)=0,\qquad
+\mathbb P(\overline{A})=1-\mathbb P(A),
+\]
+
+\[
+A\subset B\Rightarrow \mathbb P(A)\le\mathbb P(B),
+\]
+
+\[
+\mathbb P(A\cup B)=\mathbb P(A)+\mathbb P(B)-\mathbb P(A\cap B),
+\]
+
+\[
+\mathbb P\left(\bigcup_{n=1}^{\infty}A_n\right)
+\le
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Непрерывность вероятности:
+\end{enumerate}
+
+\[
+A_n\uparrow A\Rightarrow \mathbb P(A_n)\uparrow\mathbb P(A),
+\]
+
+\[
+A_n\downarrow A\Rightarrow \mathbb P(A_n)\downarrow\mathbb P(A).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Функция распределения и порожденная мера:
+\end{enumerate}
+
+\[
+F(x)=\mu_F((-\infty,x]),
+\]
+
+\[
+\mu_F((a,b])=F(b)-F(a),
+\]
+
+\[
+\mu_F(\{a\})=F(a)-F(a-).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Условия на \(F\):
+\end{enumerate}
+
+\[
+F\text{ не убывает},\qquad
+F\text{ непрерывна справа},
+\]
+
+\[
+\lim_{x\to-\infty}F(x)=0,\qquad
+\lim_{x\to+\infty}F(x)=1.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Чем вероятностная мера отличается от обычной меры?}
+
+Вероятностная мера - это мера полной массы \(1\). То есть она
+счетно-аддитивна и неотрицательна, как обычная мера, но дополнительно
+нормирована:
+
+\[
+\mathbb P(\Omega)=1.
+\]
+
+\textbf{Вопрос. Почему нельзя ограничиться конечной аддитивностью?}
+
+Потому что в теории вероятностей постоянно встречаются предельные
+события: счетные объединения, счетные пересечения, \(\limsup A_n\),
+\(\liminf A_n\). Конечная аддитивность не дает непрерывности вероятности
+по монотонным последовательностям событий. Без нее нельзя корректно
+доказывать предельные теоремы.
+
+\textbf{Вопрос. Счетная аддитивность применяется к любым \(A_n\)?}
+
+Нет. Равенство с суммой применяется к попарно непересекающимся событиям.
+Для произвольных событий верна только субаддитивность:
+
+\[
+\mathbb P\left(\bigcup_n A_n\right)\le \sum_n\mathbb P(A_n).
+\]
+
+\textbf{Вопрос. Почему \(\mathbb P(A)\le1\)?}
+
+Потому что \(A\subset\Omega\), а по монотонности:
+
+\[
+\mathbb P(A)\le\mathbb P(\Omega)=1.
+\]
+
+\textbf{Вопрос. Что означает \(A_n\uparrow A\)?}
+
+Это означает, что
+
+\[
+A_1\subset A_2\subset\cdots,
+\qquad
+A=\bigcup_{n=1}^{\infty}A_n.
+\]
+
+Тогда вероятности также возрастают к вероятности предела:
+
+\[
+\mathbb P(A_n)\uparrow\mathbb P(A).
+\]
+
+\textbf{Вопрос. Что означает \(A_n\downarrow A\)?}
+
+Это означает, что
+
+\[
+A_1\supset A_2\supset\cdots,
+\qquad
+A=\bigcap_{n=1}^{\infty}A_n.
+\]
+
+Для вероятностной меры:
+
+\[
+\mathbb P(A_n)\downarrow\mathbb P(A).
+\]
+
+\textbf{Вопрос. Почему функция распределения должна быть непрерывна
+справа?}
+
+Потому что для любой меры
+
+\[
+F(x)=\mu((-\infty,x])
+\]
+
+и при \(x_n\downarrow x\) множества \((-\infty,x_n]\) убывают к
+\((-\infty,x]\). Непрерывность меры сверху дает
+\(F(x_n)\downarrow F(x)\).
+
+\textbf{Вопрос. Что такое атом распределения?}
+
+Атом в точке \(a\) - это положительная масса одноточечного множества:
+
+\[
+\mu(\{a\})>0.
+\]
+
+Для функции распределения:
+
+\[
+\mu(\{a\})=F(a)-F(a-).
+\]
+
+Значит атомы соответствуют скачкам функции распределения.
+
+\textbf{Вопрос. Если функция распределения непрерывна, значит ли это,
+что есть плотность?}
+
+Нет. Непрерывность означает отсутствие атомов, но не гарантирует
+существование плотности. Бывают непрерывные сингулярные распределения,
+например распределение Кантора.
+
+\textbf{Вопрос. Почему мера \(\mu_F\) единственна?}
+
+Потому что значения на лучах \((-\infty,x]\) задают значения функции
+распределения, а эти лучи порождают всю борелевскую \(\sigma\)-алгебру
+\(\mathcal B(\mathbb R)\). Две вероятностные меры, совпадающие на таком
+порождающем классе, совпадают на всех борелевских множествах.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Писать счетную аддитивность для непересекающихся событий не указав
+  условие \(A_i\cap A_j=\varnothing\).
+\item
+  Путать аддитивность и субаддитивность. Для произвольных событий обычно
+  верно только
+\end{enumerate}
+
+\[
+\mathbb P\left(\bigcup_n A_n\right)\le\sum_n\mathbb P(A_n).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Называть любое подмножество \(\Omega\) событием. В абстрактной модели
+  событие - это только элемент \(\mathcal F\).
+\item
+  Забывать нормировку \(\mathbb P(\Omega)=1\). Без нее была бы просто
+  конечная мера, а не вероятностная мера.
+\item
+  Считать непрерывность сверху верной для любой меры без условий. Для
+  общей меры нужно \(\mu(A_1)<\infty\). В вероятностном пространстве это
+  условие автоматическое.
+\item
+  Писать для функции распределения меру интервала как \(F(b)-F(a)\) без
+  уточнения типа интервала. Формула
+\end{enumerate}
+
+\[
+\mu_F((a,b])=F(b)-F(a)
+\]
+
+соответствует правонепрерывной функции распределения
+\(F(x)=\mu((-\infty,x])\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  Думать, что непрерывная функция распределения обязательно имеет
+  плотность. Это неверно: отсутствие скачков не равно абсолютной
+  непрерывности.
+\item
+  Забывать, что теорема о мере, порожденной \(F\), строит меру на
+  \(\mathcal B(\mathbb R)\), а не сразу на всех подмножествах
+  \(\mathbb R\).
+\end{enumerate}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 01.} Здесь используются \(\sigma\)-алгебры и меры. Билет 2
+добавляет счетную аддитивность и нормировку \(\mathbb P(\Omega)=1\).
+
+\textbf{Билет 03.} Теорема о мере, порожденной функцией распределения,
+доказывается через продолжение меры с полуалгебры или алгебры на
+\(\sigma\)-алгебру.
+
+\textbf{Билет 04.} Мера \(\mu_F\) строится на борелевской
+\(\sigma\)-алгебре \(\mathcal B(\mathbb R)\), поэтому нужны борелевские
+множества и пополнение меры.
+
+\textbf{Билет 05.} Случайная величина - это измеримое отображение. Ее
+распределение является образом вероятностной меры, а функция
+распределения задает это распределение на прямой.
+
+\textbf{Билет 06.} Распределения случайных величин и векторов опираются
+на вероятностные меры и функции распределения.
+
+\textbf{Билет 07.} Интеграл Лебега строится по мере. Математическое
+ожидание - это интеграл по вероятностной мере.
+
+\textbf{Билет 15 и Билет 16.} Теорема Колмогорова о согласованных
+конечномерных распределениях и случайные процессы используют абстрактные
+вероятностные пространства как базовую модель.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Вероятностное пространство - это тройка
+  \((\Omega,\mathcal F,\mathbb P)\).
+\item
+  \(\Omega\) - исходы, \(\mathcal F\) - \(\sigma\)-алгебра событий,
+  \(\mathbb P\) - вероятность.
+\item
+  Главные условия:
+\end{enumerate}
+
+\[
+\mathbb P(\Omega)=1,
+\qquad
+\mathbb P\left(\bigsqcup_{n=1}^{\infty}A_n\right)
+=
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Из аксиом следуют \(\mathbb P(\varnothing)=0\),
+  \(\mathbb P(\overline{A})=1-\mathbb P(A)\), монотонность.
+\item
+  Функция распределения \(F\) порождает меру \(\mu_F\) на
+  \(\mathcal B(\mathbb R)\) по формуле
+\end{enumerate}
+
+\[
+\mu_F((a,b])=F(b)-F(a).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Условия на \(F\): неубывание, правая непрерывность, пределы \(0\) и
+  \(1\) на бесконечностях.
+\end{enumerate}
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Кроме минимума на удовлетворительно, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Доказать \(\mathbb P(\varnothing)=0\) из счетной аддитивности.
+\item
+  Доказать формулу дополнения и монотонность.
+\item
+  Доказать счетную субаддитивность через дизъюнктизацию:
+\end{enumerate}
+
+\[
+B_1=A_1,\qquad
+B_n=A_n\setminus\bigcup_{k=1}^{n-1}A_k.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Сформулировать непрерывность вероятности снизу и сверху:
+\end{enumerate}
+
+\[
+A_n\uparrow A\Rightarrow \mathbb P(A_n)\uparrow\mathbb P(A),
+\]
+
+\[
+A_n\downarrow A\Rightarrow \mathbb P(A_n)\downarrow\mathbb P(A).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Объяснить, почему счетная аддитивность нужна для предельных событий.
+\item
+  Привести 2-3 примера мер, порожденных функцией распределения: Дирак,
+  Бернулли, равномерное распределение.
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Связь счетной аддитивности с непрерывностью меры снизу: при конечной
+  аддитивности непрерывность снизу фактически дает счетную аддитивность.
+\item
+  Контрпример конечно-аддитивной, но не счетно-аддитивной функции на
+  конечных и ко-конечных подмножествах \(\mathbb N\).
+\item
+  Пояснение, что правая непрерывность функции распределения следует из
+  непрерывности меры сверху.
+\item
+  Формулу атома:
+\end{enumerate}
+
+\[
+\mu_F(\{a\})=F(a)-F(a-).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Объяснение, что непрерывная функция распределения не обязана иметь
+  плотность.
+\item
+  Идею построения \(\mu_F\): полуинтервалы \(\to\) алгебра конечных
+  объединений \(\to\) продолжение меры на \(\mathcal B(\mathbb R)\).
+\item
+  Упоминание, что доказательство существования \(\mu_F\) в этом билете
+  не требуется, но относится к теореме продолжения меры.
+\end{enumerate}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Вероятностное пространство в аксиоматике Колмогорова - это тройка
+\((\Omega,\mathcal F,\mathbb P)\). Здесь \(\Omega\) - множество
+элементарных исходов, \(\mathcal F\) - \(\sigma\)-алгебра событий, а
+\(\mathbb P\) - вероятностная мера. Событиями являются не все
+подмножества \(\Omega\), а только элементы \(\mathcal F\).
+
+Вероятность удовлетворяет трем основным условиям: неотрицательность,
+нормировка \(\mathbb P(\Omega)=1\) и счетная аддитивность. Счетная
+аддитивность означает, что для попарно непересекающихся событий
+\(A_1,A_2,\ldots\) выполнено
+
+\[
+\mathbb P\left(\bigsqcup_{n=1}^{\infty}A_n\right)
+=
+\sum_{n=1}^{\infty}\mathbb P(A_n).
+\]
+
+Это сильнее конечной аддитивности и нужно для работы с предельными
+событиями. Например, события вида \(\bigcup_n A_n\), \(\bigcap_n A_n\) и
+\(\limsup A_n\) естественно возникают в теории случайных процессов и
+предельных теоремах.
+
+Из счетной аддитивности выводятся основные свойства. Во-первых,
+\(\mathbb P(\varnothing)=0\): применяем счетную аддитивность к
+разложению \(\Omega=\Omega\sqcup\varnothing\sqcup\cdots\). Во-вторых, из
+разложения \(\Omega=A\sqcup \overline{A}\) следует
+\(\mathbb P(\overline{A})=1-\mathbb P(A)\). В-третьих, если
+\(A\subset B\), то \(B=A\sqcup(B\setminus A)\), поэтому
+\(\mathbb P(B)=\mathbb P(A)+\mathbb P(B\setminus A)\) и
+\(\mathbb P(A)\le\mathbb P(B)\).
+
+Также важна счетная субаддитивность:
+
+\[
+\mathbb P\left(\bigcup_n A_n\right)\le\sum_n\mathbb P(A_n).
+\]
+
+Она доказывается заменой \(A_n\) на непересекающиеся множества
+\(B_1=A_1\), \(B_n=A_n\setminus\bigcup_{k<n}A_k\). Еще одно важное
+следствие - непрерывность вероятности. Если \(A_n\uparrow A\), то
+\(\mathbb P(A_n)\uparrow\mathbb P(A)\); если \(A_n\downarrow A\), то
+\(\mathbb P(A_n)\downarrow\mathbb P(A)\).
+
+Теперь пример меры, порожденной функцией распределения. Пусть
+\(F:\mathbb R\to[0,1]\) не убывает, непрерывна справа и имеет пределы
+\(0\) при \(x\to-\infty\) и \(1\) при \(x\to+\infty\). Тогда существует
+единственная вероятностная мера \(\mu_F\) на \(\mathcal B(\mathbb R)\)
+такая, что
+
+\[
+\mu_F((-\infty,x])=F(x).
+\]
+
+Отсюда для полуинтервала:
+
+\[
+\mu_F((a,b])=F(b)-F(a).
+\]
+
+Доказательство существования здесь обычно не требуется. Идея: задать
+меру на полуинтервалах, затем на конечных объединениях полуинтервалов,
+после чего применить теорему продолжения меры. Скачки \(F\) дают атомы:
+
+\[
+\mu_F(\{a\})=F(a)-F(a-).
+\]
+
+Например, ступенчатая функция распределения дает дискретную меру,
+непрерывная линейная на \([0,1]\) функция дает равномерное
+распределение, а функция \(1-e^{-\lambda x}\) при \(x\ge0\) дает
+экспоненциальное распределение.
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить главное:
+
+\[
+(\Omega,\mathcal F,\mathbb P)
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  это пространство исходов, \(\sigma\)-алгебра событий и вероятность.
+\end{itemize}
+
+Главная аксиома:
+
+\[
+\mathbb P\left(\bigsqcup_{n=1}^{\infty}A_n\right)
+=
+\sum_{n=1}^{\infty}\mathbb P(A_n)
+\]
+
+для попарно непересекающихся \(A_n\).
+
+Основные следствия:
+
+\[
+\mathbb P(\varnothing)=0,\qquad
+\mathbb P(\overline{A})=1-\mathbb P(A),
+\]
+
+\[
+A\subset B\Rightarrow\mathbb P(A)\le\mathbb P(B),
+\]
+
+\[
+A_n\uparrow A\Rightarrow\mathbb P(A_n)\uparrow\mathbb P(A),
+\]
+
+\[
+A_n\downarrow A\Rightarrow\mathbb P(A_n)\downarrow\mathbb P(A).
+\]
+
+Функция распределения \(F\) должна быть неубывающей, непрерывной справа,
+с пределами \(0\) и \(1\) на бесконечностях. Она задает меру на
+\(\mathcal B(\mathbb R)\):
+
+\[
+\mu_F((-\infty,x])=F(x),
+\qquad
+\mu_F((a,b])=F(b)-F(a).
+\]
+
+Скачок функции распределения равен массе точки:
+
+\[
+\mu_F(\{a\})=F(a)-F(a-).
+\]
+
+\newpage
+
+\end{document}

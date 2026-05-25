@@ -1,0 +1,1457 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 06. Распределения случайных величин, векторов и
+элементов. Конечномерные распределения и
+плотности}\label{ux431ux438ux43bux435ux442-06.-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux432ux435ux43bux438ux447ux438ux43d-ux432ux435ux43aux442ux43eux440ux43eux432-ux438-ux44dux43bux435ux43cux435ux43dux442ux43eux432.-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux438-ux43fux43bux43eux442ux43dux43eux441ux442ux438}
+
+Источники: Ширяев 1, гл. II; Сердобольская, лекция 1; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Распределение случайного элемента - это образ вероятностной меры при
+измеримом отображении. Если
+
+\[
+X:(\Omega,\mathcal F,P)\to(E,\mathcal E)
+\]
+
+измерим, то его распределение задается формулой
+
+\[
+P_X(B)=P\{X\in B\}=P(X^{-1}(B)),\qquad B\in\mathcal E.
+\]
+
+Для вещественной случайной величины распределение можно задавать
+функцией распределения
+
+\[
+F_X(x)=P\{X\le x\}.
+\]
+
+Для случайного вектора \(X=(X_1,\ldots,X_d)\):
+
+\[
+F_X(x_1,\ldots,x_d)=P\{X_1\le x_1,\ldots,X_d\le x_d\}.
+\]
+
+Для процесса \(\{X_t:t\in T\}\) конечномерные распределения - это
+распределения векторов
+
+\[
+(X_{t_1},\ldots,X_{t_n}).
+\]
+
+Если распределение имеет плотность \(p\), то вероятность множества
+считается интегралом:
+
+\[
+P_X(B)=\int_B p(x)\,dx.
+\]
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{6.1. Введение: перенос вероятностной
+меры}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux43fux435ux440ux435ux43dux43eux441-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux43eux439-ux43cux435ux440ux44b}
+
+В Билете 05 случайная величина была определена как измеримое
+отображение. Теперь главный вопрос: какую вероятность она задает на
+пространстве своих значений. Исходная вероятность \(P\) живет на
+\((\Omega,\mathcal F)\), но наблюдаем мы обычно не сам исход \(\omega\),
+а значение \(X(\omega)\). Поэтому вероятность нужно перенести с
+\(\Omega\) на пространство значений.
+
+\subsubsection{6.2. Определение распределения
+(закона)}\label{ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux437ux430ux43aux43eux43dux430}
+
+Пусть
+
+\[
+X:(\Omega,\mathcal F,P)\to(E,\mathcal E)
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  случайный элемент. Его распределением, или законом, называется мера
+  \(P_X\) на \((E,\mathcal E)\):
+\end{itemize}
+
+\[
+P_X(B)=P\{\omega:X(\omega)\in B\}=P(X^{-1}(B)),\qquad B\in\mathcal E.
+\]
+
+Эта формула корректна именно потому, что \(X\) измерим: для каждого
+\(B\in\mathcal E\) прообраз \(X^{-1}(B)\) лежит в \(\mathcal F\), значит
+имеет вероятность.
+
+\subsubsection{6.3. Свойства распределения как вероятностной
+меры}\label{ux441ux432ux43eux439ux441ux442ux432ux430-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43aux430ux43a-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux43eux439-ux43cux435ux440ux44b}
+
+Распределение является вероятностной мерой. Действительно,
+
+\[
+P_X(E)=P(X^{-1}(E))=P(\Omega)=1,
+\]
+
+а счетная аддитивность следует из того, что прообраз сохраняет
+дизъюнктные объединения:
+
+\[
+X^{-1}\left(\bigsqcup_{n=1}^{\infty}B_n\right)
+=
+\bigsqcup_{n=1}^{\infty}X^{-1}(B_n).
+\]
+
+\subsubsection{6.4. Функция распределения вещественной случайной
+величины}\label{ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux432ux435ux449ux435ux441ux442ux432ux435ux43dux43dux43eux439-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+Для вещественной случайной величины \(X\) распределение \(P_X\) - это
+вероятностная мера на \(\mathcal B(\mathbb R)\). Часто ее задают не
+самой мерой, а функцией распределения
+
+\[
+F_X(x)=P\{X\le x\}=P_X((-\infty,x]).
+\]
+
+Функция распределения не убывает, непрерывна справа и имеет пределы
+
+\[
+\lim_{x\to-\infty}F_X(x)=0,\qquad
+\lim_{x\to+\infty}F_X(x)=1.
+\]
+
+Наоборот, всякая функция с этими свойствами задает вероятностную меру на
+\(\mathcal B(\mathbb R)\); это уже использовалось в Билете 02.
+
+\subsubsection{6.5. Распределение и функция распределения случайного
+вектора}\label{ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux438-ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430}
+
+Для случайного вектора
+
+\[
+X=(X_1,\ldots,X_d)
+\]
+
+распределение \(P_X\) - это вероятностная мера на
+\(\mathcal B(\mathbb R^d)\). Его функция распределения:
+
+\[
+F_X(x_1,\ldots,x_d)
+=
+P\{X_1\le x_1,\ldots,X_d\le x_d\}.
+\]
+
+Она задает вероятности прямоугольников через разности значений \(F_X\).
+Например, в размерности \(2\):
+
+\[
+P\{a<X\le b,\ c<Y\le d\}
+=
+F(b,d)-F(a,d)-F(b,c)+F(a,c).
+\]
+
+В размерности \(d\) используется аналогичная формула
+включений-исключений по вершинам прямоугольника.
+
+\subsubsection{6.6. Комплексные случайные
+величины}\label{ux43aux43eux43cux43fux43bux435ux43aux441ux43dux44bux435-ux441ux43bux443ux447ux430ux439ux43dux44bux435-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+Комплексная случайная величина рассматривается как двумерный
+вещественный вектор:
+
+\[
+Z=X+iY
+\quad\Longleftrightarrow\quad
+(\operatorname{Re}Z,\operatorname{Im}Z)=(X,Y).
+\]
+
+Поэтому ее распределение - мера на \(\mathcal B(\mathbb C)\), что
+естественно отождествляется с \(\mathcal B(\mathbb R^2)\). Для
+комплексного случайного вектора из \(\mathbb C^m\) получают
+распределение в \(\mathbb R^{2m}\). Важно: у комплексных чисел нет
+естественного линейного порядка, поэтому обычно говорят не о функции
+\(P\{Z\le z\}\), а о распределении как мере или о совместной функции
+распределения вещественных и мнимых частей.
+
+\subsubsection{6.7. Распределение в метрических и функциональных
+пространствах}\label{ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux432-ux43cux435ux442ux440ux438ux447ux435ux441ux43aux438ux445-ux438-ux444ux443ux43dux43aux446ux438ux43eux43dux430ux43bux44cux43dux44bux445-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux430ux445}
+
+Если \(X\) - случайный элемент метрического пространства \((E,\rho)\),
+то его распределение - вероятностная мера на борелевской
+\(\sigma\)-алгебре \(\mathcal B(E)\). Например, случайная
+последовательность имеет распределение на пространстве
+\(\mathbb R^{\mathbb N}\) с произведенной \(\sigma\)-алгеброй, а
+случайная траектория - на выбранном пространстве функций, если это
+пространство снабжено подходящей \(\sigma\)-алгеброй.
+
+\subsubsection{6.8. Конечномерные распределения случайного
+процесса}\label{ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux43fux440ux43eux446ux435ux441ux441ux430}
+
+Для случайного процесса \(\{X_t:t\in T\}\) центральный объект -
+конечномерные распределения. Для любого набора моментов
+\(t_1,\ldots,t_n\) рассматривают случайный вектор
+
+\[
+(X_{t_1},\ldots,X_{t_n})
+\]
+
+и его распределение:
+
+\[
+P_{t_1,\ldots,t_n}(B)
+=
+P\{(X_{t_1},\ldots,X_{t_n})\in B\},
+\qquad B\in\mathcal B(\mathbb R^n).
+\]
+
+Если процесс вещественный, его конечномерная функция распределения:
+
+\[
+F_{t_1,\ldots,t_n}(x_1,\ldots,x_n)
+=
+P\{X_{t_1}\le x_1,\ldots,X_{t_n}\le x_n\}.
+\]
+
+Эти распределения описывают совместное поведение процесса в конечном
+числе моментов времени. Для полного задания закона процесса на
+пространстве последовательностей нужно согласованное семейство таких
+распределений; это будет темой Билета 15 и Билета 16.
+
+\subsubsection{6.9. Распределения с
+плотностью}\label{ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux441-ux43fux43bux43eux442ux43dux43eux441ux442ux44cux44e}
+
+Отдельный важный случай - распределения с плотностью. Если \(X\)
+принимает значения в \(\mathbb R^d\) и существует неотрицательная
+функция \(p\) такая, что
+
+\[
+\int_{\mathbb R^d}p(x)\,dx=1
+\]
+
+и
+
+\[
+P_X(B)=\int_B p(x)\,dx,
+\]
+
+то \(p\) называется плотностью распределения \(X\) относительно меры
+Лебега. В программе этого билета отдельно выделен случай непрерывной
+плотности: если \(p\) непрерывна, то вероятности прямоугольников и
+достаточно хороших областей можно понимать через обычный несобственный
+интеграл Римана. Например,
+
+\[
+F_X(x)=\int_{-\infty}^{x}p(u)\,du
+\]
+
+в одномерном случае и
+
+\[
+F_X(x_1,\ldots,x_d)
+=
+\int_{-\infty}^{x_1}\cdots\int_{-\infty}^{x_d}
+p(u_1,\ldots,u_d)\,du_d\cdots du_1
+\]
+
+в \(d\)-мерном случае.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Распределение случайного
+элемента}\label{ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux44dux43bux435ux43cux435ux43dux442ux430}
+
+Пусть \(X:(\Omega,\mathcal F,P)\to(E,\mathcal E)\) измерим.
+Распределение \(X\) - это мера
+
+\[
+P_X=P\circ X^{-1}
+\]
+
+на \((E,\mathcal E)\), заданная формулой
+
+\[
+P_X(B)=P(X^{-1}(B)),\qquad B\in\mathcal E.
+\]
+
+\subsubsection{Закон случайной
+величины}\label{ux437ux430ux43aux43eux43d-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b}
+
+То же самое, что распределение. Записи
+
+\[
+X\sim\mu,\qquad P_X=\mu
+\]
+
+означают, что случайная величина \(X\) имеет распределение \(\mu\).
+
+\subsubsection{Функция распределения вещественной случайной
+величины}\label{ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux432ux435ux449ux435ux441ux442ux432ux435ux43dux43dux43eux439-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b-1}
+
+\[
+F_X(x)=P\{X\le x\}=P_X((-\infty,x]).
+\]
+
+\subsubsection{Атом
+распределения}\label{ux430ux442ux43eux43c-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Точка \(a\), для которой
+
+\[
+P\{X=a\}>0.
+\]
+
+Скачок функции распределения в точке \(a\) равен массе атома:
+
+\[
+P\{X=a\}=F_X(a)-F_X(a-),
+\]
+
+где
+
+\[
+F_X(a-)=\lim_{x\uparrow a}F_X(x).
+\]
+
+\subsubsection{Дискретное
+распределение}\label{ux434ux438ux441ux43aux440ux435ux442ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+Распределение, сосредоточенное на конечном или счетном множестве
+\(\{x_k\}\):
+
+\[
+P\{X=x_k\}=p_k,\qquad p_k\ge0,\qquad \sum_k p_k=1.
+\]
+
+\subsubsection{Распределение случайного
+вектора}\label{ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430}
+
+Для
+
+\[
+X=(X_1,\ldots,X_d)
+\]
+
+это мера \(P_X\) на \(\mathcal B(\mathbb R^d)\):
+
+\[
+P_X(B)=P\{(X_1,\ldots,X_d)\in B\}.
+\]
+
+\subsubsection{Функция распределения случайного
+вектора}\label{ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux432ux435ux43aux442ux43eux440ux430}
+
+\[
+F_X(x_1,\ldots,x_d)
+=
+P\{X_1\le x_1,\ldots,X_d\le x_d\}.
+\]
+
+\subsubsection{Комплексная случайная
+величина}\label{ux43aux43eux43cux43fux43bux435ux43aux441ux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Случайная величина со значениями в \(\mathbb C\), понимаемая как
+случайный вектор
+
+\[
+Z=\operatorname{Re}Z+i\operatorname{Im}Z
+\quad\leftrightarrow\quad
+(\operatorname{Re}Z,\operatorname{Im}Z)\in\mathbb R^2.
+\]
+
+Ее распределение - мера на
+\(\mathcal B(\mathbb C)\simeq\mathcal B(\mathbb R^2)\).
+
+\subsubsection{Случайный элемент метрического
+пространства}\label{ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux44dux43bux435ux43cux435ux43dux442-ux43cux435ux442ux440ux438ux447ux435ux441ux43aux43eux433ux43e-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux430}
+
+Измеримое отображение
+
+\[
+X:(\Omega,\mathcal F,P)\to(E,\mathcal B(E)),
+\]
+
+где \((E,\rho)\) - метрическое пространство. Его распределение -
+вероятностная мера на \(\mathcal B(E)\).
+
+\subsubsection{Конечномерное распределение
+процесса}\label{ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux43fux440ux43eux446ux435ux441ux441ux430}
+
+Для процесса \(\{X_t:t\in T\}\) и набора \(t_1,\ldots,t_n\) это
+распределение случайного вектора
+
+\[
+(X_{t_1},\ldots,X_{t_n}).
+\]
+
+\subsubsection{Конечномерная функция
+распределения}\label{ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\[
+F_{t_1,\ldots,t_n}(x_1,\ldots,x_n)
+=
+P\{X_{t_1}\le x_1,\ldots,X_{t_n}\le x_n\}.
+\]
+
+\subsubsection{Плотность
+распределения}\label{ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Измеримая функция \(p:\mathbb R^d\to\mathbb R\), неотрицательная почти
+всюду, такая, что
+
+\[
+\int_{\mathbb R^d}p(x)\,dx=1
+\]
+
+и для допустимых множеств \(B\) выполнено
+
+\[
+P_X(B)=\int_B p(x)\,dx.
+\]
+
+В языке меры это означает, что \(P_X\) абсолютно непрерывно относительно
+меры Лебега, а \(p\) является производной Радона-Никодима; формально это
+будет связано с Билетом 10.
+
+\subsubsection{Маргинальное
+распределение}\label{ux43cux430ux440ux433ux438ux43dux430ux43bux44cux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+Распределение части координат случайного вектора. Если \(X=(X_1,X_2)\),
+то распределение \(X_1\) получается из совместного распределения:
+
+\[
+P_{X_1}(B)=P_{(X_1,X_2)}(B\times\mathbb R).
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Свойство 1. Распределение случайного элемента является
+вероятностной
+мерой}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-1.-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux44dux43bux435ux43cux435ux43dux442ux430-ux44fux432ux43bux44fux435ux442ux441ux44f-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux43eux439-ux43cux435ux440ux43eux439}
+
+Пусть \(X:(\Omega,\mathcal F,P)\to(E,\mathcal E)\) измерим. Тогда
+\(P_X\) - вероятностная мера на \((E,\mathcal E)\).
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e}
+
+Во-первых,
+
+\[
+P_X(E)=P(X^{-1}(E))=P(\Omega)=1.
+\]
+
+Во-вторых, если \(B_1,B_2,\ldots\in\mathcal E\) попарно не пересекаются,
+то их прообразы тоже попарно не пересекаются, и
+
+\[
+X^{-1}\left(\bigsqcup_{n=1}^{\infty}B_n\right)
+=
+\bigsqcup_{n=1}^{\infty}X^{-1}(B_n).
+\]
+
+По счетной аддитивности \(P\):
+
+\[
+P_X\left(\bigsqcup_{n=1}^{\infty}B_n\right)
+=
+\sum_{n=1}^{\infty}P_X(B_n).
+\]
+
+Значит \(P_X\) - вероятностная мера. \(\square\)
+
+\subsubsection{Свойство 2. Распределение вещественной случайной величины
+задается функцией
+распределения}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-2.-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux432ux435ux449ux435ux441ux442ux432ux435ux43dux43dux43eux439-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux432ux435ux43bux438ux447ux438ux43dux44b-ux437ux430ux434ux430ux435ux442ux441ux44f-ux444ux443ux43dux43aux446ux438ux435ux439-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Если
+
+\[
+F_X(x)=P\{X\le x\},
+\]
+
+то значения \(F_X\) однозначно задают меру \(P_X\) на
+\(\mathcal B(\mathbb R)\).
+
+\subsubsection{Обоснование}\label{ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux435}
+
+Для каждого \(x\)
+
+\[
+P_X((-\infty,x])=F_X(x).
+\]
+
+Лучами \((-\infty,x]\) порождается \(\mathcal B(\mathbb R)\), поэтому
+вероятностная мера на \(\mathcal B(\mathbb R)\) однозначно определяется
+значениями на этих лучах. Теорема о существовании меры по функции
+распределения формулировалась в Билете 02 без доказательства.
+
+\subsubsection{Свойство 3. Свойства функции распределения на
+прямой}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-3.-ux441ux432ux43eux439ux441ux442ux432ux430-ux444ux443ux43dux43aux446ux438ux438-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43dux430-ux43fux440ux44fux43cux43eux439}
+
+Функция распределения \(F\) любой вещественной случайной величины
+обладает свойствами:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(F\) не убывает;
+\item
+  \(F\) непрерывна справа;
+\item
+  \(\lim_{x\to-\infty}F(x)=0\);
+\item
+  \(\lim_{x\to+\infty}F(x)=1\).
+\end{enumerate}
+
+\subsubsection{Доказательство-идея}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux438ux434ux435ux44f}
+
+Монотонность следует из вложения лучей:
+
+\[
+x\le y\Rightarrow (-\infty,x]\subset(-\infty,y].
+\]
+
+Правые пределы и пределы на бесконечностях следуют из непрерывности
+вероятностной меры сверху и снизу для монотонных последовательностей
+событий. Например, если \(x_n\downarrow x\), то
+
+\[
+(-\infty,x_n]\downarrow(-\infty,x],
+\]
+
+поэтому
+
+\[
+F(x_n)\downarrow F(x).
+\]
+
+\subsubsection{Свойство 4. Масса точки равна скачку функции
+распределения}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-4.-ux43cux430ux441ux441ux430-ux442ux43eux447ux43aux438-ux440ux430ux432ux43dux430-ux441ux43aux430ux447ux43aux443-ux444ux443ux43dux43aux446ux438ux438-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Для вещественной случайной величины
+
+\[
+P\{X=a\}=F(a)-F(a-).
+\]
+
+\subsubsection{Доказательство}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-1}
+
+События \(\{X\le x\}\) при \(x\uparrow a\) возрастают к событию
+\(\{X<a\}\). Поэтому
+
+\[
+F(a-)=P\{X<a\}.
+\]
+
+Тогда
+
+\[
+P\{X=a\}=P\{X\le a\}-P\{X<a\}=F(a)-F(a-).
+\]
+
+\subsubsection{Свойство 5. Вероятность промежутка через функцию
+распределения}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-5.-ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux44c-ux43fux440ux43eux43cux435ux436ux443ux442ux43aux430-ux447ux435ux440ux435ux437-ux444ux443ux43dux43aux446ux438ux44e-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Для \(a<b\):
+
+\[
+P\{a<X\le b\}=F(b)-F(a).
+\]
+
+Также
+
+\[
+P\{X\le b\}=F(b),\qquad
+P\{X>b\}=1-F(b).
+\]
+
+Остальные варианты интервалов требуют учета атомов на концах.
+
+\subsubsection{Свойство 6. Совместная функция распределения задает
+распределение
+вектора}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-6.-ux441ux43eux432ux43cux435ux441ux442ux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux437ux430ux434ux430ux435ux442-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux432ux435ux43aux442ux43eux440ux430}
+
+Для случайного вектора \(X\in\mathbb R^d\) функция
+
+\[
+F_X(x)=P\{X_1\le x_1,\ldots,X_d\le x_d\}
+\]
+
+задает значения распределения на прямоугольниках вида
+
+\[
+(-\infty,x_1]\times\cdots\times(-\infty,x_d],
+\]
+
+а такие прямоугольники порождают \(\mathcal B(\mathbb R^d)\). Поэтому
+\(F_X\) однозначно задает распределение \(P_X\).
+
+\subsubsection{Свойство 7. Маргинальные распределения получаются из
+совместного}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-7.-ux43cux430ux440ux433ux438ux43dux430ux43bux44cux43dux44bux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43fux43eux43bux443ux447ux430ux44eux442ux441ux44f-ux438ux437-ux441ux43eux432ux43cux435ux441ux442ux43dux43eux433ux43e}
+
+Если \(X=(X_1,\ldots,X_d)\) и нужно распределение координат с номерами
+\(i_1,\ldots,i_k\), то
+
+\[
+P_{(X_{i_1},\ldots,X_{i_k})}(B)
+=
+P_X(\pi^{-1}(B)),
+\]
+
+где \(\pi:\mathbb R^d\to\mathbb R^k\) - соответствующая координатная
+проекция.
+
+Для функций распределения это соответствует отправлению лишних
+аргументов в \(+\infty\). Например:
+
+\[
+F_{X_1}(x)=\lim_{y\to+\infty}F_{(X_1,X_2)}(x,y).
+\]
+
+\subsubsection{Свойство 8. Плотность неотрицательна и имеет интеграл
+1}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-8.-ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux43dux435ux43eux442ux440ux438ux446ux430ux442ux435ux43bux44cux43dux430-ux438-ux438ux43cux435ux435ux442-ux438ux43dux442ux435ux433ux440ux430ux43b-1}
+
+Если \(p\) - плотность распределения на \(\mathbb R^d\), то
+
+\[
+p(x)\ge0\quad\text{почти всюду}
+\]
+
+и
+
+\[
+\int_{\mathbb R^d}p(x)\,dx=1.
+\]
+
+Вероятность области \(B\) равна интегралу плотности по этой области:
+
+\[
+P_X(B)=\int_Bp(x)\,dx.
+\]
+
+В одномерном непрерывном случае:
+
+\[
+F(x)=\int_{-\infty}^{x}p(u)\,du.
+\]
+
+\subsubsection{Свойство 9. Плотность совместного распределения дает
+маргинальные плотности
+интегрированием}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-9.-ux43fux43bux43eux442ux43dux43eux441ux442ux44c-ux441ux43eux432ux43cux435ux441ux442ux43dux43eux433ux43e-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux434ux430ux435ux442-ux43cux430ux440ux433ux438ux43dux430ux43bux44cux43dux44bux435-ux43fux43bux43eux442ux43dux43eux441ux442ux438-ux438ux43dux442ux435ux433ux440ux438ux440ux43eux432ux430ux43dux438ux435ux43c}
+
+Если \((X,Y)\) имеет совместную плотность \(p_{X,Y}(x,y)\), то плотность
+\(X\) равна
+
+\[
+p_X(x)=\int_{-\infty}^{+\infty}p_{X,Y}(x,y)\,dy,
+\]
+
+если этот интеграл корректно определен.
+
+В многомерном случае маргинальная плотность получается интегрированием
+совместной плотности по лишним координатам.
+
+\subsubsection{Свойство 10. Конечномерные распределения процесса должны
+быть
+согласованы}\label{ux441ux432ux43eux439ux441ux442ux432ux43e-10.-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43fux440ux43eux446ux435ux441ux441ux430-ux434ux43eux43bux436ux43dux44b-ux431ux44bux442ux44c-ux441ux43eux433ux43bux430ux441ux43eux432ux430ux43dux44b}
+
+Если конечномерные распределения действительно получены из одного
+процесса, то они согласованы при перестановке координат и при
+вычеркивании координат. Например,
+
+\[
+P_{t_1,t_2}(B_1\times\mathbb R)=P_{t_1}(B_1),
+\]
+
+и
+
+\[
+P_{t_2,t_1}(B_2\times B_1)=P_{t_1,t_2}(B_1\times B_2).
+\]
+
+Полная теорема о том, когда согласованное семейство задает процесс,
+относится к Билету 15.
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Пример 1. Распределение
+Бернулли}\label{ux43fux440ux438ux43cux435ux440-1.-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux431ux435ux440ux43dux443ux43bux43bux438}
+
+Пусть
+
+\[
+P\{X=1\}=p,\qquad P\{X=0\}=1-p.
+\]
+
+Тогда распределение \(X\) сосредоточено на \(\{0,1\}\):
+
+\[
+P_X=(1-p)\delta_0+p\delta_1.
+\]
+
+Функция распределения:
+
+\[
+F_X(x)=
+\begin{cases}
+0, & x<0,\\
+1-p, & 0\le x<1,\\
+1, & x\ge1.
+\end{cases}
+\]
+
+У этой функции скачки в точках \(0\) и \(1\), равные массам
+соответствующих атомов.
+
+\subsubsection{\texorpdfstring{Пример 2. Равномерное распределение на
+\([0,1]\)}{Пример 2. Равномерное распределение на {[}0,1{]}}}\label{ux43fux440ux438ux43cux435ux440-2.-ux440ux430ux432ux43dux43eux43cux435ux440ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux43dux430-01}
+
+Если \(X\) равномерна на \([0,1]\), то
+
+\[
+p(x)=
+\begin{cases}
+1, & x\in[0,1],\\
+0, & x\notin[0,1].
+\end{cases}
+\]
+
+Функция распределения:
+
+\[
+F_X(x)=
+\begin{cases}
+0, & x<0,\\
+x, & 0\le x\le1,\\
+1, & x>1.
+\end{cases}
+\]
+
+\subsubsection{Пример 3. Случайный вектор с
+плотностью}\label{ux43fux440ux438ux43cux435ux440-3.-ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux432ux435ux43aux442ux43eux440-ux441-ux43fux43bux43eux442ux43dux43eux441ux442ux44cux44e}
+
+Пусть \((X,Y)\) имеет плотность \(p(x,y)\). Тогда
+
+\[
+P\{(X,Y)\in B\}=\iint_B p(x,y)\,dx\,dy.
+\]
+
+Например,
+
+\[
+P\{a<X\le b,\ c<Y\le d\}
+=
+\int_a^b\int_c^d p(x,y)\,dy\,dx.
+\]
+
+Маргинальная плотность \(X\):
+
+\[
+p_X(x)=\int_{-\infty}^{+\infty}p(x,y)\,dy.
+\]
+
+\subsubsection{Пример 4. Комплексная случайная
+величина}\label{ux43fux440ux438ux43cux435ux440-4.-ux43aux43eux43cux43fux43bux435ux43aux441ux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Пусть
+
+\[
+Z=X+iY.
+\]
+
+Распределение \(Z\) - это распределение вектора \((X,Y)\) на плоскости.
+Например,
+
+\[
+P\{Z\in B\}=P\{(X,Y)\in \widetilde B\},
+\]
+
+где \(\widetilde B\subset\mathbb R^2\) - множество, соответствующее
+\(B\subset\mathbb C\) при отождествлении \(\mathbb C\) и
+\(\mathbb R^2\).
+
+\subsubsection{Пример 5. Конечномерное распределение случайной
+последовательности}\label{ux43fux440ux438ux43cux435ux440-5.-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438}
+
+Пусть \(X_1,X_2,\ldots\) - случайная последовательность. Для индексов
+\(1,3,5\) конечномерное распределение:
+
+\[
+P_{1,3,5}(B)=P\{(X_1,X_3,X_5)\in B\},
+\qquad B\in\mathcal B(\mathbb R^3).
+\]
+
+Его функция распределения:
+
+\[
+F_{1,3,5}(x_1,x_3,x_5)
+=
+P\{X_1\le x_1,\ X_3\le x_3,\ X_5\le x_5\}.
+\]
+
+\subsubsection{Пример 6. Распределение случайного
+элемента}\label{ux43fux440ux438ux43cux435ux440-6.-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux441ux43bux443ux447ux430ux439ux43dux43eux433ux43e-ux44dux43bux435ux43cux435ux43dux442ux430}
+
+Пусть
+
+\[
+X(\omega)=(X_1(\omega),X_2(\omega),\ldots)
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  случайная последовательность как элемент \(\mathbb R^{\mathbb N}\).
+  Тогда ее распределение - мера на пространстве последовательностей.
+  Цилиндрическое событие
+\end{itemize}
+
+\[
+C=\{x\in\mathbb R^{\mathbb N}:x_1\le a,\ x_2\in B,\ x_5\le c\}
+\]
+
+имеет вероятность
+
+\[
+P_X(C)=P\{X_1\le a,\ X_2\in B,\ X_5\le c\}.
+\]
+
+\subsection{6. Доказательства и
+обоснования}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux430-ux438-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux44f}
+
+\textbf{Почему распределение называют образом меры.}
+
+Формула
+
+\[
+P_X(B)=P(X^{-1}(B))
+\]
+
+переносит меру \(P\) с исходного пространства на пространство значений.
+Поэтому \(P_X\) называют образом меры \(P\) при отображении \(X\) и
+пишут
+
+\[
+P_X=P\circ X^{-1}.
+\]
+
+\textbf{Почему одной функции распределения хватает на прямой.}
+
+На прямой борелевская \(\sigma\)-алгебра порождается лучами
+\((-\infty,x]\). Функция \(F_X\) задает вероятности всех таких лучей.
+Так как вероятностная мера на порождающем классе при стандартных
+условиях продолжается единственным образом, \(F_X\) задает все
+распределение.
+
+\textbf{Почему для вектора нужны совместные распределения, а не только
+маргинальные.}
+
+Маргинальные распределения \(X\) и \(Y\) не определяют совместное
+распределение \((X,Y)\). Например, если \(X\) симметрична и принимает
+значения \(\pm1\), то пары
+
+\[
+(X,X)
+\quad\text{и}\quad
+(X,-X)
+\]
+
+имеют одинаковые одномерные маргинальные распределения, но разные
+совместные распределения.
+
+\textbf{Почему плотность не является вероятностью точки.}
+
+Для непрерывного распределения с плотностью
+
+\[
+P\{X=a\}=\int_{\{a\}}p(x)\,dx=0.
+\]
+
+Значение \(p(a)\) может быть больше \(1\) и не является вероятностью.
+Вероятности получаются только после интегрирования плотности по
+множеству положительной длины или объема.
+
+\textbf{Почему комплексный случай сводится к вещественному векторному.}
+
+Пространство \(\mathbb C^m\) естественно отождествляется с
+\(\mathbb R^{2m}\):
+
+\[
+(z_1,\ldots,z_m)
+\leftrightarrow
+(\operatorname{Re}z_1,\operatorname{Im}z_1,\ldots,\operatorname{Re}z_m,\operatorname{Im}z_m).
+\]
+
+Поэтому распределения комплексных величин - это обычные распределения
+вещественных векторов четной размерности.
+
+\textbf{Почему конечномерные распределения процесса должны быть
+согласованы.}
+
+Если распределение вектора \((X_{t_1},X_{t_2})\) известно, то
+распределение одной координаты \(X_{t_1}\) получается из него
+автоматически:
+
+\[
+P\{X_{t_1}\in B\}=P\{(X_{t_1},X_{t_2})\in B\times\mathbb R\}.
+\]
+
+Поэтому нельзя произвольно назначать распределения для разных наборов
+времен: они должны давать одинаковые ответы на пересекающихся наборах
+координат.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Распределение как образ меры:
+\end{enumerate}
+
+\[
+P_X=P\circ X^{-1},
+\qquad
+P_X(B)=P\{X\in B\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Функция распределения:
+\end{enumerate}
+
+\[
+F_X(x)=P\{X\le x\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Случайный вектор:
+\end{enumerate}
+
+\[
+F_X(x_1,\ldots,x_d)
+=
+P\{X_1\le x_1,\ldots,X_d\le x_d\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Конечномерные распределения процесса:
+\end{enumerate}
+
+\[
+P_{t_1,\ldots,t_n}(B)
+=
+P\{(X_{t_1},\ldots,X_{t_n})\in B\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Конечномерная функция распределения:
+\end{enumerate}
+
+\[
+F_{t_1,\ldots,t_n}(x_1,\ldots,x_n)
+=
+P\{X_{t_1}\le x_1,\ldots,X_{t_n}\le x_n\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Плотность:
+\end{enumerate}
+
+\[
+p\ge0,\qquad
+\int_{\mathbb R^d}p(x)\,dx=1,\qquad
+P_X(B)=\int_Bp(x)\,dx.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Маргинализация:
+\end{enumerate}
+
+\[
+P_{X_1}(B)=P_{(X_1,X_2)}(B\times\mathbb R),
+\qquad
+p_X(x)=\int p_{X,Y}(x,y)\,dy.
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Вопрос. Что такое распределение случайной величины?}
+
+Это вероятностная мера на пространстве значений:
+
+\[
+P_X(B)=P\{X\in B\}.
+\]
+
+Для вещественной случайной величины это мера на
+\(\mathcal B(\mathbb R)\).
+
+\textbf{Вопрос. Почему формула \(P_X(B)=P\{X\in B\}\) корректна?}
+
+Потому что \(X\) измерима, значит \(\{X\in B\}=X^{-1}(B)\in\mathcal F\)
+для каждого \(B\) из \(\sigma\)-алгебры пространства значений.
+
+\textbf{Вопрос. Чем распределение отличается от функции распределения?}
+
+Распределение - это мера \(P_X\). Функция распределения - числовая
+функция \(F_X(x)=P\{X\le x\}\), которая в вещественном случае задает эту
+меру.
+
+\textbf{Вопрос. Чем распределение отличается от плотности?}
+
+Распределение - мера. Плотность - функция, которую нужно интегрировать,
+чтобы получить вероятности:
+
+\[
+P_X(B)=\int_Bp(x)\,dx.
+\]
+
+Плотность существует не у всякого распределения.
+
+\textbf{Вопрос. Может ли плотность быть больше единицы?}
+
+Да. Плотность не является вероятностью. Например, равномерное
+распределение на \([0,\tfrac12]\) имеет плотность \(2\) на этом
+интервале.
+
+\textbf{Вопрос. Как получить распределение координаты из совместного
+распределения?}
+
+Нужно взять проекцию или отправить остальные координаты в \(\mathbb R\):
+
+\[
+P_{X_1}(B)=P_{(X_1,X_2)}(B\times\mathbb R).
+\]
+
+\textbf{Вопрос. Задают ли маргинальные распределения совместное?}
+
+Нет. Они не содержат информации о зависимости между координатами. Для
+совместного закона нужна совместная мера или совместная функция
+распределения.
+
+\textbf{Вопрос. Как понимать распределение комплексной случайной
+величины?}
+
+Как распределение двумерного вещественного вектора
+\((\operatorname{Re}Z,\operatorname{Im}Z)\) на плоскости.
+
+\textbf{Вопрос. Что такое конечномерные распределения процесса?}
+
+Это распределения всех конечных наборов координат:
+
+\[
+(X_{t_1},\ldots,X_{t_n}).
+\]
+
+\textbf{Вопрос. Почему конечномерные распределения должны быть
+согласованы?}
+
+Потому что распределение меньшего набора координат должно получаться из
+распределения большего набора маргинализацией.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Путать случайную величину \(X\), ее распределение \(P_X\), функцию
+  распределения \(F_X\) и плотность \(p\).
+\item
+  Говорить о плотности у любого распределения. У дискретного
+  распределения относительно меры Лебега плотности нет.
+\item
+  Считать значение плотности вероятностью: \(p(x)\) - не вероятность
+  точки.
+\item
+  Забывать, что комплексная случайная величина задается двумя
+  вещественными координатами.
+\item
+  Думать, что одномерные маргиналы задают совместное распределение.
+\item
+  Забывать согласованность конечномерных распределений процесса.
+\item
+  Использовать формулу \(F_X(x)=P\{X\le x\}\) для объектов без порядка,
+  например для общего метрического пространства. Там основной объект -
+  мера \(P_X\).
+\end{enumerate}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\textbf{Билет 02.} Функция распределения на прямой задает вероятностную
+меру; это основа перехода от \(F\) к \(P_X\).
+
+\textbf{Билет 04.} Распределения вещественных и векторных случайных
+величин живут на борелевских \(\sigma\)-алгебрах.
+
+\textbf{Билет 05.} Измеримость случайного элемента нужна, чтобы формула
+\(P_X(B)=P(X^{-1}(B))\) была корректной.
+
+\textbf{Билет 07.} Интегралы по плотности и математические ожидания
+требуют аппарата интеграла Лебега.
+
+\textbf{Билет 08.} Характеристическая функция является преобразованием
+Фурье распределения.
+
+\textbf{Билет 09.} Независимость случайных величин выражается через
+факторизацию совместного распределения.
+
+\textbf{Билет 10.} Плотность в общем виде описывается теоремой
+Радона-Никодима.
+
+\textbf{Билет 11.} Замена переменной связывает интегралы по
+вероятностному пространству и по распределению.
+
+\textbf{Билет 15.} Согласованные конечномерные распределения задают
+случайный процесс.
+
+\textbf{Билет 16.} Дискретный случайный процесс можно рассматривать как
+случайный элемент пространства последовательностей; его закон задается
+распределением на этом пространстве.
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно уметь сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Распределение случайного элемента:
+\end{enumerate}
+
+\[
+P_X(B)=P\{X\in B\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Для вещественной случайной величины:
+\end{enumerate}
+
+\[
+F_X(x)=P\{X\le x\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Для случайного вектора:
+\end{enumerate}
+
+\[
+F_X(x_1,\ldots,x_d)
+=
+P\{X_1\le x_1,\ldots,X_d\le x_d\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Для процесса конечномерные распределения - это распределения векторов
+  \((X_{t_1},\ldots,X_{t_n})\).
+\item
+  При плотности:
+\end{enumerate}
+
+\[
+P_X(B)=\int_Bp(x)\,dx.
+\]
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Кроме минимума на удовлетворительно, нужно:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Объяснить, почему \(P_X\) является вероятностной мерой.
+\item
+  Назвать свойства функции распределения: монотонность, правую
+  непрерывность, пределы \(0\) и \(1\).
+\item
+  Показать, как вероятности интервалов выражаются через \(F\).
+\item
+  Объяснить разницу между распределением, функцией распределения и
+  плотностью.
+\item
+  Рассказать, как получить маргинальное распределение из совместного.
+\end{enumerate}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Доказательство переноса меры через прообраз.
+\item
+  Формулу скачка:
+\end{enumerate}
+
+\[
+P\{X=a\}=F(a)-F(a-).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Комплексный случай как распределение вещественного вектора из
+  действительных и мнимых частей.
+\item
+  Согласованность конечномерных распределений процесса.
+\item
+  Предупреждение, что маргинальные распределения не определяют
+  совместное.
+\item
+  Уточнение: непрерывная плотность позволяет считать вероятности через
+  интеграл Римана на прямоугольниках и хороших областях, но общий язык
+  плотностей - мера Лебега.
+\end{enumerate}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+Распределение случайного элемента - это способ перенести вероятность с
+пространства исходов на пространство значений. Пусть
+
+\[
+X:(\Omega,\mathcal F,P)\to(E,\mathcal E)
+\]
+
+измерим. Тогда его распределение:
+
+\[
+P_X(B)=P\{X\in B\}=P(X^{-1}(B)),\qquad B\in\mathcal E.
+\]
+
+Это вероятностная мера на \((E,\mathcal E)\). Измеримость нужна, чтобы
+\(X^{-1}(B)\) было событием.
+
+Для вещественной случайной величины распределение можно задавать
+функцией распределения:
+
+\[
+F_X(x)=P\{X\le x\}.
+\]
+
+Она не убывает, непрерывна справа, имеет предел \(0\) при
+\(x\to-\infty\) и предел \(1\) при \(x\to+\infty\). Вероятность
+полуинтервала выражается как
+
+\[
+P\{a<X\le b\}=F(b)-F(a).
+\]
+
+Масса точки равна скачку:
+
+\[
+P\{X=a\}=F(a)-F(a-).
+\]
+
+Для случайного вектора \(X=(X_1,\ldots,X_d)\) распределение - мера на
+\(\mathcal B(\mathbb R^d)\), а совместная функция распределения:
+
+\[
+F_X(x_1,\ldots,x_d)
+=
+P\{X_1\le x_1,\ldots,X_d\le x_d\}.
+\]
+
+Комплексная случайная величина рассматривается как двумерный
+вещественный вектор \((\operatorname{Re}Z,\operatorname{Im}Z)\).
+
+Для процесса \(\{X_t:t\in T\}\) конечномерные распределения - это
+распределения векторов
+
+\[
+(X_{t_1},\ldots,X_{t_n})
+\]
+
+для всех конечных наборов времен. Они должны быть согласованы при
+перестановке и вычеркивании координат.
+
+Если распределение имеет плотность \(p\), то
+
+\[
+p\ge0\text{ почти всюду},\qquad
+\int p(x)\,dx=1,\qquad
+P_X(B)=\int_Bp(x)\,dx.
+\]
+
+В одномерном случае
+
+\[
+F(x)=\int_{-\infty}^{x}p(u)\,du.
+\]
+
+Важно не путать распределение, функцию распределения и плотность:
+распределение - мера, функция распределения - способ задать меру на
+прямой, плотность - функция под интегралом и существует не всегда.
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить:
+
+\[
+P_X=P\circ X^{-1},
+\qquad
+P_X(B)=P\{X\in B\}.
+\]
+
+Для вещественной случайной величины:
+
+\[
+F_X(x)=P\{X\le x\}.
+\]
+
+Для вектора:
+
+\[
+F_X(x_1,\ldots,x_d)
+=
+P\{X_1\le x_1,\ldots,X_d\le x_d\}.
+\]
+
+Для процесса:
+
+\[
+F_{t_1,\ldots,t_n}(x_1,\ldots,x_n)
+=
+P\{X_{t_1}\le x_1,\ldots,X_{t_n}\le x_n\}.
+\]
+
+При плотности:
+
+\[
+P_X(B)=\int_Bp(x)\,dx,\qquad
+p\ge0,\qquad
+\int p=1.
+\]
+
+Главная ловушка: \(P_X\), \(F_X\) и \(p\) - разные объекты. Плотность
+есть не у всякого распределения.
+
+\newpage
+
+\end{document}

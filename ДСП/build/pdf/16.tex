@@ -1,0 +1,1283 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 16. Дискретный случайный процесс как последовательность
+случайных величин и как случайная
+последовательность}\label{ux431ux438ux43bux435ux442-16.-ux434ux438ux441ux43aux440ux435ux442ux43dux44bux439-ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux43fux440ux43eux446ux435ux441ux441-ux43aux430ux43a-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux432ux435ux43bux438ux447ux438ux43d-ux438-ux43aux430ux43a-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c}
+
+Источники: Ширяев 2; Сердобольская, лекция 1.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Дискретный случайный процесс можно понимать двумя эквивалентными
+способами.
+
+Первый способ: это семейство случайных величин
+
+\[
+\{X_n:n\in\mathbb N_0\}
+\]
+
+на одном вероятностном пространстве
+
+\[
+(\Omega,\mathcal F,P),
+\]
+
+где каждое
+
+\[
+X_n:\Omega\to E
+\]
+
+измеримо.
+
+Второй способ: это одна случайная последовательность, то есть одно
+измеримое отображение
+
+\[
+X:\Omega\to E^{\mathbb N_0},
+\qquad
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+Закон процесса - это распределение этого отображения:
+
+\[
+P_X(A)=P\{\omega:X(\omega)\in A\},
+\qquad
+A\in\mathcal E^{\mathbb N_0}.
+\]
+
+Конечномерные распределения процесса - это маргиналы закона \(P_X\) на
+конечные наборы координат:
+
+\[
+P\{(X_{n_1},\ldots,X_{n_k})\in B\}
+=
+P_X\{x:(x_{n_1},\ldots,x_{n_k})\in B\}.
+\]
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Введение и дискретное
+время}\label{ux432ux432ux435ux434ux435ux43dux438ux435-ux438-ux434ux438ux441ux43aux440ux435ux442ux43dux43eux435-ux432ux440ux435ux43cux44f}
+
+Этот билет продолжает Билет 15. Там теорема Колмогорова объясняла, как
+по согласованным конечномерным распределениям построить меру на
+пространстве траекторий. Здесь нужно разобрать самый важный для курса
+частный случай: дискретное время, то есть случайные последовательности.
+
+Пусть время дискретно:
+
+\[
+n=0,1,2,\ldots
+\]
+
+или
+
+\[
+n\in\mathbb Z.
+\]
+
+Обычно в этом билете достаточно рассматривать
+
+\[
+\mathbb N_0=\{0,1,2,\ldots\}.
+\]
+
+Пусть пространство состояний равно \(E\), например \(E=\mathbb R\),
+\(E=\mathbb R^d\) или счетное множество состояний. На \(E\) задана
+\(\sigma\)-алгебра \(\mathcal E\), обычно борелевская \(\mathcal B(E)\).
+
+\subsubsection{2.2. Первая точка зрения: последовательность случайных
+величин}\label{ux43fux435ux440ux432ux430ux44f-ux442ux43eux447ux43aux430-ux437ux440ux435ux43dux438ux44f-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux432ux435ux43bux438ux447ux438ux43d}
+
+Первая точка зрения: дискретный случайный процесс - это
+последовательность случайных элементов
+
+\[
+X_0,X_1,X_2,\ldots
+\]
+
+на одном вероятностном пространстве
+
+\[
+(\Omega,\mathcal F,P),
+\]
+
+где
+
+\[
+X_n:(\Omega,\mathcal F)\to(E,\mathcal E)
+\]
+
+измеримо для каждого \(n\).
+
+Здесь \(n\) - время, а \(\omega\) - исход. Для фиксированного \(n\)
+величина
+
+\[
+X_n(\omega)
+\]
+
+показывает состояние процесса в момент времени \(n\).
+
+\subsubsection{2.3. Вторая точка зрения: пространство
+траекторий}\label{ux432ux442ux43eux440ux430ux44f-ux442ux43eux447ux43aux430-ux437ux440ux435ux43dux438ux44f-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-ux442ux440ux430ux435ux43aux442ux43eux440ux438ux439}
+
+Вторая точка зрения: весь процесс можно рассматривать как одно
+отображение в пространство последовательностей:
+
+\[
+X:\Omega\to E^{\mathbb N_0},
+\]
+
+где
+
+\[
+X(\omega)=(X_0(\omega),X_1(\omega),X_2(\omega),\ldots).
+\]
+
+То есть каждому исходу \(\omega\) сопоставляется целая траектория
+процесса.
+
+Пространство последовательностей:
+
+\[
+E^{\mathbb N_0}
+=
+\{x=(x_0,x_1,x_2,\ldots):x_n\in E\}.
+\]
+
+На нем берут произведенную \(\sigma\)-алгебру
+
+\[
+\mathcal E^{\mathbb N_0}
+=
+\sigma\{\pi_n^{-1}(A):n\ge0,\ A\in\mathcal E\},
+\]
+
+где
+
+\[
+\pi_n:E^{\mathbb N_0}\to E,
+\qquad
+\pi_n(x)=x_n
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  координатная проекция.
+\end{itemize}
+
+\subsubsection{2.4. Конечномерные проекции и цилиндрические
+множества}\label{ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux435-ux43fux440ux43eux435ux43aux446ux438ux438-ux438-ux446ux438ux43bux438ux43dux434ux440ux438ux447ux435ux441ux43aux438ux435-ux43cux43dux43eux436ux435ux441ux442ux432ux430}
+
+Более общие конечномерные проекции имеют вид
+
+\[
+\pi_{n_1,\ldots,n_k}:E^{\mathbb N_0}\to E^k,
+\qquad
+\pi_{n_1,\ldots,n_k}(x)=(x_{n_1},\ldots,x_{n_k}).
+\]
+
+Цилиндрическое множество - это событие, зависящее только от конечного
+числа координат:
+
+\[
+C=\pi_{n_1,\ldots,n_k}^{-1}(B),
+\qquad
+B\in\mathcal E^k.
+\]
+
+Например,
+
+\[
+C=\{x:x_0\in A_0,\ x_1\in A_1,\ x_5\in A_5\}
+\]
+
+является цилиндром: он накладывает условия только на координаты
+\(0,1,5\), а остальные координаты свободны.
+
+\subsubsection{2.5. Доказательство эквивалентности точек
+зрения}\label{ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432ux43e-ux44dux43aux432ux438ux432ux430ux43bux435ux43dux442ux43dux43eux441ux442ux438-ux442ux43eux447ux435ux43a-ux437ux440ux435ux43dux438ux44f}
+
+Теперь важно показать эквивалентность двух точек зрения.
+
+Если задана последовательность случайных величин \(X_n\), то определяем
+
+\[
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+Нужно проверить, что \(X\) измеримо как отображение в
+\(E^{\mathbb N_0}\). Поскольку произведенная \(\sigma\)-алгебра
+порождена цилиндрами, достаточно проверить прообразы цилиндров. Для
+одного координатного цилиндра:
+
+\[
+X^{-1}(\pi_n^{-1}(A))
+=
+\{\omega:X_n(\omega)\in A\}
+=
+X_n^{-1}(A)\in\mathcal F.
+\]
+
+Значит \(X\) измеримо. Для конечномерного цилиндра:
+
+\[
+X^{-1}(\pi_{n_1,\ldots,n_k}^{-1}(B))
+=
+\{\omega:(X_{n_1}(\omega),\ldots,X_{n_k}(\omega))\in B\}\in\mathcal F,
+\]
+
+потому что вектор
+
+\[
+(X_{n_1},\ldots,X_{n_k})
+\]
+
+измерим.
+
+Обратно, если задана случайная последовательность
+
+\[
+X:\Omega\to E^{\mathbb N_0},
+\]
+
+то отдельные координаты получаются как композиции:
+
+\[
+X_n=\pi_n\circ X.
+\]
+
+Так как \(\pi_n\) измерима, а \(X\) измеримо, то каждое \(X_n\) -
+случайная величина. Значит одно случайное отображение в пространство
+последовательностей задает семейство случайных величин.
+
+Эта эквивалентность - центральная мысль билета:
+
+\[
+\{X_n\}_{n\ge0}
+\quad\Longleftrightarrow\quad
+X=(X_0,X_1,\ldots):\Omega\to E^{\mathbb N_0}.
+\]
+
+\subsubsection{2.6. Закон процесса и конечномерные
+распределения}\label{ux437ux430ux43aux43eux43d-ux43fux440ux43eux446ux435ux441ux441ux430-ux438-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Теперь закон процесса. Как и для любого случайного элемента из Билета
+06, распределение случайной последовательности - это образ вероятностной
+меры:
+
+\[
+P_X=P\circ X^{-1}.
+\]
+
+То есть для \(A\in\mathcal E^{\mathbb N_0}\):
+
+\[
+P_X(A)=P\{\omega:X(\omega)\in A\}.
+\]
+
+Это мера на пространстве последовательностей. Именно она называется
+законом процесса.
+
+Конечномерные распределения получаются из закона процесса проекциями.
+Для \(n_1,\ldots,n_k\):
+
+\[
+P_{n_1,\ldots,n_k}(B)
+=
+P\{(X_{n_1},\ldots,X_{n_k})\in B\}.
+\]
+
+Через закон \(P_X\) это записывается так:
+
+\[
+P_{n_1,\ldots,n_k}(B)
+=
+P_X(\pi_{n_1,\ldots,n_k}^{-1}(B)).
+\]
+
+Иными словами, конечномерные распределения - это маргиналы меры \(P_X\).
+
+\subsubsection{2.7. Связь с теоремой Колмогорова и канонический
+процесс}\label{ux441ux432ux44fux437ux44c-ux441-ux442ux435ux43eux440ux435ux43cux43eux439-ux43aux43eux43bux43cux43eux433ux43eux440ux43eux432ux430-ux438-ux43aux430ux43dux43eux43dux438ux447ux435ux441ux43aux438ux439-ux43fux440ux43eux446ux435ux441ux441}
+
+Наоборот, если заданы все конечномерные распределения и они согласованы,
+то по Билету 15 существует мера \(P_X\) на \(E^{\mathbb N_0}\), для
+которой эти распределения являются маргиналами. Тогда на каноническом
+пространстве можно взять координатный процесс
+
+\[
+X_n(x)=x_n,
+\qquad
+x=(x_0,x_1,\ldots).
+\]
+
+Так получается случайная последовательность с заданными конечномерными
+распределениями.
+
+\subsubsection{2.8. Различие между состоянием, траекторией и
+законом}\label{ux440ux430ux437ux43bux438ux447ux438ux435-ux43cux435ux436ux434ux443-ux441ux43eux441ux442ux43eux44fux43dux438ux435ux43c-ux442ux440ux430ux435ux43aux442ux43eux440ux438ux435ux439-ux438-ux437ux430ux43aux43eux43dux43eux43c}
+
+Очень важно различать три объекта:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X_n\) - состояние процесса в момент времени \(n\) как случайная
+  величина;
+\item
+  \(X(\omega)\) - траектория, то есть последовательность значений при
+  фиксированном исходе \(\omega\);
+\item
+  \(P_X\) - закон процесса, то есть вероятность на пространстве всех
+  последовательностей.
+\end{enumerate}
+
+Траектория - не распределение. Распределение - мера на множестве
+возможных траекторий.
+
+\subsubsection{2.9. Определение закона через
+цилиндры}\label{ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux437ux430ux43aux43eux43dux430-ux447ux435ux440ux435ux437-ux446ux438ux43bux438ux43dux434ux440ux44b}
+
+Для дискретного времени цилиндры особенно удобны. Например, если
+\(E=\mathbb R\), то событие
+
+\[
+\{X_0\le a_0,\ X_1\le a_1,\ldots,X_n\le a_n\}
+\]
+
+соответствует цилиндру
+
+\[
+(-\infty,a_0]\times\cdots\times(-\infty,a_n]\times E\times E\times\cdots.
+\]
+
+Вероятность такого цилиндра равна конечномерной функции распределения:
+
+\[
+F_{0,\ldots,n}(a_0,\ldots,a_n)
+=
+P\{X_0\le a_0,\ldots,X_n\le a_n\}.
+\]
+
+Поэтому закон случайной последовательности полностью определяется
+вероятностями цилиндров, а значит всеми конечномерными распределениями.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Дискретный случайный
+процесс}\label{ux434ux438ux441ux43aux440ux435ux442ux43dux44bux439-ux441ux43bux443ux447ux430ux439ux43dux44bux439-ux43fux440ux43eux446ux435ux441ux441}
+
+Семейство случайных элементов
+
+\[
+\{X_n:n\in\mathbb N_0\}
+\]
+
+на одном вероятностном пространстве, где каждое
+
+\[
+X_n:\Omega\to E
+\]
+
+измеримо.
+
+\subsubsection{Случайная
+последовательность}\label{ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c}
+
+Случайный элемент со значениями в пространстве последовательностей:
+
+\[
+X:\Omega\to E^{\mathbb N_0},
+\qquad
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+\subsubsection{Пространство
+последовательностей}\label{ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux435ux439}
+
+\[
+E^{\mathbb N_0}
+=
+\{(x_0,x_1,\ldots):x_n\in E\}.
+\]
+
+\subsubsection{\texorpdfstring{Произведенная
+\(\sigma\)-алгебра}{Произведенная \textbackslash sigma-алгебра}}\label{ux43fux440ux43eux438ux437ux432ux435ux434ux435ux43dux43dux430ux44f-sigma-ux430ux43bux433ux435ux431ux440ux430}
+
+\[
+\mathcal E^{\mathbb N_0}
+=
+\sigma\{\pi_n^{-1}(A):n\ge0,\ A\in\mathcal E\}.
+\]
+
+\subsubsection{Координатная
+проекция}\label{ux43aux43eux43eux440ux434ux438ux43dux430ux442ux43dux430ux44f-ux43fux440ux43eux435ux43aux446ux438ux44f}
+
+\[
+\pi_n(x)=x_n.
+\]
+
+\subsubsection{Цилиндрическое
+событие}\label{ux446ux438ux43bux438ux43dux434ux440ux438ux447ux435ux441ux43aux43eux435-ux441ux43eux431ux44bux442ux438ux435}
+
+\[
+\pi_{n_1,\ldots,n_k}^{-1}(B),
+\qquad
+B\in\mathcal E^k.
+\]
+
+Это событие, зависящее от конечного числа координат.
+
+\subsubsection{Траектория
+процесса}\label{ux442ux440ux430ux435ux43aux442ux43eux440ux438ux44f-ux43fux440ux43eux446ux435ux441ux441ux430}
+
+Для фиксированного исхода \(\omega\) последовательность
+
+\[
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+\subsubsection{Закон
+процесса}\label{ux437ux430ux43aux43eux43d-ux43fux440ux43eux446ux435ux441ux441ux430}
+
+\[
+P_X=P\circ X^{-1}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  распределение случайного элемента \(X\) на пространстве
+  последовательностей.
+\end{itemize}
+
+\subsubsection{Конечномерное
+распределение}\label{ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+\[
+P_{n_1,\ldots,n_k}(B)
+=
+P\{(X_{n_1},\ldots,X_{n_k})\in B\}.
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\subsubsection{Эквивалентность двух
+описаний}\label{ux44dux43aux432ux438ux432ux430ux43bux435ux43dux442ux43dux43eux441ux442ux44c-ux434ux432ux443ux445-ux43eux43fux438ux441ux430ux43dux438ux439}
+
+Последовательность случайных величин
+
+\[
+X_0,X_1,\ldots
+\]
+
+эквивалентна одному случайному отображению
+
+\[
+X:\Omega\to E^{\mathbb N_0},
+\qquad
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+\subsubsection{Критерий измеримости в пространство
+последовательностей}\label{ux43aux440ux438ux442ux435ux440ux438ux439-ux438ux437ux43cux435ux440ux438ux43cux43eux441ux442ux438-ux432-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux43e-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux435ux439}
+
+Отображение
+
+\[
+X:\Omega\to E^{\mathbb N_0}
+\]
+
+измеримо относительно произведенной \(\sigma\)-алгебры тогда и только
+тогда, когда все координаты
+
+\[
+X_n=\pi_n\circ X
+\]
+
+измеримы.
+
+\subsubsection{Закон процесса задается на пространстве
+последовательностей}\label{ux437ux430ux43aux43eux43d-ux43fux440ux43eux446ux435ux441ux441ux430-ux437ux430ux434ux430ux435ux442ux441ux44f-ux43dux430-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux435-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux435ux439}
+
+\[
+P_X(A)=P\{X\in A\},
+\qquad
+A\in\mathcal E^{\mathbb N_0}.
+\]
+
+\subsubsection{Конечномерные распределения являются маргиналами
+закона}\label{ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux44fux432ux43bux44fux44eux442ux441ux44f-ux43cux430ux440ux433ux438ux43dux430ux43bux430ux43cux438-ux437ux430ux43aux43eux43dux430}
+
+\[
+P_{n_1,\ldots,n_k}(B)
+=
+P_X(\pi_{n_1,\ldots,n_k}^{-1}(B)).
+\]
+
+\subsubsection{Закон процесса определяется
+цилиндрами}\label{ux437ux430ux43aux43eux43d-ux43fux440ux43eux446ux435ux441ux441ux430-ux43eux43fux440ux435ux434ux435ux43bux44fux435ux442ux441ux44f-ux446ux438ux43bux438ux43dux434ux440ux430ux43cux438}
+
+Если две вероятностные меры на \(E^{\mathbb N_0}\) совпадают на всех
+цилиндрах, то они совпадают на всей произведенной \(\sigma\)-алгебре.
+
+\subsubsection{Согласованные конечномерные распределения задают закон
+последовательности}\label{ux441ux43eux433ux43bux430ux441ux43eux432ux430ux43dux43dux44bux435-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux437ux430ux434ux430ux44eux442-ux437ux430ux43aux43eux43d-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438}
+
+По теореме Колмогорова из Билета 15 согласованное семейство
+конечномерных распределений задает меру на \(E^{\mathbb N_0}\), то есть
+закон случайной последовательности.
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Независимые броски
+монеты}\label{ux43dux435ux437ux430ux432ux438ux441ux438ux43cux44bux435-ux431ux440ux43eux441ux43aux438-ux43cux43eux43dux435ux442ux44b}
+
+Пусть
+
+\[
+E=\{0,1\},
+\]
+
+где \(1\) означает успех, а \(0\) - неуспех. Последовательность
+
+\[
+X_0,X_1,\ldots
+\]
+
+независимых бернуллиевских величин с параметром \(p\) имеет
+конечномерные вероятности
+
+\[
+P\{X_0=x_0,\ldots,X_n=x_n\}
+=
+\prod_{k=0}^n p^{x_k}(1-p)^{1-x_k},
+\qquad
+x_k\in\{0,1\}.
+\]
+
+Ее закон - мера на пространстве
+
+\[
+\{0,1\}^{\mathbb N_0}.
+\]
+
+Траектория - бесконечная последовательность нулей и единиц.
+
+\subsubsection{Случайное
+блуждание}\label{ux441ux43bux443ux447ux430ux439ux43dux43eux435-ux431ux43bux443ux436ux434ux430ux43dux438ux435}
+
+Пусть \(\xi_1,\xi_2,\ldots\) - независимые одинаково распределенные
+приращения, например
+
+\[
+P\{\xi_k=1\}=P\{\xi_k=-1\}=\frac12.
+\]
+
+Определим
+
+\[
+S_0=0,
+\qquad
+S_n=\sum_{k=1}^n \xi_k.
+\]
+
+Тогда
+
+\[
+S=(S_0,S_1,S_2,\ldots)
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  случайная последовательность со значениями в
+  \(\mathbb Z^{\mathbb N_0}\). Каждая траектория - путь блуждания.
+\end{itemize}
+
+\subsubsection{Марковская
+цепь}\label{ux43cux430ux440ux43aux43eux432ux441ux43aux430ux44f-ux446ux435ux43fux44c}
+
+Пусть \(E\) - счетное множество состояний, \(\pi\) - начальное
+распределение, \(P=(p_{ij})\) - переходная матрица. Тогда конечномерные
+вероятности имеют вид
+
+\[
+P\{X_0=i_0,\ldots,X_n=i_n\}
+=
+\pi_{i_0}p_{i_0i_1}\cdots p_{i_{n-1}i_n}.
+\]
+
+Это задает закон на \(E^{\mathbb N_0}\). Координатная последовательность
+с этим законом является марковской цепью. Это связь с Билетом 22 и
+Билетом 23.
+
+\subsubsection{Стационарная
+последовательность}\label{ux441ux442ux430ux446ux438ux43eux43dux430ux440ux43dux430ux44f-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c}
+
+Случайная последовательность называется стационарной в узком смысле,
+если ее конечномерные распределения не меняются при сдвиге времени:
+
+\[
+(X_{n_1+h},\ldots,X_{n_k+h})
+\stackrel d=
+(X_{n_1},\ldots,X_{n_k})
+\]
+
+для всех допустимых \(h\). В терминах закона на \(E^{\mathbb N_0}\) это
+означает инвариантность закона относительно сдвига последовательности.
+Это связь с Билетом 17.
+
+\subsubsection{Пример различия траектории и
+закона}\label{ux43fux440ux438ux43cux435ux440-ux440ux430ux437ux43bux438ux447ux438ux44f-ux442ux440ux430ux435ux43aux442ux43eux440ux438ux438-ux438-ux437ux430ux43aux43eux43dux430}
+
+Если бросать монету бесконечно много раз, то конкретная траектория может
+быть
+
+\[
+(1,0,0,1,1,0,\ldots).
+\]
+
+Но закон процесса - не эта последовательность, а мера на множестве всех
+бесконечных последовательностей из нулей и единиц. Эта мера говорит, с
+какими вероятностями возникают цилиндры, например событие
+
+\[
+\{x_0=1,\ x_1=0,\ x_2=0\}.
+\]
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\subsubsection{Из последовательности случайных величин получается
+случайная
+последовательность}\label{ux438ux437-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438-ux441ux43bux443ux447ux430ux439ux43dux44bux445-ux432ux435ux43bux438ux447ux438ux43d-ux43fux43eux43bux443ux447ux430ux435ux442ux441ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux44c}
+
+Пусть все \(X_n\) измеримы. Определим
+
+\[
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+Чтобы доказать измеримость \(X\), достаточно проверить прообразы
+образующих цилиндров:
+
+\[
+X^{-1}(\pi_n^{-1}(A))
+=
+\{\omega:X_n(\omega)\in A\}
+\in\mathcal F.
+\]
+
+Значит \(X\) измеримо как отображение в \(E^{\mathbb N_0}\).
+
+\subsubsection{Из случайной последовательности получаются
+координаты}\label{ux438ux437-ux441ux43bux443ux447ux430ux439ux43dux43eux439-ux43fux43eux441ux43bux435ux434ux43eux432ux430ux442ux435ux43bux44cux43dux43eux441ux442ux438-ux43fux43eux43bux443ux447ux430ux44eux442ux441ux44f-ux43aux43eux43eux440ux434ux438ux43dux430ux442ux44b}
+
+Пусть \(X:\Omega\to E^{\mathbb N_0}\) измеримо. Тогда
+
+\[
+X_n=\pi_n\circ X.
+\]
+
+Поскольку координатные проекции \(\pi_n\) измеримы, каждая \(X_n\)
+измерима. Значит координаты случайной последовательности являются
+случайными величинами.
+
+\subsubsection{Почему закон определяется конечномерными
+распределениями}\label{ux43fux43eux447ux435ux43cux443-ux437ux430ux43aux43eux43d-ux43eux43fux440ux435ux434ux435ux43bux44fux435ux442ux441ux44f-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux43cux438-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44fux43cux438}
+
+Конечномерные распределения задают вероятности всех цилиндров:
+
+\[
+P_X(\pi_{n_1,\ldots,n_k}^{-1}(B))
+=
+P\{(X_{n_1},\ldots,X_{n_k})\in B\}.
+\]
+
+Цилиндры порождают произведенную \(\sigma\)-алгебру. Поэтому мера на
+пространстве последовательностей определяется своими значениями на
+цилиндрах.
+
+\subsubsection{Как используется теорема
+Колмогорова}\label{ux43aux430ux43a-ux438ux441ux43fux43eux43bux44cux437ux443ux435ux442ux441ux44f-ux442ux435ux43eux440ux435ux43cux430-ux43aux43eux43bux43cux43eux433ux43eux440ux43eux432ux430}
+
+Если процесс еще не задан, но есть согласованные конечномерные
+распределения, то теорема Колмогорова строит меру \(P\) на
+\(E^{\mathbb N_0}\). После этого можно взять канонический процесс
+
+\[
+X_n(x)=x_n.
+\]
+
+Его закон равен \(P\), а конечномерные распределения совпадают с
+заданными.
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Две точки зрения:
+\end{enumerate}
+
+\[
+\{X_n\}_{n\ge0}
+\quad\Longleftrightarrow\quad
+X:\Omega\to E^{\mathbb N_0}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Случайная последовательность:
+\end{enumerate}
+
+\[
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Пространство последовательностей:
+\end{enumerate}
+
+\[
+E^{\mathbb N_0}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Координатные проекции:
+\end{enumerate}
+
+\[
+\pi_n(x)=x_n,
+\qquad
+X_n=\pi_n\circ X.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Произведенная \(\sigma\)-алгебра:
+\end{enumerate}
+
+\[
+\mathcal E^{\mathbb N_0}
+=
+\sigma\{\pi_n^{-1}(A):A\in\mathcal E,\ n\ge0\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Закон процесса:
+\end{enumerate}
+
+\[
+P_X=P\circ X^{-1}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Конечномерные распределения как маргиналы:
+\end{enumerate}
+
+\[
+P_{n_1,\ldots,n_k}(B)
+=
+P_X(\pi_{n_1,\ldots,n_k}^{-1}(B)).
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Что является главным объектом билета?}
+
+Дискретный случайный процесс, который можно рассматривать либо как
+последовательность случайных величин \(X_0,X_1,\ldots\), либо как один
+случайный элемент \(X\) со значениями в пространстве последовательностей
+\(E^{\mathbb N_0}\).
+
+\textbf{В чем разница между \(X_n\) и \(X(\omega)\)?}
+
+\(X_n\) - случайная величина, отвечающая моменту времени \(n\). А
+\(X(\omega)\) - вся траектория при фиксированном исходе \(\omega\):
+
+\[
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+\textbf{Что такое пространство последовательностей?}
+
+Это множество всех возможных траекторий:
+
+\[
+E^{\mathbb N_0}=\{(x_0,x_1,\ldots):x_n\in E\}.
+\]
+
+На нем используется произведенная \(\sigma\)-алгебра, порожденная
+координатными цилиндрами.
+
+\textbf{Что такое цилиндрическое событие?}
+
+Это событие, которое задает условия только на конечное число координат:
+
+\[
+\{x:(x_{n_1},\ldots,x_{n_k})\in B\}.
+\]
+
+Например, \(\{x_0\in A_0,\ x_3\in A_3\}\).
+
+\textbf{Почему отображение \(X:\Omega\to E^{\mathbb N_0}\) измеримо,
+если все координаты \(X_n\) измеримы?}
+
+Потому что произведенная \(\sigma\)-алгебра порождена цилиндрами, а
+прообраз координатного цилиндра равен
+
+\[
+X^{-1}(\pi_n^{-1}(A))=X_n^{-1}(A)\in\mathcal F.
+\]
+
+\textbf{Что такое закон процесса?}
+
+Это распределение случайной последовательности:
+
+\[
+P_X(A)=P\{X\in A\},
+\qquad
+A\in\mathcal E^{\mathbb N_0}.
+\]
+
+Это мера на множестве всех возможных траекторий.
+
+\textbf{Как конечномерные распределения связаны с законом процесса?}
+
+Они являются маргиналами закона:
+
+\[
+P_{n_1,\ldots,n_k}(B)
+=
+P_X(\pi_{n_1,\ldots,n_k}^{-1}(B)).
+\]
+
+\textbf{Почему нельзя путать траекторию и распределение?}
+
+Траектория - это один элемент \(E^{\mathbb N_0}\), то есть конкретная
+последовательность значений. Распределение - это вероятностная мера на
+множестве всех таких последовательностей.
+
+\textbf{Как билет связан с Билетом 15?}
+
+В Билете 15 доказывается, что согласованные конечномерные распределения
+задают меру на пространстве траекторий. В этом билете для дискретного
+времени это пространство имеет вид \(E^{\mathbb N_0}\).
+
+\textbf{Как билет связан с марковскими цепями?}
+
+Марковская цепь - это частный случай случайной последовательности. Ее
+закон на \(E^{\mathbb N_0}\) задается начальным распределением и
+переходными вероятностями:
+
+\[
+P\{X_0=i_0,\ldots,X_n=i_n\}
+=
+\pi_{i_0}p_{i_0i_1}\cdots p_{i_{n-1}i_n}.
+\]
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Путать время \(n\) и исход \(\omega\).
+\item
+  Путать случайную величину \(X_n\) и значение \(X_n(\omega)\).
+\item
+  Путать траекторию \(X(\omega)\) и закон процесса \(P_X\).
+\item
+  Забывать, что все \(X_n\) должны быть заданы на одном вероятностном
+  пространстве.
+\item
+  Забывать произведенную \(\sigma\)-алгебру на \(E^{\mathbb N_0}\).
+\item
+  Считать, что одномерные распределения \(P_{X_n}\) задают закон
+  процесса. Нужны все конечномерные распределения или мера на
+  пространстве последовательностей.
+\item
+  Не различать семейство случайных величин и канонический координатный
+  процесс на \(E^{\mathbb N_0}\).
+\end{itemize}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Билет 05: случайные элементы и измеримые отображения.
+\item
+  Билет 06: распределение случайного элемента и конечномерные
+  распределения.
+\item
+  Билет 15: согласованные конечномерные распределения задают меру на
+  пространстве траекторий.
+\item
+  Билет 17: стационарность и эргодичность формулируются для случайных
+  последовательностей.
+\item
+  Билет 19: случайные блуждания - примеры случайных последовательностей
+  с независимыми приращениями.
+\item
+  Билет 22 и Билет 23: марковские цепи - случайные последовательности со
+  специальной зависимостью.
+\item
+  Билет 24 и Билет 25: корреляционная функция и спектральные
+  характеристики относятся к последовательностям второго порядка.
+\end{itemize}
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Дискретный процесс - это последовательность случайных величин:
+\end{enumerate}
+
+\[
+X_0,X_1,\ldots
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Его можно рассматривать как одну случайную последовательность:
+\end{enumerate}
+
+\[
+X:\Omega\to E^{\mathbb N_0},
+\qquad
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Закон процесса:
+\end{enumerate}
+
+\[
+P_X=P\circ X^{-1}
+\]
+
+на пространстве \(E^{\mathbb N_0}\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Конечномерные распределения - маргиналы этого закона.
+\item
+  Главная ловушка: траектория - не распределение.
+\end{enumerate}
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно объяснить:
+
+\begin{itemize}
+\tightlist
+\item
+  что такое произведенная \(\sigma\)-алгебра;
+\item
+  что такое цилиндрическое событие;
+\item
+  почему измеримость отображения в \(E^{\mathbb N_0}\) проверяется по
+  координатам;
+\item
+  как из закона процесса получить конечномерные распределения;
+\item
+  как по согласованным конечномерным распределениям построить закон
+  последовательности через теорему Колмогорова;
+\item
+  привести пример: iid-последовательность, случайное блуждание или
+  марковская цепь.
+\end{itemize}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{itemize}
+\tightlist
+\item
+  четкое различие между \(X_n\), \(X_n(\omega)\), \(X(\omega)\) и
+  \(P_X\);
+\item
+  формулу для цилиндров и конечномерных проекций;
+\item
+  доказательство эквивалентности двух точек зрения через измеримость
+  координат;
+\item
+  объяснение, почему закон на \(E^{\mathbb N_0}\) определяется
+  цилиндрами;
+\item
+  пример марковской цепи через \(\pi\) и \(P\);
+\item
+  связь со стационарностью как инвариантностью закона относительно
+  сдвига.
+\end{itemize}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Дискретный случайный процесс - это семейство случайных величин
+  \(X_0,X_1,\ldots\) на одном вероятностном пространстве.
+\item
+  Его можно рассматривать как одно отображение
+\end{enumerate}
+
+\[
+X:\Omega\to E^{\mathbb N_0},
+\qquad
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Пространство \(E^{\mathbb N_0}\) - это пространство всех траекторий.
+\item
+  На нем берется произведенная \(\sigma\)-алгебра, порожденная
+  координатными проекциями
+\end{enumerate}
+
+\[
+\pi_n(x)=x_n.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Цилиндры - события, зависящие от конечного числа координат:
+\end{enumerate}
+
+\[
+\{x:(x_{n_1},\ldots,x_{n_k})\in B\}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Если все \(X_n\) измеримы, то отображение \(X=(X_0,X_1,\ldots)\)
+  измеримо, потому что прообразы цилиндров измеримы.
+\item
+  Обратно, если \(X\) - случайный элемент пространства
+  последовательностей, то его координаты
+\end{enumerate}
+
+\[
+X_n=\pi_n\circ X
+\]
+
+являются случайными величинами. 8. Закон процесса - это распределение
+\(X\):
+
+\[
+P_X=P\circ X^{-1}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Конечномерные распределения - маргиналы этого закона:
+\end{enumerate}
+
+\[
+P_{n_1,\ldots,n_k}(B)
+=
+P_X(\pi_{n_1,\ldots,n_k}^{-1}(B)).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  По теореме Колмогорова согласованные конечномерные распределения
+  задают такой закон на \(E^{\mathbb N_0}\).
+\item
+  Примеры: независимые броски монеты, случайное блуждание, марковская
+  цепь.
+\item
+  Главная ошибка - путать конкретную траекторию с распределением на
+  пространстве траекторий.
+\end{enumerate}
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить главную эквивалентность:
+
+\[
+\{X_n\}_{n\ge0}
+\quad\Longleftrightarrow\quad
+X:\Omega\to E^{\mathbb N_0},
+\qquad
+X(\omega)=(X_0(\omega),X_1(\omega),\ldots).
+\]
+
+Координаты:
+
+\[
+X_n=\pi_n\circ X,
+\qquad
+\pi_n(x)=x_n.
+\]
+
+Закон процесса:
+
+\[
+P_X=P\circ X^{-1}.
+\]
+
+Конечномерные распределения:
+
+\[
+P_{n_1,\ldots,n_k}(B)
+=
+P_X(\pi_{n_1,\ldots,n_k}^{-1}(B)).
+\]
+
+Главная ловушка: \(X(\omega)\) - это одна траектория, а \(P_X\) - мера
+на множестве всех траекторий.
+
+\newpage
+
+\end{document}

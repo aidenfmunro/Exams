@@ -1,0 +1,1420 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{Noto Serif}
+    \setsansfont[]{Noto Sans}
+    \setmonofont[]{Noto Sans Mono}
+  \setmathfont[]{Noto Sans Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{russian}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Noto Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Билеты по дискретным случайным процессам},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Билеты по дискретным случайным процессам}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Билет 20. Конечномерные распределения как обобщенные функции.
+Дельта-функции Дирака и преобразования
+Фурье}\label{ux431ux438ux43bux435ux442-20.-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f-ux43aux430ux43a-ux43eux431ux43eux431ux449ux435ux43dux43dux44bux435-ux444ux443ux43dux43aux446ux438ux438.-ux434ux435ux43bux44cux442ux430-ux444ux443ux43dux43aux446ux438ux438-ux434ux438ux440ux430ux43aux430-ux438-ux43fux440ux435ux43eux431ux440ux430ux437ux43eux432ux430ux43dux438ux44f-ux444ux443ux440ux44cux435}
+
+Источники: Ширяев 1, §12; лекции ДСП.
+
+\subsection{1. Короткий
+ответ}\label{ux43aux43eux440ux43eux442ux43aux438ux439-ux43eux442ux432ux435ux442}
+
+Конечномерное распределение процесса можно рассматривать не только как
+меру на \(\mathbb R^n\), но и как линейный функционал на функциях. Как
+мера оно действует на ограниченные борелевские или непрерывные функции;
+если говорить строго на языке обобщенных функций, его ограничивают на
+тестовые функции из \(C_c^\infty\) или на функции Шварца. Если
+
+\[
+\mu=P_{t_1,\ldots,t_n}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  распределение вектора
+\end{itemize}
+
+\[
+(X_{t_1},\ldots,X_{t_n}),
+\]
+
+то каждой ограниченной непрерывной функции \(f\in C_b(\mathbb R^n)\) оно
+сопоставляет число
+
+\[
+\langle \mu,f\rangle
+=
+\int_{\mathbb R^n} f(x)\,\mu(dx)
+=
+\mathbb E f(X_{t_1},\ldots,X_{t_n}).
+\]
+
+В этом смысле мера действует как обобщенная функция.
+
+Дельта-мера Дирака в точке \(a\):
+
+\[
+\delta_a(B)=\mathbf 1_B(a),
+\]
+
+а как функционал:
+
+\[
+\langle\delta_a,f\rangle=f(a).
+\]
+
+Преобразование Фурье вероятностной меры:
+
+\[
+\widehat\mu(u)
+=
+\int_{\mathbb R^n} e^{i\langle u,x\rangle}\,\mu(dx).
+\]
+
+Для распределения случайного вектора это его характеристическая функция:
+
+\[
+\varphi_X(u)=\mathbb E e^{i\langle u,X\rangle}.
+\]
+
+\subsection{2. Полный
+ответ}\label{ux43fux43eux43bux43dux44bux439-ux43eux442ux432ux435ux442}
+
+\subsubsection{2.1. Вероятностная мера и конечномерные
+распределения}\label{ux432ux435ux440ux43eux44fux442ux43dux43eux441ux442ux43dux430ux44f-ux43cux435ux440ux430-ux438-ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux44bux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+Этот билет связывает несколько уже изученных тем: распределения
+случайных векторов из Билета 06, характеристические функции из Билета
+08, моменты через характеристические функции из Билета 13 и меру Дирака
+из Билета 01.
+
+Обычно распределение случайного вектора определяется как вероятностная
+мера. Пусть
+
+\[
+X=(X_1,\ldots,X_n)
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  случайный вектор. Его распределение
+\end{itemize}
+
+\[
+\mu=P_X
+\]
+
+на \(\mathbb R^n\) задается формулой
+
+\[
+\mu(B)=P\{X\in B\},
+\qquad
+B\in\mathcal B(\mathbb R^n).
+\]
+
+Для случайного процесса конечномерное распределение - это распределение
+вектора
+
+\[
+(X_{t_1},\ldots,X_{t_n}).
+\]
+
+Его обычно обозначают
+
+\[
+P_{t_1,\ldots,t_n}
+\]
+
+или
+
+\[
+\mu_{t_1,\ldots,t_n}.
+\]
+
+\subsubsection{2.2. Распределение как функционал на пространстве
+тестовых
+функций}\label{ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux43aux430ux43a-ux444ux443ux43dux43aux446ux438ux43eux43dux430ux43b-ux43dux430-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux435-ux442ux435ux441ux442ux43eux432ux44bux445-ux444ux443ux43dux43aux446ux438ux439}
+
+Но меру можно задавать не только значениями на множествах, а и ее
+действием на функции. Если \(f\) - ограниченная борелевская или
+ограниченная непрерывная функция, то можно взять интеграл
+
+\[
+\int_{\mathbb R^n} f(x)\,\mu(dx).
+\]
+
+Для вероятностных мер особенно удобен класс ограниченных непрерывных
+тестовых функций
+
+\[
+C_b(\mathbb R^n).
+\]
+
+Ограниченность гарантирует, что интеграл конечен:
+
+\[
+\left|\int f\,d\mu\right|
+\le
+\|f\|_\infty\mu(\mathbb R^n)
+=
+\|f\|_\infty.
+\]
+
+Непрерывность важна для слабой сходимости распределений.
+
+Таким образом, распределение \(\mu\) задает функционал
+
+\[
+f\mapsto \langle \mu,f\rangle,
+\]
+
+где
+
+\[
+\langle \mu,f\rangle
+=
+\int f(x)\,\mu(dx).
+\]
+
+\subsubsection{2.3. Свойства функционала и интерпретация как обобщенной
+функции}\label{ux441ux432ux43eux439ux441ux442ux432ux430-ux444ux443ux43dux43aux446ux438ux43eux43dux430ux43bux430-ux438-ux438ux43dux442ux435ux440ux43fux440ux435ux442ux430ux446ux438ux44f-ux43aux430ux43a-ux43eux431ux43eux431ux449ux435ux43dux43dux43eux439-ux444ux443ux43dux43aux446ux438ux438}
+
+Этот функционал линейный:
+
+\[
+\langle \mu,af+bg\rangle
+=
+a\langle\mu,f\rangle+b\langle\mu,g\rangle.
+\]
+
+Он положительный:
+
+\[
+f\ge0
+\quad\Rightarrow\quad
+\langle\mu,f\rangle\ge0.
+\]
+
+Он нормирован:
+
+\[
+\langle\mu,1\rangle=1.
+\]
+
+Именно поэтому можно говорить, что распределение рассматривается как
+обобщенная функция: оно действует на тестовую функцию и возвращает
+число. Здесь слово ``обобщенная'' не означает, что это обязательно
+обычная функция плотности. Например, атомарное распределение не имеет
+плотности относительно меры Лебега, но как функционал на тестовых
+функциях оно определено без проблем.
+
+Для случайного вектора \(X\) действие распределения на тестовую функцию
+можно записать через математическое ожидание:
+
+\[
+\langle P_X,f\rangle
+=
+\int_{\mathbb R^n}f(x)\,P_X(dx)
+=
+\mathbb E f(X).
+\]
+
+Для конечномерного распределения процесса:
+
+\[
+\langle P_{t_1,\ldots,t_n},f\rangle
+=
+\mathbb E f(X_{t_1},\ldots,X_{t_n}).
+\]
+
+Это особенно удобно: вместо работы с вероятностями всех борелевских
+множеств можно проверять интегралы от тестовых функций.
+
+\subsubsection{2.4. Мера Дирака и способы представления
+распределений}\label{ux43cux435ux440ux430-ux434ux438ux440ux430ux43aux430-ux438-ux441ux43fux43eux441ux43eux431ux44b-ux43fux440ux435ux434ux441ux442ux430ux432ux43bux435ux43dux438ux44f-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux439}
+
+Теперь дельта-функция Дирака. Строго в теории меры это не обычная
+функция, а мера, сосредоточенная в одной точке. Для \(a\in\mathbb R^n\):
+
+\[
+\delta_a(B)=
+\begin{cases}
+1, & a\in B,\\
+0, & a\notin B.
+\end{cases}
+\]
+
+Эквивалентно:
+
+\[
+\delta_a(B)=\mathbf 1_B(a).
+\]
+
+Как функционал дельта действует подстановкой:
+
+\[
+\langle\delta_a,f\rangle
+=
+\int f(x)\,\delta_a(dx)
+=
+f(a).
+\]
+
+Физическая запись
+
+\[
+\int f(x)\delta(x-a)\,dx=f(a)
+\]
+
+понимается именно в этом смысле. Строго \(\delta(x-a)\) не является
+обычной функцией плотности по Лебегу.
+
+Если случайная величина постоянна:
+
+\[
+X=a
+\quad\text{п.н.},
+\]
+
+то ее распределение равно
+
+\[
+P_X=\delta_a.
+\]
+
+Если распределение дискретное:
+
+\[
+P\{X=x_k\}=p_k,
+\qquad
+\sum_k p_k=1,
+\]
+
+то его можно записать как сумму дельта-мер:
+
+\[
+P_X=\sum_k p_k\delta_{x_k}.
+\]
+
+Действие на тестовую функцию:
+
+\[
+\langle P_X,f\rangle
+=
+\sum_k p_k f(x_k).
+\]
+
+Если распределение абсолютно непрерывно с плотностью \(p(x)\), то
+
+\[
+\mu(dx)=p(x)\,dx
+\]
+
+и
+
+\[
+\langle\mu,f\rangle
+=
+\int_{\mathbb R^n}f(x)p(x)\,dx.
+\]
+
+Так в одной записи объединяются дискретные, непрерывные и смешанные
+распределения.
+
+\subsubsection{2.5. Слабая сходимость
+распределений}\label{ux441ux43bux430ux431ux430ux44f-ux441ux445ux43eux434ux438ux43cux43eux441ux442ux44c-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux439}
+
+Следующая важная идея - слабая сходимость. Последовательность
+вероятностных мер \(\mu_k\) слабо сходится к \(\mu\), если для всех
+ограниченных непрерывных функций \(f\):
+
+\[
+\int f\,d\mu_k\to\int f\,d\mu.
+\]
+
+Пишут:
+
+\[
+\mu_k\Rightarrow\mu.
+\]
+
+Для случайных величин это означает сходимость по распределению:
+
+\[
+X_k\Rightarrow X.
+\]
+
+Иными словами, слабая сходимость - это сходимость распределений как
+функционалов на тестовых функциях.
+
+\subsubsection{2.6. Преобразование Фурье меры и характеристические
+функции}\label{ux43fux440ux435ux43eux431ux440ux430ux437ux43eux432ux430ux43dux438ux435-ux444ux443ux440ux44cux435-ux43cux435ux440ux44b-ux438-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux438ux435-ux444ux443ux43dux43aux446ux438ux438}
+
+Теперь преобразование Фурье меры. Для конечной меры \(\mu\) на
+\(\mathbb R^n\) ее преобразование Фурье определяется формулой
+
+\[
+\widehat\mu(u)
+=
+\int_{\mathbb R^n}e^{i\langle u,x\rangle}\,\mu(dx),
+\qquad
+u\in\mathbb R^n.
+\]
+
+Так как
+
+\[
+|e^{i\langle u,x\rangle}|=1,
+\]
+
+интеграл всегда существует для вероятностной меры.
+
+Если \(\mu=P_X\) - распределение случайного вектора \(X\), то
+
+\[
+\widehat\mu(u)
+=
+\mathbb E e^{i\langle u,X\rangle}
+=
+\varphi_X(u).
+\]
+
+То есть характеристическая функция - это просто преобразование Фурье
+распределения.
+
+Для дельта-мер:
+
+\[
+\widehat{\delta_a}(u)
+=
+\int e^{i\langle u,x\rangle}\delta_a(dx)
+=
+e^{i\langle u,a\rangle}.
+\]
+
+Для дискретного распределения:
+
+\[
+\mu=\sum_k p_k\delta_{x_k}
+\]
+
+получаем
+
+\[
+\widehat\mu(u)=\sum_k p_k e^{i\langle u,x_k\rangle}.
+\]
+
+Для распределения с плотностью:
+
+\[
+\widehat\mu(u)=\int_{\mathbb R^n}e^{i\langle u,x\rangle}p(x)\,dx.
+\]
+
+\subsubsection{2.7. Свертка и теорема
+единственности}\label{ux441ux432ux435ux440ux442ux43aux430-ux438-ux442ux435ux43eux440ux435ux43cux430-ux435ux434ux438ux43dux441ux442ux432ux435ux43dux43dux43eux441ux442ux438}
+
+Преобразование Фурье удобно тем, что свертка мер превращается в
+произведение. Если \(X\) и \(Y\) независимы, то распределение суммы
+\(X+Y\) равно свертке распределений:
+
+\[
+P_{X+Y}=P_X*P_Y,
+\]
+
+а характеристические функции перемножаются:
+
+\[
+\varphi_{X+Y}(u)=\varphi_X(u)\varphi_Y(u).
+\]
+
+Это использовалось в Билете 08 и Билете 19.
+
+Еще одно ключевое свойство: характеристическая функция однозначно задает
+распределение. Если
+
+\[
+\widehat\mu(u)=\widehat\nu(u)
+\]
+
+для всех \(u\), то
+
+\[
+\mu=\nu.
+\]
+
+Поэтому преобразование Фурье - не просто удобный числовой образ, а
+полноценный способ кодировать распределение.
+
+\subsection{3. Основные
+определения}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux43eux43fux440ux435ux434ux435ux43bux435ux43dux438ux44f}
+
+\subsubsection{Конечномерное распределение
+процесса}\label{ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux43fux440ux43eux446ux435ux441ux441ux430}
+
+Для процесса \((X_t)\) и набора \(t_1,\ldots,t_n\) это распределение
+случайного вектора
+
+\[
+(X_{t_1},\ldots,X_{t_n})
+\]
+
+на \(\mathbb R^n\):
+
+\[
+P_{t_1,\ldots,t_n}(B)
+=
+P\{(X_{t_1},\ldots,X_{t_n})\in B\}.
+\]
+
+\subsubsection{Тестовая
+функция}\label{ux442ux435ux441ux442ux43eux432ux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+В этом билете удобно брать
+
+\[
+f\in C_b(\mathbb R^n),
+\]
+
+то есть \(f\) непрерывна и ограничена.
+
+\subsubsection{Мера как
+функционал}\label{ux43cux435ux440ux430-ux43aux430ux43a-ux444ux443ux43dux43aux446ux438ux43eux43dux430ux43b}
+
+Вероятностная мера \(\mu\) действует на тестовую функцию так:
+
+\[
+\langle\mu,f\rangle=\int f\,d\mu.
+\]
+
+\subsubsection{Дельта-мера
+Дирака}\label{ux434ux435ux43bux44cux442ux430-ux43cux435ux440ux430-ux434ux438ux440ux430ux43aux430}
+
+Мера в точке \(a\):
+
+\[
+\delta_a(B)=\mathbf 1_B(a).
+\]
+
+Как функционал:
+
+\[
+\langle\delta_a,f\rangle=f(a).
+\]
+
+\subsubsection{Дискретное распределение через
+дельта-меры}\label{ux434ux438ux441ux43aux440ux435ux442ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux447ux435ux440ux435ux437-ux434ux435ux43bux44cux442ux430-ux43cux435ux440ux44b}
+
+\[
+\mu=\sum_k p_k\delta_{x_k}.
+\]
+
+\subsubsection{Абсолютно непрерывное
+распределение}\label{ux430ux431ux441ux43eux43bux44eux442ux43dux43e-ux43dux435ux43fux440ux435ux440ux44bux432ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+Если есть плотность \(p\), то
+
+\[
+\mu(dx)=p(x)\,dx.
+\]
+
+\subsubsection{Слабая сходимость
+мер}\label{ux441ux43bux430ux431ux430ux44f-ux441ux445ux43eux434ux438ux43cux43eux441ux442ux44c-ux43cux435ux440}
+
+\[
+\mu_n\Rightarrow\mu
+\quad\Longleftrightarrow\quad
+\int f\,d\mu_n\to\int f\,d\mu
+\]
+
+для всех \(f\in C_b\).
+
+\subsubsection{Преобразование Фурье
+меры}\label{ux43fux440ux435ux43eux431ux440ux430ux437ux43eux432ux430ux43dux438ux435-ux444ux443ux440ux44cux435-ux43cux435ux440ux44b}
+
+\[
+\widehat\mu(u)=\int e^{i\langle u,x\rangle}\,\mu(dx).
+\]
+
+\subsubsection{Характеристическая
+функция}\label{ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f}
+
+Для \(X\sim\mu\):
+
+\[
+\varphi_X(u)=\mathbb E e^{i\langle u,X\rangle}=\widehat\mu(u).
+\]
+
+\subsection{4. Основные теоремы и
+свойства}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux442ux435ux43eux440ux435ux43cux44b-ux438-ux441ux432ux43eux439ux441ux442ux432ux430}
+
+\begin{itemize}
+\tightlist
+\item
+  Вероятностная мера задает положительный нормированный линейный
+  функционал:
+\end{itemize}
+
+\[
+f\mapsto \int f\,d\mu.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Для конечномерного распределения:
+\end{itemize}
+
+\[
+\int f\,dP_{t_1,\ldots,t_n}
+=
+\mathbb E f(X_{t_1},\ldots,X_{t_n}).
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Дельта-мера действует как подстановка:
+\end{itemize}
+
+\[
+\int f\,d\delta_a=f(a).
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Дискретное распределение записывается как сумма атомов:
+\end{itemize}
+
+\[
+\mu=\sum_kp_k\delta_{x_k}.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Характеристическая функция - преобразование Фурье распределения:
+\end{itemize}
+
+\[
+\varphi_X(u)=\widehat{P_X}(u).
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Преобразование Фурье дельта-меры:
+\end{itemize}
+
+\[
+\widehat{\delta_a}(u)=e^{i\langle u,a\rangle}.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Свертка переходит в произведение:
+\end{itemize}
+
+\[
+\widehat{\mu*\nu}(u)=\widehat\mu(u)\widehat\nu(u).
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Характеристическая функция однозначно задает распределение.
+\item
+  Слабая сходимость распределений проверяется на ограниченных
+  непрерывных тестовых функциях.
+\end{itemize}
+
+\subsection{5. Примеры}\label{ux43fux440ux438ux43cux435ux440ux44b}
+
+\subsubsection{Постоянная случайная
+величина}\label{ux43fux43eux441ux442ux43eux44fux43dux43dux430ux44f-ux441ux43bux443ux447ux430ux439ux43dux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Если
+
+\[
+X=a
+\quad\text{п.н.},
+\]
+
+то
+
+\[
+P_X=\delta_a.
+\]
+
+Для тестовой функции:
+
+\[
+\mathbb E f(X)=f(a).
+\]
+
+Характеристическая функция:
+
+\[
+\varphi_X(t)=e^{ita}.
+\]
+
+\subsubsection{Дискретное
+распределение}\label{ux434ux438ux441ux43aux440ux435ux442ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435}
+
+Пусть
+
+\[
+P\{X=x_k\}=p_k.
+\]
+
+Тогда
+
+\[
+P_X=\sum_kp_k\delta_{x_k}.
+\]
+
+Действие на тестовую функцию:
+
+\[
+\langle P_X,f\rangle=\sum_kp_kf(x_k).
+\]
+
+Характеристическая функция:
+
+\[
+\varphi_X(t)=\sum_kp_ke^{itx_k}.
+\]
+
+\subsubsection{Бернуллиевская
+величина}\label{ux431ux435ux440ux43dux443ux43bux43bux438ux435ux432ux441ux43aux430ux44f-ux432ux435ux43bux438ux447ux438ux43dux430}
+
+Если
+
+\[
+P\{X=1\}=p,
+\qquad
+P\{X=0\}=1-p,
+\]
+
+то
+
+\[
+P_X=(1-p)\delta_0+p\delta_1.
+\]
+
+Характеристическая функция:
+
+\[
+\varphi_X(t)=1-p+pe^{it}.
+\]
+
+\subsubsection{Распределение с
+плотностью}\label{ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux441-ux43fux43bux43eux442ux43dux43eux441ux442ux44cux44e}
+
+Если
+
+\[
+\mu(dx)=p(x)\,dx,
+\]
+
+то
+
+\[
+\langle\mu,f\rangle=\int f(x)p(x)\,dx.
+\]
+
+Преобразование Фурье:
+
+\[
+\widehat\mu(t)=\int e^{itx}p(x)\,dx.
+\]
+
+\subsubsection{Конечномерное распределение
+процесса}\label{ux43aux43eux43dux435ux447ux43dux43eux43cux435ux440ux43dux43eux435-ux440ux430ux441ux43fux440ux435ux434ux435ux43bux435ux43dux438ux435-ux43fux440ux43eux446ux435ux441ux441ux430-1}
+
+Для процесса \((X_n)\) двумерное распределение пары \((X_0,X_1)\)
+действует на функцию \(f(x,y)\) так:
+
+\[
+\langle P_{0,1},f\rangle
+=
+\mathbb E f(X_0,X_1).
+\]
+
+Если процесс детерминированный и
+
+\[
+X_0=a,\qquad X_1=b
+\]
+
+почти наверное, то
+
+\[
+P_{0,1}=\delta_{(a,b)}.
+\]
+
+\subsection{6. Схемы доказательств /
+обоснований}\label{ux441ux445ux435ux43cux44b-ux434ux43eux43aux430ux437ux430ux442ux435ux43bux44cux441ux442ux432-ux43eux431ux43eux441ux43dux43eux432ux430ux43dux438ux439}
+
+\subsubsection{Почему мера задает линейный положительный
+функционал}\label{ux43fux43eux447ux435ux43cux443-ux43cux435ux440ux430-ux437ux430ux434ux430ux435ux442-ux43bux438ux43dux435ux439ux43dux44bux439-ux43fux43eux43bux43eux436ux438ux442ux435ux43bux44cux43dux44bux439-ux444ux443ux43dux43aux446ux438ux43eux43dux430ux43b}
+
+Для \(f,g\in C_b\) и чисел \(a,b\):
+
+\[
+\int(af+bg)\,d\mu
+=
+a\int f\,d\mu+b\int g\,d\mu.
+\]
+
+Если \(f\ge0\), то
+
+\[
+\int f\,d\mu\ge0.
+\]
+
+Если \(\mu\) - вероятность, то
+
+\[
+\int 1\,d\mu=\mu(\mathbb R^n)=1.
+\]
+
+\subsubsection{Почему дельта действует как
+подстановка}\label{ux43fux43eux447ux435ux43cux443-ux434ux435ux43bux44cux442ux430-ux434ux435ux439ux441ux442ux432ux443ux435ux442-ux43aux430ux43a-ux43fux43eux434ux441ux442ux430ux43dux43eux432ux43aux430}
+
+Для простой функции это сразу видно:
+
+\[
+\int \sum_j c_j\mathbf 1_{A_j}(x)\,\delta_a(dx)
+=
+\sum_j c_j\mathbf 1_{A_j}(a).
+\]
+
+Правая часть равна значению простой функции в точке \(a\). Переходом к
+пределу получаем для ограниченной измеримой функции:
+
+\[
+\int f\,d\delta_a=f(a).
+\]
+
+\subsubsection{Почему характеристическая функция -
+Фурье-образ}\label{ux43fux43eux447ux435ux43cux443-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux444ux443ux43dux43aux446ux438ux44f---ux444ux443ux440ux44cux435-ux43eux431ux440ux430ux437}
+
+Если \(X\sim\mu\), то по формуле замены переменной:
+
+\[
+\mathbb E e^{i\langle u,X\rangle}
+=
+\int e^{i\langle u,x\rangle}\,\mu(dx).
+\]
+
+Левая часть - характеристическая функция, правая - преобразование Фурье
+меры.
+
+\subsubsection{Почему при независимости характеристики
+перемножаются}\label{ux43fux43eux447ux435ux43cux443-ux43fux440ux438-ux43dux435ux437ux430ux432ux438ux441ux438ux43cux43eux441ux442ux438-ux445ux430ux440ux430ux43aux442ux435ux440ux438ux441ux442ux438ux43aux438-ux43fux435ux440ux435ux43cux43dux43eux436ux430ux44eux442ux441ux44f}
+
+Если \(X\) и \(Y\) независимы, то
+
+\[
+\varphi_{X+Y}(u)
+=
+\mathbb E e^{i\langle u,X+Y\rangle}
+=
+\mathbb E\left(e^{i\langle u,X\rangle}e^{i\langle u,Y\rangle}\right).
+\]
+
+По независимости:
+
+\[
+\varphi_{X+Y}(u)
+=
+\mathbb E e^{i\langle u,X\rangle}
+\mathbb E e^{i\langle u,Y\rangle}
+=
+\varphi_X(u)\varphi_Y(u).
+\]
+
+\subsection{7. Что написать на
+доске}\label{ux447ux442ux43e-ux43dux430ux43fux438ux441ux430ux442ux44c-ux43dux430-ux434ux43eux441ux43aux435}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Мера как функционал:
+\end{enumerate}
+
+\[
+\langle\mu,f\rangle=\int f(x)\,\mu(dx).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Конечномерное распределение:
+\end{enumerate}
+
+\[
+\langle P_{t_1,\ldots,t_n},f\rangle
+=
+\mathbb E f(X_{t_1},\ldots,X_{t_n}).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Дельта Дирака:
+\end{enumerate}
+
+\[
+\delta_a(B)=\mathbf 1_B(a),
+\qquad
+\langle\delta_a,f\rangle=f(a).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Дискретный закон:
+\end{enumerate}
+
+\[
+\mu=\sum_kp_k\delta_{x_k}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Фурье-образ меры:
+\end{enumerate}
+
+\[
+\widehat\mu(u)=\int e^{i\langle u,x\rangle}\,\mu(dx).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Характеристическая функция:
+\end{enumerate}
+
+\[
+\varphi_X(u)=\widehat{P_X}(u).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Слабая сходимость:
+\end{enumerate}
+
+\[
+\mu_n\Rightarrow\mu
+\Longleftrightarrow
+\int f\,d\mu_n\to\int f\,d\mu
+\quad(f\in C_b).
+\]
+
+\subsection{8. Типичные дополнительные
+вопросы}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux434ux43eux43fux43eux43bux43dux438ux442ux435ux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\textbf{Что значит рассматривать распределение как обобщенную функцию?}
+
+Это значит рассматривать меру \(\mu\) по ее действию на тестовые
+функции:
+
+\[
+f\mapsto\langle\mu,f\rangle=\int f\,d\mu.
+\]
+
+Даже если у распределения нет плотности, такой функционал определен.
+
+\textbf{Почему берут ограниченные непрерывные тестовые функции?}
+
+Ограниченность гарантирует конечность интеграла по вероятностной мере.
+Непрерывность нужна для слабой сходимости: распределения считаются
+близкими, если интегралы от всех \(f\in C_b\) близки.
+
+\textbf{Чем дельта Дирака отличается от обычной функции?}
+
+Строго \(\delta_a\) - это мера или функционал, а не обычная функция. Ее
+смысл:
+
+\[
+\int f\,d\delta_a=f(a).
+\]
+
+Нельзя обращаться с ней как с обычной плотностью относительно меры
+Лебега.
+
+\textbf{Как записать дискретное распределение через дельта-меры?}
+
+Если
+
+\[
+P\{X=x_k\}=p_k,
+\]
+
+то
+
+\[
+P_X=\sum_kp_k\delta_{x_k}.
+\]
+
+\textbf{Что такое преобразование Фурье меры?}
+
+Это функция
+
+\[
+\widehat\mu(u)=\int e^{i\langle u,x\rangle}\,\mu(dx).
+\]
+
+Для вероятностной меры она всегда определена, потому что модуль
+экспоненты равен \(1\).
+
+\textbf{Почему характеристическая функция - это Фурье-образ
+распределения?}
+
+Если \(X\sim\mu\), то
+
+\[
+\varphi_X(u)
+=
+\mathbb E e^{i\langle u,X\rangle}
+=
+\int e^{i\langle u,x\rangle}\,\mu(dx)
+=
+\widehat\mu(u).
+\]
+
+\textbf{Что такое слабая сходимость в этом языке?}
+
+Это сходимость мер как функционалов:
+
+\[
+\mu_n\Rightarrow\mu
+\]
+
+если для всех \(f\in C_b\):
+
+\[
+\langle\mu_n,f\rangle\to\langle\mu,f\rangle.
+\]
+
+\textbf{Какой Фурье-образ у дельта-меры?}
+
+\[
+\widehat{\delta_a}(u)=e^{i\langle u,a\rangle}.
+\]
+
+\textbf{Как связаны свертка и преобразование Фурье?}
+
+Свертка мер переходит в произведение Фурье-образов:
+
+\[
+\widehat{\mu*\nu}(u)=\widehat\mu(u)\widehat\nu(u).
+\]
+
+Вероятностно это означает, что характеристическая функция суммы
+независимых величин равна произведению характеристических функций.
+
+\textbf{Какая главная ошибка в этом билете?}
+
+Путать дельта-функцию с обычной функцией и пытаться использовать
+плотность там, где распределение атомарное.
+
+\subsection{9. Типичные
+ошибки}\label{ux442ux438ux43fux438ux447ux43dux44bux435-ux43eux448ux438ux431ux43aux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Путать дельта-меру с обычной функцией.
+\item
+  Писать плотность для атомарного распределения без оговорки о
+  дельта-мерах.
+\item
+  Забывать, что \(\delta_a\) действует на функцию как подстановка.
+\item
+  Путать функцию распределения \(F(x)\) и распределение как меру
+  \(\mu\).
+\item
+  Путать преобразование Фурье плотности и преобразование Фурье меры:
+  второе работает и без плотности.
+\item
+  Забывать знак в соглашении Фурье; в вероятности обычно используют
+  \(e^{i\langle u,x\rangle}\).
+\item
+  Считать, что слабая сходимость проверяется по индикаторам всех
+  множеств; стандартная формулировка здесь через \(C_b\).
+\end{itemize}
+
+\subsection{10. Связи с другими
+билетами}\label{ux441ux432ux44fux437ux438-ux441-ux434ux440ux443ux433ux438ux43cux438-ux431ux438ux43bux435ux442ux430ux43cux438}
+
+\begin{itemize}
+\tightlist
+\item
+  Билет 01: мера Дирака как пример меры.
+\item
+  Билет 06: распределения случайных величин и конечномерные
+  распределения.
+\item
+  Билет 08: характеристические функции как преобразования Фурье
+  распределений.
+\item
+  Билет 09: независимость и произведение характеристических функций.
+\item
+  Билет 13: моменты и ковариации через производные характеристической
+  функции.
+\item
+  Билет 15: согласованные конечномерные распределения задают процесс.
+\item
+  Билет 18: гауссовские распределения удобно задаются
+  характеристическими функциями.
+\item
+  Билет 19: для сумм независимых шагов характеристические функции
+  перемножаются.
+\end{itemize}
+
+\subsection{11. Минимум на
+удовлетворительно}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux443ux434ux43eux432ux43bux435ux442ux432ux43eux440ux438ux442ux435ux43bux44cux43dux43e}
+
+Нужно сказать:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Распределение \(\mu\) можно рассматривать как функционал:
+\end{enumerate}
+
+\[
+\langle\mu,f\rangle=\int f\,d\mu.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Для конечномерного распределения процесса:
+\end{enumerate}
+
+\[
+\langle P_{t_1,\ldots,t_n},f\rangle
+=
+\mathbb E f(X_{t_1},\ldots,X_{t_n}).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Дельта Дирака:
+\end{enumerate}
+
+\[
+\langle\delta_a,f\rangle=f(a).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Преобразование Фурье меры:
+\end{enumerate}
+
+\[
+\widehat\mu(u)=\int e^{i\langle u,x\rangle}\,\mu(dx).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Для распределения случайного вектора это характеристическая функция.
+\end{enumerate}
+
+\subsection{12. Минимум на
+хорошо}\label{ux43cux438ux43dux438ux43cux443ux43c-ux43dux430-ux445ux43eux440ux43eux448ux43e}
+
+Помимо минимума, нужно объяснить:
+
+\begin{itemize}
+\tightlist
+\item
+  почему ограниченность тестовых функций гарантирует конечность
+  интеграла;
+\item
+  почему дельта Дирака не является обычной плотностью;
+\item
+  как записать дискретное распределение через сумму дельта-мер;
+\item
+  как записать абсолютно непрерывное распределение через плотность;
+\item
+  что слабая сходимость означает сходимость интегралов по \(C_b\);
+\item
+  почему характеристическая функция однозначно задает распределение.
+\end{itemize}
+
+\subsection{13. Что добавить для
+отлично}\label{ux447ux442ux43e-ux434ux43eux431ux430ux432ux438ux442ux44c-ux434ux43bux44f-ux43eux442ux43bux438ux447ux43dux43e}
+
+Для сильного ответа стоит добавить:
+
+\begin{itemize}
+\tightlist
+\item
+  связь с конечномерными распределениями процесса;
+\item
+  положительность и нормированность функционала
+  \(\mu:f\mapsto\int f\,d\mu\);
+\item
+  примеры: константа, Бернулли, плотность;
+\item
+  преобразование Фурье дельта-меры;
+\item
+  свертку и произведение характеристических функций;
+\item
+  предупреждение про соглашение знака в преобразовании Фурье;
+\item
+  связь со слабой сходимостью и ЦПТ.
+\end{itemize}
+
+\subsection{14. Устная версия ответа на 5
+минут}\label{ux443ux441ux442ux43dux430ux44f-ux432ux435ux440ux441ux438ux44f-ux43eux442ux432ux435ux442ux430-ux43dux430-5-ux43cux438ux43dux443ux442}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Конечномерное распределение процесса - это мера на \(\mathbb R^n\).
+\item
+  Эту меру можно рассматривать как функционал на тестовых функциях:
+\end{enumerate}
+
+\[
+\langle\mu,f\rangle=\int f\,d\mu.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Для процесса:
+\end{enumerate}
+
+\[
+\langle P_{t_1,\ldots,t_n},f\rangle
+=
+\mathbb E f(X_{t_1},\ldots,X_{t_n}).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Такой функционал линейный, положительный и нормированный.
+\item
+  Дельта Дирака в точке \(a\):
+\end{enumerate}
+
+\[
+\delta_a(B)=\mathbf 1_B(a),
+\qquad
+\langle\delta_a,f\rangle=f(a).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Дискретное распределение записывается как сумма дельт:
+\end{enumerate}
+
+\[
+\mu=\sum_kp_k\delta_{x_k}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Если есть плотность \(p\), то
+\end{enumerate}
+
+\[
+\langle\mu,f\rangle=\int f(x)p(x)\,dx.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Преобразование Фурье меры:
+\end{enumerate}
+
+\[
+\widehat\mu(u)=\int e^{i\langle u,x\rangle}\,\mu(dx).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Для вероятностной меры это характеристическая функция:
+\end{enumerate}
+
+\[
+\varphi_X(u)=\widehat{P_X}(u).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  У дельта-меры:
+\end{enumerate}
+
+\[
+\widehat{\delta_a}(u)=e^{i\langle u,a\rangle}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  Слабая сходимость означает сходимость интегралов от всех ограниченных
+  непрерывных тестовых функций.
+\item
+  Главная ошибка - считать \(\delta\) обычной функцией и пытаться всюду
+  писать плотности.
+\end{enumerate}
+
+\subsection{15. Если осталось 2 минуты перед
+экзаменом}\label{ux435ux441ux43bux438-ux43eux441ux442ux430ux43bux43eux441ux44c-2-ux43cux438ux43dux443ux442ux44b-ux43fux435ux440ux435ux434-ux44dux43aux437ux430ux43cux435ux43dux43eux43c}
+
+Запомнить три формулы.
+
+Мера как функционал:
+
+\[
+\langle\mu,f\rangle=\int f\,d\mu.
+\]
+
+Дельта Дирака:
+
+\[
+\langle\delta_a,f\rangle=f(a).
+\]
+
+Фурье-образ меры:
+
+\[
+\widehat\mu(u)=\int e^{i\langle u,x\rangle}\,\mu(dx).
+\]
+
+Для распределения \(X\):
+
+\[
+\widehat{P_X}(u)=\varphi_X(u).
+\]
+
+Главная ловушка: \(\delta_a\) - мера/функционал, а не обычная функция
+плотности.
+
+\newpage
+
+\end{document}
